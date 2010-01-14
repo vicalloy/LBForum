@@ -1,0 +1,81 @@
+{% extends "lbforum/base.html" %}
+
+{% block title %}{{  block.super }}{% endblock %}
+
+{% block content %}
+	<div id="actionbox">
+	</div>  
+
+	<div id="brd-wrap" class="brd">
+		<div id="brd-viewforum" class="brd-page paged-page">
+			{% include 'lbforum/inc_header.html' %}
+			{% include 'lbforum/inc_announce.html' %}
+
+			<div class="hr"><hr /></div>
+
+			<div class="crumbs gen-content" id="brd-crumbs-top">
+				<p>
+					<span class="crumb crumbfirst">
+						<a href="http://fluxbb.org/forums/">FluxBB.org Forums</a>
+					</span> 
+					<span class="crumb crumblast">
+						<span>&raquo;</span>
+						{{ forum }}
+					</span> 
+				</p>
+			</div>
+
+			<!-- brd-main begin -->
+<div id="brd-main">
+
+	<div class="main-pagepost gen-content" id="brd-pagepost-top">
+		<p class="paging"><span class="pages">Pages:</span> <strong class="item1">1</strong> <a href="http://fluxbb.org/forums/forum/17/test-board/page/2/">2</a> <a href="http://fluxbb.org/forums/forum/17/test-board/page/3/">3</a> <a href="http://fluxbb.org/forums/forum/17/test-board/page/4/">4</a> <a href="http://fluxbb.org/forums/forum/17/test-board/page/2/">Next</a></p>
+		<p class="posting">You must <a href="http://fluxbb.org/forums/login/">login</a> or <a href="http://fluxbb.org/forums/register/">register</a> to post a new topic</p>
+	</div>
+	<div class="main-head">
+		<h1 class="hn"><span><a title="Permanent link to this forum." rel="bookmark" href="http://fluxbb.org/forums/forum/17/test-board/" class="permalink">Test board</a> <small>(Page 1 of 4)</small></span></h1>
+	</div>
+	<div class="main-pagehead">
+		<h2 class="hn"><span><span class="item-info">Topics [ 1 to 30 of 111 ]</span></span></h2>
+	</div>
+
+
+	<div class="main-subhead">
+		<p class="item-summary forum-views">
+			<span>
+				<strong class="subject-title">Topics</strong> in this forum with details of 
+				<strong class="info-replies">replies</strong>, 
+				<strong class="info-views">views</strong>, 
+				<strong class="info-lastpost">last post</strong>.
+			</span>
+		</p>
+	</div>
+
+	<div id="topicslist" class="main-content main-forum forum-views">
+		{% for topic in page_obj.object_list %}     
+			{% include 'lbforum/inc_topic_detail.html' %}  
+		{% endfor %}
+	</div>
+
+	<div class="main-pagepost gen-content" id="brd-pagepost-end">
+		<p class="paging"><span class="pages">Pages:</span> <strong class="item1">1</strong> <a href="http://fluxbb.org/forums/forum/17/test-board/page/2/">2</a> <a href="http://fluxbb.org/forums/forum/17/test-board/page/3/">3</a> <a href="http://fluxbb.org/forums/forum/17/test-board/page/4/">4</a> <a href="http://fluxbb.org/forums/forum/17/test-board/page/2/">Next</a></p>
+		<p class="posting"><a href="http://fluxbb.org/forums/new/topic/17/" class="newpost"><span>Post new topic</span></a></p>
+	</div>
+
+</div>
+<!-- brd-main ends -->
+
+<div class="crumbs gen-content" id="brd-crumbs-end">
+	<p><span class="crumb crumbfirst"><a href="http://fluxbb.org/forums/">FluxBB.org Forums</a></span> <span class="crumb crumblast"><span>&raquo;</span>Test board</span> </p>
+</div>
+
+<div class="hr"><hr /></div>
+
+<div id="brd-about" class="gen-content">
+	<p id="copyright">Powered by <strong><a href="#">Djorum</a></strong></p>
+	<p id="extensions-used">Copyright &copy; 2008 <a href="/">Usware</a></p>
+</div>
+
+  </div>
+</div>
+{% endblock %}

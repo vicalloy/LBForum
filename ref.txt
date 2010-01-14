@@ -1,1 +1,4 @@
 http://hi.baidu.com/bailezhen/blog/item/a0db656611b7d020ab184ca8.html
+http://fluxbb.org/wiki/v1.2:db_tables#topics
+http://github.com/uswaretech/Dinette/
+http://code.pybb.org/browser/pybb/

@@ -1,38 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-{% load compress %}
 
 {% block html_declare %}
 <html>
 {% endblock %}
 
-<head>
-  {% compress css %}
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}dinette/css/oxygen.css" />
-    <link rel="stylesheet" type="text/css" media="screen"  href="{{ MEDIA_URL }}dinette/css/oxygen_cs.css" />
-    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}dinette/css/Oxygen_ie6.css" /><![endif]-->
-    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}dinette/css/Oxygen_ie7.css" /><![endif]-->
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}dinette/css/djorumstyle.css">
-  {% endcompress %}
+	<head>
+		<title>
+			{% block title %} {{ config.name }} - {{ config.tag_line }} {% endblock %}
+		</title>
+		{% include 'lbforum/inc_styles.html' %}
+		{% block extra_header %}{% endblock %}
+	</head>
 
-  <title>
-    {% block title %} {{ config.name }} - {{ config.tag_line }} {% endblock %}
-  </title>
-  {% block extra_header %}{% endblock %}
-</head>
-
-<body>
-
-{% block main_content %} {% endblock %}   
-{% block content %} {% endblock %}        
-
-
-{% compress js %}
-  <script type="text/javascript" src="{{ MEDIA_URL }}dinette/scripts/jquery13.js"></script>
-  <script type="text/javascript" src="{{ MEDIA_URL }}dinette/scripts/jqueryform.js"></script>
-  <script type="text/javascript" src="{{ MEDIA_URL }}dinette/scripts/dinetteajax.js"></script>
-{% endcompress  %}
-
-
-</body>    
+	<body>
+		{% block main_content %} {% endblock %}   
+		{% block content %} {% endblock %}        
+	</body>    
 </html>

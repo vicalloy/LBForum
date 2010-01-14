@@ -1,0 +1,6 @@
+                <p class="moderation_items">
+                    <span><a href="{% url dinette_moderate_close topic.pk %}" class="moderate-post">{% if topic.is_closed %}Reopen{% else %}Close{% endif %}</a></span> 
+                    <span><a href="{% url dinette_moderate_sticky topic.pk %}" class="moderate-post">{% if topic.is_sticky %}Un Stickify{% else %}Stickify{% endif %}</a></span> 
+                    <span><a href="{% url dinette_moderate_announce topic.pk %}" class="moderate-post">{% if topic.announcement_flag %}Remove from announcement{% else %}Make announcement{% endif %}</a></span> 
+		     		<span><a href="{% url dinette_moderate_hide topic.pk %}" class="moderate-post">Hide</a></span> 
+	        	</p>

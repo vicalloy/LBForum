@@ -1,0 +1,36 @@
+{% load lbforum %}
+<div id="topic{{ topic.pk }}" class="main-item {% cycle 'odd' 'even' %} {% if forloop.first %}main-item1{% endif %} normal">
+  <span class="icon {{topic|topic_icon}}"> </span>
+  
+  <div class="item-subject">
+	<h3 class="hn"><span class="item-num">1</span>
+	  {% if topic.is_closed %}
+		<strong>(Closed)</strong>
+	  {% endif %}
+	  
+	  {% if topic.is_sticky %}
+		<strong>(Sticky)</strong>
+	  {% endif %}		
+	  <a href="#">{{topic.subject}} </a>   
+	</h3>
+	&nbsp; <span class="item-starter">by <cite>{{topic.posted_by.username}}</cite></span>
+  </div>
+  
+  <ul class="item-info">
+	<li class="info-replies">
+	  <strong>{{ topic.num_replies }}</strong> 
+	  <span class="label">replies</span>
+	</li>
+	<li class="info-views">
+	  <strong>{{ topic.num_views }}</strong> 
+	  <span class="label">views</span>
+	</li>
+	<li class="info-lastpost">
+	  <span class="label">Last post</span>
+	  <strong><a href="{{ topic.get_absolute_url }}">{{ topic.get_last_post.update|timesince }}</a></strong>
+	  <cite>by {{topic.get_last_post.posted_by}}</cite>
+	</li>
+  </ul>
+
+</div>
+

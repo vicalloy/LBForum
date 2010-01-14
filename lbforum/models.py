@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
 
+from base64 import b64encode, b64decode
 import pickle
 from BeautifulSoup import BeautifulSoup
 from postmarkup import render_bbcode
@@ -48,9 +49,11 @@ class Forum(models.Model):
         ordering = ('ordering','-created_on')
 
     def get_last_post(self):
-        if not __last_post:
-            __last_post = pickle.loads(self.last_post)
-        return __last_post
+        if not self.last_post:
+            return {}
+        if not self.__last_post:
+            self.__last_post = pickle.loads(b64decode(self.last_post))
+        return self.__last_post
     
     @models.permalink
     def get_absolute_url(self):
@@ -69,7 +72,7 @@ class Topic(models.Model):
     
     subject = models.CharField(max_length=999)
     num_views = models.IntegerField(default=0)
-    num_replies = models.PositiveSmallIntegerField(default = -1)
+    num_replies = models.PositiveSmallIntegerField(default = 0)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
@@ -84,7 +87,7 @@ class Topic(models.Model):
     objects = TopicManager()
     
     class Meta:
-        ordering = ('-sticky', '-last_reply_on',)
+        ordering = ('-sticky', '-updated_on',)
         get_latest_by = ('created_on')
         verbose_name = _("Topic")
         verbose_name_plural = _("Topics")
@@ -103,9 +106,9 @@ class Topic(models.Model):
             return ""
 
     def get_last_post(self):
-        if not __last_post:
-            __last_post = pickle.loads(self.last_post)
-        return __last_post
+        if not self.__last_post:
+            self.__last_post = pickle.loads(b64decode(self.last_post))
+        return self.__last_post
         
 # Create Replies for a topic
 class Post(models.Model):#can't edit...
@@ -171,7 +174,7 @@ class Online(models.Model):
 #### do smoe connect ###
 def gen_last_post_info(post):
     last_post = {'posted_by': post.posted_by.username, 'update': post.created_on}
-    return pickle.dumps(last_post, pickle.HIGHEST_PROTOCOL)
+    return b64encode(pickle.dumps(last_post, pickle.HIGHEST_PROTOCOL))
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
@@ -186,11 +189,16 @@ def update_topic_on_post(sender, instance, created, **kwargs):
 
 def update_forum_on_post(sender, instance, created, **kwargs):
     if created:
-        instance.forum.last_post = gen_last_post_info(instance)
-        instance.forum.num_topics += 1
-        instance.forum.num_posts += 1
-        instance.forum.save()
+        instance.topic.forum.last_post = gen_last_post_info(instance)
+        instance.topic.forum.num_posts += 1
+        instance.topic.forum.save()
 
-post_save.connect(create_user_profile, sender=User)
-post_save.connect(update_topic_on_post, sender=Post)
-post_save.connect(update_forum_on_post, sender=Post)
+def update_forum_on_topic(sender, instance, created, **kwargs):
+    if created:
+        instance.forum.num_topics += 1
+        instance.forum.save()
+        
+post_save.connect(create_user_profile, sender = User)
+post_save.connect(update_topic_on_post, sender = Post)
+post_save.connect(update_forum_on_post, sender = Post)
+post_save.connect(update_forum_on_topic, sender = Topic)

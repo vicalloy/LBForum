@@ -16,15 +16,15 @@ from django.utils.translation import ugettext_lazy as _
 
 from  datetime  import datetime, timedelta
 
-from models import Topic, Category, Forum, Post, LBForumProfile
+from models import Topic, Category, Forum, Post, LBForumUserProfile
 
 def index(request, template_name="lbforum/index.html"):
-    forums = Category.objects.all()
+    categories = Category.objects.all()
     total_topics = Topic.objects.count()
     total_posts = Post.objects.count()
     total_users =  User.objects.count()
     last_registered_user = User.objects.order_by('-date_joined')[0]
-    ext_ctx = {'users_online': '', 'forums_list': forums, 'total_topics': total_topics,
+    ext_ctx = {'users_online': '', 'categories': categories, 'total_topics': total_topics,
             'total_posts': total_posts, 'total_users': total_users,
             'last_registered_user': last_registered_user}
     return render_to_response(template_name, ext_ctx, RequestContext(request))

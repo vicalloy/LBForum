@@ -1,0 +1,11 @@
+{% if announcement %}
+<div id="brd-announcement" class="gen-content">
+    <div class="content">
+        <strong>
+            [New Announcement]
+        </strong>
+        <a href="#">  {{ announcement.subject }}</a>
+        <p>{{ announcement.message }}</p>
+    </div>
+</div>
+{% endif %}
