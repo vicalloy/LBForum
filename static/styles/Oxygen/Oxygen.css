@@ -1828,3 +1828,31 @@ H - MAIN CONTENT - ODDMENTS
     font-weight: bold;
     padding-bottom: 0.5em;
     }
+/* by vicalloy
+-------------------------------------------------------------*/
+.brd .pagination {
+    padding:0.5em 0;
+	float: left;
+	}
+
+.brd .pagination, .brd .pagination * {
+	white-space:nowrap;
+	}
+
+.brd .pagination a, .brd .pagination strong, .brd .pagination span {
+	padding: 0 1em;
+	border-left-style: solid;
+	border-left-width: 1px;
+	float: left;
+	}
+
+.brd .pagination .prev {
+	border-left: 0;
+	padding-left: 0;
+	border-left-width: 0;
+	}
+
+.brd .pagination .current {
+    font-weight: bold;
+    }
+    

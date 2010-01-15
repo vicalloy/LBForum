@@ -369,3 +369,10 @@ body {
     border-bottom: 1px dashed #bbb;
     color: #113c5e;
     }
+
+/* by vicalloy
+-------------------------------------------------------------*/
+.brd .pagination * {
+    border-color:#DEDFDF;
+}
+    

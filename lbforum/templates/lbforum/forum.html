@@ -27,10 +27,13 @@
 
 			<!-- brd-main begin -->
 <div id="brd-main">
-
 	<div class="main-pagepost gen-content" id="brd-pagepost-top">
-		<p class="paging"><span class="pages">Pages:</span> <strong class="item1">1</strong> <a href="http://fluxbb.org/forums/forum/17/test-board/page/2/">2</a> <a href="http://fluxbb.org/forums/forum/17/test-board/page/3/">3</a> <a href="http://fluxbb.org/forums/forum/17/test-board/page/4/">4</a> <a href="http://fluxbb.org/forums/forum/17/test-board/page/2/">Next</a></p>
-		<p class="posting">You must <a href="http://fluxbb.org/forums/login/">login</a> or <a href="http://fluxbb.org/forums/register/">register</a> to post a new topic</p>
+		{% load pagination_tags %}
+		{% autopaginate topics 2 %}
+		{% paginate %}
+		<p class="posting">
+			You must <a href="http://fluxbb.org/forums/login/">login</a> or <a href="http://fluxbb.org/forums/register/">register</a> to post a new topic
+		</p>
 	</div>
 	<div class="main-head">
 		<h1 class="hn"><span><a title="Permanent link to this forum." rel="bookmark" href="http://fluxbb.org/forums/forum/17/test-board/" class="permalink">Test board</a> <small>(Page 1 of 4)</small></span></h1>
@@ -52,7 +55,7 @@
 	</div>
 
 	<div id="topicslist" class="main-content main-forum forum-views">
-		{% for topic in page_obj.object_list %}     
+		{% for topic in topics %}     
 			{% include 'lbforum/inc_topic_detail.html' %}  
 		{% endfor %}
 	</div>

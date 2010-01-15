@@ -11,7 +11,7 @@
 	  {% if topic.is_sticky %}
 		<strong>(Sticky)</strong>
 	  {% endif %}		
-	  <a href="#">{{topic.subject}} </a>   
+	  <a href="{% url lbforum_topic topic.id %}">{{topic.subject}} </a>   
 	</h3>
 	&nbsp; <span class="item-starter">by <cite>{{topic.posted_by.username}}</cite></span>
   </div>

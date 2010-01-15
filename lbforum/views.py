@@ -35,18 +35,13 @@ def forum(request, forum_slug, template_name="lbforum/forum.html"):
             select_related()
     topic_page_size = getattr(settings , "TOPIC_PAGE_SIZE", 20)#TODO ?
     ext_ctx = {'forum': forum, 'topics': topics}
-    return object_list(request,
-                       topics,
-                       paginate_by = topic_page_size,
-                       template_name = template_name,
-                       extra_context = ext_ctx,
-                       allow_empty = True)
+    return render_to_response(template_name, ext_ctx, RequestContext(request))
 
 def topic(request, topic_id, template_name="lbforum/topic.html"):
-    topic = get_object_or_404(Forum, id = topic_id)
+    topic = get_object_or_404(Topic, id = topic_id)
     topic.num_views += 1
     topic.save()
-    posts = Post.objects.filter(topic__id__exact = forum.id).order_by('-created_on').\
+    posts = Post.objects.filter(topic__id__exact = topic.forum.id).order_by('-created_on').\
             select_related()
     topic_page_size = getattr(settings , "POST_PAGE_SIZE", 20)#TODO ?
     ext_ctx = {'topic': topic, 'posts': posts}#TODO first_post

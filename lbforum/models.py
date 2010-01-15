@@ -76,7 +76,7 @@ class Topic(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
-    last_post = models.CharField(max_length = 255)#pickle obj
+    last_post = models.CharField(max_length = 255, blank=True)#pickle obj
     __last_post = ""
     
     #Moderation features

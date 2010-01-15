@@ -1,4 +1,4 @@
-{% extends 'dinette/base.html' %}
+{% extends 'lbforum/base.html' %}
 
 {% block title %}
     {{ topic.subject }} - {{ block.super }}
@@ -7,8 +7,6 @@
 {% block content %}
 
     {% load thumbnail %} 
-    {% load pagination_tags %}
-    {% autopaginate reply_list reply_page_size %}
 
     <div id="replybox">
         <div id="actionbox">
@@ -30,11 +28,11 @@
 <div id="brd-crumbs-top" class="crumbs gen-content">
     <p>
         <span class="crumb crumbfirst">
-            <a href="{% url dinette_category %}">{{ config.name }}</a>
+            <a href="#">{{ config.name }}</a>
         </span> 
         <span class="crumb">
             <span> &raquo; </span>
-            <a href="{{ topic.category.get_absolute_url }}">{{ topic.category.name }}</a>
+            <a href="{{ topic.forum.get_absolute_url }}">{{ topic.forum.name }}</a>
         </span> 
         <span class="crumb crumblast">
             <span> &raquo; </span>
@@ -46,16 +44,16 @@
             {% if user.is_authenticated %}
                 <a href="" onclick="return isUserAuthenticated(1)">Post Reply</a> &nbsp; &nbsp;
             {% else %}
-                (<a href="{% url dinette_login %}?next={{ topic.get_absolute_url }}">Login to Post Reply</a>) &nbsp; &nbsp;
+                (<a href="#?next={{ topic.get_absolute_url }}">Login to Post Reply</a>) &nbsp; &nbsp;
             {% endif %}
         {% endif %}
 
         {% if reply_list.has_next %}
-            <a href="{% url dinette_reply_detail_paged  topic.category.slug topic.slug   reply_list.next_page_number %}"> Next </a>              
+            <a href="#"> Next </a>              
         {% endif %}
 
         {% if reply_list.has_previous %}
-            <a href="{% url dinette_reply_detail_paged  topic.category.slug topic.slug  reply_list.previous_page_number %}"> Previous </a>
+            <a href="#"> Previous </a>
         {% endif %}   &nbsp;
     </p>  
 </div>
@@ -65,13 +63,10 @@
 <div class="main-head">
     <p class="options">
         <span class="feed first-item">
-            <a class="feed-option" href="{% url dinette_topic_url topic.getTopicString %}">RSS Topic Feed</a>
+            <a class="feed-option" href="#">RSS Topic Feed</a>
         </span>
     </p>
     <h2 class="hn"><span><span class="item-info">Posts </span></span></h2>
-    {% if show_moderation_items %}
-        {% include 'dinette/moderation_frag.html' %}
-    {% endif %}
 </div>
 <!-- main head ends -->
 
@@ -133,9 +128,6 @@
     <h4 id="pc120560" class="entry-title hn">Re: {{reply.topic.subject}}</h4>
     <div class="entry-content">
         <p>  {{ topic.htmlfrombbcode|safe }} </p>
-        {% with topic as rtopic %}    
-        {% include 'dinette/attachement_frag.html' %}     
-    {% endwith %}     
 </div>
           </div>
       </div>
@@ -145,7 +137,7 @@
     {% endifequal %}    
 
     {% for reply in reply_list %}
-        {% include 'dinette/replydetail_frag.html' %}
+        {% include 'lbforum/inc_replydetail.html' %}
     {% endfor %}
 </div>
 
@@ -155,19 +147,18 @@
         {% if user.is_authenticated %}
             <a href="#" onclick="return isUserAuthenticated(2)">Post Reply</a> &nbsp; &nbsp;
         {% else %}
-            (<a href="{% url dinette_login %}?next={{ topic.get_absolute_url }}">Login to Post Reply</a>) &nbsp; &nbsp;
+            (<a href="#?next={{ topic.get_absolute_url }}">Login to Post Reply</a>) &nbsp; &nbsp;
         {% endif %}
     {% endif %}
 
     <span style='float: right;'>
-        {% paginate %}
     </span>
 </div>
 
 {% if not topic.is_closed and user.is_authenticated %}
     <!-- formbox begins -->
 <div id="formbox" class="magicbox">
-    <form action="{% url dinette_postreply %}" method="POST" id="fpostreply"  >            
+    <form action="#" method="POST" id="fpostreply"  >            
         <table>
             <tbody> 
                 {{ replyform.as_table }}
@@ -189,7 +180,7 @@
 
   <div class="hr"><hr /></div>
   <div id="brd-about" class="gen-content">
-      <p id="copyright">Powered by <strong><a href="{% url dinette_category %}">Djorum</a></strong></p>
+      <p id="copyright">Powered by <strong><a href="#">Djorum</a></strong></p>
       <p id="extensions-used">Copyright &copy; 2008 <a href="/">Usware</a></p>
   </div>
 
