@@ -375,4 +375,7 @@ body {
 .brd .pagination * {
     border-color:#DEDFDF;
 }
-    
+
+.brd .posthead .post-link {
+    color:#006699;
+}

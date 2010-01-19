@@ -72,7 +72,7 @@ class Topic(models.Model):
     
     subject = models.CharField(max_length=999)
     num_views = models.IntegerField(default=0)
-    num_replies = models.PositiveSmallIntegerField(default = 0)
+    num_replies = models.PositiveSmallIntegerField(default = 0)#posts...
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
@@ -148,7 +148,7 @@ class Post(models.Model):#can't edit...
             return ""
         
 class LBForumUserProfile(models.Model):
-    user = models.ForeignKey(User, unique = True)
+    user = models.OneToOneField(User, related_name='lbforum_profile', verbose_name=_('User'))
     last_activity = models.DateTimeField(auto_now_add=True)
     userrank = models.CharField(max_length=30,default=_("Junior Member"))
     last_posttime = models.DateTimeField(auto_now_add=True)

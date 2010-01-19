@@ -1,5 +1,7 @@
 {% extends 'lbforum/base.html' %}
 
+{% load lbforum %}
+
 {% block title %}
     {{ topic.subject }} - {{ block.super }}
 {% endblock %}
@@ -15,14 +17,11 @@
 
 
     <div id="brd-wrap" class="brd">
-        <div id="brd-index" class="brd-page basic-page">
+        <div id="brd-viewtopic" class="brd-page paged-page">
             {% include 'lbforum/inc_header.html' %}
             {% include 'lbforum/inc_announce.html' %}
 
-            <p></p>
-
             <div class="hr"><hr/></div>
-            <div id="errorbox"> <span>  </span>  </div>
 
             <!-- bread crumbs begin -->
 <div id="brd-crumbs-top" class="crumbs gen-content">
@@ -38,37 +37,78 @@
             <span> &raquo; </span>
             <a href="{{ topic.get_absolute_url }}">{{ topic.subject }} </a>
         </span> 
-
-        &nbsp; &nbsp;
-        {% if not topic.is_closed %}
-            {% if user.is_authenticated %}
-                <a href="" onclick="return isUserAuthenticated(1)">Post Reply</a> &nbsp; &nbsp;
-            {% else %}
-                (<a href="#?next={{ topic.get_absolute_url }}">Login to Post Reply</a>) &nbsp; &nbsp;
-            {% endif %}
-        {% endif %}
-
-        {% if reply_list.has_next %}
-            <a href="#"> Next </a>              
-        {% endif %}
-
-        {% if reply_list.has_previous %}
-            <a href="#"> Previous </a>
-        {% endif %}   &nbsp;
     </p>  
 </div>
 <!-- bread crumbs end -->
 
-<!-- main head begins -->
-<div class="main-head">
-    <p class="options">
-        <span class="feed first-item">
-            <a class="feed-option" href="#">RSS Topic Feed</a>
-        </span>
-    </p>
-    <h2 class="hn"><span><span class="item-info">Posts </span></span></h2>
+<!-- ====================================================== -->
+<div class="main-wrapper" id="brd-main">
+
+    <div class="main-pagepost gen-content" id="brd-pagepost-top">
+        {% load pagination_tags %}
+        {% autopaginate posts 2 %}
+        {% paginate %}
+        <p class="posting">
+            You must <a href="#">login</a> or <a href="#">register</a> to post a new topic
+        </p>
+    </div>
+    <div class="main-head">
+        <h1 class="hn"><span><a title="Permanent link to this topic" rel="bookmark" href="{{ topic.get_absolute_url }}" class="permalink">{{ topic }}</a></span></h1>
+    </div>
+    <div class="main-pagehead">
+        <h2 class="hn"><span><span class="item-info">Posts [ {{topic.num_replies}} ]</span></span></h2>
+    </div>
+
+    <div class="main-content main-topic" id="forum">
+        {% for post in posts %}     
+            <!-- lastpost replypost -->
+            <div class="post {% cycle 'odd' 'even' %} {{forloop|post_style}}" id="p{{post.pk}}">
+            <div class="posthead">
+                <h3 class="hn post-ident">
+                    <span class="post-num">1</span>
+                    <span class="post-byline">
+                        <span>Topic by </span>
+                        <a href="{{ topic.posted_by.get_absolute_url }}">{{topic.posted_by.username}}</a>
+                    </span>
+                    <span class="post-link">
+                        {{ post.created_on|timesince }}
+                    </span>
+                </h3>
+            </div>
+            <div class="postbody">
+                <div class="post-author">
+                    <ul class="author-ident">
+                        <li class="username"> <a href="{{ topic.posted_by.get_absolute_url }}">{{topic.posted_by.username}}</a> </li>
+                        <li class="usertitle"><span>Member</span></li>
+                        <li class="userstatus"><span>{{topic.posted_by|online}}</span></li>
+                    </ul>
+                    <ul class="author-info">
+                        <li><span>Registered: <strong>{{ post.posted_by.date_joined|date:"Y-m-d" }}</strong></span></li>
+                        <li><span>Posts: <strong>{{ post.posted_by.lbforum_profile.get_total_posts  }}</strong></span></li>
+                    </ul>
+                </div>
+                <div class="post-entry">
+                    <div class="entry-content">
+                        <p>{{ post.htmlfrombbcode|safe }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+		{% endfor %}
+    </div>
+    <div class="main-options gen-content">
+        <h2 class="hn"><span>Topic options</span></h2>
+        <p class="options"><span class="feed item1"><a href="http://fluxbb.org/forums/feed/rss/topic/3457/" class="feed-option">RSS topic feed</a></span></p>
+    </div>
+    <div class="main-pagepost gen-content" id="brd-pagepost-end">
+        <p class="paging"><span class="pages">Pages:</span> <strong class="item1">1</strong></p>
+        <p class="posting">You must <a href="http://fluxbb.org/forums/login/">login</a> or <a href="http://fluxbb.org/forums/register/">register</a> to post a reply</p>
+    </div>
 </div>
-<!-- main head ends -->
+
+
+
+<!-- ============================================================================ -->
 
 <!-- reply list begins -->
 <div id="replylist" class="main-content main-topic">
@@ -97,9 +137,9 @@
             <table class="authortable">
                 <tr><td >
                         {% if topic.posted_by.photo  %}
-                            <img src="{% thumbnail topic.posted_by.get_profile.photo 80x80 %}" />                                                    
+                            <img src="{% thumbnail topic.posted_by.lbforum_profile.photo 80x80 %}" />                                                    
                         {% else %}                                                        
-                            <img src="http://www.gravatar.com/avatar/{{topic.posted_by.get_profile.getMD5}}.jpg" alt="" />
+                            <img src="http://www.gravatar.com/avatar/{{topic.posted_by.lbforum_profile.getMD5}}.jpg" alt="" />
                         {% endif %}  
                     </td></tr>
                 <tr><td>
@@ -108,9 +148,9 @@
             </table>                                                        
         </li>
 
-        <li class="usertitle"><span>{{ topic.posted_by.get_profile.userrank }}</span></li>
+        <li class="usertitle"><span>{{ topic.posted_by.lbforum_profile.userrank }}</span></li>
         <li class="userstatus"><span>
-                {% if topic.posted_by.get_profile.is_online %}
+                {% if topic.posted_by.lbforum_profile.is_online %}
                     Online
                 {% else %}
                     Offline
@@ -119,7 +159,7 @@
     </ul>
     <ul class="author-info">
         <li><span>Registered: <strong> {{ topic.posted_by.date_joined|date:"jS F Y H:i A" }}</strong></span></li>
-        <li><span>Posts: <strong> {{ topic.posted_by.get_profile.get_total_posts  }}</strong></span></li>
+        <li><span>Posts: <strong> {{ topic.posted_by.lbforum_profile.get_total_posts  }}</strong></span></li>
     </ul>
 </div>
 <!-- author details ends -->
@@ -128,8 +168,8 @@
     <h4 id="pc120560" class="entry-title hn">Re: {{reply.topic.subject}}</h4>
     <div class="entry-content">
         <p>  {{ topic.htmlfrombbcode|safe }} </p>
+    </div>
 </div>
-          </div>
       </div>
       <!-- post body ends -->
       </div>
