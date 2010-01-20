@@ -41,7 +41,6 @@ class Forum(models.Model):
     num_posts = models.IntegerField(default = 0)
 
     last_post = models.CharField(max_length = 255, blank = True)#pickle obj
-    __last_post = ""
     
     class Meta:
         verbose_name = _("Forum")
@@ -51,13 +50,11 @@ class Forum(models.Model):
     def get_last_post(self):
         if not self.last_post:
             return {}
-        if not self.__last_post:
-            self.__last_post = pickle.loads(b64decode(self.last_post))
-        return self.__last_post
+        return pickle.loads(b64decode(self.last_post))
     
     @models.permalink
     def get_absolute_url(self):
-        return ('lbforum_index', (), {'forumslug': self.slug})
+        return ('lbforum_forum', (), {'forum_slug': self.slug})
 
     def __unicode__(self):
         return self.name 
@@ -106,9 +103,9 @@ class Topic(models.Model):
             return ""
 
     def get_last_post(self):
-        if not self.__last_post:
-            self.__last_post = pickle.loads(b64decode(self.last_post))
-        return self.__last_post
+        if not self.last_post:
+            return {}
+        return pickle.loads(b64decode(self.last_post))
         
 # Create Replies for a topic
 class Post(models.Model):#can't edit...
@@ -121,7 +118,7 @@ class Post(models.Model):#can't edit...
     
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-    edited_by = models.CharField(max_length = 255)#user name
+    edited_by = models.CharField(max_length = 255, blank=True)#user name
     
     class Meta:
         verbose_name = _("Post")

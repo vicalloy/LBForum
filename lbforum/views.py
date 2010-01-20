@@ -45,13 +45,11 @@ def topic(request, topic_id, template_name="lbforum/topic.html"):
             select_related()
     topic_page_size = getattr(settings , "POST_PAGE_SIZE", 20)#TODO ?
     ext_ctx = {'topic': topic, 'posts': posts}#TODO first_post
-    return object_list(request,
-                       posts,
-                       paginate_by = topic_page_size,
-                       template_name = template_name,
-                       extra_context = ext_ctx,
-                       allow_empty = True)
+    return render_to_response(template_name, ext_ctx, RequestContext(request))
 
+def new_topic(request, forum_id, template_name='lbforum/new_topic.html'):
+    ext_ctx = {}
+    return render_to_response(template_name, ext_ctx, RequestContext(request))
 #Feed...
 #Add Post
 #Add Topic

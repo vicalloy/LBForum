@@ -1,0 +1,33 @@
+{% load lbforum %}
+<div class="post {% cycle 'odd' 'even' %} {{forloop|post_style}}" id="p{{post.pk}}">
+    <div class="posthead">
+        <h3 class="hn post-ident">
+            <span class="post-num">1</span>
+            <span class="post-byline">
+                <span>Topic by </span>
+                <a href="{{ topic.posted_by.get_absolute_url }}">{{topic.posted_by.username}}</a>
+            </span>
+            <span class="post-link">
+                {{ post.created_on|timesince }}
+            </span>
+        </h3>
+    </div>
+    <div class="postbody">
+        <div class="post-author">
+            <ul class="author-ident">
+                <li class="username"> <a href="{{ topic.posted_by.get_absolute_url }}">{{topic.posted_by.username}}</a> </li>
+                <li class="usertitle"><span>Member</span></li>
+                <li class="userstatus"><span>{{topic.posted_by|online}}</span></li>
+            </ul>
+            <ul class="author-info">
+                <li><span>Registered: <strong>{{ post.posted_by.date_joined|date:"Y-m-d" }}</strong></span></li>
+                <li><span>Posts: <strong>{{ post.posted_by.lbforum_profile.get_total_posts  }}</strong></span></li>
+            </ul>
+        </div>
+        <div class="post-entry">
+            <div class="entry-content">
+                <p>{{ post.htmlfrombbcode|safe }}</p>
+            </div>
+        </div>
+    </div>
+</div>

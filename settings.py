@@ -70,7 +70,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
         "django.core.context_processors.debug",
         "django.core.context_processors.i18n",
         "django.core.context_processors.media",
-        "django.core.context_processors.request"
+        "django.core.context_processors.request",
+
+        "djangohelper.context_processors.ctx_config",
 )
 
 
@@ -92,7 +94,14 @@ INSTALLED_APPS = (
     'pagination',
     'sorl.thumbnail',
 
+    'djangohelper',
     'lbforum',
 )
 
+CTX_CONFIG = {
+        'LBFORUM_TITLE': 'LBForum',
+        'LBFORUM_SUB_TITLE': 'A Clone of FluxBB',
+        }
+
+#TODO add a config model
 from lbforum_settings import *

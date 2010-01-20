@@ -3,58 +3,58 @@
 {% load i18n %}
 
 {% block content %}
-	<!-- brd-wrap begins -->
+    <!-- brd-wrap begins -->
 <div id="brd-wrap" class="brd">
 
-	<!-- brd-index begins -->
+    <!-- brd-index begins -->
 <div id="brd-index" class="brd-page basic-page">
-	{% include 'lbforum/inc_header.html' %}
-	{% include 'lbforum/inc_announce.html' %}
-	<p></p>
-	<div class="hr"><hr /></div>
-	<!-- brd-main begins -->
+    {% include 'lbforum/inc_header.html' %}
+    {% include 'lbforum/inc_announce.html' %}
+    <p></p>
+    <div class="hr"><hr /></div>
+    <!-- brd-main begins -->
 <div id="brd-main">
-	<div class="main-head">
-		<h1 class="hn"><span>LBFORUM_HEADER</span></h1>
-	</div>
-	{% for category in categories %}
-		<div class="main-subhead">
-			<h2 class="hn"><span>{{ category }}</span></h2>
-			<p class="item-summary"> 
-				<span>
-					<strong class="info-topics">topics</strong>,
-					<strong class="info-posts">posts</strong>, 
-					<strong class="info-lastpost">last post</strong>
-				</span> 
-			</p>
-		</div>
-		<div class="main-content main-category">
-			{% for forum in category.forum_set.all %}
-				<!-- forum begins -->
+    <div class="main-head">
+        <h1 class="hn"><span>LBFORUM_HEADER</span></h1>
+    </div>
+    {% for category in categories %}
+        <div class="main-subhead">
+            <h2 class="hn"><span>{{ category }}</span></h2>
+            <p class="item-summary"> 
+                <span>
+                    <strong class="info-topics">topics</strong>,
+                    <strong class="info-posts">posts</strong>, 
+                    <strong class="info-lastpost">last post</strong>
+                </span> 
+            </p>
+        </div>
+        <div class="main-content main-category">
+            {% for forum in category.forum_set.all %}
+                <!-- forum begins -->
 <div id="forum" class="main-item {% cycle 'odd' 'even' %} {% if forloop.first %}main-item1{% endif %}">
-	<span class="icon "><!-- --></span>
+    <span class="icon "><!-- --></span>
 
-	<div class="item-subject">
-		<h3 class="hn"><a href="{% url lbforum_forum forum.slug %}"><span> {{forum}} </span></a></h3>
-		<p>{{ forum.description }}</p>
-	</div>
+    <div class="item-subject">
+        <h3 class="hn"><a href="{% url lbforum_forum forum.slug %}"><span> {{forum}} </span></a></h3>
+        <p>{{ forum.description }}</p>
+    </div>
 
-	<ul class="item-info">
-		<li class="info-topics">
-			<strong>{{ forum.num_topics }} </strong> <span class="label">topics</span>
-		</li>
-		<li class="info-posts">
-			<strong>{{ forum.num_posts }} </strong> <span class="label">posts</span>
-		</li>
-		<li class="info-lastpost">
-			<span class="label">Last post:</span>
-			<strong>{{ forum.get_last_post.update|timesince }}</strong> 
-			<cite>by {{ forum.get_last_post.posted_by }}</cite>
-		</li>
-	</ul>
+    <ul class="item-info">
+        <li class="info-topics">
+            <strong>{{ forum.num_topics }} </strong> <span class="label">topics</span>
+        </li>
+        <li class="info-posts">
+            <strong>{{ forum.num_posts }} </strong> <span class="label">posts</span>
+        </li>
+        <li class="info-lastpost">
+            <span class="label">Last post:</span>
+            <strong>{{ forum.get_last_post.update|timesince }}</strong> 
+            <cite>by {{ forum.get_last_post.posted_by }}</cite>
+        </li>
+    </ul>
 </div>
 <!-- forum ends -->
-	{% endfor %}
+    {% endfor %}
 </div>
 <!-- forum-#id ends -->
 {% endfor %}
@@ -65,40 +65,37 @@
 
 <!-- brd-stats begins -->
 <div id="brd-stats" class="gen-content">
-	<h2 class="hn"><span>Forum statistics</span></h2>
-	<ul>
-		<li class="st-users">
-			<span>Total number of registered users: <strong>{{ total_users }} </strong></span>
-		</li>
-		<li class="st-users">
-			<span>Newest registered user: 
-				<strong>
-					<a href="{{ last_registered_user.get_absolute_url }}">
-						{{ last_registered_user.username }}
-					</a>
-				</strong>
-			</span>
-		</li>
-		<li class="st-activity">
-			<span>Total number of topics: <strong>{{ total_topics }}</strong></span>
-		</li>
-		<li class="st-activity">
-			<span>Total number of posts: <strong> {{ total_posts }} </strong></span>
-		</li>
-	</ul>
+    <h2 class="hn"><span>Forum statistics</span></h2>
+    <ul>
+        <li class="st-users">
+            <span>Total number of registered users: <strong>{{ total_users }} </strong></span>
+        </li>
+        <li class="st-users">
+            <span>Newest registered user: 
+                <strong>
+                    <a href="{{ last_registered_user.get_absolute_url }}">
+                        {{ last_registered_user.username }}
+                    </a>
+                </strong>
+            </span>
+        </li>
+        <li class="st-activity">
+            <span>Total number of topics: <strong>{{ total_topics }}</strong></span>
+        </li>
+        <li class="st-activity">
+            <span>Total number of posts: <strong> {{ total_posts }} </strong></span>
+        </li>
+    </ul>
 </div>
 <!-- brd-stats ends -->
 <div class="gen-content" id="brd-online">
-	<h3 class="hn"><span>Currently online ( <strong> {{ users_online }} </strong> guests, <strong>1</strong> registered user )</span></h3>
-	<p><a href="http://fluxbb.org/forums/user/18115/">gestionres</a></p>
+    <h3 class="hn"><span>Currently online ( <strong> {{ users_online }} </strong> guests, <strong>1</strong> registered user )</span></h3>
+    <p><a href="http://fluxbb.org/forums/user/18115/">gestionres</a></p>
 </div>
 
 <div class="hr"><hr /></div>
 
-<div id="brd-about" class="gen-content">
-	<p id="copyright">Powered by <strong><a href="#">Djorum</a></strong></p>
-	<p id="extensions-used">Copyright &copy; 2008 <a href="/">Usware</a></p>
-</div>
+{% include 'lbforum/inc_copyright.html' %}
 
 </div><!-- brd-index ends -->
 </div><!-- brd-wrap ends -->

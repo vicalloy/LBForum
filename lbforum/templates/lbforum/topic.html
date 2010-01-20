@@ -23,136 +23,91 @@
 
             <div class="hr"><hr/></div>
 
-            <!-- bread crumbs begin -->
-<div id="brd-crumbs-top" class="crumbs gen-content">
-    <p>
-        <span class="crumb crumbfirst">
-            <a href="#">{{ config.name }}</a>
-        </span> 
-        <span class="crumb">
-            <span> &raquo; </span>
-            <a href="{{ topic.forum.get_absolute_url }}">{{ topic.forum.name }}</a>
-        </span> 
-        <span class="crumb crumblast">
-            <span> &raquo; </span>
-            <a href="{{ topic.get_absolute_url }}">{{ topic.subject }} </a>
-        </span> 
-    </p>  
-</div>
-<!-- bread crumbs end -->
-
-<!-- ====================================================== -->
-<div class="main-wrapper" id="brd-main">
-
-    <div class="main-pagepost gen-content" id="brd-pagepost-top">
-        {% load pagination_tags %}
-        {% autopaginate posts 2 %}
-        {% paginate %}
-        <p class="posting">
-            You must <a href="#">login</a> or <a href="#">register</a> to post a new topic
-        </p>
-    </div>
-    <div class="main-head">
-        <h1 class="hn"><span><a title="Permanent link to this topic" rel="bookmark" href="{{ topic.get_absolute_url }}" class="permalink">{{ topic }}</a></span></h1>
-    </div>
-    <div class="main-pagehead">
-        <h2 class="hn"><span><span class="item-info">Posts [ {{topic.num_replies}} ]</span></span></h2>
-    </div>
-
-    <div class="main-content main-topic" id="forum">
-        {% for post in posts %}     
-            <!-- lastpost replypost -->
-            <div class="post {% cycle 'odd' 'even' %} {{forloop|post_style}}" id="p{{post.pk}}">
-            <div class="posthead">
-                <h3 class="hn post-ident">
-                    <span class="post-num">1</span>
-                    <span class="post-byline">
-                        <span>Topic by </span>
-                        <a href="{{ topic.posted_by.get_absolute_url }}">{{topic.posted_by.username}}</a>
-                    </span>
-                    <span class="post-link">
-                        {{ post.created_on|timesince }}
-                    </span>
-                </h3>
+            <div id="brd-crumbs-top" class="crumbs gen-content">
+                {% include 'lbforum/inc_topic_brd_crumbs.html' %}
             </div>
-            <div class="postbody">
-                <div class="post-author">
-                    <ul class="author-ident">
-                        <li class="username"> <a href="{{ topic.posted_by.get_absolute_url }}">{{topic.posted_by.username}}</a> </li>
-                        <li class="usertitle"><span>Member</span></li>
-                        <li class="userstatus"><span>{{topic.posted_by|online}}</span></li>
-                    </ul>
-                    <ul class="author-info">
-                        <li><span>Registered: <strong>{{ post.posted_by.date_joined|date:"Y-m-d" }}</strong></span></li>
-                        <li><span>Posts: <strong>{{ post.posted_by.lbforum_profile.get_total_posts  }}</strong></span></li>
-                    </ul>
+
+            <div class="main-wrapper" id="brd-main">
+
+                <div class="main-pagepost gen-content" id="brd-pagepost-top">
+                    {% load pagination_tags %}
+                    {% autopaginate posts 2 %}
+                    {% paginate %}
+                    <p class="posting">
+                        You must <a href="#">login</a> or <a href="#">register</a> to post a new topic
+                    </p>
                 </div>
-                <div class="post-entry">
-                    <div class="entry-content">
-                        <p>{{ post.htmlfrombbcode|safe }}</p>
+                <div class="main-head">
+                    <h1 class="hn"><span><a title="Permanent link to this topic" rel="bookmark" href="{{ topic.get_absolute_url }}" class="permalink">{{ topic }}</a></span></h1>
+                </div>
+                <div class="main-pagehead">
+                    <h2 class="hn"><span><span class="item-info">Posts [ {{topic.num_replies}} ]</span></span></h2>
+                </div>
+
+                <div class="main-content main-topic" id="forum">
+                    {% for post in posts %}     
+                        {% include 'lbforum/inc_post_detail.html' %}
+                    {% endfor %}
+                </div>
+                <div class="main-options gen-content">
+                    <p class="options"></p>
+                </div>
+                <div class="main-pagepost gen-content" id="brd-pagepost-end">
+                    {% paginate %}
+                    <p class="posting">
+                        {% if not topic.closed %} 
+                            {% if user.is_authenticated %}
+                                <a class="newpost" href="#"><span>Post reply</span></a>
+                            {% else %}
+                                You must <a href="#">login</a> or <a href="#">register</a> to post a reply
+                            {% endif %} 
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="crumbs gen-content" id="brd-crumbs-end">
+                {% include 'lbforum/inc_topic_brd_crumbs.html' %}
+            </div>
+
+            {% if not topic.closed %} {% if user.is_authenticated %}
+                    <div class="main-subhead">
+                        <h2 class="hn"><span>Quick reply to this topic</span></h2>
                     </div>
-                </div>
-            </div>
+                    <div class="main-content main-frm" id="brd-qpost">
+                        <p class="content-options options">You may use: <span class="item1"><a title="Help with: BBCode" href="http://fluxbb.org/forums/help/bbcode/" class="exthelp">BBCode</a></span> <span><a title="Help with: Images" href="http://fluxbb.org/forums/help/img/" class="exthelp">Images</a></span> <span><a title="Help with: Smilies" href="http://fluxbb.org/forums/help/smilies/" class="exthelp">Smilies</a></span></p>
+                        <div class="req-warn ct-box error-box" id="req-msg">
+                            <p class="important">You cannot submit or preview an empty message.</p>
+                        </div>
+                        <form action="http://fluxbb.org/forums/new/reply/3565/" accept-charset="utf-8" method="post" class="frm-form">
+                            <div class="hidden">
+                                <input type="hidden" value="1" name="form_sent"/>
+                                <input type="hidden" value="vicalloy" name="form_user"/>
+                                <input type="hidden" value="886d50699095351b6af69dabd171c595da87305e" name="csrf_token"/>
+                            </div>
+                            <fieldset class="frm-group group1">
+                                <legend class="group-legend"><strong>Compose your post</strong></legend>
+                                <div class="txt-set set1">
+                                    <div class="txt-box textarea required">
+                                        <label for="fld1"><span>Write message: <em>(Required)</em></span></label>
+                                        <div class="txt-input"><span class="fld-input"><textarea cols="95" rows="7" name="req_message" id="fld1"></textarea></span></div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="frm-buttons">
+                                <span class="submit"><input type="submit" value="Submit" name="submit"/></span>
+                                <span class="submit"><input type="submit" value="Preview" name="preview"/></span>
+                            </div>
+                        </form>
+                    </div>
+                {% endif %} {% endif %}
+
+
+            <div class="hr"><hr /></div>
+
+            {% include 'lbforum/inc_copyright.html' %}
+            
         </div>
-		{% endfor %}
     </div>
-    <div class="main-options gen-content">
-        <h2 class="hn"><span>Topic options</span></h2>
-        <p class="options"><span class="feed item1"><a href="http://fluxbb.org/forums/feed/rss/topic/3457/" class="feed-option">RSS topic feed</a></span></p>
-    </div>
-    <div class="main-pagepost gen-content" id="brd-pagepost-end">
-        <p class="paging"><span class="pages">Pages:</span> <strong class="item1">1</strong></p>
-        <p class="posting">You must <a href="http://fluxbb.org/forums/login/">login</a> or <a href="http://fluxbb.org/forums/register/">register</a> to post a reply</p>
-    </div>
-</div>
-
-
-
-<!-- ============================================================================ -->
-
-<div  id="belowpostreplybox" class="crumbs gen-content">	
-
-    {% if not topic.is_closed %}
-        {% if user.is_authenticated %}
-            <a href="#" onclick="return isUserAuthenticated(2)">Post Reply</a> &nbsp; &nbsp;
-        {% else %}
-            (<a href="#?next={{ topic.get_absolute_url }}">Login to Post Reply</a>) &nbsp; &nbsp;
-        {% endif %}
-    {% endif %}
-
-    <span style='float: right;'>
-    </span>
-</div>
-
-{% if not topic.is_closed and user.is_authenticated %}
-    <!-- formbox begins -->
-<div id="formbox" class="magicbox">
-    <form action="#" method="POST" id="fpostreply"  >            
-        <table>
-            <tbody> 
-                {{ replyform.as_table }}
-                <tr>
-                    <th> </th>
-                    <td>
-                        <input type="submit" value="Post Reply" onClick="return check_errors_in_Replyform()" />
-                        &nbsp; <span class="closebutton"> <a href="" onclick="return hideForm()">close</a>  </span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <input type="hidden" name="authenticated"  value="{{ user.is_authenticated }}" />
-        <input type="hidden"  name="topicid"  value="{{topic.id}}" />
-    </form>
-</div>   
-<!-- formbox ends -->
-  {% endif %}
-
-  <div class="hr"><hr /></div>
-  <div id="brd-about" class="gen-content">
-      <p id="copyright">Powered by <strong><a href="#">Djorum</a></strong></p>
-      <p id="extensions-used">Copyright &copy; 2008 <a href="/">Usware</a></p>
-  </div>
-
-</div>
-</div>
 {% endblock %}
