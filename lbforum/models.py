@@ -64,7 +64,7 @@ class TopicManager(models.Manager):
         return super(TopicManager, self).get_query_set().filter(hidden = False)
     
 class Topic(models.Model):
-    forum = models.ForeignKey(Forum)
+    forum = models.ForeignKey(Forum, verbose_name=_('Forum'))
     posted_by = models.ForeignKey(User)
     
     subject = models.CharField(max_length=999)
@@ -74,7 +74,6 @@ class Topic(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
 
     last_post = models.CharField(max_length = 255, blank=True)#pickle obj
-    __last_post = ""
     
     #Moderation features
     closed = models.BooleanField(default=False)
@@ -94,7 +93,7 @@ class Topic(models.Model):
     
     @models.permalink
     def get_absolute_url(self):
-        return ('lbforum_topic_detail', (), {'forumslug': self.forum.slug, 'topic_id': self.id})
+        return ('lbforum_topic', (), {'topic_id': self.id})
     
     def htmlfrombbcode(self):#TODO bbcode or html in db?
         if self.message.strip():
@@ -109,7 +108,7 @@ class Topic(models.Model):
         
 # Create Replies for a topic
 class Post(models.Model):#can't edit...
-    topic = models.ForeignKey(Topic)
+    topic = models.ForeignKey(Topic, verbose_name=_('Topic'))
     posted_by = models.ForeignKey(User)
     poster_ip = models.IPAddressField()
     

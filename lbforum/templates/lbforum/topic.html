@@ -7,34 +7,32 @@
 {% endblock %}
 
 {% block content %}
-
     {% load thumbnail %} 
-
     <div id="replybox">
         <div id="actionbox">
         </div>
     </div>
-
-
     <div id="brd-wrap" class="brd">
         <div id="brd-viewtopic" class="brd-page paged-page">
             {% include 'lbforum/inc_header.html' %}
             {% include 'lbforum/inc_announce.html' %}
-
             <div class="hr"><hr/></div>
-
             <div id="brd-crumbs-top" class="crumbs gen-content">
                 {% include 'lbforum/inc_topic_brd_crumbs.html' %}
             </div>
-
             <div class="main-wrapper" id="brd-main">
-
                 <div class="main-pagepost gen-content" id="brd-pagepost-top">
                     {% load pagination_tags %}
                     {% autopaginate posts 2 %}
                     {% paginate %}
                     <p class="posting">
-                        You must <a href="#">login</a> or <a href="#">register</a> to post a new topic
+                        {% if not topic.closed %} 
+                            {% if user.is_authenticated %}
+                                <a class="newpost" href="{% url lbforum_new_replay topic.pk %}"><span>Post reply</span></a>
+                            {% else %}
+                                You must <a href="#">login</a> or <a href="#">register</a> to post a reply
+                            {% endif %} 
+                        {% endif %}
                     </p>
                 </div>
                 <div class="main-head">
@@ -43,7 +41,6 @@
                 <div class="main-pagehead">
                     <h2 class="hn"><span><span class="item-info">Posts [ {{topic.num_replies}} ]</span></span></h2>
                 </div>
-
                 <div class="main-content main-topic" id="forum">
                     {% for post in posts %}     
                         {% include 'lbforum/inc_post_detail.html' %}
@@ -55,9 +52,9 @@
                 <div class="main-pagepost gen-content" id="brd-pagepost-end">
                     {% paginate %}
                     <p class="posting">
-                        {% if not topic.closed %} 
+                        {% if not topic.closed %}
                             {% if user.is_authenticated %}
-                                <a class="newpost" href="#"><span>Post reply</span></a>
+                                <a class="newpost" href="{% url lbforum_new_replay topic.pk %}"><span>Post reply</span></a>
                             {% else %}
                                 You must <a href="#">login</a> or <a href="#">register</a> to post a reply
                             {% endif %} 
@@ -65,33 +62,25 @@
                     </p>
                 </div>
             </div>
-
-
             <div class="crumbs gen-content" id="brd-crumbs-end">
                 {% include 'lbforum/inc_topic_brd_crumbs.html' %}
             </div>
-
             {% if not topic.closed %} {% if user.is_authenticated %}
                     <div class="main-subhead">
                         <h2 class="hn"><span>Quick reply to this topic</span></h2>
                     </div>
                     <div class="main-content main-frm" id="brd-qpost">
                         <p class="content-options options">You may use: <span class="item1"><a title="Help with: BBCode" href="http://fluxbb.org/forums/help/bbcode/" class="exthelp">BBCode</a></span> <span><a title="Help with: Images" href="http://fluxbb.org/forums/help/img/" class="exthelp">Images</a></span> <span><a title="Help with: Smilies" href="http://fluxbb.org/forums/help/smilies/" class="exthelp">Smilies</a></span></p>
-                        <div class="req-warn ct-box error-box" id="req-msg">
-                            <p class="important">You cannot submit or preview an empty message.</p>
-                        </div>
-                        <form action="http://fluxbb.org/forums/new/reply/3565/" accept-charset="utf-8" method="post" class="frm-form">
+                        <form action="{% url lbforum_new_replay topic.pk %}" accept-charset="utf-8" method="post" class="frm-form">
                             <div class="hidden">
-                                <input type="hidden" value="1" name="form_sent"/>
-                                <input type="hidden" value="vicalloy" name="form_user"/>
-                                <input type="hidden" value="886d50699095351b6af69dabd171c595da87305e" name="csrf_token"/>
+                                {% csrf_token %} 
                             </div>
                             <fieldset class="frm-group group1">
                                 <legend class="group-legend"><strong>Compose your post</strong></legend>
                                 <div class="txt-set set1">
                                     <div class="txt-box textarea required">
                                         <label for="fld1"><span>Write message: <em>(Required)</em></span></label>
-                                        <div class="txt-input"><span class="fld-input"><textarea cols="95" rows="7" name="req_message" id="fld1"></textarea></span></div>
+                                        <div class="txt-input"><span class="fld-input"><textarea cols="95" rows="7" name="message" id="fld1"></textarea></span></div>
                                     </div>
                                 </div>
                             </fieldset>
@@ -102,12 +91,8 @@
                         </form>
                     </div>
                 {% endif %} {% endif %}
-
-
             <div class="hr"><hr /></div>
-
             {% include 'lbforum/inc_copyright.html' %}
-            
         </div>
     </div>
 {% endblock %}
