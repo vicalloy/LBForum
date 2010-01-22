@@ -39,7 +39,7 @@
                     <h1 class="hn"><span><a title="Permanent link to this topic" rel="bookmark" href="{{ topic.get_absolute_url }}" class="permalink">{{ topic }}</a></span></h1>
                 </div>
                 <div class="main-pagehead">
-                    <h2 class="hn"><span><span class="item-info">Posts [ {{topic.num_replies}} ]</span></span></h2>
+                    <h2 class="hn"><span><span class="item-info">Posts [ {% page_range_info page_obj %} ]</span></span></h2>
                 </div>
                 <div class="main-content main-topic" id="forum">
                     {% for post in posts %}     

@@ -7,8 +7,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from base64 import b64encode, b64decode
 import pickle
-from BeautifulSoup import BeautifulSoup
-from postmarkup import render_bbcode
 
 class Config(models.Model):
     key = models.CharField(max_length = 255)#PK
@@ -95,12 +93,6 @@ class Topic(models.Model):
     def get_absolute_url(self):
         return ('lbforum_topic', (), {'topic_id': self.id})
     
-    def htmlfrombbcode(self):#TODO bbcode or html in db?
-        if self.message.strip():
-            return render_bbcode(self.message)
-        else :
-            return ""
-
     def get_last_post(self):
         if not self.last_post:
             return {}
@@ -132,17 +124,6 @@ class Post(models.Model):#can't edit...
     def get_absolute_url(self):
         return ('lbforum_topic_detail', (), {'forumslug': self.topic.forum.slug, 'topic_slug': self.topic.slug})
     
-    def htmlfrombbcode(self):
-        soup = BeautifulSoup(self.message)
-        #remove all html tags from the message
-        onlytext = ''.join(soup.findAll(text=True))
-        
-        #get the bbcode for the text
-        if onlytext.strip():
-            return render_bbcode(onlytext)
-        else :
-            return ""
-        
 class LBForumUserProfile(models.Model):
     user = models.OneToOneField(User, related_name='lbforum_profile', verbose_name=_('User'))
     last_activity = models.DateTimeField(auto_now_add=True)

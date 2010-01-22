@@ -2,7 +2,7 @@
 <div class="post {% cycle 'odd' 'even' %} {{forloop|post_style}}" id="p{{post.pk}}">
     <div class="posthead">
         <h3 class="hn post-ident">
-            <span class="post-num">1</span>
+			<span class="post-num">{% page_item_idx page_obj forloop %}</span>
             <span class="post-byline">
                 <span>Topic by </span>
                 <a href="{{ topic.posted_by.get_absolute_url }}">{{topic.posted_by.username}}</a>
@@ -26,7 +26,7 @@
         </div>
         <div class="post-entry">
             <div class="entry-content">
-                <p>{{ post.htmlfrombbcode|safe }}</p>
+                <p>{{ post.message|bbcode|safe }}</p>
             </div>
         </div>
     </div>

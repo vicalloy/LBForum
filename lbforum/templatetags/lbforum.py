@@ -1,6 +1,14 @@
 from django import template
+from django.utils.html import escape
+
+from postmarkup import render_bbcode
 
 register = template.Library()
+
+@register.filter
+def bbcode(s):
+    s = escape(s)
+    return render_bbcode(s)
 
 @register.filter
 def topic_icon(topic): 
@@ -28,3 +36,15 @@ def online(user):#TODO... to a common app
     if user.lbforum_profile.is_online:
         return 'Online'
     return 'Offline'
+
+@register.simple_tag
+def page_item_idx(page_obj, forloop):
+    return page_obj.start_index() + forloop['counter0']
+
+@register.simple_tag
+def page_range_info(page_obj):
+    paginator = page_obj.paginator
+    if paginator.num_pages == 1:
+        return paginator.count
+    return str(page_obj.start_index()) +' ' + 'to' + ' ' +  \
+            str(page_obj.end_index()) + ' ' + 'of' + ' ' +  str(page_obj.paginator.count)
