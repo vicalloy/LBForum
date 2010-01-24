@@ -8,7 +8,7 @@ class PostForm(forms.ModelForm):
     subject = forms.CharField(label=_('Subject'), \
             widget=forms.TextInput(attrs={'size':'80'}))
     message = forms.CharField(label=_('Message'), \
-            widget=forms.Textarea(attrs={'cols':'95', 'rows':'14'}))
+            widget=forms.Textarea(attrs={'cols':'95', 'rows':'14', 'class':'tinymce'}))
 
     class Meta:
         model = Post

@@ -1856,3 +1856,9 @@ H - MAIN CONTENT - ODDMENTS
     font-weight: bold;
     }
     
+
+.brd .mceEditor table td {
+	border-left-style: none;
+    padding: 0;
+    border-width:1px;
+}
