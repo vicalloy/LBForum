@@ -16,10 +16,10 @@
         </li>
         {% if user.is_authenticated %}
         <li id="navprofile"><a href="#">{% trans "My profile" %}</a></li>
-        <li id="navlogout"><a href="#">{% trans "Logout" %}</a></li>
+        <li id="navlogout"><a href="{% url acct_logout %}?next={% url lbforum_index %}">{% trans "Logout" %}</a></li>
         {% else %}
         <li id="navregister"><a href="#">{% trans "Signup" %}</a></li>
-        <li id="navlogin"><a href="#">{% trans "Login" %}</a></li>
+        <li id="navlogin"><a href="{% url acct_login %}">{% trans "Login" %}</a></li>
         {% endif %}
 
     </ul>
@@ -29,9 +29,9 @@
     <p id="welcome">
         <span>
             {% if user.is_authenticated %}
-            Hello {{user}}, <a href='#'>{% trans "Logout" %}</a>
+            Hello {{user}}, <a href='{% url acct_logout %}?next={% url lbforum_index %}'>{% trans "Logout" %}</a>
             {% else %}
-            <a href="#">{% trans "Login" %}</a>
+            <a href="{% url acct_login %}">{% trans "Login" %}</a>
             {% endif %}
         </span>
     </p>

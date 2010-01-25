@@ -90,9 +90,13 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
+    'django.contrib.messages',
 
     'pagination',
     'sorl.thumbnail',
+    "emailconfirmation",
+    "timezones",
+    'account',
 
     'djangohelper',
     'lbforum',
