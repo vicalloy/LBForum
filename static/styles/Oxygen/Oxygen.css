@@ -4,8 +4,7 @@ A - SETUP
 
 /* Start from scratch
 -------------------------------------------------------------*/
-
-html, body, /* remove this line if necessary for site integration */
+/*html, body, 
 .brd div, .brd p, .brd dl,.brd dt,.brd dd, .brd ul, .brd ol, .brd li,
 .brd h1,.brd h2,.brd h3, .brd h4, .brd h5, .brd h6, .brd pre,
 .brd form, .brd fieldset, .brd legend, .brd blockquote,
@@ -13,7 +12,12 @@ html, body, /* remove this line if necessary for site integration */
 	margin:0;
 	padding:0;
 	text-align: left;
-	}
+	}*/
+
+.brd * {
+	margin:0px; padding:0px;
+	outline:none;
+}
 
 .brd fieldset, .brd img, .brd cite {
 	border: 0;

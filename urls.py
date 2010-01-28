@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^static/(.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
-    (r"^account/", include("account.urls")),
+    (r'^accounts/', include('registration.backends.default.urls')),
     (r'^', include('lbforum_site.lbforum.urls')),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 

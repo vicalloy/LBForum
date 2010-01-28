@@ -63,7 +63,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
     'pagination.middleware.PaginationMiddleware',
 )
 
@@ -96,11 +96,8 @@ INSTALLED_APPS = (
 
     'pagination',
     'sorl.thumbnail',
-    'emailconfirmation',
-    'timezones',
-    'ajax_validation',
     'debug_toolbar',
-    'account',
+    'registration',    
 
     'djangohelper',
     'lbforum',
@@ -110,6 +107,8 @@ CTX_CONFIG = {
         'LBFORUM_TITLE': 'LBForum',
         'LBFORUM_SUB_TITLE': 'A Clone of FluxBB',
         }
+
+ACCOUNT_ACTIVATION_DAYS = 7 
 
 #TODO add a config model
 from lbforum_settings import *
