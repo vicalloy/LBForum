@@ -1,11 +1,16 @@
 from django.conf.urls.defaults import *
 from django.contrib import admin
 from django.conf import settings
+from registration.views import register
 
 admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^static/(.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    url(r'^accounts/register/$',
+        register,
+        { 'backend': 'lbforum_site.lbregistration.backends.simple.SimpleBackend' },
+        name='registration_register'),    
     (r'^accounts/', include('registration.backends.default.urls')),
     (r'^', include('lbforum_site.lbforum.urls')),
 
