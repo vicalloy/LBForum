@@ -1,5 +1,4 @@
 from django import template
-from django.utils.html import escape
 
 from postmarkup import create
 
@@ -9,7 +8,6 @@ _postmarkup = create(use_pygments=False, annotate_links=False)
 
 @register.filter
 def bbcode(s):
-    s = escape(s)
     return _postmarkup(s)
 
 
