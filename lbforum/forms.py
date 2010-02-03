@@ -1,4 +1,3 @@
-from django.forms import ModelForm
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
@@ -12,7 +11,7 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        #fields = ('message',)
+        fields = ('message',)
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)

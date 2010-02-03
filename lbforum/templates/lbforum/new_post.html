@@ -6,7 +6,7 @@
 
 {% block extra_header %}
     <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}scripts/markitup/skins/markitup/lbforum_style.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}scripts/markitup/xbbcode/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}scripts/markitup/bbcode/style.css" />
 {% endblock %}
 
 {% block content %}
@@ -38,7 +38,7 @@
                         <div class="postbody">
                             <div class="post-entry">
                                 <div class="entry-content">
-                                    <p>{{form.cleaned_data.message}}</p>
+                                    <p>{{form.cleaned_data.message|bbcode|safe}}</p>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                             {% if not topic %}
                                 <div class="sf-set set1">
                                     <div class="sf-box text required longtext">
-                                        <label for="fld1"><span>Topic subject: <em>(Required)</em></span></label><br/>
+                                        <label for="id_subject"><span>Topic subject: <em>(Required)</em></span></label><br/>
                                         <span class="fld-input">
                                             {{form.subject}}
                                         </span>
@@ -74,7 +74,7 @@
                             {% endif %}
                             <div class="txt-set {% if topic %}set1{% else %}set2{% endif %}">
                                 <div class="txt-box textarea required">
-                                    <label for="fld2"><span>Write message: <em>(Required)</em></span></label>
+                                    <label for="id_message"><span>Write message: <em>(Required)</em></span></label>
                                     <div class="txt-input"><span class="fld-input">
                                             {{form.message}}
                                         </span>
@@ -138,7 +138,7 @@
 -->
 <script type="text/javascript" src="{{ MEDIA_URL }}scripts/jquery.min.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}scripts/markitup/jquery.markitup.js"></script>
-<script type="text/javascript" src="{{ MEDIA_URL }}scripts/markitup/xbbcode/set.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}scripts/markitup/bbcode/set.js"></script>
 <script type="text/javascript" >
    $().ready(function() {
       $("#id_message").markItUp(mySettings);

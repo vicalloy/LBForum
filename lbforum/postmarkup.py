@@ -5,7 +5,7 @@ Post Markup
 Author: Will McGugan (http://www.willmcgugan.com)
 """
 
-__version__ = "1.1.4"
+__version__ = "1.1.5dev"
 
 import re
 from urllib import quote, unquote, quote_plus, urlencode
@@ -33,15 +33,16 @@ def annotate_link(domain):
 _re_url = re.compile(r"((https?):((//)|(\\\\))+[\w\d:#@%/;$()~_?\+-=\\\.&]*)", re.MULTILINE|re.UNICODE)
 
 
-_re_html=re.compile('<.*?>|\&.*?\;', re.UNICODE)
+_re_html=re.compile('<.*?>|\&.*?\;', re.UNICODE|re.DOTALL)
 def textilize(s):
     """Remove markup from html"""
+    s = s.replace("<p>", " ")
     return _re_html.sub("", s)
 
 _re_excerpt = re.compile(r'\[".*?\]+?.*?\[/".*?\]+?', re.DOTALL|re.UNICODE)
 _re_remove_markup = re.compile(r'\[.*?\]', re.DOTALL|re.UNICODE)
 
-_re_break_groups = re.compile(r'\n+', re.DOTALL|re.UNICODE)
+_re_break_groups = re.compile(r'[\r\n]+', re.DOTALL|re.UNICODE)
 
 def get_excerpt(post):
     """Returns an excerpt between ["] and [/"]
@@ -198,10 +199,26 @@ class SimpleTag(TagBase):
         TagBase.__init__(self, name, inline=True)
         self.html_name = html_name
 
+
     def render_open(self, parser, node_index):
+        tag_data = parser.tag_data
+        tag_key = "SimpleTag.%s_nest_level"%self.html_name
+        nest_level = tag_data[tag_key] = tag_data.setdefault(tag_key, 0) + 1
+
+        if nest_level > 1:
+            return u""
+
         return u"<%s>"%self.html_name
 
     def render_close(self, parser, node_index):
+
+        tag_data = parser.tag_data
+        tag_key = "SimpleTag.%s_nest_level"%self.html_name
+        tag_data[tag_key] -= 1
+
+        if tag_data[tag_key] > 0:
+            return u''
+
         return u"</%s>"%self.html_name
 
 
@@ -226,7 +243,7 @@ class LinkTag(TagBase):
     _safe_chars = frozenset('ABCDEFGHIJKLMNOPQRSTUVWXYZ'
                'abcdefghijklmnopqrstuvwxyz'
                '0123456789'
-               '_.-=/&?:%&')
+               '_.-=/&?:%&#')
 
     _re_domain = re.compile(r"//([a-z0-9-\.]*)", re.UNICODE)
 
@@ -376,17 +393,21 @@ class PygmentsCodeTag(TagBase):
 
     def render_open(self, parser, node_index):
 
-        contents = self.get_contents(parser)
+        contents = self.get_contents(parser).strip('\n')
         self.skip_contents(parser)
 
         try:
-            lexer = get_lexer_by_name(self.params, stripall=True)
+            lexer = get_lexer_by_name(self.params)
         except ClassNotFound:
             contents = _escape(contents)
             return '<div class="code"><pre>%s</pre></div>' % contents
 
+
         formatter = HtmlFormatter(linenos=self.line_numbers, cssclass="code")
-        return highlight(contents, lexer, formatter)
+        hcontents = highlight(contents, lexer, formatter)
+        hcontents = hcontents.strip().replace('\n', '<br>')
+
+        return hcontents
 
 
 
@@ -399,7 +420,7 @@ class CodeTag(TagBase):
 
         contents = _escape_no_breaks(self.get_contents(parser))
         self.skip_contents(parser)
-        return '<div class="code"><pre>%s</pre></div>' % contents
+        return '<div class="code"><pre>%s</pre></div>' % contents.replace("\n", "<br/>")
 
 
 class ImgTag(TagBase):
@@ -528,8 +549,11 @@ class ColorTag(TagBase):
     def render_open(self, parser, node_index):
 
         valid_chars = self.valid_chars
-        color = self.params.split()[0:1][0].lower()
-        self.color = "".join([c for c in color if c in valid_chars])
+        try:
+            color = self.params.split()[0].lower()
+            self.color = "".join([c for c in color if c in valid_chars])
+        except IndexError:
+            self.color = None
 
         if not self.color:
             return u""
@@ -556,7 +580,7 @@ class CenterTag(TagBase):
 class ParagraphTag(TagBase):
 
     def __init__(self, name, **kwargs):
-        TagBase.__init__(self, name)
+        TagBase.__init__(self, name, inline=True)
 
     def render_open(self, parser, node_index, **kwargs):
 
@@ -565,7 +589,7 @@ class ParagraphTag(TagBase):
 
         ret = []
         if level > 0:
-            ret.append(u'</p>')
+            ret.append(u'</p>\n')
             tag_data['ParagraphTag.level'] -= 1;
 
         ret.append(u'<p>')
@@ -592,7 +616,7 @@ class SectionTag(TagBase):
     """
 
     def __init__(self, name, **kwargs):
-        TagBase.__init__(self, name, enclosed=True)
+        TagBase.__init__(self, name, enclosed=True, strip_first_newline=True)
 
     def render_open(self, parser, node_index):
 
@@ -602,7 +626,7 @@ class SectionTag(TagBase):
         self.skip_contents(parser)
 
         tag_data = parser.tag_data
-        sections = tag_data.setdefault('sections', {})
+        sections = tag_data['output'].setdefault('sections', {})
 
         sections.setdefault(self.section_name, []).append(contents)
 
@@ -634,12 +658,37 @@ class MultiReplace:
 
 def _escape(s):
     return PostMarkup.standard_replace(s.rstrip('\n'))
+escape = _escape
 
 def _escape_no_breaks(s):
     return PostMarkup.standard_replace_no_break(s.rstrip('\n'))
 
 def _unescape(s):
     return PostMarkup.standard_unreplace(s)
+
+_re_dquotes = re.compile(r'''".*?"''')
+_re_squotes = re.compile(r"\s'(.+?)'")
+def _cosmetic_replace(s):
+
+    s = PostMarkup.cosmetic_replace(s)
+
+    def repl_dquotes(match):
+        quoted_s = match.group(0)
+        quoted_s = "&ldquo;%s&rdquo;" % quoted_s[1:-1]
+        return quoted_s
+
+    s = _re_dquotes.sub(repl_dquotes, s)
+
+    def repl_squotes(match):
+        quoted_s = match.group(1)
+        quoted_s = " &lsquo;%s&rsquo;" % quoted_s
+        return quoted_s
+
+
+    s = _re_squotes.sub(repl_squotes, s)
+
+    return s
+
 
 class TagFactory(object):
 
@@ -738,6 +787,14 @@ class PostMarkup(object):
     standard_replace_no_break = MultiReplace({  u'<':u'&lt;',
                                                 u'>':u'&gt;',
                                                 u'&':u'&amp;',})
+
+    cosmetic_replace = MultiReplace({ u'--':u'&ndash;',
+                                      u'---':u'&mdash;',
+                                      u'...':u'&#8230;',
+                                      u'(c)':u'&copy;',
+                                      u'(reg)':u'&reg;',
+                                      u'(tm)':u'&trade;'
+                                    })
 
     TOKEN_TAG, TOKEN_PTAG, TOKEN_TEXT = range(3)
 
@@ -946,6 +1003,7 @@ class PostMarkup(object):
         while original_html != html:
             original_html = html
             html = cls._re_blank_tags.sub(u"", html)
+        html = _re_break_groups.sub(u"\n", html)
         return html
 
 
@@ -956,6 +1014,7 @@ class PostMarkup(object):
                        auto_urls=True,
                        paragraphs=False,
                        clean=True,
+                       cosmetic_replace=True,
                        tag_data=None):
 
         """Converts post markup (ie. bbcode) to XHTML. This method is threadsafe,
@@ -969,6 +1028,8 @@ class PostMarkup(object):
         paragraphs -- If True then line breaks will be replaced with paragraph
         tags, rather than break tags.
         clean -- If True, html will be run through the cleanup_html method.
+        cosmetic_replace -- If True, then some 'smart' quotes will be enabled,
+        in addition to replacing some character sequences with html entities.
         tag_data -- An optional dictionary to store tag data in. The default of
         None will create a dictionary internaly. Set this to your own dictionary
         if you want to retrieve information from the Tag Classes.
@@ -982,10 +1043,12 @@ class PostMarkup(object):
         if auto_urls:
             post_markup = self.tagify_urls(post_markup)
 
+        post_markup = post_markup.replace('\r\n', '\n')
         if paragraphs:
             post_markup = self.insert_paragraphs(post_markup)
 
         parser = _Parser(self, tag_data=tag_data)
+        parser.tag_data.setdefault("output", {})
         parser.markup = post_markup
 
         if exclude_tags is None:
@@ -1004,6 +1067,20 @@ class PostMarkup(object):
         tag_stack = []
         break_stack = []
         remove_next_newline = False
+
+        def standard_replace(s):
+
+            s = self.standard_replace(s)
+            if cosmetic_replace:
+                s = _cosmetic_replace(s)
+            return  s
+
+        def standard_replace_no_break(s):
+
+            s = self.standard_replace_no_break(s)
+            if cosmetic_replace:
+                s = _cosmetic_replace(s)
+            return  s
 
         def check_tag_stack(tag_name):
 
@@ -1031,7 +1108,16 @@ class PostMarkup(object):
 
         def open_tag(tag):
             def call(node_index):
-                return tag.render_open(parser, node_index)
+                if paragraphs and not isinstance(tag, ParagraphTag):
+                    if not tag.inline:
+                        tag_data = parser.tag_data
+                        level = tag_data.get('ParagraphTag.level', 0)
+                        if level:
+                            tag_data['ParagraphTag.level'] = 0
+                            return "</p>"+(tag.render_open(parser, node_index) or "")
+                    return tag.render_open(parser, node_index)
+                else:
+                    return tag.render_open(parser, node_index)
             nodes.append(call)
 
         def close_tag(tag):
@@ -1049,8 +1135,8 @@ class PostMarkup(object):
 
             if tag_type == TOKEN_TEXT:
                 if parser.no_breaks_count:
-                    tag_token = tag_token.strip()
-                    if not tag_token:
+                    tag_token = tag_token.rstrip()
+                    if not tag_token.strip():
                         continue
                 if remove_next_newline:
                     tag_token = tag_token.lstrip(' ')
@@ -1070,7 +1156,10 @@ class PostMarkup(object):
                 if not enclosed_count:
                     redo_break_stack()
 
-                nodes.append(self.standard_replace(tag_token))
+                if paragraphs:
+                    nodes.append(standard_replace_no_break(tag_token))
+                else:
+                    nodes.append(standard_replace(tag_token))
                 continue
 
             elif tag_type == TOKEN_TAG:
@@ -1250,6 +1339,7 @@ class TagStringify(object):
         self.callback = callback
         self.raw = raw
         r[b]=3
+
     def __str__(self):
         return self.callback()
     def __repr__(self):
@@ -1279,6 +1369,7 @@ New lines characters are converted to breaks."""\
 [b]Test[/b]"""
 
     tests.append(long_test)
+
 
     tests.append("[dict]Will[/dict]")
 
@@ -1341,9 +1432,12 @@ asdasdasdasdqweqwe
 
     #tests=["""[b]b[i]i[/b][/i]"""]
 
+    tests = []
+    tests.append("[code python]    import this[/code]")
+
     for test in tests:
         print u"<pre>%s</pre>"%str(test.encode("ascii", "xmlcharrefreplace"))
-        print u"<p>%s</p>"%str(post_markup(test).encode("ascii", "xmlcharrefreplace"))
+        print u"<p>%s</p>"%str(post_markup(test, paragraphs=True).encode("ascii", "xmlcharrefreplace"))
         print u"<hr/>"
         print
 
@@ -1475,6 +1569,14 @@ def _ff_test():
 
 if __name__ == "__main__":
 
-    _tests()
-    _run_unittests()
+    #_tests()
+    #_run_unittests()
+
+
+    #print _cosmetic_replace(''' "Hello, World!"... -- and --- more 'single quotes'! sdfsdf''')
+
+    t = """http://www.willmcgugan.com#comment5
+    """
+    print render_bbcode(t)
+
     #_ff_test()

@@ -1,14 +1,17 @@
 from django import template
 from django.utils.html import escape
 
-from postmarkup import render_bbcode
+from postmarkup import create
 
 register = template.Library()
+
+_postmarkup = create(use_pygments=False, annotate_links=False)
 
 @register.filter
 def bbcode(s):
     s = escape(s)
-    return render_bbcode(s)
+    return _postmarkup(s)
+
 
 @register.filter
 def topic_icon(topic): 

@@ -11,14 +11,11 @@ from django.template.loader import render_to_string
 from django.contrib.syndication.feeds import Feed
 from django.contrib.auth.models import User , Group
 from django.conf import settings
-from django.views.generic.list_detail import object_list
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 
-from  datetime  import datetime, timedelta
-
 from forms import PostForm
-from models import Topic, Category, Forum, Post, LBForumUserProfile
+from models import Topic, Category, Forum, Post
 
 def index(request, template_name="lbforum/index.html"):
     categories = Category.objects.all()
