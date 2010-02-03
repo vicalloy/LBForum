@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+import sys
+sys.path.insert(0, '../../src')
+sys.path.insert(0, '../../requirements')
 from django.core.management import execute_manager
 try:
     import settings # Assumed to be in the same directory.

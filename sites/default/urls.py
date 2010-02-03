@@ -9,10 +9,10 @@ urlpatterns = patterns('',
     (r'^static/(.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     url(r'^accounts/register/$',
         register,
-        { 'backend': 'lbforum_site.lbregistration.backends.simple.SimpleBackend' },
+        { 'backend': 'lbregistration.backends.simple.SimpleBackend' },
         name='registration_register'),    
     (r'^accounts/', include('registration.backends.default.urls')),
-    (r'^', include('lbforum_site.lbforum.urls')),
+    (r'^', include('lbforum.urls')),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
