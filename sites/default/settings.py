@@ -81,6 +81,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
+        './templates'
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -95,8 +96,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
 
     'pagination',
-    'sorl.thumbnail',
-    'debug_toolbar',
+    #'sorl.thumbnail',
+    'avatar',
+    #'debug_toolbar',
     'registration',    
 
     'djangohelper',

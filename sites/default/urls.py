@@ -11,6 +11,7 @@ urlpatterns = patterns('',
         register,
         { 'backend': 'lbregistration.backends.simple.SimpleBackend' },
         name='registration_register'),    
+    (r'^accounts/avatar/', include('avatar.urls')),#profile
     (r'^accounts/', include('registration.backends.default.urls')),
     (r'^', include('lbforum.urls')),
 
