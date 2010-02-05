@@ -1,0 +1,89 @@
+{% extends 'lbforum/base.html' %}
+
+{% load i18n %}
+{% load lbforum %}
+{% load avatar_tags %}
+
+{% block title %}
+	{{ topic.subject }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+	<div id="replybox">
+		<div id="actionbox">
+		</div>
+	</div>
+	<div id="brd-wrap" class="brd">
+		<div id="brd-profile-avatar" class="brd-page menu-page">
+			{% include 'lbforum/inc_header.html' %}
+			{% include 'lbforum/inc_announce.html' %}
+			<div class="hr"><hr/></div>
+			<div id="brd-crumbs-top" class="crumbs gen-content">
+				{% include 'lbforum/inc_topic_brd_crumbs.html' %}
+			</div>
+
+
+			<div class="main-wrapper" id="brd-main">
+				<div class="main-menu gen-content">
+					<ul>
+						<li class="item1"><a href="http://fluxbb.org/forums/user/17867/about/"><span>Introduction</span></a></li>
+						<li><a href="http://fluxbb.org/forums/user/17867/identity/"><span>Identity</span></a></li>
+						<li><a href="http://fluxbb.org/forums/user/17867/settings/"><span>Settings</span></a></li>
+						<li><a href="http://fluxbb.org/forums/user/17867/signature/"><span>Signature</span></a></li>
+						<li class="active"><a href="http://fluxbb.org/forums/user/17867/avatar/"><span>Avatar</span></a></li>
+					</ul>
+				</div>
+
+				<div class="main-head">
+					<h1 class="hn"><span>vicalloy's profile : Avatar</span></h1>
+				</div>
+				<div class="main-subhead">
+					<h2 class="hn"><span>Set an avatar image to enhance your forum identity</span></h2>
+				</div>
+				<div class="main-content main-frm">
+					<form enctype="multipart/form-data" method="POST" action="">
+						<div class="hidden">
+							{% csrf_token %}
+						</div>
+						<fieldset class="frm-group group1">
+							<legend class="group-legend"><strong>Avatar</strong></legend>
+							<div class="ct-set info-set set1">
+								<div class="ct-box info-box">
+									<h3 class="hn ct-legend">Current avatar</h3>
+									<p>{% avatar user %}</p>
+								</div>
+							</div>
+							<div class="ct-set info-set set2">
+								<div class="ct-box info-box">
+									<ul class="info-list">
+										<li><span>To display an avatar you first need to upload one.</span></li>
+										<li><span>The allowed image file types are gif, jpeg and png.</span></li>
+										<li><span>The maximum image size allowed is 60x60 pixels and 20,480 bytes (20 KB).</span></li>
+									</ul>
+									<p class="req-warn important" id="req-msg"><strong>IMPORTANT! </strong> You must choose a file to upload before updating your profile.</p>
+								</div>
+							</div>
+							<div class="sf-set set3">
+								<div class="sf-box text">
+									<label for="fld1"><span>Upload avatar file:</span><small>Select file then update your profile to install.</small></label><br>
+									<span class="fld-input"><input type="file" name="avatar" value="Avatar Image" /></span>
+								</div>
+							</div>
+						</fieldset>
+						<div class="frm-buttons">
+							<span class="submit"><input type="submit" value="Upload New Image" /> You will be redirected back to this page</span>
+						</div>
+					</form>
+				</div>
+			</div>
+
+
+
+			<div class="crumbs gen-content" id="brd-crumbs-end">
+				{% include 'lbforum/inc_topic_brd_crumbs.html' %}
+			</div>
+			<div class="hr"><hr /></div>
+			{% include 'lbforum/inc_copyright.html' %}
+		</div>
+	</div>
+{% endblock %}
