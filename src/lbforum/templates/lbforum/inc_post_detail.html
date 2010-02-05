@@ -1,4 +1,5 @@
 {% load lbforum %}
+{% load avatar_tags %}
 <div class="post {% cycle 'odd' 'even' %} {{forloop|post_style}}" id="p{{post.pk}}">
     <div class="posthead">
         <h3 class="hn post-ident">
@@ -15,6 +16,7 @@
     <div class="postbody">
         <div class="post-author">
             <ul class="author-ident">
+				<li class="useravatar">{% avatar user %}</li>
                 <li class="username"> <a href="{{ topic.posted_by.get_absolute_url }}">{{topic.posted_by.username}}</a> </li>
                 <li class="usertitle"><span>Member</span></li>
                 <li class="userstatus"><span>{{topic.posted_by|online}}</span></li>
