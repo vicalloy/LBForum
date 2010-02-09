@@ -14,6 +14,7 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 
+from onlineuser.models import getOnlineInfos
 from forms import PostForm
 from models import Topic, Category, Forum, Post
 
@@ -23,9 +24,10 @@ def index(request, template_name="lbforum/index.html"):
     total_posts = Post.objects.count()
     total_users =  User.objects.count()
     last_registered_user = User.objects.order_by('-date_joined')[0]
-    ext_ctx = {'users_online': '', 'categories': categories, 'total_topics': total_topics,
+    ext_ctx = {'categories': categories, 'total_topics': total_topics,
             'total_posts': total_posts, 'total_users': total_users,
             'last_registered_user': last_registered_user}
+    ext_ctx.update(getOnlineInfos(True))
     return render_to_response(template_name, ext_ctx, RequestContext(request))
 
 def forum(request, forum_slug, template_name="lbforum/forum.html"):

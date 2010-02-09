@@ -89,8 +89,12 @@
 </div>
 <!-- brd-stats ends -->
 <div class="gen-content" id="brd-online">
-    <h3 class="hn"><span>Currently online ( <strong> {{ users_online }} </strong> guests, <strong>1</strong> registered user )</span></h3>
-    <p><a href="http://fluxbb.org/forums/user/18115/">gestionres</a></p>
+    <h3 class="hn">
+		<span>Currently online <strong> {{ total_onlines }} </strong> ( <strong> {{ total_onlines_guest }} </strong> guests, <strong>{{ total_onlines_user }}</strong> registered user )</span>
+	</h3>
+    <p>
+		{% for o in online_users %} <a href="{{o.user.get_absolute_url}}">{{o.user}}</a> {% endfor %}
+	</p>
 </div>
 
 <div class="hr"><hr /></div>

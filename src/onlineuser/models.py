@@ -8,13 +8,13 @@ last_online_duration = getattr(settings, 'LAST_ONLINE_DURATION', 900)
 
 class OnlineManager(models.Manager):
     def onlines(self):
-        now = datetime.datetime.now()
+        now = datetime.now()
         return Online.objects.filter(\
-                last_activity__gte = now - timedelta(seconds = last_online_duration)\
+                updated_on__gte = now - timedelta(seconds = last_online_duration)\
                 )
 
     def online_users(self):
-        return self.onlines.filter(user__isnull=True)
+        return self.onlines().filter(user__isnull=False)
 
 class Online(models.Model):
     user = models.OneToOneField(User, related_name='online', blank=True, null=True)
@@ -34,3 +34,14 @@ class Online(models.Model):
         if self.user:
             self.ident = '%s %s' % (self.user.username, self.user.pk)
         super(Online, self).save(*args, **kwargs)
+
+def getOnlineInfos(detail=False):
+    total_onlines = Online.objects.onlines().count()
+    total_onlines_user = Online.objects.online_users().count()
+    total_onlines_guest = total_onlines - total_onlines_user
+    ctx = {'total_onlines': total_onlines, 'total_onlines_user': total_onlines_user, \
+            'total_onlines_guest': total_onlines_guest}
+    if detail:
+        ctx['online_users'] = Online.objects.online_users()
+    return ctx
+
