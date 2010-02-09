@@ -65,6 +65,7 @@ MIDDLEWARE_CLASSES = (
 
     #'debug_toolbar.middleware.DebugToolbarMiddleware',
     'pagination.middleware.PaginationMiddleware',
+    'onlineuser.middleware.OnlineUserMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -102,6 +103,8 @@ INSTALLED_APPS = (
     'registration',    
 
     'djangohelper',
+    'onlineuser',
+    'lbregistration',
     'lbforum',
 )
 

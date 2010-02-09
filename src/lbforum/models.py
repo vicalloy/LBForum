@@ -140,14 +140,6 @@ class LBForumUserProfile(models.Model):
     def get_absolute_url(self):
         return self.user.get_absolute_url()
        
-
-class Online(models.Model):
-    #TODO how to use?
-    user = models.ForeignKey(User, blank = True)
-    ident = models.CharField(max_length=200)
-    idle = models.IntegerField(default=0)
-    created_on = models.DateTimeField(auto_now_add=True)
-
 #### do smoe connect ###
 def gen_last_post_info(post):
     last_post = {'posted_by': post.posted_by.username, 'update': post.created_on}
