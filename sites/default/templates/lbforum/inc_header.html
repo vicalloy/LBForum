@@ -15,7 +15,7 @@
             <a href="#">Search</a>
         </li>
         {% if user.is_authenticated %}
-        <li id="navprofile"><a href="#">{% trans "My profile" %}</a></li>
+        <li id="navprofile"><a href="{% url account_index %}">{% trans "My profile" %}</a></li>
         <li id="navlogout"><a href="{% url auth_logout %}?next={% url lbforum_index %}">{% trans "Logout" %}</a></li>
         {% else %}
         <li id="navregister"><a href="{% url registration_register %}">{% trans "Register" %}</a></li>

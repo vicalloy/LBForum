@@ -14,7 +14,7 @@
 		</div>
 	</div>
 	<div id="brd-wrap" class="brd">
-		<div id="brd-profile-avatar" class="brd-page menu-page">
+		<div id="{% block brd-page-id %}{% endblock %}" class="brd-page menu-page">
 			{% include 'lbforum/inc_header.html' %}
 			{% include 'lbforum/inc_announce.html' %}
 			<div class="hr"><hr/></div>
@@ -33,7 +33,7 @@
 			<div class="main-wrapper" id="brd-main">
 				<div class="main-menu gen-content">
 					<ul>
-						<li class="item1 {% block main_menu_idx_class %}{% endblock %}"><a href="http://fluxbb.org/forums/user/17867/about/"><span>Introduction</span></a></li>
+						<li class="item1 {% block main_menu_profile_class %}{% endblock %}"><a href="{% url account_index %}"><span>Introduction</span></a></li>
                         <li class="{% block main_menu_avatar_class %}{% endblock %}"><a href="{% url avatar_change %}"><span>Avatar</span></a></li>
 					</ul>
 				</div>

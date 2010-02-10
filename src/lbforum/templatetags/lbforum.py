@@ -10,7 +10,6 @@ _postmarkup = create(use_pygments=False, annotate_links=False)
 def bbcode(s):
     return _postmarkup(s)
 
-
 @register.filter
 def topic_icon(topic): 
     if topic.closed:
@@ -32,10 +31,12 @@ def post_style(forloop):
     return styles
 
 @register.filter
-def online(user):#TODO... to a common app
-    return 'Online'
-    if user.lbforum_profile.is_online:
-        return 'Online'
+def online(user):
+    try:
+        if user.online.online():
+            return 'Online'
+    except Exception, e:
+        pass
     return 'Offline'
 
 @register.simple_tag
