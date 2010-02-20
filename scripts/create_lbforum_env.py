@@ -6,19 +6,29 @@ import os
 HERE = os.path.dirname(os.path.abspath(__file__))
 LBFORUM_ROOT = STATIC_FOLDER = os.path.join(HERE, "../")
 TOOLS_FOLDER = os.path.join(LBFORUM_ROOT, "tools/")
-TOOLS_ZIP_FOLDER = os.path.join(TOOLS_FOLDER, "zip/")
 LBFORUM_ENV = os.path.join(LBFORUM_ROOT, "lbforum_env/")
+REQ_FOLDER = os.path.join(LBFORUM_ROOT, "requirements/")
+STATIC_FOLDER = os.path.join(LBFORUM_ROOT, "sites/default/static/")
 
-#print run('dir', env=None)
-#echo python %~dp0..\tools\virtualenv.py %~dp0..\lbforum_env
-#call %~dp0..\lbforum_env\Scripts\activate.bat
 def do_unzip():
     print '== do_unzip =='
-    print 'unzip virtualenv'
-    unzip(os.path.join(TOOLS_ZIP_FOLDER, "virtualenv.zip"), TOOLS_FOLDER)
+    tools_zip_folder = os.path.join(TOOLS_FOLDER, "zip/")
+    unzip(os.path.join(tools_zip_folder, "virtualenv.zip"), TOOLS_FOLDER)
+    req_zip_folder = os.path.join(REQ_FOLDER, "zip/")
+    unzip(os.path.join(req_zip_folder, "postmarkup.zip"), REQ_FOLDER)
+    static_scripts_folder = os.path.join(STATIC_FOLDER, 'scripts')
+    unzip(os.path.join(req_zip_folder, "markitup.zip"), static_scripts_folder)
+    unzip(os.path.join(req_zip_folder, "jquery.min.js.zip"), static_scripts_folder)
+
+def do_easy_install():
+    easy_install = os.path.join(LBFORUM_ENV, "Scripts/easy_install.exe")
+    print '== do_easy_install =='
+    print run('%s %s' % (easy_install, 'django'))
+    print run('%s %s' % (easy_install, 'PIL'))
 
 if __name__ == '__main__':
-    #do_unzip()
+    do_unzip()
     virtualenv_py = os.path.join(TOOLS_FOLDER, "virtualenv.py")
     print '== create LBFORUM_ENV =='
-    run('python %s %s' % (virtualenv_py, LBFORUM_ENV))
+    print run('python %s %s' % (virtualenv_py, LBFORUM_ENV))
+    do_easy_install()

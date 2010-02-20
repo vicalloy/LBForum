@@ -5,7 +5,7 @@
 {% block title %}{{  block.super }}{% endblock %}
 
 {% block extra_header %}
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}scripts/markitup/skins/markitup/lbforum_style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}scripts/markitup/skins/markitup/style.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}scripts/markitup/bbcode/style.css" />
 {% endblock %}
 
@@ -92,7 +92,6 @@
                             </fieldset>
                         </fieldset>
                         <div class="frm-buttons">
-							<a href="#" onclick="tinyMCE.execCommand('mceToggleEditor',false,'id_message');">[Toggle WYSIWYG]</a>
                             <span class="submit"><input type="submit" value="Submit topic" name="submit"/></span>
                             <span class="submit"><input type="submit" value="Preview topic" name="preview"/></span>
                         </div>
