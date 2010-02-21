@@ -1,0 +1,14 @@
+{% extends "avatar/base.html" %}
+{% load avatar_tags %}
+
+{% block content %}
+    <p>Your current avatar: </p>
+    {% avatar user %}
+    <br/>
+    <form enctype="multipart/form-data" method="POST" action="">
+        {% csrf_token %} 
+        {{ avatar_form }}
+        <br/>
+        <input type="submit" value="Upload New Image" />
+    </form>
+{% endblock %}

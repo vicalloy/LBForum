@@ -12,7 +12,7 @@ urlpatterns = patterns('',
         { 'backend': 'lbregistration.backends.simple.SimpleBackend' },
         name='registration_register'),    
     url(r'^accounts/$', 'account.views.profile', name='account_index'),
-    (r'^accounts/avatar/', include('avatar.urls')),
+    (r'^accounts/avatar/', include('simpleavatar.urls')),
     (r'^accounts/', include('registration.backends.default.urls')),
     (r'^', include('lbforum.urls')),
 

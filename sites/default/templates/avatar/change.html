@@ -15,9 +15,6 @@
 {% block main_subhead %}Set an avatar image to enhance your forum identity{% endblock %}
 
 {% block account_main_content %}
-	<p class="content-options options">
-		<span class="item1"><a href="{% url avatar_delete %}">Delete Avatar</a></span>
-	</p>
 	{% if form.errors %}
 		<div class="ct-box error-box" id="req-msg">
 			<p class="errornote"> Please correct the errors below.  </p>
@@ -36,17 +33,13 @@
                     <p>{% avatar user %}</p>
                 </div>
             </div>
-            <div class="ct-set info-set set2">
-                <div class="ct-box info-box">
-                    <ul class="info-list">
-                        <li><span>To display an avatar you first need to upload one.</span></li>
-                        <li><span>The allowed image file types are gif, jpeg and png.</span></li>
-                    </ul>
-                </div>
-            </div>
             <div class="sf-set set3">
                 <div class="sf-box text">
-                    <label for="fld1"><span>Upload avatar file:</span><small>Select file then update your profile to install.</small></label><br>
+                    <label for="fld1"><span>Upload avatar file:</span>
+						<small>
+							The allowed image file types are gif, jpeg and png.
+						</small>
+					</label><br>
                     <span class="fld-input"><input type="file" name="avatar" value="Avatar Image" /></span>
                 </div>
             </div>
