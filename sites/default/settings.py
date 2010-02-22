@@ -100,15 +100,17 @@ INSTALLED_APPS = (
 
     'pagination',
     #'sorl.thumbnail',
-    'simpleavatar',
     #'debug_toolbar',
     'registration',    
 
+    'simpleavatar',
     'djangohelper',
     'onlineuser',
     'lbregistration',
     'lbforum',
 )
+
+LOGIN_REDIRECT_URL = '/accounts/'
 
 CTX_CONFIG = {
         'LBFORUM_TITLE': 'LBForum',

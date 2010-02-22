@@ -11,18 +11,21 @@
 {% block brd-page-id %}brd-profile-about{% endblock %}
 
 {% block main_menu_profile_class %}active{% endblock %}
-{% block main_head %}{{ user }}'s profile{% endblock %}
+{% block main_head %}{{ view_user }}'s profile{% endblock %}
 {% block main_subhead %}Welcome to your profile{% endblock %}
 
 {% block account_main_content %}
+    {% if user == view_user %}
 	<p class="content-options options">
 		<span class="item1"><a href="{% url auth_password_change %}">Change your password</a></span> 
 	</p>
+    {% endif %}
+    
 	<div class="profile ct-group data-group vcard">
 		<div class="ct-set data-set set1">
 			<div class="ct-box data-box">
 				<ul class="user-ident ct-legend">
-					<li class="username fn nickname"><strong>vicalloy</strong></li>
+                    <li class="username fn nickname"><strong>{{ view_user }}</strong></li>
 					<li class="usertitle"><span>Member</span></li>					</ul>
 				<ul class="data-list">
 					<li><span>Registered: <strong>{{user.date_joined|date:"Y-m-d"}}</strong></span></li>

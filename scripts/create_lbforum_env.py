@@ -16,6 +16,7 @@ def do_unzip():
     unzip(os.path.join(tools_zip_folder, "virtualenv.zip"), TOOLS_FOLDER)
     req_zip_folder = os.path.join(REQ_FOLDER, "zip/")
     unzip(os.path.join(req_zip_folder, "postmarkup.zip"), REQ_FOLDER)
+    unzip(os.path.join(req_zip_folder, "registration.zip"), REQ_FOLDER)
     static_scripts_folder = os.path.join(STATIC_FOLDER, 'scripts')
     unzip(os.path.join(req_zip_folder, "markitup.zip"), static_scripts_folder)
     unzip(os.path.join(req_zip_folder, "jquery.min.js.zip"), static_scripts_folder)
@@ -25,6 +26,7 @@ def do_easy_install():
     print '== do_easy_install =='
     print run('%s %s' % (easy_install, 'django'))
     print run('%s %s' % (easy_install, 'PIL'))
+    print run('%s %s' % (easy_install, 'django-pagination'))
 
 if __name__ == '__main__':
     do_unzip()

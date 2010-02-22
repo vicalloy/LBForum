@@ -1,10 +1,10 @@
-from models import Avatar, avatar_file_path
-from forms import AvatarForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext as _
+
+from forms import AvatarForm
 
 from djangohelper.helper import request_get_next
 

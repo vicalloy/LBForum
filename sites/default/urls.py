@@ -1,7 +1,10 @@
 from django.conf.urls.defaults import *
 from django.contrib import admin
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
+
 from registration.views import register
+from account.views import profile
 
 admin.autodiscover()
 
@@ -11,7 +14,8 @@ urlpatterns = patterns('',
         register,
         { 'backend': 'lbregistration.backends.simple.SimpleBackend' },
         name='registration_register'),    
-    url(r'^accounts/$', 'account.views.profile', name='account_index'),
+    url(r'^user/(?P<user_id>\d+)/$', profile, name='user_profile'),
+    url(r'^accounts/$', login_required(profile), name='account_index'),
     (r'^accounts/avatar/', include('simpleavatar.urls')),
     (r'^accounts/', include('registration.backends.default.urls')),
     (r'^', include('lbforum.urls')),

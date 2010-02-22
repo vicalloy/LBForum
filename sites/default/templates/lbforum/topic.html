@@ -23,7 +23,7 @@
             <div class="main-wrapper" id="brd-main">
                 <div class="main-pagepost gen-content" id="brd-pagepost-top">
                     {% load pagination_tags %}
-                    {% autopaginate posts 2 %}
+                    {% autopaginate posts 20 %}
                     {% paginate %}
                     <p class="posting">
                         {% if not topic.closed %} 

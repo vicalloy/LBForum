@@ -33,8 +33,17 @@
 			<div class="main-wrapper" id="brd-main">
 				<div class="main-menu gen-content">
 					<ul>
-						<li class="item1 {% block main_menu_profile_class %}{% endblock %}"><a href="{% url account_index %}"><span>Introduction</span></a></li>
+						<li class="item1 {% block main_menu_profile_class %}{% endblock %}">
+                            {% if view_only %}
+                            <a href="{% url account_index %}"><span>Introduction</span></a>
+                            {% endif %}
+                            {% if not view_only %}
+                            <a href="{% url user_profile user.pk %}"><span>Introduction</span></a>
+                            {% endif %}
+                        </li>
+                        {% if not view_only %}
                         <li class="{% block main_menu_avatar_class %}{% endblock %}"><a href="{% url avatar_change %}"><span>Avatar</span></a></li>
+                        {% endif %}
 					</ul>
 				</div>
 
