@@ -1,6 +1,7 @@
 {% extends "lbforum/base.html" %}
 
 {% load lbforum %}
+{% load i18n %}
 
 {% block title %}{{  block.super }}{% endblock %}
 
@@ -32,7 +33,7 @@
 				</div>
 				<div class="main-content main-frm">
 					<div class="content-head">
-						<p class="hn">Do you need to <a href="{% url registration_register %}">{% trans "Register" %}</a>?</p>
+						<p class="hn">Do you need to <a href="{% url registration_register %}">{% trans "register" %}</a>?</p>
 					</div>
                     {% if form.errors %}
                         <div class="ct-box error-box">
