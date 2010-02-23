@@ -8,7 +8,7 @@ def unzip(zip_file, obj_folder):
     for f in z.namelist():
         new_filename = os.path.join(obj_folder, f)
         if not os.path.exists(os.path.dirname(new_filename)):
-            os.mkdir(os.path.dirname(new_filename))
+            os.makedirs(os.path.dirname(new_filename))
         if new_filename[-1:][0] not in ('\\', '/'):
             file(new_filename, 'wb').write(z.read(f))
 
