@@ -32,7 +32,7 @@
 				</div>
 				<div class="main-content main-frm">
 					<div class="content-head">
-						<p class="hn">Do you need to <a href="http://fluxbb.org/forums/register/">register</a> or obtain a <a href="http://fluxbb.org/forums/request/password/">new password</a> before you login?</p>
+						<p class="hn">Do you need to <a href="{% url registration_register %}">{% trans "Register" %}</a>?</p>
 					</div>
                     {% if form.errors %}
                         <div class="ct-box error-box">
