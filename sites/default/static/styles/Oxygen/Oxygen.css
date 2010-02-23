@@ -1871,3 +1871,11 @@ H - MAIN CONTENT - ODDMENTS
 .brd .txt-set .markItUpEditor{
 	width:643px;
 }
+
+#brd-navlinks #brd-navlinks-left {
+	float: left;
+	}
+
+#brd-navlinks #brd-navlinks-right {
+	float: right;
+	}

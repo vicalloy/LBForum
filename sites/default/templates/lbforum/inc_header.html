@@ -7,10 +7,10 @@
 </div>
 
 <div id="brd-navlinks" class="gen-content">
-    <ul>
-        <li>
-            <a href="{% url lbforum_index %}">Home</a>
-        </li>
+    <ul id="brd-navlinks-left">
+		{% include 'lbforum/inc_header_left_links.html' %}
+    </ul>
+    <ul id="brd-navlinks-right">
         <li>
             <a href="#">Search</a>
         </li>
@@ -21,7 +21,6 @@
         <li id="navregister"><a href="{% url registration_register %}">{% trans "Register" %}</a></li>
         <li id="navlogin"><a href="{% url auth_login %}">{% trans "Login" %}</a></li>
         {% endif %}
-
     </ul>
 </div>
 
