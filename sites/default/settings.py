@@ -120,10 +120,6 @@ CTX_CONFIG = {
 
 ACCOUNT_ACTIVATION_DAYS = 7 
 
-#TODO add a config model
-from lbforum_settings import *
-
-#########
 INTERNAL_IPS = ('127.0.0.1',)
 
 DEBUG_TOOLBAR_PANELS = (
@@ -137,3 +133,9 @@ DEBUG_TOOLBAR_PANELS = (
     'debug_toolbar.panels.signals.SignalDebugPanel',
     'debug_toolbar.panels.logger.LoggingPanel',
 )
+
+#TODO add a config model
+try:
+    from lbforum_settings import *
+except Exception, e:
+    pass
