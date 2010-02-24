@@ -1859,14 +1859,12 @@ H - MAIN CONTENT - ODDMENTS
 .brd .pagination .current {
     font-weight: bold;
     }
-    
 
 .brd .mceEditor table td {
 	border-left-style: none;
     padding: 0;
     border-width:1px;
 }
-
 
 .brd .txt-set .markItUpEditor{
 	width:643px;
@@ -1879,3 +1877,7 @@ H - MAIN CONTENT - ODDMENTS
 #brd-navlinks #brd-navlinks-right {
 	float: right;
 	}
+
+.brd .main-content .main-item .item-subject {
+  	padding-top: 1em;
+  	}

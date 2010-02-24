@@ -4,16 +4,15 @@
   
   <div class="item-subject">
 	<h3 class="hn"><span class="item-num">1</span>
-	  {% if topic.is_closed %}
+	  {% if topic.closed %}
 		<strong>(Closed)</strong>
 	  {% endif %}
 	  
-	  {% if topic.is_sticky %}
+	  {% if topic.sticky %}
 		<strong>(Sticky)</strong>
 	  {% endif %}		
 	  <a href="{% url lbforum_topic topic.id %}">{{topic.subject}} </a>   
 	</h3>
-	&nbsp; <span class="item-starter">by <cite>{{topic.posted_by.username}}</cite></span>
   </div>
   
   <ul class="item-info">
