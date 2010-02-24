@@ -24,6 +24,16 @@ class Online(models.Model):
 
     objects = OnlineManager()
 
+    def username(self):
+        if self.ident:
+            return self.ident.split(' ')[0]
+        return ''
+
+    def user_id(self):
+        if self.ident:
+            return self.ident.split(' ')[1]
+        return ''
+
     def online(self):
         now = datetime.now()
         if (now - self.updated_on).seconds < last_online_duration:
