@@ -35,7 +35,7 @@
         </p>
 	</div>
 	<div class="main-head">
-		<h1 class="hn"><span><a title="Permanent link to this forum." rel="bookmark" href="http://fluxbb.org/forums/forum/17/test-board/" class="permalink">Test board</a> <small>(Page 1 of 4)</small></span></h1>
+        <h1 class="hn"><span><a title="Permanent link to this forum." rel="bookmark" href="{% url lbforum_forum forum.slug %}" class="permalink">{{ forum }}</a> <small>(Page 1 of 4)</small></span></h1>
 	</div>
 	<div class="main-pagehead">
 		<h2 class="hn"><span><span class="item-info">Topics [ {% page_range_info page_obj %} ]</span></span></h2>
