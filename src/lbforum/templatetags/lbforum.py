@@ -11,13 +11,15 @@ def bbcode(s):
     return _postmarkup(s)
 
 @register.filter
-def topic_icon(topic): 
+def topic_state(topic): 
+    c = []
     if topic.closed:
-        return 'closed'
+        c.append('closed')
     elif topic.sticky:
-        return 'sticky'
+        c.append('sticky')
     else:
-        return 'normal'
+        c.append('normal')
+    return ' '.join(c)
 
 @register.filter
 def post_style(forloop):
