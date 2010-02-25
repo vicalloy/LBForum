@@ -1,0 +1,9 @@
+{% extends "lbforum/redirect.html" %}
+
+{% load i18n %}
+
+{% block main_head %}{% trans 'register successful' %}{% endblock %}
+
+{% block redirect_url %} {% url auth_login %} {% endblock %}
+
+{% block redirect_url_ %} {% url auth_login %} {% endblock %}
