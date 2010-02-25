@@ -6,7 +6,7 @@
 			<span class="post-num">{% page_item_idx page_obj forloop %}</span>
             <span class="post-byline">
                 <span>Topic by </span>
-                <a href="{% url user_profile topic.posted_by.pk %}">{{topic.posted_by.username}}</a>
+                <a href="{% url user_profile post.posted_by.pk %}">{{post.posted_by.username}}</a>
             </span>
             <span class="post-link">
                 {{ post.created_on|timesince }}
@@ -16,10 +16,10 @@
     <div class="postbody">
         <div class="post-author">
             <ul class="author-ident">
-                <li class="useravatar"><a href="{% url user_profile topic.posted_by.pk %}">{% avatar topic.posted_by %}</a></li>
-                <li class="username"> <a href="{% url user_profile topic.posted_by.pk %}">{{topic.posted_by.username}}</a> </li>
+                <li class="useravatar"><a href="{% url user_profile post.posted_by.pk %}">{% avatar post.posted_by %}</a></li>
+                <li class="username"> <a href="{% url user_profile post.posted_by.pk %}">{{post.posted_by.username}}</a> </li>
                 <li class="usertitle"><span>Member</span></li>
-                <li class="userstatus"><span>{{topic.posted_by|online}}</span></li>
+                <li class="userstatus"><span>{{post.posted_by|online}}</span></li>
             </ul>
             <ul class="author-info">
                 <li><span>Registered: <strong>{{ post.posted_by.date_joined|date:"Y-m-d" }}</strong></span></li>
