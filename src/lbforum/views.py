@@ -44,6 +44,7 @@ def topic(request, topic_id, template_name="lbforum/topic.html"):
     ext_ctx = {'topic': topic, 'posts': posts}
     return render_to_response(template_name, ext_ctx, RequestContext(request))
 
+@login_required
 def new_post(request, forum_id=None, topic_id=None, form_class=PostForm, template_name='lbforum/new_post.html'):
     topic = forum = first_post = preview = None
     action_type = 'topic'
