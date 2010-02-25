@@ -30,7 +30,7 @@
 				<ul class="data-list">
 					<li><span>Registered: <strong>{{view_user.date_joined|date:"Y-m-d"}}</strong></span></li>
 					<li><span>Last login: <strong>{{view_user.last_login|date:"Y-m-d"}}</strong></span></li>
-					<li><span>Posts: <strong>3</strong></span></li>
+					<li><span>Posts: <strong>{{view_user.post_set.all.count}}</strong></span></li>
 				</ul>
 			</div>
 		</div>
