@@ -24,6 +24,9 @@ class Online(models.Model):
 
     objects = OnlineManager()
 
+    def __unicode__(self):
+        return self.ident
+
     def username(self):
         if self.ident:
             return self.ident.split(' ')[0]
