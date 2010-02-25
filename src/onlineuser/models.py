@@ -28,13 +28,12 @@ class Online(models.Model):
         return self.ident
 
     def username(self):
-        if self.ident:
-            return self.ident.split(' ')[0]
-        return ''
+        return self.ident.split(' ')[0]
 
     def user_id(self):
-        if self.ident:
-            return self.ident.split(' ')[1]
+        ident = self.ident.split(' ')
+        if len(ident)>2:
+            return ident[1]
         return ''
 
     def online(self):
@@ -57,4 +56,3 @@ def getOnlineInfos(detail=False):
     if detail:
         ctx['online_users'] = Online.objects.online_users()
     return ctx
-
