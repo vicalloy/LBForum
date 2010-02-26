@@ -81,7 +81,7 @@ class Topic(models.Model):
     objects = TopicManager()
     
     class Meta:
-        ordering = ('-sticky', '-updated_on',)
+        ordering = ('-updated_on',)#'-sticky'
         get_latest_by = ('created_on')
         verbose_name = _("Topic")
         verbose_name_plural = _("Topics")
@@ -114,11 +114,11 @@ class Post(models.Model):#can't edit...
     class Meta:
         verbose_name = _("Post")
         verbose_name_plural = _("Posts")
-        ordering = ('created_on',)
+        ordering = ('-updated_on',)
         get_latest_by = ('created_on', )
         
     def __unicode__(self):
-        return self.message
+        return self.message[:80]
     
     @models.permalink
     def get_absolute_url(self):
