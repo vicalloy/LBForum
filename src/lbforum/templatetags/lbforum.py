@@ -1,10 +1,26 @@
 from django import template
+from django.utils.safestring import mark_safe
+from django.utils.encoding import force_unicode
+from django.utils.translation import ugettext_lazy as _
 
 from postmarkup import create
 
 register = template.Library()
 
 _postmarkup = create(use_pygments=False, annotate_links=False)
+
+@register.filter
+def form_all_error(form):
+    errors = []
+    global_error = form.errors.get('__all__', '')
+    if global_error:
+        global_error = global_error.as_text()
+    for name, field in form.fields.items():
+        e = form.errors.get(name, '')
+        if e:
+            errors.append((field.label, force_unicode(e), ))
+    return mark_safe(u'<ul class="errorlist">%s %s</ul>'
+            % (global_error, ''.join([u'<li>%s%s</li>' % (k, v) for k, v in errors])))
 
 @register.filter
 def bbcode(s):
@@ -36,10 +52,10 @@ def post_style(forloop):
 def online(user):
     try:
         if user.online.online():
-            return 'Online'
+            return _('Online')
     except Exception, e:
         pass
-    return 'Offline'
+    return _('Offline')
 
 @register.simple_tag
 def page_item_idx(page_obj, forloop):
