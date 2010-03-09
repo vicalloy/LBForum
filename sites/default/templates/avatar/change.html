@@ -18,7 +18,7 @@
 	{% if form.errors %}
 		<div class="ct-box error-box" id="req-msg">
 			<p class="errornote"> Please correct the errors below.  </p>
-			{{form.errors}}
+			{{ form|form_all_error }}
 		</div>
 	{% endif %}
     <form enctype="multipart/form-data" method="POST" action="">

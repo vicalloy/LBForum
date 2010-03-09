@@ -38,7 +38,7 @@
                     {% if form.errors %}
                         <div class="ct-box error-box">
                             <p class="errornote"> Please correct the errors below.  </p>
-                            {{form.errors}}
+                            {{ form|form_all_error }}
                         </div>
                     {% endif %}
 					<form action="" accept-charset="utf-8" method="post" class="frm-form" id="afocus">

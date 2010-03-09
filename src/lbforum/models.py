@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
+from django.db.models import Sum
 
 from base64 import b64encode, b64decode
 import pickle
@@ -45,6 +46,12 @@ class Forum(models.Model):
         verbose_name_plural = _("Forums")
         ordering = ('ordering','-created_on')
 
+    def count_nums_topic(self):
+        return self.topic_set.all().count()
+
+    def count_nums_post(self):
+        return self.topic_set.all().aggregate(Sum('num_replies'))['num_replies__sum']
+
     def get_last_post(self):
         if not self.last_post:
             return {}
@@ -81,13 +88,16 @@ class Topic(models.Model):
     objects = TopicManager()
     
     class Meta:
-        ordering = ('-sticky', '-updated_on',)
+        ordering = ('-updated_on',)#'-sticky'
         get_latest_by = ('created_on')
         verbose_name = _("Topic")
         verbose_name_plural = _("Topics")
         
     def __unicode__(self):
         return self.subject
+
+    def count_nums_replies(self):
+        return self.post_set.all().count()
     
     @models.permalink
     def get_absolute_url(self):
@@ -114,11 +124,11 @@ class Post(models.Model):#can't edit...
     class Meta:
         verbose_name = _("Post")
         verbose_name_plural = _("Posts")
-        ordering = ('created_on',)
+        ordering = ('-updated_on',)
         get_latest_by = ('created_on', )
         
     def __unicode__(self):
-        return self.message
+        return self.message[:80]
     
     @models.permalink
     def get_absolute_url(self):
@@ -140,6 +150,8 @@ class LBForumUserProfile(models.Model):
     def get_absolute_url(self):
         return self.user.get_absolute_url()
        
+#### smoe function ###
+
 #### do smoe connect ###
 def gen_last_post_info(post):
     last_post = {'posted_by': post.posted_by.username, 'update': post.created_on}
@@ -166,7 +178,7 @@ def update_forum_on_topic(sender, instance, created, **kwargs):
     if created:
         instance.forum.num_topics += 1
         instance.forum.save()
-        
+
 post_save.connect(create_user_profile, sender = User)
 post_save.connect(update_topic_on_post, sender = Post)
 post_save.connect(update_forum_on_post, sender = Post)

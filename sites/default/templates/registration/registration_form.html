@@ -34,7 +34,7 @@
                     {% if form.errors %}
                         <div class="ct-box error-box">
                             <p class="errornote"> Please correct the errors below.  </p>
-                            {{form.errors}}
+                            {{ form|form_all_error }}
                         </div>
                     {% endif %}
                     <div class="req-warn ct-box error-box" id="req-msg">
