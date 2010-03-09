@@ -1885,3 +1885,13 @@ H - MAIN CONTENT - ODDMENTS
  .brd .main-content .main-item .mm {
  	margin-top: 1.1em;
  	}
+
+#brd-friend-links {
+ 	margin-top: 1.1em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	}
+
+#brd-friend-links a {
+ 	margin-left: 1.1em;
+	}
