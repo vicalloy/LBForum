@@ -34,7 +34,7 @@ class TopicAdmin(admin.ModelAdmin):
     list_display        = ('subject', 'forum', 'posted_by', 'sticky', 'closed', \
             'hidden', 'num_views', 'num_replies', 'created_on', 'updated_on', )
     list_filter         = ('forum', 'sticky', 'closed', 'hidden',)
-    search_fields       = ('subject', 'posted_by', )
+    search_fields       = ('subject', 'posted_by__username', )
     inlines             = (PostInline, )
     actions = [update_topic_num_replies]
 
@@ -43,7 +43,7 @@ admin.site.register(Topic, TopicAdmin)
 class PostAdmin(admin.ModelAdmin):
     list_display        = ('__unicode__', 'topic', 'posted_by', 'poster_ip', \
             'created_on', 'updated_on', )
-    search_fields       = ('topic', 'posted_by', 'message', )
+    search_fields       = ('topic__subject', 'posted_by__username', 'message', )
 
 admin.site.register(Post, PostAdmin)
 
