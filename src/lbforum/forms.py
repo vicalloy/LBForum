@@ -27,14 +27,16 @@ class PostForm(forms.ModelForm):
             self.fields['subject'].required = False
 
     def save(self):
+        topic_post = False
         if not self.topic:
             topic = Topic(forum=self.forum,
                           posted_by=self.user,
                           subject=self.cleaned_data['subject'])
+            topic_post = True
             topic.save()
         else:
             topic = self.topic
         post = Post(topic=topic, posted_by=self.user, poster_ip=self.ip,
-                    message=self.cleaned_data['message'])
+                    message=self.cleaned_data['message'], topic_post=topic_post)
         post.save()
         return post

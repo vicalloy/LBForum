@@ -113,6 +113,7 @@ class Post(models.Model):#can't edit...
     topic = models.ForeignKey(Topic, verbose_name=_('Topic'))
     posted_by = models.ForeignKey(User)
     poster_ip = models.IPAddressField()
+    topic_post = models.BooleanField(default=False)
     
     #TODO add html/rst/..suport
     message = models.TextField()

@@ -80,8 +80,10 @@ def user_topics(request, user_id, template_name='lbforum/user_topics.html'):
 
 @login_required
 def user_posts(request, user_id, template_name='lbforum/user_posts.html'):
-    #TODO
-    return HttpResponse("TODO...")
+    view_user = User.objects.get(pk=user_id)
+    posts = view_user.post_set.all()
+    return render_to_response(template_name, {'posts': posts, 'view_user': view_user}, \
+            RequestContext(request))
 #Feed...
 #Add Post
 #Add Topic
