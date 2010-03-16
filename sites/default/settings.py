@@ -113,6 +113,7 @@ INSTALLED_APPS = (
 )
 
 LOGIN_REDIRECT_URL = '/accounts/'
+LOGIN_URL = "%slogin/" % LOGIN_REDIRECT_URL
 
 CTX_CONFIG = {
         'LBFORUM_TITLE': 'LBForum',

@@ -131,9 +131,20 @@ class Post(models.Model):#can't edit...
     def __unicode__(self):
         return self.message[:80]
     
+    def subject(self):
+        if self.topic_post:
+            return _('Topic: %s') % self.topic.subject
+        return _('Re: %s') % self.topic.subject
+
     @models.permalink
     def get_absolute_url(self):
-        return ('lbforum_topic_detail', (), {'forumslug': self.topic.forum.slug, 'topic_slug': self.topic.slug})
+        return ('lbforum_post', (), { 'post_id': self.pk })
+
+    def get_absolute_url_ext(self):
+        topic = self.topic
+        post_idx = topic.post_set.filter(created_on__lte=self.created_on).count()
+        page = (post_idx - 1) / 20 + 1
+        return '%s?page=%s#p%s' % (topic.get_absolute_url(), page, self.pk)
     
 class LBForumUserProfile(models.Model):
     user = models.OneToOneField(User, related_name='lbforum_profile', verbose_name=_('User'))

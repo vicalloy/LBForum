@@ -50,7 +50,38 @@
 				</div>
 				<div class="main-content main-topic" id="forum">
 					{% for post in posts %}     
-						{% include 'lbforum/inc_post_detail.html' %}
+						<div class="post {% cycle 'odd' 'even' %} {{forloop|post_style}}" id="p{{post.pk}}">
+							<div class="posthead">
+								<h3 class="hn post-ident">
+									<span class="post-num">{% page_item_idx page_obj forloop %}</span>
+									<span class="post-byline">
+										<span>Topic by </span>
+										<a href="{% url user_profile post.posted_by.pk %}">{{post.posted_by.username}}</a>
+									</span>
+									<span class="post-link">
+										<a href="{{ post.get_absolute_url }}" title="Permanent link to this post" rel="bookmark" class="permalink">{{ post.created_on|timesince }}</a>
+									</span>
+								</h3>
+								<h4 class="hn post-title">
+									<span>
+										<a href="{{ post.topic.get_absolute_url }}" title="Permanent link to this topic" rel="bookmark" class="permalink">{{ post.subject }}</a> 
+										<small>({{ post.topic.num_replies|add:"-1" }} replies, posted in <a href="{{ post.topic.forum.get_absolute_url }}">{{ post.topic.forum }}</a>)</small>
+									</span>
+								</h4>
+							</div>
+							<div class="postbody">
+								<div class="post-author">
+									<ul class="author-ident">
+										<li class="username"> <a href="{% url user_profile post.posted_by.pk %}">{{post.posted_by.username}}</a> </li>
+									</ul>
+								</div>
+								<div class="post-entry">
+									<div class="entry-content">
+										<p>{{ post.message|bbcode|safe }}</p>
+									</div>
+								</div>
+							</div>
+						</div>
 					{% endfor %}
 				</div>
 
