@@ -13,6 +13,9 @@
 	  {% endif %}		
 	  <a href="{% url lbforum_topic topic.id %}">{{topic.subject}} </a>   
 	</h3>
+	<p>
+		<span class="item-starter">Started {{ topic.updated_on|date:"Y-m-d H:i" }} by <cite>{{ topic.posted_by }}</cite></span>
+	</p>
   </div>
   
   <ul class="item-info">
