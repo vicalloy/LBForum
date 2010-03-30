@@ -20,6 +20,7 @@ def do_unzip():
     static_scripts_folder = os.path.join(STATIC_FOLDER, 'scripts')
     unzip(os.path.join(req_zip_folder, "markitup.zip"), static_scripts_folder)
     unzip(os.path.join(req_zip_folder, "jquery.min.js.zip"), static_scripts_folder)
+    unzip(os.path.join(req_zip_folder, "ajaxupload.zip"), static_scripts_folder)
 
 def do_easy_install():
     easy_install = os.path.join(LBFORUM_ENV, "Scripts/easy_install.exe")
@@ -27,6 +28,7 @@ def do_easy_install():
     print run('%s %s' % (easy_install, 'http://code.djangoproject.com/svn/django/trunk/'))
     print run('%s %s' % (easy_install, 'PIL'))
     print run('%s %s' % (easy_install, 'django-pagination'))
+    print run('%s %s' % (easy_install, 'South'))
 
 if __name__ == '__main__':
     do_unzip()

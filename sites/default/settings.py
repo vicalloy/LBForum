@@ -110,6 +110,7 @@ INSTALLED_APPS = (
     'onlineuser',
     'lbregistration',
     'lbforum',
+    'attachments',
 )
 
 LOGIN_REDIRECT_URL = '/accounts/'

@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^accounts/$', login_required(profile), name='account_index'),
     (r'^accounts/avatar/', include('simpleavatar.urls')),
     (r'^accounts/', include('registration.backends.default.urls')),
+    (r'^attachments/', include('attachments.urls')),
     (r'^', include('lbforum.urls')),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
