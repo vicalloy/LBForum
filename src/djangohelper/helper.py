@@ -5,7 +5,7 @@ from django.utils import simplejson
 from django.utils.translation import ugettext_lazy as _
 
 def json_response(data):
-    return HttpResponse(simplejson.dumps(data), mimetype='application/json')
+    return HttpResponse(simplejson.dumps(data), mimetype='text/html')#application/json
 
 def _ajax_login_required(msg):
     def decorator(view_func):

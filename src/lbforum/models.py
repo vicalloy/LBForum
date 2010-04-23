@@ -1,13 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
+from base64 import b64encode, b64decode
+import pickle
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import Sum
 
-from base64 import b64encode, b64decode
-import pickle
+from attachments.models import Attachment
 
 class Config(models.Model):
     key = models.CharField(max_length = 255)#PK
@@ -117,6 +119,7 @@ class Post(models.Model):#can't edit...
     
     #TODO add html/rst/..suport
     message = models.TextField()
+    attachments = models.ManyToManyField(Attachment)
     
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)

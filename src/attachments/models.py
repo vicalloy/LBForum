@@ -13,6 +13,7 @@ def get_file_suffix(filename):
     return filename[idx+1:]
 
 def upload_attachment_file_path(instance, filename):
+    instance.org_filename = get_filename(filename)
     suffix = get_file_suffix(filename)
     t = str(time()).replace('.', '_')
     r = randint(1, 1000)
@@ -27,13 +28,12 @@ def get_filename(filename):
         return f
     return lt(lt(filename, '\\'), '/')
 
-
 class Attachment(models.Model):
     user = models.ForeignKey(User, verbose_name=_('Attachment'))
     file = models.FileField(max_length=255, upload_to=upload_attachment_file_path)
     org_filename = models.TextField()
     description = models.TextField(default = '', blank=True)
-    actived = models.BooleanField(default=False)
+    activated = models.BooleanField(default=False)
     date_uploaded = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):

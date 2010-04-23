@@ -29,6 +29,11 @@
         <div class="post-entry">
             <div class="entry-content">
                 <p>{{ post.message|bbcode|safe }}</p>
+                <p>
+                    {% for attachment in post.attachments.all %}
+                    <a href="{{attachment.file.url}}">{{ attachment.org_filename }}</a>
+                    {% endfor %}
+                </p>
             </div>
         </div>
     </div>
