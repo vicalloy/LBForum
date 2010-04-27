@@ -37,7 +37,7 @@ class Forum(models.Model):
     ordering = models.PositiveIntegerField(default = 1)
     category = models.ForeignKey(Category)
     created_on = models.DateTimeField(auto_now_add = True)
-    updated_on = models.DateTimeField(auto_now = True)
+    updated_on = models.DateTimeField(blank = True)
     num_topics = models.IntegerField(default = 0)
     num_posts = models.IntegerField(default = 0)
 
@@ -78,7 +78,7 @@ class Topic(models.Model):
     num_views = models.IntegerField(default=0)
     num_replies = models.PositiveSmallIntegerField(default = 0)#posts...
     created_on = models.DateTimeField(auto_now_add=True)
-    updated_on = models.DateTimeField(auto_now=True)
+    updated_on = models.DateTimeField(blank = True)
 
     last_post = models.CharField(max_length = 255, blank=True)#pickle obj
     

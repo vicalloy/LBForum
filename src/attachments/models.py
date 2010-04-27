@@ -35,6 +35,7 @@ class Attachment(models.Model):
     description = models.TextField(default = '', blank=True)
     activated = models.BooleanField(default=False)
     date_uploaded = models.DateTimeField(auto_now_add=True)
+    #TODO remove file no delete
 
     def __unicode__(self):
         return '%s|%s' % (self.user.username, self.file)

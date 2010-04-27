@@ -23,3 +23,31 @@ def ajax_upload(request):
         else:
             print attachment_form.errors
     return json_response(data)
+
+@csrf_exempt
+@ajax_login_required
+def ajax_delete(request, id):
+    data = {'valid': False, 'errors': ugettext('')}
+    attachment = Attachment.objects.get(pk=id)
+    if (attachment.user != request.user):
+        data[errors] = 'no right'
+    else:
+        attachment.delete()
+        data['valid'] = True
+        data.pop('errors')
+    return json_response(data)
+
+@csrf_exempt
+@ajax_login_required
+def ajax_change_descn(request, id):
+    #TODO HANDEL AJAX ERROR
+    data = {'valid': False, 'errors': ugettext('')}
+    attachment = Attachment.objects.get(pk=id)
+    if (attachment.user != request.user):
+        data[errors] = 'no right'
+    elif request.method == "POST":
+        attachment.descn = request.POST['descn']
+        data['valid'] = True
+        data.pop('errors')
+        attachment.save()
+    return json_response(data)
