@@ -5,11 +5,17 @@ from django.contrib.csrf.middleware import csrf_exempt
 from djangohelper.helper import ajax_login_required, json_response
 
 from forms import AttachmentForm
+from models import Attachment
 
 @csrf_exempt
 @ajax_login_required
 def ajax_upload(request):
     data = {'valid': False, 'errors': ugettext('no file')}
+    data['valid'] = True
+    data.pop('errors')
+    data['attachment'] = {'id': 1, \
+            'fn': 'test.txt', 'url': 'google.com'}
+    return json_response(data)
     attachment_form = AttachmentForm(user=request.user)
     if request.method == "POST":
         attachment_form = AttachmentForm(request.POST, request.FILES, user=request.user, \
@@ -19,32 +25,40 @@ def ajax_upload(request):
             attachment = attachment_form.save()
             data['valid'] = True
             data.pop('errors')
-            data['attachment'] = {'id': attachment.id}
+            data['attachment'] = {'id': attachment.id, \
+                    'fn': attachment.org_filename, 'url': attachment.file.url}
         else:
             print attachment_form.errors
     return json_response(data)
 
 @csrf_exempt
 @ajax_login_required
-def ajax_delete(request, id):
-    data = {'valid': False, 'errors': ugettext('')}
-    attachment = Attachment.objects.get(pk=id)
+def ajax_delete(request):
+    data = {'valid': False, 'errors': ugettext('some errors...')}
+    #data['valid'] = True
+    #return json_response(data)
+    attachment_id = request.POST['id']
+    attachment = Attachment.objects.get(pk=attachment_id)
     if (attachment.user != request.user):
-        data[errors] = 'no right'
+        data['errors'] = 'no right'
     else:
-        attachment.delete()
+        #attachment.delete()
         data['valid'] = True
         data.pop('errors')
     return json_response(data)
 
 @csrf_exempt
 @ajax_login_required
-def ajax_change_descn(request, id):
+def ajax_change_descn(request):
+    #TODO AJAX POST ONLY
     #TODO HANDEL AJAX ERROR
-    data = {'valid': False, 'errors': ugettext('')}
-    attachment = Attachment.objects.get(pk=id)
+    data = {'valid': False, 'errors': ugettext('some errors...')}
+    #data['valid'] = True
+    return json_response(data)
+    attachment_id = request.POST['id']
+    attachment = Attachment.objects.get(pk=attachment_id)
     if (attachment.user != request.user):
-        data[errors] = 'no right'
+        data['errors'] = 'no right'
     elif request.method == "POST":
         attachment.descn = request.POST['descn']
         data['valid'] = True

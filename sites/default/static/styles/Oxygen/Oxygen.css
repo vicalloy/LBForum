@@ -1894,3 +1894,6 @@ body {
 .brd #uploaded_files .fld-descn {
     width:200px
 }
+.brd #uploaded_files .ajax-loader {
+    padding-left:20px;
+}

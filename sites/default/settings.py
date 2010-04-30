@@ -103,7 +103,7 @@ INSTALLED_APPS = (
     #'sorl.thumbnail',
     #'debug_toolbar',
     'registration',    
-    'south',
+    #'south',
 
     'simpleavatar',
     'djangohelper',

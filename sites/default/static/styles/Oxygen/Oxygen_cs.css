@@ -393,3 +393,9 @@ body {
 .brd #uploaded_files .insert {
     background: url(arrow_up.png) center left no-repeat;
 }
+.brd #uploaded_files .removed-fn {
+    text-decoration:line-through;
+}
+.brd .ajax-loader {
+    background: url(ajax-loader.gif) center left no-repeat;
+}

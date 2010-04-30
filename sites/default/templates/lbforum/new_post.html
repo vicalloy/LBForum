@@ -96,14 +96,15 @@
 									<div class="mf-item">
 										<div id="upload_button">Upload</div>
 										<ul id="uploaded_files">
-											<li id="attachment_xxx">
+											<li id="attachment_1">
 												<a class="filename" href="#" target="_blank">filename</a>
-												<span class="icon descn" style=""></span>
-												<span>
+												<span class="icon descn" style="">&nbsp;</span>
+												<span style="display: none;">
 													<input class="fld-descn" value="descn"/>
 													<a class="submit-descn" href="#">submit</a>
 												</span>
-												<span class="icon remove"></span>
+												<span class="icon remove">&nbsp;</span>
+												<span class="ext">&nbsp;</span>
 											</li>
 										</ul>
 									</div>
@@ -158,49 +159,107 @@
 <script type="text/javascript" src="{{ MEDIA_URL }}scripts/markitup/jquery.markitup.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}scripts/markitup/bbcode/set.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}scripts/ajaxupload.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}scripts/simple_tpl.js"></script>
+<script type="text/html" id="attachment_li_tmpl">
+	<li id="attachment_<%=id%>">
+	<a class="filename" href="<%=url%>" target="_blank"><%=fn%></a>
+	<span class="icon descn" style="">&nbsp;</span>
+	<span style="display: none;">
+	<input class="fld-descn" value="descn"/>
+	<a class="submit-descn" href="#">submit</a>
+	</span>
+	<span class="icon remove">&nbsp;</span>
+	<span class="ext">&nbsp;</span>
+	</li>
+</script>
 <script type="text/javascript" >
+	function bind() {
+		$('#uploaded_files .descn').click(function() {
+			$(this).next().toggle();
+		});		
+		$('#uploaded_files .submit-descn').click(function() {
+			var sm = $(this);
+			var p = sm.parent();
+			var ext = p.parent().children(".ext");
+			$.ajax({
+					type: 'POST',
+					url: '{% url attachments_ajax_change_descn %}',
+					data: {'id':$(this).parent().attr('id').split('_')[1]},
+					dataType: 'json',
+					beforeSend: function(){
+						ext.html('&nbsp;');
+						sm.after('<span class="ajax-loader"></span>');
+						sm.toggle();
+					},
+					complete: function(){
+						sm.next().remove();
+						sm.toggle();
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						alert('fail.');
+					},
+					success: function(data, textStatus) {
+						if (data.valid) {
+							p.toggle();
+						} else {
+							ext.html(data.errors);
+						}
+					},
+					'':''
+			})
+			return false;
+		});		
+		$('#uploaded_files .remove').click(function() {
+			var rm = $(this);
+			var p = rm.parent();
+			var fn = p.children(".filename").html();
+			var ext = p.children(".ext");
+			$.ajax({
+					type: 'POST',
+					url: '{% url attachments_ajax_delete %}',
+					data: {'id':$(this).parent().attr('id').split('_')[1]},
+					dataType: 'json',
+					beforeSend: function(){
+						ext.html('&nbsp;');
+						ext.addClass('ajax-loader');
+						rm.toggle();
+					},
+					complete: function(){
+						ext.removeClass('ajax-loader');
+						rm.toggle();
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						alert('fail.');
+					},
+					success: function(data, textStatus) {
+						if (data.valid) {
+							p.empty();
+							p.append('<span class="removed-fn">' + fn + '</span>');
+						} else {
+							ext.html(data.errors);
+						}
+					},
+					'':''
+			})
+		});
+	}
 	$().ready(function() {
 		$("#id_message").markItUp(mySettings);
-		//TODO add attachment_ids field
 		new AjaxUpload('upload_button', {
 				action: '{% url attachments_ajax_upload %}',
 				responseType: 'json',
 				name: 'file',
 				onComplete: function(file, response){
 					if (response.valid) {
-						$('<li></li>').appendTo('#uploaded_files').text(file);						
+						//$('<li></li>').appendTo('#uploaded_files').text(file);
+						$(tmpl("attachment_li_tmpl", response.attachment)).appendTo('#uploaded_files');
 						$('<input type="hidden" value="' + response.attachment.id + '" name="attachments"/>').appendTo('#hidden_fields')
+						bind();
 					} else {
 					}
 				}
-
 		});
-		$('#uploaded_files .descn').click(function() {
-			$(this).next().toggle();
-		});		
-		$('#uploaded_files .submit-descn').click(function() {
-			return false;
-			//TODO ajax submit
-		});		
-		$('#uploaded_files .remove').click(function() {
-                $.ajax({
-                    type: 'POST',
-                    url: '/',
-					data: {},
-                    dataType: 'json',
-                    beforeSend: function(){
-                    },
-                    complete: function(){
-						alert('complete');
-                    },
-                    error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    },
-                    success: function(data, textStatus) {
-                    },
-                    '':''
-                })
-
-		});		
+		bind();
 	});
 </script>
 
