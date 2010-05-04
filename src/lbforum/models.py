@@ -20,7 +20,7 @@ class Category(models.Model):
     description = models.TextField(default = '')
     ordering = models.PositiveIntegerField(default = 1)    
     created_on = models.DateTimeField(auto_now_add = True)
-    updated_on = models.DateTimeField(auto_now = True)
+    updated_on = models.DateTimeField(blank = True, null = True)
     
     class Meta:
         verbose_name = _("Category)")
@@ -37,7 +37,7 @@ class Forum(models.Model):
     ordering = models.PositiveIntegerField(default = 1)
     category = models.ForeignKey(Category)
     created_on = models.DateTimeField(auto_now_add = True)
-    updated_on = models.DateTimeField(blank = True)
+    updated_on = models.DateTimeField(blank = True, null = True)
     num_topics = models.IntegerField(default = 0)
     num_posts = models.IntegerField(default = 0)
 
@@ -78,7 +78,7 @@ class Topic(models.Model):
     num_views = models.IntegerField(default=0)
     num_replies = models.PositiveSmallIntegerField(default = 0)#posts...
     created_on = models.DateTimeField(auto_now_add=True)
-    updated_on = models.DateTimeField(blank = True)
+    updated_on = models.DateTimeField(blank = True, null = True)
 
     last_post = models.CharField(max_length = 255, blank=True)#pickle obj
     
@@ -122,7 +122,7 @@ class Post(models.Model):#can't edit...
     attachments = models.ManyToManyField(Attachment)
     
     created_on = models.DateTimeField(auto_now_add=True)
-    updated_on = models.DateTimeField(auto_now=True)
+    updated_on = models.DateTimeField(blank = True, null = True)
     edited_by = models.CharField(max_length = 255, blank=True)#user name
     
     class Meta:

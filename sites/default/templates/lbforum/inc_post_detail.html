@@ -29,11 +29,17 @@
         <div class="post-entry">
             <div class="entry-content">
                 <p>{{ post.message|bbcode|safe }}</p>
-                <p>
+            </div>
+            <div class="entry-attachments">
+                <span>Attachments:</span>
+                <ul>
                     {% for attachment in post.attachments.all %}
-                    <a href="{{attachment.file.url}}">{{ attachment.org_filename }}</a>
+                    <li>
+                        <a href="{{attachment.file.url}}">{{ attachment.org_filename }}</a>
+                        <span>{{ attachment.description }}</span>
+                    </li>
                     {% endfor %}
-                </p>
+                </ul>
             </div>
         </div>
     </div>

@@ -11,11 +11,6 @@ from models import Attachment
 @ajax_login_required
 def ajax_upload(request):
     data = {'valid': False, 'errors': ugettext('no file')}
-    data['valid'] = True
-    data.pop('errors')
-    data['attachment'] = {'id': 1, \
-            'fn': 'test.txt', 'url': 'google.com'}
-    return json_response(data)
     attachment_form = AttachmentForm(user=request.user)
     if request.method == "POST":
         attachment_form = AttachmentForm(request.POST, request.FILES, user=request.user, \
@@ -35,14 +30,12 @@ def ajax_upload(request):
 @ajax_login_required
 def ajax_delete(request):
     data = {'valid': False, 'errors': ugettext('some errors...')}
-    #data['valid'] = True
-    #return json_response(data)
     attachment_id = request.POST['id']
     attachment = Attachment.objects.get(pk=attachment_id)
     if (attachment.user != request.user):
         data['errors'] = 'no right'
     else:
-        #attachment.delete()
+        attachment.delete()
         data['valid'] = True
         data.pop('errors')
     return json_response(data)
@@ -53,14 +46,12 @@ def ajax_change_descn(request):
     #TODO AJAX POST ONLY
     #TODO HANDEL AJAX ERROR
     data = {'valid': False, 'errors': ugettext('some errors...')}
-    #data['valid'] = True
-    return json_response(data)
     attachment_id = request.POST['id']
     attachment = Attachment.objects.get(pk=attachment_id)
     if (attachment.user != request.user):
         data['errors'] = 'no right'
     elif request.method == "POST":
-        attachment.descn = request.POST['descn']
+        attachment.description = request.POST['descn']
         data['valid'] = True
         data.pop('errors')
         attachment.save()
