@@ -9,7 +9,7 @@ class PostForm(forms.ModelForm):
             widget=forms.TextInput(attrs={'size':'80'}))
     message = forms.CharField(label=_('Message'), \
             widget=forms.Textarea(attrs={'cols':'95', 'rows':'14'}))
-    attachments = forms.Field(label=_('Attachments'), \
+    attachments = forms.Field(label=_('Attachments'), required=False,\
             widget=forms.SelectMultiple())
 
     class Meta:

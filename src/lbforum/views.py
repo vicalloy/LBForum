@@ -3,14 +3,8 @@
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
-from django.template import Context , loader
 from django.template import RequestContext
-from django.core.paginator import Paginator
-from django.template.loader import render_to_string
-from django.contrib.syndication.feeds import Feed
-from django.contrib.auth.models import User , Group
-from django.conf import settings
+from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 
@@ -32,7 +26,7 @@ def index(request, template_name="lbforum/index.html"):
 
 def forum(request, forum_slug, template_name="lbforum/forum.html"):
     forum = get_object_or_404(Forum, slug = forum_slug)
-    topics = forum.topic_set.order_by('-sticky', '-created_on').select_related()
+    topics = forum.topic_set.order_by('-sticky', '-last_reply_on').select_related()
     ext_ctx = {'forum': forum, 'topics': topics}
     return render_to_response(template_name, ext_ctx, RequestContext(request))
 

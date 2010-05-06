@@ -79,6 +79,7 @@ class Topic(models.Model):
     num_replies = models.PositiveSmallIntegerField(default = 0)#posts...
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(blank = True, null = True)
+    last_reply_on = models.DateTimeField(auto_now_add = True)
 
     last_post = models.CharField(max_length = 255, blank=True)#pickle obj
     
@@ -90,7 +91,7 @@ class Topic(models.Model):
     objects = TopicManager()
     
     class Meta:
-        ordering = ('-updated_on',)#'-sticky'
+        ordering = ('-last_reply_on',)#'-sticky'
         get_latest_by = ('created_on')
         verbose_name = _("Topic")
         verbose_name_plural = _("Topics")
@@ -119,7 +120,7 @@ class Post(models.Model):#can't edit...
     
     #TODO add html/rst/..suport
     message = models.TextField()
-    attachments = models.ManyToManyField(Attachment)
+    attachments = models.ManyToManyField(Attachment, blank = True)
     
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(blank = True, null = True)
@@ -128,7 +129,7 @@ class Post(models.Model):#can't edit...
     class Meta:
         verbose_name = _("Post")
         verbose_name_plural = _("Posts")
-        ordering = ('-updated_on',)
+        ordering = ('-created_on',)
         get_latest_by = ('created_on', )
         
     def __unicode__(self):
