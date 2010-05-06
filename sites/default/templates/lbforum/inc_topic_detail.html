@@ -1,6 +1,6 @@
 {% load lbforum %}
 <div id="topic{{ topic.pk }}" class="main-item {% cycle 'odd' 'even' %} {% if forloop.first %}main-item1{% endif %} {{topic|topic_state}}">
-  <span class="icon mm {{topic|topic_state}}"> </span>
+  <span class="icon mm {{topic|topic_state}}"><!-- --></span>
   
   <div class="item-subject">
 	<h3 class="hn mm"><span class="item-num">1</span>
