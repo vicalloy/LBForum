@@ -1897,3 +1897,7 @@ body {
 .brd #uploaded_files .ajax-loader {
     padding-left:20px;
 }
+.brd #upload_button {
+	margin-left: 10px;
+	width: 120px;
+}

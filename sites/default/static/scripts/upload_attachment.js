@@ -70,17 +70,36 @@ function bind() {
 		})
 	});
 }
+function add_attachment(attachment) {
+    $(tmpl("attachment_li_tmpl", attachment)).appendTo('#uploaded_files');
+    $('<input type="hidden" value="' + attachment.id + '" name="attachments"/>').appendTo('#hidden_fields')
+    bind();
+}
 $().ready(function() {
 	$("#id_message").markItUp(mySettings);
+	var upload_btn = $("#upload_button");
 	new AjaxUpload('upload_button', {
 			action: url_attachments_ajax_upload,
 			responseType: 'json',
 			name: 'file',
+			onSubmit : function(file, ext){
+				upload_btn.text('Uploading');
+				this.disable();
+				interval = window.setInterval(function(){
+					var text = upload_btn.text();
+					if (text.length < 13){
+						upload_btn.text(text + '.');					
+					} else {
+						upload_btn.text('Uploading');				
+					}
+				}, 200);
+			},
 			onComplete: function(file, response){
+				upload_btn.text('Upload');
+				window.clearInterval(interval);
+				this.enable();
 				if (response.valid) {
-					$(tmpl("attachment_li_tmpl", response.attachment)).appendTo('#uploaded_files');
-					$('<input type="hidden" value="' + response.attachment.id + '" name="attachments"/>').appendTo('#hidden_fields')
-					bind();
+					add_attachment(response.attachment);
 				} else {
 				}
 			}

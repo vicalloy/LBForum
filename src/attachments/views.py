@@ -21,7 +21,7 @@ def ajax_upload(request):
             data['valid'] = True
             data.pop('errors')
             data['attachment'] = {'id': attachment.id, \
-                    'fn': attachment.org_filename, 'url': attachment.file.url}
+                    'fn': attachment.org_filename, 'url': attachment.file.url, 'descn': ''}
         else:
             print attachment_form.errors
     return json_response(data)

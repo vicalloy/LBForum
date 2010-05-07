@@ -113,8 +113,8 @@ INSTALLED_APPS = (
     'attachments',
 )
 
-LOGIN_REDIRECT_URL = '/accounts/'
-LOGIN_URL = "%slogin/" % LOGIN_REDIRECT_URL
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = "%saccounts/login/" % LOGIN_REDIRECT_URL
 
 CTX_CONFIG = {
         'LBFORUM_TITLE': 'LBForum',

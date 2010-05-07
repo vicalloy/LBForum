@@ -93,11 +93,11 @@
                             <fieldset class="mf-set set4">
                                 <legend><span>Attachments:</span></legend>
                                 <div class="mf-box checkbox">
-                                    <div class="mf-item">
-                                        <div id="upload_button">Upload</div>
-                                        <ul id="uploaded_files">
-                                        </ul>
-                                    </div>
+									<div class="mf-item">
+										<button id="upload_button">Upload</button>
+										<ul id="uploaded_files">
+										</ul>
+									</div>
                                 </div>
                             </fieldset>
                         </fieldset>
@@ -138,24 +138,28 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        url_attachments_ajax_change_descn = "{% url attachments_ajax_change_descn %}";
-        url_attachments_ajax_delete = "{% url attachments_ajax_delete %}";
-        url_attachments_ajax_upload = "{% url attachments_ajax_upload %}";
-        //TODO Add unpublished attachments to list.
-    </script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/jquery.min.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/markitup/jquery.markitup.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/markitup/bbcode/set.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/ajaxupload.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/simple_tpl.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/upload_attachment.js"></script>
+    <script type="text/javascript">
+        url_attachments_ajax_change_descn = "{% url attachments_ajax_change_descn %}";
+        url_attachments_ajax_delete = "{% url attachments_ajax_delete %}";
+        url_attachments_ajax_upload = "{% url attachments_ajax_upload %}";
+        $().ready(function() {
+            {% for o in unpublished_attachments %}
+            add_attachment({'id': '{{o.id}}','url': '{{o.file.url}}','fn': '{{o.org_filename}}','descn':'{{o.description}}'});
+            {% endfor %}
+        });
+    </script>
     <script type="text/html" id="attachment_li_tmpl">
         <li id="attachment_<%=id%>">
         <a class="filename" href="<%=url%>" target="_blank"><%=fn%></a>
         <span class="icon descn" style="">&nbsp;</span>
         <span style="display: none;">
-        <input class="fld-descn" value=""/>
+        <input class="fld-descn" value="<%=descn%>"/>
         <a class="submit-descn" href="#">submit</a>
         </span>
         <span class="icon remove">&nbsp;</span>

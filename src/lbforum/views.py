@@ -67,6 +67,7 @@ def new_post(request, forum_id=None, topic_id=None, form_class=PostForm, templat
         form = form_class()
     ext_ctx = {'forum':forum, 'form':form, 'topic':topic, 'first_post':first_post, \
             'action_type':action_type, 'preview':preview}
+    ext_ctx['unpublished_attachments'] = request.user.attachment_set.all().filter(activated=False)
     return render_to_response(template_name, ext_ctx, RequestContext(request))
 
 @login_required
