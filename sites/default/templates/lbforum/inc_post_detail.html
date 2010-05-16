@@ -29,6 +29,9 @@
         <div class="post-entry">
             <div class="entry-content">
                 <p>{{ post.message|bbcode|safe }}</p>
+                {% if post.edited_by %}
+                <p class="postedit"><em>Last edited by {{post.edited_by}} ({{post.updated_on}})</em></p>
+                {% endif %}
             </div>
             {% if post.attachments.all %}
             <div class="entry-attachments">
@@ -45,4 +48,19 @@
             {% endif %}
         </div>
     </div>
+
+    {% if user.is_authenticated %}
+    <div class="postfoot">
+        <div class="post-options">
+            <p class="post-contacts"></p>
+            <p class="post-actions">
+                <span class="quote-post"><a href="{% url lbforum_new_replay topic.pk %}?qid={{post.pk}}">quote</a></span> 
+                {% if user == post.posted_by or user.is_staff %}
+                <span class="edit-post"><a href="{% url lbforum_post_edit post.pk %}">edit</a></span> 
+                {% endif %}
+            </p>
+        </div>
+    </div>
+    {% endif %}
+    
 </div>

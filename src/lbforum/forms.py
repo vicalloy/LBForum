@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
@@ -25,8 +27,30 @@ class PostForm(forms.ModelForm):
 
         self.fields.keyOrder = ['subject', 'message', 'attachments']
 
+class EditPostForm(PostForm):
+    def __init__(self, *args, **kwargs):
+        super(EditPostForm, self).__init__(*args, **kwargs)
+        self.initial['subject'] = self.instance.topic.subject
+        if not self.instance.topic_post:
+            self.fields['subject'].required = False
+
+    def save(self):
+        post = self.instance
+        post.message = self.cleaned_data['message']
+        post.updated_on = datetime.now()
+        post.edited_by = self.user.username
+        attachments = self.cleaned_data['attachments']
+        post.update_attachments(attachments)
+        post.save()
+        if post.topic_post:
+            post.topic.subject = self.cleaned_data['subject']
+            post.topic.save()
+        return post
+
+class NewPostForm(PostForm):
+    def __init__(self, *args, **kwargs):
+        super(NewPostForm, self).__init__(*args, **kwargs)
         if self.topic:
-            self.fields['subject'].widget = forms.HiddenInput()
             self.fields['subject'].required = False
 
     def save(self):
@@ -43,12 +67,5 @@ class PostForm(forms.ModelForm):
                     message=self.cleaned_data['message'], topic_post=topic_post)
         post.save()
         attachments = self.cleaned_data['attachments']
-        for attachment_id in attachments:
-            try:
-                attachment = Attachment.objects.get(pk=attachment_id)
-            except:
-                continue
-            attachment.activated = True
-            attachment.save()
-            post.attachments.add(attachment)
+        post.update_attachments(attachments)
         return post

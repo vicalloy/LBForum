@@ -14,6 +14,6 @@
     {% endif %}
     <span class="crumb crumblast">
         <span> &raquo; </span>
-        Post new {{ action_type }}
+        {% if is_new_post %}Post new{% else %}Edit{% endif %} {{ post_type }}
     </span> 
 </p>

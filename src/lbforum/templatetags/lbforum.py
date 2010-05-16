@@ -3,11 +3,30 @@ from django.utils.safestring import mark_safe
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
 
-from postmarkup import create
+from postmarkup import create, QuoteTag, PostMarkup
 
 register = template.Library()
 
+#bbcode
+class LBQuoteTag(QuoteTag):
+
+    def render_open(self, parser, node_index):
+        if self.params:
+            return u'<div class="quotebox"><cite>%s:</cite><blockquote><p>'%(PostMarkup.standard_replace(self.params))
+        else:
+            return u'<div class="quotebox"><blockquote><p>'
+
+
+    def render_close(self, parser, node_index):
+        return u"</p></blockquote></div>"
+
 _postmarkup = create(use_pygments=False, annotate_links=False)
+_postmarkup.tag_factory.add_tag(LBQuoteTag, 'quote')
+
+@register.filter
+def bbcode(s):
+    return _postmarkup(s)
+#bbcode end
 
 @register.filter
 def form_all_error(form):
@@ -21,10 +40,6 @@ def form_all_error(form):
             errors.append((field.label, force_unicode(e), ))
     return mark_safe(u'<ul class="errorlist">%s %s</ul>'
             % (global_error, ''.join([u'<li>%s%s</li>' % (k, v) for k, v in errors])))
-
-@register.filter
-def bbcode(s):
-    return _postmarkup(s)
 
 @register.filter
 def topic_state(topic): 

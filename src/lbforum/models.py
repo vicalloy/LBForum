@@ -140,6 +140,17 @@ class Post(models.Model):#can't edit...
             return _('Topic: %s') % self.topic.subject
         return _('Re: %s') % self.topic.subject
 
+    def update_attachments(self, attachment_ids):
+        self.attachments.clear()
+        for attachment_id in attachment_ids:
+            try:
+                attachment = Attachment.objects.get(pk=attachment_id)
+            except:
+                continue
+            attachment.activated = True
+            attachment.save()
+            post.attachments.add(attachment)
+
     @models.permalink
     def get_absolute_url(self):
         return ('lbforum_post', (), { 'post_id': self.pk })

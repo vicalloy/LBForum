@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 
 from onlineuser.models import getOnlineInfos
-from forms import PostForm
+from forms import EditPostForm, NewPostForm
 from models import Topic, Category, Forum, Post
 
 def index(request, template_name="lbforum/index.html"):
@@ -43,16 +43,19 @@ def post(request, post_id):
     return HttpResponseRedirect(post.get_absolute_url_ext())
 
 @login_required
-def new_post(request, forum_id=None, topic_id=None, form_class=PostForm, template_name='lbforum/new_post.html'):
-    topic = forum = first_post = preview = None
-    action_type = 'topic'
+def new_post(request, forum_id=None, topic_id=None, form_class=NewPostForm, \
+        template_name='lbforum/post.html'):
+    qpost = topic = forum = first_post = preview = None
+    show_subject_fld = True 
+    post_type = 'topic'
     if forum_id:
         forum = get_object_or_404(Forum, pk=forum_id)
     if topic_id:
-        action_type = 'reply'
+        post_type = 'reply'
         topic = get_object_or_404(Topic, pk=topic_id)
         forum = topic.forum
         first_post = topic.post_set.order_by('created_on').select_related()[0]
+        show_subject_fld = False
     if request.method == "POST":
         form = form_class(request.POST, user=request.user, forum=forum, topic=topic, \
                 ip=request.META['REMOTE_ADDR'])
@@ -64,10 +67,35 @@ def new_post(request, forum_id=None, topic_id=None, form_class=PostForm, templat
             else:
                 return HttpResponseRedirect(reverse("lbforum_forum", args=[forum.slug]))
     else:
-        form = form_class()
+        initial={}
+        qid = request.GET.get('qid', '')
+        if qid:
+            qpost = get_object_or_404(Post, id=qid)
+            initial['message'] = "[quote=%s]%s[/quote]" % (qpost.posted_by.username, qpost.message)
+        form = form_class(initial=initial)
     ext_ctx = {'forum':forum, 'form':form, 'topic':topic, 'first_post':first_post, \
-            'action_type':action_type, 'preview':preview}
+            'post_type':post_type, 'preview':preview, 'show_subject_fld': show_subject_fld}
     ext_ctx['unpublished_attachments'] = request.user.attachment_set.all().filter(activated=False)
+    ext_ctx['is_new_post'] = True
+    return render_to_response(template_name, ext_ctx, RequestContext(request))
+
+@login_required
+def edit_post(request, post_id, form_class=EditPostForm, template_name="lbforum/post.html"):
+    topic = forum = first_post = preview = None
+    post_type = 'topic'
+    edit_post = get_object_or_404(Post, id=post_id)
+    if request.method == "POST":
+        form = form_class(instance=edit_post, user=request.user, data=request.POST)
+        preview = request.POST.get('preview', '')
+        if form.is_valid() and request.POST.get('submit', ''):
+            edit_post = form.save()
+            return HttpResponseRedirect('../')
+    else:
+        form = form_class(instance=edit_post)
+    ext_ctx = {'form':form, 'topic':edit_post.topic, 'forum':edit_post.topic.forum, \
+            'post_type':post_type, 'preview':preview}
+    ext_ctx['unpublished_attachments'] = request.user.attachment_set.all().filter(activated=False)
+    ext_ctx['show_subject_fld'] = edit_post.topic_post
     return render_to_response(template_name, ext_ctx, RequestContext(request))
 
 @login_required
