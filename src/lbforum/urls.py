@@ -11,4 +11,6 @@ urlpatterns = patterns('',
     url('^post/(?P<post_id>\d+)/edit/$', views.edit_post, name='lbforum_post_edit'),    
     url('^user/(?P<user_id>\d+)/topics/$', views.user_topics, name='lbforum_user_topics'),    
     url('^user/(?P<user_id>\d+)/posts/$', views.user_posts, name='lbforum_user_posts'),    
+
+    url('^markitup_preview/$', views.markitup_preview, name='markitup_preview'),    
 )

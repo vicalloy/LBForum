@@ -145,6 +145,9 @@
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/simple_tpl.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/upload_attachment.js"></script>
     <script type="text/javascript">
+        mySettings['previewParserPath']='{% url markitup_preview %}';
+        mySettings['previewAutoRefresh']=false;
+	    $("#id_message").markItUp(mySettings);
         url_attachments_ajax_change_descn = "{% url attachments_ajax_change_descn %}";
         url_attachments_ajax_delete = "{% url attachments_ajax_delete %}";
         url_attachments_ajax_upload = "{% url attachments_ajax_upload %}";

@@ -76,7 +76,6 @@ function add_attachment(attachment) {
     bind();
 }
 $().ready(function() {
-	$("#id_message").markItUp(mySettings);
 	var upload_btn = $("#upload_button");
 	new AjaxUpload('upload_button', {
 			action: url_attachments_ajax_upload,

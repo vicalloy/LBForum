@@ -42,6 +42,10 @@ def post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     return HttpResponseRedirect(post.get_absolute_url_ext())
 
+def markitup_preview(request, template_name="lbforum/markitup_preview.html"):
+    return render_to_response(template_name, {'message': request.POST['data']}, \
+            RequestContext(request))
+
 @login_required
 def new_post(request, forum_id=None, topic_id=None, form_class=NewPostForm, \
         template_name='lbforum/post.html'):
