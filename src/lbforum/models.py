@@ -149,7 +149,7 @@ class Post(models.Model):#can't edit...
                 continue
             attachment.activated = True
             attachment.save()
-            post.attachments.add(attachment)
+            self.attachments.add(attachment)
 
     @models.permalink
     def get_absolute_url(self):
