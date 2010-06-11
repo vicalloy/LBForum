@@ -1,8 +1,8 @@
 function bind() {
-	$('#uploaded_files .descn').click(function() {
+	$('#uploaded_files .nb .descn').click(function() {
 		$(this).next().toggle();
 	});		
-	$('#uploaded_files .submit-descn').click(function() {
+	$('#uploaded_files .nb .submit-descn').click(function() {
 		var sm = $(this);
 		var p = sm.parent();
 		var ext = p.parent().children(".ext");
@@ -34,7 +34,7 @@ function bind() {
 		})
 		return false;
 	});		
-	$('#uploaded_files .remove').click(function() {
+	$('#uploaded_files .nb .remove').click(function() {
 		var rm = $(this);
 		var p = rm.parent();
 		var fn = p.children(".filename").html();
@@ -69,12 +69,28 @@ function bind() {
 				'':''
 		})
 	});
+	$('#uploaded_files .nb .insert').click(function() {
+		var p = $(this).parent();
+		var f = p.children(".filename").attr("href");
+		var fn = p.children(".filename").html();
+		if (isImg(f)) {
+			f = '[img]' + f + '[/img]';
+		} else {
+			f = '[url=' + f + ']' + fn + '[/url]';
+		}
+		$.markItUp( { replaceWith:f } );
+	});
+
+	//avoid repeat binding
+	$('#uploaded_files .nb').removeClass('nb');
 }
+
 function add_attachment(attachment) {
     $(tmpl("attachment_li_tmpl", attachment)).appendTo('#uploaded_files');
     $('<input type="hidden" value="' + attachment.id + '" name="attachments"/>').appendTo('#hidden_fields')
     bind();
 }
+
 $().ready(function() {
 	var upload_btn = $("#upload_button");
 	new AjaxUpload('upload_button', {
