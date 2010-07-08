@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
-from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
@@ -51,11 +51,11 @@ def new_post(request, forum_id=None, topic_id=None, form_class=NewPostForm, \
         template_name='lbforum/post.html'):
     qpost = topic = forum = first_post = preview = None
     show_subject_fld = True 
-    post_type = 'topic'
+    post_type = _('topic')
     if forum_id:
         forum = get_object_or_404(Forum, pk=forum_id)
     if topic_id:
-        post_type = 'reply'
+        post_type = _('reply')
         topic = get_object_or_404(Topic, pk=topic_id)
         forum = topic.forum
         first_post = topic.post_set.order_by('created_on').select_related()[0]
@@ -85,8 +85,8 @@ def new_post(request, forum_id=None, topic_id=None, form_class=NewPostForm, \
 
 @login_required
 def edit_post(request, post_id, form_class=EditPostForm, template_name="lbforum/post.html"):
-    topic = forum = first_post = preview = None
-    post_type = 'topic'
+    preview = None
+    post_type = _('topic')
     edit_post = get_object_or_404(Post, id=post_id)
     if request.method == "POST":
         form = form_class(instance=edit_post, user=request.user, data=request.POST)

@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load lbforum %}
 <div id="topic{{ topic.pk }}" class="main-item {% cycle 'odd' 'even' %} {% if forloop.first %}main-item1{% endif %} {{topic|topic_state}}">
   <span class="icon mm {{topic|topic_state}}"><!-- --></span>
@@ -5,30 +6,32 @@
   <div class="item-subject">
 	<h3 class="hn mm"><span class="item-num">1</span>
 	  {% if topic.closed %}
-		<strong>(Closed)</strong>
+		<strong>({% trans "Closed" %})</strong>
 	  {% endif %}
 	  
 	  {% if topic.sticky %}
-		<strong>(Sticky)</strong>
+		<strong>({% trans "Sticky" %})</strong>
 	  {% endif %}		
 	  <a href="{% url lbforum_topic topic.id %}">{{topic.subject}} </a>   
 	</h3>
 	<p>
-		<span class="item-starter">Started {{ topic.created_on|date:"Y-m-d H:i" }} by <cite>{{ topic.posted_by }}</cite></span>
+		<span class="item-starter">
+			Started {{ topic.created_on|date:"Y-m-d H:i" }} by <cite>{{ topic.posted_by }}</cite>
+		</span>
 	</p>
   </div>
   
   <ul class="item-info">
 	<li class="info-replies">
 	  <strong>{{ topic.num_replies|add:"-1"}}</strong> 
-	  <span class="label">replies</span>
+	  <span class="label">{% trans "replies" %}</span>
 	</li>
 	<li class="info-views">
 	  <strong>{{ topic.num_views }}</strong> 
-	  <span class="label">views</span>
+	  <span class="label">{% trans "views" %}</span>
 	</li>
 	<li class="info-lastpost">
-	  <span class="label">Last post</span>
+	  <span class="label">{% trans "Last post" %}</span>
 	  <strong><a href="{{ topic.get_absolute_url }}">{{ topic.get_last_post.update|timesince }}</a></strong>
 	  <cite>by {{topic.get_last_post.posted_by}}</cite>
 	</li>

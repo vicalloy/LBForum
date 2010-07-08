@@ -23,7 +23,7 @@ class Category(models.Model):
     updated_on = models.DateTimeField(blank = True, null = True)
     
     class Meta:
-        verbose_name = _("Category)")
+        verbose_name = _("Category")
         verbose_name_plural = _("Categories")
         ordering = ('-ordering', 'created_on')
         
@@ -164,7 +164,7 @@ class Post(models.Model):#can't edit...
 class LBForumUserProfile(models.Model):
     user = models.OneToOneField(User, related_name='lbforum_profile', verbose_name=_('User'))
     last_activity = models.DateTimeField(auto_now_add=True)
-    userrank = models.CharField(max_length=30,default=_("Junior Member"))
+    userrank = models.CharField(max_length=30,default="Junior Member")
     last_posttime = models.DateTimeField(auto_now_add=True)
     signature = models.CharField(max_length = 1000, null = True, blank = True)
     

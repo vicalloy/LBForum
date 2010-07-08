@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load lbforum %}
 {% load avatar_tags %}
 <div class="post {% cycle 'odd' 'even' %} {{forloop|post_style}}" id="p{{post.pk}}">
@@ -5,7 +6,7 @@
         <h3 class="hn post-ident">
             <span class="post-num">{% page_item_idx page_obj forloop %}</span>
             <span class="post-byline">
-                <span>Topic by </span>
+                <span>{% trans "Topic by" %}</span>
                 <a href="{% url user_profile post.posted_by.pk %}">{{post.posted_by.username}}</a>
             </span>
             <span class="post-link">
@@ -18,24 +19,24 @@
             <ul class="author-ident">
                 <li class="useravatar"><a href="{% url user_profile post.posted_by.pk %}">{% avatar post.posted_by %}</a></li>
                 <li class="username"> <a href="{% url user_profile post.posted_by.pk %}">{{post.posted_by.username}}</a> </li>
-                <li class="usertitle"><span>Member</span></li>
+                <li class="usertitle"><span>{% trans "Member" %}</span></li>
                 <li class="userstatus"><span>{{post.posted_by|online}}</span></li>
             </ul>
             <ul class="author-info">
-                <li><span>Registered: <strong>{{ post.posted_by.date_joined|date:"Y-m-d" }}</strong></span></li>
-                <li><span>Posts: <strong>{{ post.posted_by.lbforum_profile.get_total_posts  }}</strong></span></li>
+                <li><span>{% trans "Registered" %}: <strong>{{ post.posted_by.date_joined|date:"Y-m-d" }}</strong></span></li>
+                <li><span>{% trans "Posts" %}: <strong>{{ post.posted_by.lbforum_profile.get_total_posts  }}</strong></span></li>
             </ul>
         </div>
         <div class="post-entry">
             <div class="entry-content">
                 <p>{{ post.message|bbcode|safe }}</p>
                 {% if post.edited_by %}
-                <p class="postedit"><em>Last edited by {{post.edited_by}} ({{post.updated_on}})</em></p>
+                <p class="postedit"><em>{% blocktrans %}Last edited by {{post.edited_by}} ({{post.updated_on}}){% endblocktrans %}</em></p>
                 {% endif %}
             </div>
             {% if post.attachments.all %}
             <div class="entry-attachments">
-                <b>Attachments:</b>
+                <b>{% trans "Attachments" %}:</b>
                 <ul>
                     {% for attachment in post.attachments.all %}
                     <li>
@@ -54,9 +55,9 @@
         <div class="post-options">
             <p class="post-contacts"></p>
             <p class="post-actions">
-                <span class="quote-post"><a href="{% url lbforum_new_replay topic.pk %}?qid={{post.pk}}">quote</a></span> 
+                <span class="quote-post"><a href="{% url lbforum_new_replay topic.pk %}?qid={{post.pk}}">{% trans "quote" %}</a></span> 
                 {% if user == post.posted_by or user.is_staff %}
-                <span class="edit-post"><a href="{% url lbforum_post_edit post.pk %}">edit</a></span> 
+                <span class="edit-post"><a href="{% url lbforum_post_edit post.pk %}">{% trans "edit" %}</a></span> 
                 {% endif %}
             </p>
         </div>

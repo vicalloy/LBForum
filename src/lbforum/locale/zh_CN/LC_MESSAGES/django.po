@@ -1,0 +1,618 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-08 12:29+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\sites\default\templates\account\base.html.py:28
+#: .\sites\default\templates\account\base.html.py:69
+#: .\sites\default\templates\avatar\change.html.py:14
+#: .\sites\default\templates\registration\password_change_form.html.py:14
+#, python-format
+msgid "%(user)s's profile"
+msgstr "%(user)s 的个人信息"
+
+#: .\sites\default\templates\account\profile.html.py:14
+#, python-format
+msgid "%(view_user)s's profile"
+msgstr "%(view_user)s 的个人信息"
+
+#: .\sites\default\templates\account\profile.html.py:15
+msgid "Welcome to your profile"
+msgstr "欢迎进入您的个人信息中心"
+
+#: .\sites\default\templates\account\profile.html.py:20
+#: .\sites\default\templates\registration\password_change_form.html.py:14
+#: .\sites\default\templates\registration\password_change_form.html.py:15
+msgid "Change your password"
+msgstr "修改密码"
+
+#: .\sites\default\templates\account\profile.html.py:29
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:22
+msgid "Member"
+msgstr "会员"
+
+#: .\sites\default\templates\account\profile.html.py:33
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:26
+msgid "Registered"
+msgstr "注册时间"
+
+#: .\sites\default\templates\account\profile.html.py:34
+msgid "Last login"
+msgstr "最近一次登录"
+
+#: .\sites\default\templates\account\profile.html.py:35
+#: .\sites\default\templates\lbforum\inc_topic_list.html.py:4
+#: .\sites\default\templates\lbforum\inc_topic_list.html.py:9
+#: .\src\lbforum\models.py:97
+msgid "Topics"
+msgstr "主题"
+
+#: .\sites\default\templates\account\profile.html.py:36
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:27
+#: .\sites\default\templates\lbforum\user_posts.html.py:49
+#: .\src\lbforum\models.py:131
+msgid "Posts"
+msgstr "文章"
+
+#: .\sites\default\templates\account\profile.html.py:42
+msgid "Posts and topics"
+msgstr "主题和回帖"
+
+#: .\sites\default\templates\account\profile.html.py:44
+#, python-format
+msgid "View all %(view_user)s's posts"
+msgstr "查看 %(view_user)s 的所有文章"
+
+#: .\sites\default\templates\account\profile.html.py:45
+#, python-format
+msgid "View all %(view_user)s's topics"
+msgstr "查看 %(view_user)s 的所有主题"
+
+#: .\sites\default\templates\avatar\change.html.py:14
+#: .\sites\default\templates\avatar\change.html.py:29
+msgid "Avatar"
+msgstr "头像"
+
+#: .\sites\default\templates\avatar\change.html.py:15
+msgid "Set an avatar image to enhance your forum identity"
+msgstr "设置您的个性化头像"
+
+#: .\sites\default\templates\avatar\change.html.py:20
+#: .\sites\default\templates\lbforum\post.html.py:56
+#: .\sites\default\templates\registration\login.html.py:40
+#: .\sites\default\templates\registration\password_change_form.html.py:20
+#: .\sites\default\templates\registration\registration_form.html.py:35
+msgid "Please correct the errors below."
+msgstr "请修正下列错误。"
+
+#: .\sites\default\templates\avatar\change.html.py:32
+msgid "Current avatar"
+msgstr "当前头像"
+
+#: .\sites\default\templates\avatar\change.html.py:38
+msgid "Upload avatar file"
+msgstr "上传头像"
+
+#: .\sites\default\templates\avatar\change.html.py:40
+msgid "The allowed image file types are"
+msgstr "允许的图片类型为"
+
+#: .\sites\default\templates\avatar\change.html.py:40
+msgid "and"
+msgstr "和"
+
+#: .\sites\default\templates\avatar\change.html.py:43
+msgid "Avatar Image"
+msgstr "头像图片"
+
+#: .\sites\default\templates\avatar\change.html.py:48
+msgid "Upload New Image"
+msgstr "上传一个新图片"
+
+#: .\sites\default\templates\avatar\change.html.py:48
+msgid "You will be redirected back to this page"
+msgstr "您将重定向到"
+
+#: .\sites\default\templates\lbforum\forum.html.py:31
+#: .\sites\default\templates\lbforum\forum.html.py:51
+msgid "Post new topic"
+msgstr "发表新主题"
+
+#: .\sites\default\templates\lbforum\forum.html.py:33
+#: .\sites\default\templates\lbforum\forum.html.py:53
+#: .\sites\default\templates\lbforum\topic.html.py:33
+msgid "You must"
+msgstr "您必须"
+
+#: .\sites\default\templates\lbforum\forum.html.py:33
+#: .\sites\default\templates\lbforum\forum.html.py:53
+#: .\sites\default\templates\lbforum\inc_header.html.py:22
+#: .\sites\default\templates\lbforum\inc_header.html.py:33
+#: .\sites\default\templates\lbforum\topic.html.py:33
+#: .\sites\default\templates\lbforum\topic.html.py:59
+#: .\sites\default\templates\registration\login.html.py:24
+#: .\sites\default\templates\registration\login.html.py:69
+#: .\sites\default\templates\registration\login.html.py:82
+#: .\sites\default\templates\registration\registration_form.html.py:23
+#: .\sites\default\templates\registration\registration_form.html.py:72
+#: .\sites\default\templates\registration\registration_form.html.py:87
+msgid "Login"
+msgstr "登录"
+
+#: .\sites\default\templates\lbforum\forum.html.py:33
+#: .\sites\default\templates\lbforum\forum.html.py:53
+#: .\sites\default\templates\lbforum\topic.html.py:33
+msgid "or"
+msgstr "或"
+
+#: .\sites\default\templates\lbforum\forum.html.py:33
+#: .\sites\default\templates\lbforum\forum.html.py:53
+#: .\sites\default\templates\lbforum\topic.html.py:33
+#: .\sites\default\templates\lbforum\topic.html.py:59
+#: .\sites\default\templates\registration\login.html.py:36
+msgid "register"
+msgstr "注册"
+
+#: .\sites\default\templates\lbforum\forum.html.py:33
+#: .\sites\default\templates\lbforum\forum.html.py:53
+msgid "to post a topic"
+msgstr "后发表主题"
+
+#: .\sites\default\templates\lbforum\inc_announce.html.py:7
+msgid "New Announcement"
+msgstr "您公告"
+
+#: .\sites\default\templates\lbforum\inc_header.html.py:15
+msgid "Search"
+msgstr "搜索"
+
+#: .\sites\default\templates\lbforum\inc_header.html.py:18
+msgid "My profile"
+msgstr "个人中心"
+
+#: .\sites\default\templates\lbforum\inc_header.html.py:19
+#: .\sites\default\templates\lbforum\inc_header.html.py:31
+msgid "Logout"
+msgstr "退出"
+
+#: .\sites\default\templates\lbforum\inc_header.html.py:21
+#: .\sites\default\templates\registration\registration_form.html.py:73
+msgid "Register"
+msgstr "注册"
+
+#: .\sites\default\templates\lbforum\inc_header.html.py:31
+#, python-format
+msgid "Hello %(user)s"
+msgstr "您好 %(user)s"
+
+#: .\sites\default\templates\lbforum\inc_header_left_links.html.py:2
+msgid "Home"
+msgstr "首页"
+
+#: .\sites\default\templates\lbforum\inc_new_post_brd_crumbs.html.py:18
+#: .\sites\default\templates\lbforum\post.html.py:28
+msgid "Post new"
+msgstr "发表新的"
+
+#: .\sites\default\templates\lbforum\inc_new_post_brd_crumbs.html.py:18
+#: .\sites\default\templates\lbforum\post.html.py:28
+msgid "Edit"
+msgstr "编辑"
+
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:9
+#: .\sites\default\templates\lbforum\post.html.py:37
+#: .\sites\default\templates\lbforum\user_posts.html.py:58
+msgid "Topic by"
+msgstr "作者"
+
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:34
+#, python-format
+msgid "Last edited by %(post.edited_by)s (%(post.updated_on)s)"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:39
+#: .\sites\default\templates\lbforum\post.html.py:95 .\src\lbforum\forms.py:14
+msgid "Attachments"
+msgstr "附件"
+
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:58
+msgid "quote"
+msgstr "引用"
+
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:60
+msgid "edit"
+msgstr "编辑"
+
+#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:9
+msgid "Closed"
+msgstr "关闭"
+
+#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:13
+msgid "Sticky"
+msgstr "置顶"
+
+#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:27
+#: .\sites\default\templates\lbforum\inc_topic_list.html.py:10
+#: .\sites\default\templates\lbforum\user_posts.html.py:68
+msgid "replies"
+msgstr "回复"
+
+#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:31
+#: .\sites\default\templates\lbforum\inc_topic_list.html.py:11
+msgid "views"
+msgstr "浏览"
+
+#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:34
+#: .\sites\default\templates\lbforum\index.html.py:50
+msgid "Last post"
+msgstr "最新文章"
+
+#: .\sites\default\templates\lbforum\inc_topic_list.html.py:12
+#: .\sites\default\templates\lbforum\index.html.py:27
+msgid "last post"
+msgstr "最新文章"
+
+#: .\sites\default\templates\lbforum\index.html.py:25
+#: .\sites\default\templates\lbforum\index.html.py:44
+msgid "topics"
+msgstr "主题"
+
+#: .\sites\default\templates\lbforum\index.html.py:26
+#: .\sites\default\templates\lbforum\index.html.py:47
+msgid "posts"
+msgstr "文字"
+
+#: .\sites\default\templates\lbforum\index.html.py:71
+msgid "Total number of registered users"
+msgstr "注册用户数"
+
+#: .\sites\default\templates\lbforum\index.html.py:74
+msgid "Newest registered user"
+msgstr "最新注册用户"
+
+#: .\sites\default\templates\lbforum\index.html.py:83
+msgid "Total number of topics"
+msgstr "主题总数"
+
+#: .\sites\default\templates\lbforum\index.html.py:86
+msgid "Total number of posts"
+msgstr "文章总数"
+
+#: .\sites\default\templates\lbforum\index.html.py:93
+msgid "Currently online"
+msgstr "当前在线"
+
+#: .\sites\default\templates\lbforum\index.html.py:93
+msgid "guests"
+msgstr "访客"
+
+#: .\sites\default\templates\lbforum\index.html.py:93
+msgid "registered user"
+msgstr "注册用户"
+
+#: .\sites\default\templates\lbforum\index.html.py:101
+msgid "Friend Links"
+msgstr "友情链接"
+
+#: .\sites\default\templates\lbforum\markitup_preview.html.py:10
+msgid "preview"
+msgstr "预览"
+
+#: .\sites\default\templates\lbforum\post.html.py:32
+msgid "Preview your"
+msgstr "预览您"
+
+#: .\sites\default\templates\lbforum\post.html.py:32
+#: .\sites\default\templates\lbforum\post.html.py:50
+msgid "new"
+msgstr "新创建的"
+
+#: .\sites\default\templates\lbforum\post.html.py:32
+#: .\sites\default\templates\lbforum\post.html.py:50
+msgid "edited"
+msgstr "编辑的"
+
+#: .\sites\default\templates\lbforum\post.html.py:50
+msgid "Compose and post your"
+msgstr "提交您的"
+
+#: .\sites\default\templates\lbforum\post.html.py:53
+#: .\sites\default\templates\lbforum\topic.html.py:73
+msgid "You may use"
+msgstr "您可以使用"
+
+#: .\sites\default\templates\lbforum\post.html.py:65
+#: .\sites\default\templates\registration\password_change_form.html.py:29
+msgid "Required information"
+msgstr "必填信息"
+
+#: .\sites\default\templates\lbforum\post.html.py:69
+msgid "Topic subject"
+msgstr "标题"
+
+#: .\sites\default\templates\lbforum\post.html.py:69
+#: .\sites\default\templates\lbforum\post.html.py:78
+#: .\sites\default\templates\lbforum\topic.html.py:82
+#: .\sites\default\templates\registration\login.html.py:51
+#: .\sites\default\templates\registration\login.html.py:57
+#: .\sites\default\templates\registration\password_change_form.html.py:32
+#: .\sites\default\templates\registration\password_change_form.html.py:38
+#: .\sites\default\templates\registration\password_change_form.html.py:44
+#: .\sites\default\templates\registration\registration_form.html.py:49
+#: .\sites\default\templates\registration\registration_form.html.py:55
+#: .\sites\default\templates\registration\registration_form.html.py:61
+#: .\sites\default\templates\registration\registration_form.html.py:67
+msgid "Required"
+msgstr "必填"
+
+#: .\sites\default\templates\lbforum\post.html.py:78
+#: .\sites\default\templates\lbforum\topic.html.py:82
+msgid "Write message"
+msgstr "正文"
+
+#: .\sites\default\templates\lbforum\post.html.py:86
+msgid "Optional post settings"
+msgstr "可选设置"
+
+#: .\sites\default\templates\lbforum\post.html.py:90
+msgid "Never show smilies as icons (images) for this post."
+msgstr "在当前主题中不使用表情图标"
+
+#: .\sites\default\templates\lbforum\post.html.py:98
+msgid "Upload"
+msgstr "上传"
+
+#: .\sites\default\templates\lbforum\post.html.py:106
+msgid "Submit"
+msgstr "提交"
+
+#: .\sites\default\templates\lbforum\post.html.py:107
+msgid "Preview"
+msgstr "预览"
+
+#: .\sites\default\templates\lbforum\post.html.py:113
+msgid "Topic review (newest first)"
+msgstr "查看主题"
+
+#: .\sites\default\templates\lbforum\post.html.py:119
+msgid "Post by"
+msgstr "作者"
+
+#: .\sites\default\templates\lbforum\redirect.html.py:17
+msgid "You should automatically be forwarded to a new page in 5 second."
+msgstr "页面将在5秒后自动跳转。"
+
+#: .\sites\default\templates\lbforum\redirect.html.py:20
+msgid ""
+"Click here if you do not want to wait any longer (or if your browser does "
+"not automatically forward you)"
+msgstr "如果您想立即跳转（或你的浏览器无法自动跳转），请点击"
+
+#: .\sites\default\templates\lbforum\topic.html.py:31
+msgid "Post reply"
+msgstr "发表回复"
+
+#: .\sites\default\templates\lbforum\topic.html.py:33
+msgid "to post a reply"
+msgstr "后发表回复"
+
+#: .\sites\default\templates\lbforum\topic.html.py:70
+msgid "Quick reply to this topic"
+msgstr "快速回复"
+
+#: .\sites\default\templates\lbforum\topic.html.py:79
+msgid "Compose your post"
+msgstr "完成您的文章"
+
+#: .\sites\default\templates\lbforum\user_posts.html.py:26
+#, python-format
+msgid "Posts by %(view_user)s"
+msgstr "%(view_user)s 的文章"
+
+#: .\sites\default\templates\lbforum\user_posts.html.py:42
+#: .\sites\default\templates\lbforum\user_posts.html.py:107
+#: .\sites\default\templates\lbforum\user_topics.html.py:26
+#: .\sites\default\templates\lbforum\user_topics.html.py:42
+#: .\sites\default\templates\lbforum\user_topics.html.py:69
+#, python-format
+msgid "Topics by %(view_user)s"
+msgstr "%(view_user)s 的主题"
+
+#: .\sites\default\templates\lbforum\user_posts.html.py:68
+msgid "posted in"
+msgstr "发表于"
+
+#: .\sites\default\templates\registration\login.html.py:32
+#, python-format
+msgid "Login to %(LBFORUM_TITLE)s"
+msgstr "登录到 %(LBFORUM_TITLE)s"
+
+#: .\sites\default\templates\registration\login.html.py:36
+msgid "Do you need to"
+msgstr "您是否需要"
+
+#: .\sites\default\templates\registration\login.html.py:51
+#: .\sites\default\templates\registration\registration_form.html.py:49
+#: .\src\lbregistration\forms.py:17
+msgid "Username"
+msgstr "用户名"
+
+#: .\sites\default\templates\registration\login.html.py:57
+#: .\sites\default\templates\registration\registration_form.html.py:55
+msgid "Password"
+msgstr "密码"
+
+#: .\sites\default\templates\registration\login.html.py:64
+msgid "Remember me"
+msgstr "记住登录"
+
+#: .\sites\default\templates\registration\login.html.py:64
+msgid "Log me in automatically each time I visit."
+msgstr "自动登录"
+
+#: .\sites\default\templates\registration\password_change_done.html.py:5
+msgid "Password change successful"
+msgstr "修改密码成功"
+
+#: .\sites\default\templates\registration\password_change_form.html.py:32
+msgid "Old password"
+msgstr "原始密码"
+
+#: .\sites\default\templates\registration\password_change_form.html.py:32
+msgid "You must enter your existing password."
+msgstr "您必须输入您的原始密码"
+
+#: .\sites\default\templates\registration\password_change_form.html.py:38
+msgid "New password"
+msgstr "新密码"
+
+#: .\sites\default\templates\registration\password_change_form.html.py:38
+msgid "Minimum 6 characters. Case sensitive."
+msgstr "最少6个字符，大小写敏感。"
+
+#: .\sites\default\templates\registration\password_change_form.html.py:44
+#: .\sites\default\templates\registration\registration_form.html.py:61
+msgid "Password (again)"
+msgstr "确认密码"
+
+#: .\sites\default\templates\registration\password_change_form.html.py:50
+msgid "Change my password"
+msgstr "修改密码"
+
+#: .\sites\default\templates\registration\registration_complete.html.py:5
+msgid "register successful"
+msgstr "注册成功"
+
+#: .\sites\default\templates\registration\registration_form.html.py:30
+msgid "Register at %(LBFORUM_TITLE)s"
+msgstr "登录到 %(LBFORUM_TITLE)s"
+
+#: .\sites\default\templates\registration\registration_form.html.py:40
+msgid ""
+"All fields labelled <em>(Required)</em> must be completed before the form is "
+"submitted."
+msgstr "必须填写所有标记为 <em>(必填)</em> 的字段 "
+
+#: .\sites\default\templates\registration\registration_form.html.py:49
+msgid "Between 2 and 25 characters."
+msgstr "2至25个字符之间"
+
+#: .\sites\default\templates\registration\registration_form.html.py:55
+msgid "A current valid e-mail address."
+msgstr "一个有效的邮件地址"
+
+#: .\sites\default\templates\registration\registration_form.html.py:61
+#: .\sites\default\templates\registration\registration_form.html.py:67
+msgid "Re-enter your e-mail address exactly as before."
+msgstr "彩信输入您的邮件地址"
+
+#: .\sites\default\templates\registration\registration_form.html.py:67
+msgid "e-mail"
+msgstr "电子邮件"
+
+#: .\src\attachments\models.py:32
+msgid "Attachment"
+msgstr "附件"
+
+#: .\src\attachments\views.py:13
+msgid "no file"
+msgstr "文件不存在"
+
+#: .\src\attachments\views.py:32 .\src\attachments\views.py:48
+msgid "some errors..."
+msgstr "出错"
+
+#: .\src\attachments\views.py:36 .\src\attachments\views.py:52
+msgid "no right"
+msgstr "无权限"
+
+#: .\src\djangohelper\helper.py:19
+msgid "please login first"
+msgstr "请先登录"
+
+#: .\src\lbforum\forms.py:10
+msgid "Subject"
+msgstr "标题"
+
+#: .\src\lbforum\forms.py:12
+msgid "Message"
+msgstr "正文"
+
+#: .\src\lbforum\models.py:26
+msgid "Category"
+msgstr "分类"
+
+#: .\src\lbforum\models.py:27
+msgid "Categories"
+msgstr "分类"
+
+#: .\src\lbforum\models.py:47 .\src\lbforum\models.py:74
+msgid "Forum"
+msgstr "版块"
+
+#: .\src\lbforum\models.py:48
+msgid "Forums"
+msgstr ""
+
+#: .\src\lbforum\models.py:96 .\src\lbforum\models.py:116
+msgid "Topic"
+msgstr "主题"
+
+#: .\src\lbforum\models.py:130
+msgid "Post"
+msgstr "文章"
+
+#: .\src\lbforum\models.py:140
+#, python-format
+msgid "Topic: %s"
+msgstr "主题: %s"
+
+#: .\src\lbforum\models.py:141
+#, python-format
+msgid "Re: %s"
+msgstr ""
+
+#: .\src\lbforum\models.py:165 .\src\simpleavatar\models.py:56
+msgid "User"
+msgstr "用户"
+
+#: .\src\lbforum\views.py:54 .\src\lbforum\views.py:89
+msgid "topic"
+msgstr "主题"
+
+#: .\src\lbforum\views.py:58
+msgid "reply"
+msgstr "回复"
+
+#: .\src\lbforum\templatetags\lbforum.py:70
+msgid "Online"
+msgstr "在线"
+
+#: .\src\lbforum\templatetags\lbforum.py:73
+msgid "Offline"
+msgstr "离线"
+
+#: .\src\lbregistration\forms.py:18
+msgid "This value must contain only letters, numbers and underscores."
+msgstr "只能为数字、字母、下划线"
+
+#: .\src\simpleavatar\models.py:61
+#, python-format
+msgid "Avatar for %s"
+msgstr "%s的头像"
+
+#: .\src\simpleavatar\views.py:18
+msgid "Successfully updated your avatar."
+msgstr "头像上传成功"

@@ -1,14 +1,15 @@
+{% load i18n %}
 {% load lbforum %}
 <div class="main-pagehead">
-    <h2 class="hn"><span><span class="item-info">Topics [ {% page_range_info page_obj %} ]</span></span></h2>
+    <h2 class="hn"><span><span class="item-info">{% trans "Topics" %} [ {% page_range_info page_obj %} ]</span></span></h2>
 </div>
 <div class="main-subhead">
     <p class="item-summary forum-views">
         <span>
-            <strong class="subject-title">Topics</strong> in this forum with details of 
-            <strong class="info-replies">replies</strong>, 
-            <strong class="info-views">views</strong>, 
-            <strong class="info-lastpost">last post</strong>.
+            <strong class="subject-title">{% trans "Topics" %}</strong> in this forum with details of 
+            <strong class="info-replies">{% trans "replies" %}</strong>, 
+            <strong class="info-views">{% trans "views" %}</strong>, 
+            <strong class="info-lastpost">{% trans "last post" %}</strong>.
         </span>
     </p>
 </div>

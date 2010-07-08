@@ -12,7 +12,7 @@
     </ul>
     <ul id="brd-navlinks-right">
         <li>
-            <a href="#">Search</a>
+            <a href="#">{% trans "Search" %}</a>
         </li>
         {% if user.is_authenticated %}
         <li id="navprofile"><a href="{% url account_index %}">{% trans "My profile" %}</a></li>
@@ -28,7 +28,7 @@
     <p id="welcome">
         <span>
             {% if user.is_authenticated %}
-            Hello {{user}}, <a href='{% url auth_logout %}?next={% url lbforum_index %}'>{% trans "Logout" %}</a>
+            {% blocktrans %}Hello {{user}}{% endblocktrans %}, <a href='{% url auth_logout %}?next={% url lbforum_index %}'>{% trans "Logout" %}</a>
             {% else %}
             <a href="{% url auth_login %}">{% trans "Login" %}</a>
             {% endif %}

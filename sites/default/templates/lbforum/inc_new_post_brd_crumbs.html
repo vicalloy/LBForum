@@ -1,3 +1,4 @@
+{% load i18n %}
 <p>
     <span class="crumb crumbfirst">
         <a href="{% url lbforum_index %}">{{ LBFORUM_TITLE }}</a>
@@ -14,6 +15,6 @@
     {% endif %}
     <span class="crumb crumblast">
         <span> &raquo; </span>
-        {% if is_new_post %}Post new{% else %}Edit{% endif %} {{ post_type }}
+        {% if is_new_post %}{% trans "Post new" %}{% else %}{% trans "Edit" %}{% endif %} {{ post_type }}
     </span> 
 </p>

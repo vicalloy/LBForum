@@ -33,7 +33,7 @@ def ajax_delete(request):
     attachment_id = request.POST['id']
     attachment = Attachment.objects.get(pk=attachment_id)
     if (attachment.user != request.user):
-        data['errors'] = 'no right'
+        data['errors'] = ugettext('no right')
     else:
         attachment.delete()
         data['valid'] = True
@@ -49,7 +49,7 @@ def ajax_change_descn(request):
     attachment_id = request.POST['id']
     attachment = Attachment.objects.get(pk=attachment_id)
     if (attachment.user != request.user):
-        data['errors'] = 'no right'
+        data['errors'] = ugettext('no right')
     elif request.method == "POST":
         attachment.description = request.POST['descn']
         data['valid'] = True

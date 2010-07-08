@@ -23,7 +23,7 @@
 					</span> 
 					<span class="crumb crumblast">
 						<span>&raquo;</span>
-						Posts by {{view_user}}
+						{% blocktrans %}Posts by {{view_user}}{% endblocktrans %}
 					</span> 
 				</p>
 			</div>
@@ -39,14 +39,14 @@
 				<div class="main-head">
 					<h1 class="hn">
 						<span>
-							Topics by {{view_user}}
+							{% blocktrans %}Topics by {{view_user}}{% endblocktrans %}
 							<small></small>
 						</span>
 					</h1>
 				</div>
 
 				<div class="main-pagehead">
-					<h2 class="hn"><span><span class="item-info">Posts [ {% page_range_info page_obj %} ]</span></span></h2>
+					<h2 class="hn"><span><span class="item-info">{% trans "Posts" %} [ {% page_range_info page_obj %} ]</span></span></h2>
 				</div>
 				<div class="main-content main-topic" id="forum">
 					{% for post in posts %}     
@@ -55,7 +55,7 @@
 								<h3 class="hn post-ident">
 									<span class="post-num">{% page_item_idx page_obj forloop %}</span>
 									<span class="post-byline">
-										<span>Topic by </span>
+										<span>{% trans "Topic by" %} </span>
 										<a href="{% url user_profile post.posted_by.pk %}">{{post.posted_by.username}}</a>
 									</span>
 									<span class="post-link">
@@ -65,7 +65,7 @@
 								<h4 class="hn post-title">
 									<span>
 										<a href="{{ post.topic.get_absolute_url }}" title="Permanent link to this topic" rel="bookmark" class="permalink">{{ post.subject }}</a> 
-										<small>({{ post.topic.num_replies|add:"-1" }} replies, posted in <a href="{{ post.topic.forum.get_absolute_url }}">{{ post.topic.forum }}</a>)</small>
+										<small>({{ post.topic.num_replies|add:"-1" }} {% trans "replies" %}, {% trans "posted in" %} <a href="{{ post.topic.forum.get_absolute_url }}">{{ post.topic.forum }}</a>)</small>
 									</span>
 								</h4>
 							</div>
@@ -104,7 +104,7 @@
 					</span> 
 					<span class="crumb crumblast">
 						<span>&raquo;</span>
-						Topics by {{view_user}}
+						{% blocktrans %}Topics by {{view_user}}{% endblocktrans %}
 					</span> 
 				</p>
 			</div>
