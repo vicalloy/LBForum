@@ -1,5 +1,6 @@
 {% extends "lbforum/base.html" %}
 
+{% load i18n %}
 {% load lbforum %}
 
 {% block title %}{{  block.super }}{% endblock %}
@@ -69,7 +70,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="frm-buttons">{% trans "Login" %}
+                        <div class="frm-buttons">
                             <span class="submit"><input type="submit" value="{% trans "Register" %}" name="register"></span>
                         </div>
                     </form>
