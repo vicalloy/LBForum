@@ -39,7 +39,7 @@
                     <h1 class="hn"><span><a title="Permanent link to this topic" rel="bookmark" href="{{ topic.get_absolute_url }}" class="permalink">{{ topic }}</a></span></h1>
                 </div>
                 <div class="main-pagehead">
-                    <h2 class="hn"><span><span class="item-info">Posts [ {% page_range_info page_obj %} ]</span></span></h2>
+                    <h2 class="hn"><span><span class="item-info">{% trans "Posts" %} [ {% page_range_info page_obj %} ]</span></span></h2>
                 </div>
                 <div class="main-content main-topic" id="forum">
                     {% for post in posts %}     
@@ -54,7 +54,7 @@
                     <p class="posting">
                         {% if not topic.closed %}
                             {% if user.is_authenticated %}
-                                <a class="newpost" href="{% url lbforum_new_replay topic.pk %}"><span>Post reply</span></a>
+                                <a class="newpost" href="{% url lbforum_new_replay topic.pk %}"><span>{% trans "Post reply" %}</span></a>
                             {% else %}
                                 You must <a href="{% url auth_login %}">{% trans "Login" %}</a> or <a href="{% url registration_register %}">{% trans "register" %}</a> to post a reply
                             {% endif %} 

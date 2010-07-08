@@ -31,7 +31,7 @@
             <div class="entry-content">
                 <p>{{ post.message|bbcode|safe }}</p>
                 {% if post.edited_by %}
-                <p class="postedit"><em>{% blocktrans %}Last edited by {{post.edited_by}} ({{post.updated_on}}){% endblocktrans %}</em></p>
+                <p class="postedit"><em>Last edited by {{post.edited_by}} ({{post.updated_on}})</em></p>
                 {% endif %}
             </div>
             {% if post.attachments.all %}

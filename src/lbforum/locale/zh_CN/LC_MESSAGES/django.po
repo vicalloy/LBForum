@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-08 12:29+0800\n"
+"POT-Creation-Date: 2010-07-08 13:57+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,6 +22,17 @@ msgstr ""
 #, python-format
 msgid "%(user)s's profile"
 msgstr "%(user)s 的个人信息"
+
+#: .\sites\default\templates\account\base.html.py:38
+#: .\sites\default\templates\account\base.html.py:41
+msgid "Introduction"
+msgstr "基础信息"
+
+#: .\sites\default\templates\account\base.html.py:45
+#: .\sites\default\templates\avatar\change.html.py:14
+#: .\sites\default\templates\avatar\change.html.py:29
+msgid "Avatar"
+msgstr "头像"
 
 #: .\sites\default\templates\account\profile.html.py:14
 #, python-format
@@ -61,6 +72,7 @@ msgstr "主题"
 
 #: .\sites\default\templates\account\profile.html.py:36
 #: .\sites\default\templates\lbforum\inc_post_detail.html.py:27
+#: .\sites\default\templates\lbforum\topic.html.py:42
 #: .\sites\default\templates\lbforum\user_posts.html.py:49
 #: .\src\lbforum\models.py:131
 msgid "Posts"
@@ -79,11 +91,6 @@ msgstr "查看 %(view_user)s 的所有文章"
 #, python-format
 msgid "View all %(view_user)s's topics"
 msgstr "查看 %(view_user)s 的所有主题"
-
-#: .\sites\default\templates\avatar\change.html.py:14
-#: .\sites\default\templates\avatar\change.html.py:29
-msgid "Avatar"
-msgstr "头像"
 
 #: .\sites\default\templates\avatar\change.html.py:15
 msgid "Set an avatar image to enhance your forum identity"
@@ -120,10 +127,6 @@ msgstr "头像图片"
 #: .\sites\default\templates\avatar\change.html.py:48
 msgid "Upload New Image"
 msgstr "上传一个新图片"
-
-#: .\sites\default\templates\avatar\change.html.py:48
-msgid "You will be redirected back to this page"
-msgstr "您将重定向到"
 
 #: .\sites\default\templates\lbforum\forum.html.py:31
 #: .\sites\default\templates\lbforum\forum.html.py:51
@@ -217,11 +220,6 @@ msgstr "编辑"
 msgid "Topic by"
 msgstr "作者"
 
-#: .\sites\default\templates\lbforum\inc_post_detail.html.py:34
-#, python-format
-msgid "Last edited by %(post.edited_by)s (%(post.updated_on)s)"
-msgstr ""
-
 #: .\sites\default\templates\lbforum\inc_post_detail.html.py:39
 #: .\sites\default\templates\lbforum\post.html.py:95 .\src\lbforum\forms.py:14
 msgid "Attachments"
@@ -272,7 +270,7 @@ msgstr "主题"
 #: .\sites\default\templates\lbforum\index.html.py:26
 #: .\sites\default\templates\lbforum\index.html.py:47
 msgid "posts"
-msgstr "文字"
+msgstr "文章"
 
 #: .\sites\default\templates\lbforum\index.html.py:71
 msgid "Total number of registered users"
@@ -401,6 +399,7 @@ msgid ""
 msgstr "如果您想立即跳转（或你的浏览器无法自动跳转），请点击"
 
 #: .\sites\default\templates\lbforum\topic.html.py:31
+#: .\sites\default\templates\lbforum\topic.html.py:57
 msgid "Post reply"
 msgstr "发表回复"
 
@@ -496,6 +495,7 @@ msgid "register successful"
 msgstr "注册成功"
 
 #: .\sites\default\templates\registration\registration_form.html.py:30
+#, python-format
 msgid "Register at %(LBFORUM_TITLE)s"
 msgstr "登录到 %(LBFORUM_TITLE)s"
 
