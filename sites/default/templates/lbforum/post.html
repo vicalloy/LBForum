@@ -157,6 +157,9 @@
             {% for o in unpublished_attachments %}
             add_attachment({'id': '{{o.id}}','url': '{{o.file.url}}','fn': '{{o.org_filename}}','descn':'{{o.description}}'});
             {% endfor %}
+            {% for o in post.attachments.all %}
+            add_attachment({'id': '{{o.id}}','url': '{{o.file.url}}','fn': '{{o.org_filename}}','descn':'{{o.description}}'});
+            {% endfor %}
         });
     </script>
     <script type="text/html" id="attachment_li_tmpl">

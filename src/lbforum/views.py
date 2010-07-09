@@ -96,8 +96,8 @@ def edit_post(request, post_id, form_class=EditPostForm, template_name="lbforum/
             return HttpResponseRedirect('../')
     else:
         form = form_class(instance=edit_post)
-    ext_ctx = {'form':form, 'topic':edit_post.topic, 'forum':edit_post.topic.forum, \
-            'post_type':post_type, 'preview':preview}
+    ext_ctx = {'form':form, 'post': edit_post, 'topic':edit_post.topic, \
+            'forum':edit_post.topic.forum, 'post_type':post_type, 'preview':preview}
     ext_ctx['unpublished_attachments'] = request.user.attachment_set.all().filter(activated=False)
     ext_ctx['show_subject_fld'] = edit_post.topic_post
     return render_to_response(template_name, ext_ctx, RequestContext(request))
