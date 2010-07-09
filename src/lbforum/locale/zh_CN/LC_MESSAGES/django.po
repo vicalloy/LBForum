@@ -324,7 +324,7 @@ msgstr "编辑的"
 
 #: .\sites\default\templates\lbforum\post.html.py:50
 msgid "Compose and post your"
-msgstr "提交您的"
+msgstr "编辑和提交您"
 
 #: .\sites\default\templates\lbforum\post.html.py:53
 #: .\sites\default\templates\lbforum\topic.html.py:73
