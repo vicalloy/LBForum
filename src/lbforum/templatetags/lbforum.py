@@ -2,6 +2,7 @@ from django import template
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
+from django.conf import settings
 
 from postmarkup import create, QuoteTag, PostMarkup
 
@@ -83,3 +84,23 @@ def page_range_info(page_obj):
         return paginator.count
     return str(page_obj.start_index()) +' ' + 'to' + ' ' +  \
             str(page_obj.end_index()) + ' ' + 'of' + ' ' +  str(page_obj.paginator.count)
+
+DEFAULT_PAGINATION = getattr(settings, 'PAGINATION_DEFAULT_PAGINATION', 20)
+DEFAULT_WINDOW = getattr(settings, 'PAGINATION_DEFAULT_WINDOW', 4)
+
+@register.inclusion_tag('lbforum/post_paginate.html', takes_context=True)
+def post_paginate(context, count, paginate_by=DEFAULT_PAGINATION, window=DEFAULT_WINDOW):
+    page_count = count / paginate_by
+    if count % paginate_by > 0:
+        page_count += 1
+    context['page_count'] = page_count
+    pages = []
+    if page_count == 1:
+        pass
+    elif window >= page_count:
+        pages = [e + 1 for e in range(page_count)]
+    else:
+        pages = [e + 1 for e in range(window-1)]
+    context['pages'] = pages
+    context['window'] = window
+    return context
