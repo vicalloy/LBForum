@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-08 13:57+0800\n"
+"POT-Creation-Date: 2010-07-15 15:17+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,25 +15,37 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: .\sites\default\templates\account\base.html.py:28
-#: .\sites\default\templates\account\base.html.py:69
+#: .\sites\default\templates\account\base.html.py:26
+#: .\sites\default\templates\account\base.html.py:74
+#: .\sites\default\templates\account\signature.html.py:7
+#: .\sites\default\templates\account\signature.html.py:18
+#: .\sites\default\templates\avatar\change.html.py:8
 #: .\sites\default\templates\avatar\change.html.py:14
 #: .\sites\default\templates\registration\password_change_form.html.py:14
 #, python-format
 msgid "%(user)s's profile"
 msgstr "%(user)s 的个人信息"
 
-#: .\sites\default\templates\account\base.html.py:38
-#: .\sites\default\templates\account\base.html.py:41
+#: .\sites\default\templates\account\base.html.py:36
+#: .\sites\default\templates\account\base.html.py:39
 msgid "Introduction"
 msgstr "基础信息"
 
-#: .\sites\default\templates\account\base.html.py:45
+#: .\sites\default\templates\account\base.html.py:44
+#: .\sites\default\templates\avatar\change.html.py:8
 #: .\sites\default\templates\avatar\change.html.py:14
 #: .\sites\default\templates\avatar\change.html.py:29
 msgid "Avatar"
 msgstr "头像"
 
+#: .\sites\default\templates\account\base.html.py:49
+#: .\sites\default\templates\account\signature.html.py:7
+#: .\sites\default\templates\account\signature.html.py:18
+#: .\sites\default\templates\account\signature.html.py:33
+msgid "Signature"
+msgstr "签名"
+
+#: .\sites\default\templates\account\profile.html.py:8
 #: .\sites\default\templates\account\profile.html.py:14
 #, python-format
 msgid "%(view_user)s's profile"
@@ -44,6 +56,7 @@ msgid "Welcome to your profile"
 msgstr "欢迎进入您的个人信息中心"
 
 #: .\sites\default\templates\account\profile.html.py:20
+#: .\sites\default\templates\registration\password_change_form.html.py:8
 #: .\sites\default\templates\registration\password_change_form.html.py:14
 #: .\sites\default\templates\registration\password_change_form.html.py:15
 msgid "Change your password"
@@ -92,17 +105,38 @@ msgstr "查看 %(view_user)s 的所有文章"
 msgid "View all %(view_user)s's topics"
 msgstr "查看 %(view_user)s 的所有主题"
 
-#: .\sites\default\templates\avatar\change.html.py:15
-msgid "Set an avatar image to enhance your forum identity"
-msgstr "设置您的个性化头像"
+#: .\sites\default\templates\account\signature.html.py:19
+msgid "Create or modify a signature for display in your posts"
+msgstr "修改您的个人签名"
 
+#: .\sites\default\templates\account\signature.html.py:24
 #: .\sites\default\templates\avatar\change.html.py:20
 #: .\sites\default\templates\lbforum\post.html.py:56
 #: .\sites\default\templates\registration\login.html.py:40
 #: .\sites\default\templates\registration\password_change_form.html.py:20
-#: .\sites\default\templates\registration\registration_form.html.py:35
+#: .\sites\default\templates\registration\registration_form.html.py:36
 msgid "Please correct the errors below."
 msgstr "请修正下列错误。"
+
+#: .\sites\default\templates\account\signature.html.py:36
+msgid "Current signature"
+msgstr "当前签名"
+
+#: .\sites\default\templates\account\signature.html.py:43
+msgid "Compose signature"
+msgstr "编辑签名"
+
+#: .\sites\default\templates\account\signature.html.py:47
+msgid "Maximum size 400 characters long and 4 lines high."
+msgstr "最多400个字符，不能超过4行"
+
+#: .\sites\default\templates\account\signature.html.py:56
+msgid "Update profile"
+msgstr "更新个人信息"
+
+#: .\sites\default\templates\avatar\change.html.py:15
+msgid "Set an avatar image to enhance your forum identity"
+msgstr "设置您的个性化头像"
 
 #: .\sites\default\templates\avatar\change.html.py:32
 msgid "Current avatar"
@@ -148,9 +182,8 @@ msgstr "您必须"
 #: .\sites\default\templates\registration\login.html.py:24
 #: .\sites\default\templates\registration\login.html.py:69
 #: .\sites\default\templates\registration\login.html.py:82
-#: .\sites\default\templates\registration\registration_form.html.py:23
-#: .\sites\default\templates\registration\registration_form.html.py:72
-#: .\sites\default\templates\registration\registration_form.html.py:87
+#: .\sites\default\templates\registration\registration_form.html.py:24
+#: .\sites\default\templates\registration\registration_form.html.py:88
 msgid "Login"
 msgstr "登录"
 
@@ -191,7 +224,7 @@ msgid "Logout"
 msgstr "退出"
 
 #: .\sites\default\templates\lbforum\inc_header.html.py:21
-#: .\sites\default\templates\registration\registration_form.html.py:73
+#: .\sites\default\templates\registration\registration_form.html.py:74
 msgid "Register"
 msgstr "注册"
 
@@ -220,16 +253,16 @@ msgstr "编辑"
 msgid "Topic by"
 msgstr "作者"
 
-#: .\sites\default\templates\lbforum\inc_post_detail.html.py:39
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:38
 #: .\sites\default\templates\lbforum\post.html.py:95 .\src\lbforum\forms.py:14
 msgid "Attachments"
 msgstr "附件"
 
-#: .\sites\default\templates\lbforum\inc_post_detail.html.py:58
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:64
 msgid "quote"
 msgstr "引用"
 
-#: .\sites\default\templates\lbforum\inc_post_detail.html.py:60
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:66
 msgid "edit"
 msgstr "编辑"
 
@@ -241,18 +274,18 @@ msgstr "关闭"
 msgid "Sticky"
 msgstr "置顶"
 
-#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:27
+#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:28
 #: .\sites\default\templates\lbforum\inc_topic_list.html.py:10
 #: .\sites\default\templates\lbforum\user_posts.html.py:68
 msgid "replies"
 msgstr "回复"
 
-#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:31
+#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:32
 #: .\sites\default\templates\lbforum\inc_topic_list.html.py:11
 msgid "views"
 msgstr "浏览"
 
-#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:34
+#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:35
 #: .\sites\default\templates\lbforum\index.html.py:50
 msgid "Last post"
 msgstr "最新文章"
@@ -348,10 +381,10 @@ msgstr "标题"
 #: .\sites\default\templates\registration\password_change_form.html.py:32
 #: .\sites\default\templates\registration\password_change_form.html.py:38
 #: .\sites\default\templates\registration\password_change_form.html.py:44
-#: .\sites\default\templates\registration\registration_form.html.py:49
-#: .\sites\default\templates\registration\registration_form.html.py:55
-#: .\sites\default\templates\registration\registration_form.html.py:61
-#: .\sites\default\templates\registration\registration_form.html.py:67
+#: .\sites\default\templates\registration\registration_form.html.py:50
+#: .\sites\default\templates\registration\registration_form.html.py:56
+#: .\sites\default\templates\registration\registration_form.html.py:62
+#: .\sites\default\templates\registration\registration_form.html.py:68
 msgid "Required"
 msgstr "必填"
 
@@ -443,13 +476,13 @@ msgid "Do you need to"
 msgstr "您是否需要"
 
 #: .\sites\default\templates\registration\login.html.py:51
-#: .\sites\default\templates\registration\registration_form.html.py:49
+#: .\sites\default\templates\registration\registration_form.html.py:50
 #: .\src\lbregistration\forms.py:17
 msgid "Username"
 msgstr "用户名"
 
 #: .\sites\default\templates\registration\login.html.py:57
-#: .\sites\default\templates\registration\registration_form.html.py:55
+#: .\sites\default\templates\registration\registration_form.html.py:56
 msgid "Password"
 msgstr "密码"
 
@@ -482,9 +515,13 @@ msgid "Minimum 6 characters. Case sensitive."
 msgstr "最少6个字符，大小写敏感。"
 
 #: .\sites\default\templates\registration\password_change_form.html.py:44
-#: .\sites\default\templates\registration\registration_form.html.py:61
+#: .\sites\default\templates\registration\registration_form.html.py:62
 msgid "Password (again)"
 msgstr "确认密码"
+
+#: .\sites\default\templates\registration\password_change_form.html.py:44
+msgid "Re-enter your password exactly as before."
+msgstr "重新输入前面的密码。"
 
 #: .\sites\default\templates\registration\password_change_form.html.py:50
 msgid "Change my password"
@@ -494,33 +531,37 @@ msgstr "修改密码"
 msgid "register successful"
 msgstr "注册成功"
 
-#: .\sites\default\templates\registration\registration_form.html.py:30
+#: .\sites\default\templates\registration\registration_form.html.py:31
 #, python-format
 msgid "Register at %(LBFORUM_TITLE)s"
 msgstr "登录到 %(LBFORUM_TITLE)s"
 
-#: .\sites\default\templates\registration\registration_form.html.py:40
+#: .\sites\default\templates\registration\registration_form.html.py:41
 msgid ""
 "All fields labelled <em>(Required)</em> must be completed before the form is "
 "submitted."
 msgstr "必须填写所有标记为 <em>(必填)</em> 的字段 "
 
-#: .\sites\default\templates\registration\registration_form.html.py:49
+#: .\sites\default\templates\registration\registration_form.html.py:50
 msgid "Between 2 and 25 characters."
 msgstr "2至25个字符之间"
 
-#: .\sites\default\templates\registration\registration_form.html.py:55
+#: .\sites\default\templates\registration\registration_form.html.py:56
 msgid "A current valid e-mail address."
 msgstr "一个有效的邮件地址"
 
-#: .\sites\default\templates\registration\registration_form.html.py:61
-#: .\sites\default\templates\registration\registration_form.html.py:67
+#: .\sites\default\templates\registration\registration_form.html.py:62
+#: .\sites\default\templates\registration\registration_form.html.py:68
 msgid "Re-enter your e-mail address exactly as before."
 msgstr "彩信输入您的邮件地址"
 
-#: .\sites\default\templates\registration\registration_form.html.py:67
+#: .\sites\default\templates\registration\registration_form.html.py:68
 msgid "e-mail"
 msgstr "电子邮件"
+
+#: .\src\account\forms.py:7 .\src\lbforum\forms.py:12
+msgid "Message"
+msgstr "正文"
 
 #: .\src\attachments\models.py:32
 msgid "Attachment"
@@ -545,10 +586,6 @@ msgstr "请先登录"
 #: .\src\lbforum\forms.py:10
 msgid "Subject"
 msgstr "标题"
-
-#: .\src\lbforum\forms.py:12
-msgid "Message"
-msgstr "正文"
 
 #: .\src\lbforum\models.py:26
 msgid "Category"
@@ -596,11 +633,15 @@ msgstr "主题"
 msgid "reply"
 msgstr "回复"
 
-#: .\src\lbforum\templatetags\lbforum.py:70
+#: .\src\lbforum\templates\lbforum\post_paginate.html.py:5
+msgid "Pages"
+msgstr ""
+
+#: .\src\lbforum\templatetags\lbforum.py:73
 msgid "Online"
 msgstr "在线"
 
-#: .\src\lbforum\templatetags\lbforum.py:73
+#: .\src\lbforum\templatetags\lbforum.py:76
 msgid "Offline"
 msgstr "离线"
 

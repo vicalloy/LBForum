@@ -5,7 +5,7 @@
 {% load avatar_tags %}
 
 {% block title %}
-	{{ topic.subject }} - {{ block.super }}
+	{{ LBFORUM_TITLE }} - {% blocktrans %}{{ view_user }}'s profile{% endblocktrans %}
 {% endblock %}
 
 {% block brd-page-id %}brd-profile-about{% endblock %}

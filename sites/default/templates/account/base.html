@@ -4,9 +4,7 @@
 {% load lbforum %}
 {% load avatar_tags %}
 
-{% block title %}
-	{{ topic.subject }} - {{ block.super }}
-{% endblock %}
+{% block title %} {{ LBFORUM_TITLE }} - {{ LBFORUM_SUB_TITLE }} {% endblock %}
 
 {% block content %}
 	<div id="replybox">
@@ -42,7 +40,14 @@
                             {% endif %}
                         </li>
                         {% if not view_only %}
-                        <li class="{% block main_menu_avatar_class %}{% endblock %}"><a href="{% url avatar_change %}"><span>{% trans "Avatar" %}</span></a></li>
+                        <li class="{% block main_menu_avatar_class %}{% endblock %}">
+                            <a href="{% url avatar_change %}"><span>{% trans "Avatar" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if not view_only %}
+                        <li class="{% block main_menu_sig_class %}{% endblock %}">
+                            <a href="{% url signature %}"><span>{% trans "Signature" %}</span></a>
+                        </li>
                         {% endif %}
 					</ul>
 				</div>
@@ -74,4 +79,5 @@
 			{% include 'lbforum/inc_copyright.html' %}
 		</div>
 	</div>
+    {% block content_footer %}{% endblock %}
 {% endblock %}

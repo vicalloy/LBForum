@@ -1599,7 +1599,7 @@ body {
     display: inline;
 }
 
-.brd .sig-content {
+.brd .sig-content, .brd .entry-attachments {
     padding-top: 1em;
 }
 

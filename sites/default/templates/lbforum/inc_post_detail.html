@@ -33,20 +33,26 @@
                 {% if post.edited_by %}
                 <p class="postedit"><em>Last edited by {{post.edited_by}} ({{post.updated_on}})</em></p>
                 {% endif %}
+                {% if post.attachments.all %}
+                <div class="entry-attachments">
+                    <b>{% trans "Attachments" %}:</b>
+                    <ul>
+                        {% for attachment in post.attachments.all %}
+                        <li>
+                            <a href="{{attachment.file.url}}" target="_blank">{{ attachment.org_filename }}</a>
+                            <span>{{ attachment.description }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                {% if post.posted_by.lbforum_profile.signature %}
+                <div class="sig-content"> 
+                    <span class="sig-line"><!-- --></span>
+                    {{ post.posted_by.lbforum_profile.signature|bbcode|safe }}
+                </div>
+                {% endif %}
             </div>
-            {% if post.attachments.all %}
-            <div class="entry-attachments">
-                <b>{% trans "Attachments" %}:</b>
-                <ul>
-                    {% for attachment in post.attachments.all %}
-                    <li>
-                        <a href="{{attachment.file.url}}" target="_blank">{{ attachment.org_filename }}</a>
-                        <span>{{ attachment.description }}</span>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
         </div>
     </div>
 
