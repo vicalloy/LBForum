@@ -7,7 +7,7 @@
 
 {% block extra_header %}
     <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}scripts/markitup/skins/markitup/style.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}scripts/markitup/bbcode/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}scripts/markitup/sets/bbcode/style.css" />
 {% endblock %}
 
 {% block content %}
@@ -141,14 +141,13 @@
 
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/jquery.min.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/markitup/jquery.markitup.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}scripts/markitup/bbcode/set.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}scripts/markitup/sets/bbcode/set.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/ajaxupload.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/simple_tpl.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/upload_attachment.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/common.js"></script>
     <script type="text/javascript">
         mySettings['previewParserPath']='{% url markitup_preview %}';
-        mySettings['previewAutoRefresh']=false;
 	    $("#id_message").markItUp(mySettings);
         url_attachments_ajax_change_descn = "{% url attachments_ajax_change_descn %}";
         url_attachments_ajax_delete = "{% url attachments_ajax_delete %}";

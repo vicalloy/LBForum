@@ -1867,9 +1867,14 @@ body {
     border-width:1px;
 }
 
+/* .markItUpEditor ext */
 .brd .txt-set .markItUpEditor{
     width:643px;
 }
+.markItUpHeader ul ul {
+    padding: 0px;
+}
+/* .markItUpEditor ext end.*/
 
 #brd-navlinks #brd-navlinks-left {
     float: left;
