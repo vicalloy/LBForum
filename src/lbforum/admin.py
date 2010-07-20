@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 from django.contrib import admin
+from django.utils.translation import ugettext_lazy as _
 
 from models import Category, Forum, Topic, Post, LBForumUserProfile
 
@@ -11,7 +12,7 @@ def update_forum_nums_topic_post(modeladmin, request, queryset):
         forum.num_topics = forum.count_nums_topic()
         forum.num_posts = forum.count_nums_post()
         forum.save()
-update_forum_nums_topic_post.short_description = "Update topic/post nums"
+update_forum_nums_topic_post.short_description = _("Update topic/post nums")
 
 class ForumAdmin(admin.ModelAdmin):
     list_display        = ('name', 'slug', 'category', 'num_topics', \
@@ -28,7 +29,7 @@ def update_topic_num_replies(modeladmin, request, queryset):
     for topic in queryset:
         topic.num_replies = topic.count_nums_replies()
         topic.save()
-update_topic_num_replies.short_description = "Update replies nums"
+update_topic_num_replies.short_description = _("Update replies nums")
 
 class TopicAdmin(admin.ModelAdmin):
     list_display        = ('subject', 'forum', 'posted_by', 'sticky', 'closed', \

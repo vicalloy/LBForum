@@ -140,6 +140,12 @@ class Post(models.Model):#can't edit...
             return _('Topic: %s') % self.topic.subject
         return _('Re: %s') % self.topic.subject
 
+    def file_attachments(self):
+        return self.attachments.filter(is_img = False)
+
+    def img_attachments(self):
+        return self.attachments.filter(is_img = True)
+
     def update_attachments(self, attachment_ids):
         self.attachments.clear()
         for attachment_id in attachment_ids:

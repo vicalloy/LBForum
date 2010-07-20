@@ -23,7 +23,7 @@
                     </span> 
                     <span class="crumb crumblast">
                         <span> &raquo; </span>
-                        {% blocktrans %}{{ user }}'s profile{% endblocktrans %}
+                        {% firstof view_user user %}{% trans "'s profile" %}
                     </span> 
                 </p>
             </div>
@@ -71,7 +71,7 @@
                     </span> 
                     <span class="crumb crumblast">
                         <span> &raquo; </span>
-                        {% blocktrans %}{{ user }}'s profile{% endblocktrans %}
+                        {% firstof view_user user %}{% trans "'s profile" %}
                     </span> 
                 </p>
 			</div>

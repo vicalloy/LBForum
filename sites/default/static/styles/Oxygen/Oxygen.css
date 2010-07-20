@@ -1599,8 +1599,12 @@ body {
     display: inline;
 }
 
-.brd .sig-content, .brd .entry-attachments {
+.brd .sig-content, .brd .entry-attachments, .brd .entry-attachments-img, .brd .entry-attachments-img-s {
     padding-top: 1em;
+}
+
+.brd .entry-attachments-img {
+    display: none;
 }
 
 .brd span.sig-line {
