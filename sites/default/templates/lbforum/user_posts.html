@@ -59,7 +59,7 @@
 										<a href="{% url user_profile post.posted_by.pk %}">{{post.posted_by.username}}</a>
 									</span>
 									<span class="post-link">
-										<a href="{{ post.get_absolute_url }}" title="Permanent link to this post" rel="bookmark" class="permalink">{{ post.created_on|timesince }}</a>
+										<a href="{{ post.get_absolute_url }}" title="Permanent link to this post" rel="bookmark" class="permalink">{{ post.created_on|lbtimesince }}</a>
 									</span>
 								</h3>
 								<h4 class="hn post-title">

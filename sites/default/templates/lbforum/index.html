@@ -1,6 +1,7 @@
 {% extends "lbforum/base.html" %}
 
 {% load i18n %}
+{% load lbforum %}
 
 {% block content %}
     <!-- brd-wrap begins -->
@@ -48,7 +49,7 @@
         </li>
         <li class="info-lastpost">
             <span class="label">{% trans "Last post" %}:</span>
-            <strong>{{ forum.get_last_post.update|timesince }}</strong> 
+            <strong>{{ forum.get_last_post.update|lbtimesince }}</strong> 
             <cite>by {{ forum.get_last_post.posted_by }}</cite>
         </li>
     </ul>

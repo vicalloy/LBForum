@@ -10,7 +10,7 @@
                 <a href="{% url user_profile post.posted_by.pk %}">{{post.posted_by.username}}</a>
             </span>
             <span class="post-link">
-                {{ post.created_on|timesince }}
+                {{ post.created_on|lbtimesince }}
             </span>
         </h3>
     </div>

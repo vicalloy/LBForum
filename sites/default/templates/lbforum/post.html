@@ -117,7 +117,7 @@
                             <div class="posthead">
                                 <h3 class="hn post-ident">
                                     <span class="post-num">1</span> <span class="post-byline"><span>{% trans "Post by" %} </span><strong>{{ first_post.posted_by.username }}</strong></span> 
-                                    <span class="post-link">{{ first_post.created_on|timesince }}</span>
+                                    <span class="post-link">{{ first_post.created_on|lbtimesince }}</span>
                                 </h3>
                             </div>
                             <div class="postbody">
