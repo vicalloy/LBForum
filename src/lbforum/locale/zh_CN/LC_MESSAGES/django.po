@@ -550,7 +550,7 @@ msgstr "注册成功"
 #: .\sites\default\templates\registration\registration_form.html.py:31
 #, python-format
 msgid "Register at %(LBFORUM_TITLE)s"
-msgstr "登录到 %(LBFORUM_TITLE)s"
+msgstr "注册到 %(LBFORUM_TITLE)s"
 
 #: .\sites\default\templates\registration\registration_form.html.py:41
 msgid "All fields labelled <em>(Required)</em> must be completed before the form is submitted."

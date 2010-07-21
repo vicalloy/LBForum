@@ -53,19 +53,19 @@
                             </div>
                             <div class="sf-set set2">
                                 <div class="sf-box text required">
-                                    <label for="fld2"><span>{% trans "Password" %}: <em>({% trans "Required" %})</em></span> <small>{% trans "A current valid e-mail address." %}</small></label><br>
+                                    <label for="fld2"><span>{% trans "Password" %}: <em>({% trans "Required" %})</em></span> <small>{% trans "Minimum 6 characters. Case sensitive." %}</small></label><br>
                                     <span class="fld-input">{{ form.password1}}</span>
                                 </div>
                             </div>
                             <div class="sf-set set3">
                                 <div class="sf-box text required">
-                                    <label for="fld3"><span>{% trans "Password (again)" %}:<em>({% trans "Required" %})</em></span> <small>{% trans "Re-enter your e-mail address exactly as before." %}</small></label><br>
+                                    <label for="fld3"><span>{% trans "Password (again)" %}:<em>({% trans "Required" %})</em></span> <small>{% trans "Re-enter your password exactly as before." %}</small></label><br>
                                     <span class="fld-input">{{ form.password2}}</span>
                                 </div>
                             </div>
                             <div class="sf-set set4">
                                 <div class="sf-box text required">
-                                    <label for="fld3"><span>{% trans "e-mail" %}:<em>({% trans "Required" %})</em></span> <small>{% trans "Re-enter your e-mail address exactly as before." %}</small></label><br>
+                                    <label for="fld3"><span>{% trans "e-mail" %}:<em>({% trans "Required" %})</em></span> <small>{% trans "A current valid e-mail address." %}</small></label><br>
                                     <span class="fld-input">{{ form.email}}</span>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
                     </span> 
                     <span class="crumb crumblast">
                         <span> &raquo; </span>
-                        {% trans "Login" %}
+                        {% trans "Register" %}
                     </span> 
                 </p>
             </div>
