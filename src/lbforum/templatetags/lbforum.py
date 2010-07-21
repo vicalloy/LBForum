@@ -81,17 +81,17 @@ def online(user):
 @register.filter
 def lbtimesince(d, now=None):
     # Convert datetime.date to datetime.datetime for comparison.
+    if not d:
+        return ''
     if not isinstance(d, datetime.datetime):
         d = datetime.datetime(d.year, d.month, d.day)
     if now and not isinstance(now, datetime.datetime):
         now = datetime.datetime(now.year, now.month, now.day)
-
     if not now:
         if d.tzinfo:
             now = datetime.datetime.now(LocalTimezone(d))
         else:
             now = datetime.datetime.now()
-
     # ignore microsecond part of 'd' since we removed it from 'now'
     delta = now - (d - datetime.timedelta(0, 0, d.microsecond))
     since = delta.days * 24 * 60 * 60 + delta.seconds
