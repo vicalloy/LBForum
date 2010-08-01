@@ -52,7 +52,7 @@ class Forum(models.Model):
         return self.topic_set.all().count()
 
     def count_nums_post(self):
-        return self.topic_set.all().aggregate(Sum('num_replies'))['num_replies__sum']
+        return self.topic_set.all().aggregate(Sum('num_replies'))['num_replies__sum'] or 0
 
     def get_last_post(self):
         if not self.last_post:
