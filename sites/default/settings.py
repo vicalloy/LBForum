@@ -119,7 +119,9 @@ LOGIN_URL = "%saccounts/login/" % LOGIN_REDIRECT_URL
 
 CTX_CONFIG = {
         'LBFORUM_TITLE': 'LBForum',
-        'LBFORUM_SUB_TITLE': 'A Clone of FluxBB',
+        'LBFORUM_SUB_TITLE': 'A forum engine written in Python using Django',
+        'FORUM_PAGE_SIZE': 50,
+        'TOPIC_PAGE_SIZE': 20,
         }
 
 ACCOUNT_ACTIVATION_DAYS = 7 

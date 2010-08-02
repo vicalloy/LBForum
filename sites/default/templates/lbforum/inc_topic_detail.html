@@ -18,7 +18,7 @@
 		<span class="item-starter">
 			Started {{ topic.created_on|date:"Y-m-d H:i" }} by <cite>{{ topic.posted_by }}</cite>
 		</span>
-		{% post_paginate topic.num_replies %}
+		{% post_paginate topic.num_replies TOPIC_PAGE_SIZE %}
 	</p>
   </div>
   

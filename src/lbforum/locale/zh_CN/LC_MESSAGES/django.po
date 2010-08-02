@@ -8,12 +8,18 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-07-21 17:28+0800\n"
-"PO-Revision-Date: 2010-07-20 22:13+0800\n"
+"PO-Revision-Date: 2010-08-02 19:54+0800\n"
 "Last-Translator: vicalloy <zbirder@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+msgid "next"
+msgstr "下一页"
+
+msgid "previous"
+msgstr "上一页"
 
 #: .\sites\default\templates\account\base.html.py:26
 #: .\sites\default\templates\account\base.html.py:74
@@ -259,7 +265,8 @@ msgid "Topic by"
 msgstr "作者"
 
 #: .\sites\default\templates\lbforum\inc_post_detail.html.py:38
-#: .\sites\default\templates\lbforum\post.html.py:95 .\src\lbforum\forms.py:14
+#: .\sites\default\templates\lbforum\post.html.py:95
+#: .\src\lbforum\forms.py:14
 msgid "Attachments"
 msgstr "附件"
 
@@ -445,9 +452,7 @@ msgid "You should automatically be forwarded to a new page in 5 second."
 msgstr "页面将在5秒后自动跳转。"
 
 #: .\sites\default\templates\lbforum\redirect.html.py:20
-msgid ""
-"Click here if you do not want to wait any longer (or if your browser does "
-"not automatically forward you)"
+msgid "Click here if you do not want to wait any longer (or if your browser does not automatically forward you)"
 msgstr "如果您想立即跳转（或你的浏览器无法自动跳转），请点击"
 
 #: .\sites\default\templates\lbforum\topic.html.py:31
@@ -559,9 +564,7 @@ msgid "Register at %(LBFORUM_TITLE)s"
 msgstr "注册到 %(LBFORUM_TITLE)s"
 
 #: .\sites\default\templates\registration\registration_form.html.py:41
-msgid ""
-"All fields labelled <em>(Required)</em> must be completed before the form is "
-"submitted."
+msgid "All fields labelled <em>(Required)</em> must be completed before the form is submitted."
 msgstr "必须填写所有标记为 <em>(必填)</em> 的字段 "
 
 #: .\sites\default\templates\registration\registration_form.html.py:50
@@ -576,7 +579,8 @@ msgstr "电子邮件"
 msgid "A current valid e-mail address."
 msgstr "一个有效的邮件地址"
 
-#: .\src\account\forms.py:7 .\src\lbforum\forms.py:12
+#: .\src\account\forms.py:7
+#: .\src\lbforum\forms.py:12
 msgid "Message"
 msgstr "正文"
 
@@ -588,11 +592,13 @@ msgstr "附件"
 msgid "no file"
 msgstr "文件不存在"
 
-#: .\src\attachments\views.py:32 .\src\attachments\views.py:48
+#: .\src\attachments\views.py:32
+#: .\src\attachments\views.py:48
 msgid "some errors..."
 msgstr "出错"
 
-#: .\src\attachments\views.py:36 .\src\attachments\views.py:52
+#: .\src\attachments\views.py:36
+#: .\src\attachments\views.py:52
 msgid "no right"
 msgstr "无权限"
 
@@ -620,7 +626,8 @@ msgstr "分类"
 msgid "Categories"
 msgstr "分类"
 
-#: .\src\lbforum\models.py:47 .\src\lbforum\models.py:74
+#: .\src\lbforum\models.py:47
+#: .\src\lbforum\models.py:74
 msgid "Forum"
 msgstr "版块"
 
@@ -628,7 +635,8 @@ msgstr "版块"
 msgid "Forums"
 msgstr "论坛"
 
-#: .\src\lbforum\models.py:96 .\src\lbforum\models.py:116
+#: .\src\lbforum\models.py:96
+#: .\src\lbforum\models.py:116
 msgid "Topic"
 msgstr "主题"
 
@@ -646,11 +654,13 @@ msgstr "主题: %s"
 msgid "Re: %s"
 msgstr ""
 
-#: .\src\lbforum\models.py:171 .\src\simpleavatar\models.py:56
+#: .\src\lbforum\models.py:171
+#: .\src\simpleavatar\models.py:56
 msgid "User"
 msgstr "用户"
 
-#: .\src\lbforum\views.py:54 .\src\lbforum\views.py:89
+#: .\src\lbforum\views.py:54
+#: .\src\lbforum\views.py:89
 msgid "topic"
 msgstr "主题"
 

@@ -26,11 +26,12 @@ Requirements
 * PIL_
 * django-pagination_
 * django-registration_
+* south
 
 .. _PIL: http://www.pythonware.com/products/pil/
 .. _django-pagination: http://code.google.com/p/django-pagination/
 .. _django-registration: http://bitbucket.org/ubernostrum/django-registration/
-
+.. _south: http://south.aeracode.org/
 
 How to install LBForum
 ======================

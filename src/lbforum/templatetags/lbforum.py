@@ -116,6 +116,10 @@ DEFAULT_WINDOW = getattr(settings, 'PAGINATION_DEFAULT_WINDOW', 4)
 
 @register.inclusion_tag('lbforum/post_paginate.html', takes_context=True)
 def post_paginate(context, count, paginate_by=DEFAULT_PAGINATION, window=DEFAULT_WINDOW):
+    if not isinstance(paginate_by, int):
+        paginate_by = template.Variable(paginate_by)
+    if not isinstance(window, int):
+        window = template.Variable(paginate_by)
     page_count = count / paginate_by
     if count % paginate_by > 0:
         page_count += 1

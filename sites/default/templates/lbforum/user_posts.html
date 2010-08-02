@@ -31,7 +31,7 @@
 			<div id="brd-main">
 				<div class="main-pagepost gen-content" id="brd-pagepost-top">
 					{% load pagination_tags %}
-					{% autopaginate posts 20 %}
+					{% autopaginate posts TOPIC_PAGE_SIZE %}
 					{% paginate %}
 					<p class="posting">
 					</p>

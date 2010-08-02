@@ -24,7 +24,7 @@
 <div id="brd-main">
 	<div class="main-pagepost gen-content" id="brd-pagepost-top">
 		{% load pagination_tags %}
-		{% autopaginate topics 50 %}
+		{% autopaginate topics FORUM_PAGE_SIZE %}
 		{% paginate %}
         <p class="posting">
             {% if user.is_authenticated %}
