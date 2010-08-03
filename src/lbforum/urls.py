@@ -1,4 +1,6 @@
 from django.conf.urls.defaults import *
+from django.views.generic.simple import direct_to_template
+
 from lbforum import views
 
 urlpatterns = patterns('',
@@ -11,6 +13,8 @@ urlpatterns = patterns('',
     url('^post/(?P<post_id>\d+)/edit/$', views.edit_post, name='lbforum_post_edit'),    
     url('^user/(?P<user_id>\d+)/topics/$', views.user_topics, name='lbforum_user_topics'),    
     url('^user/(?P<user_id>\d+)/posts/$', views.user_posts, name='lbforum_user_posts'),    
+
+    url(r'^lang.js$', direct_to_template, {'template': 'lbforum/lang.js'}, name='lbforum_lang_js'),
 
     url('^markitup_preview/$', views.markitup_preview, name='markitup_preview'),    
 )

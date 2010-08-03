@@ -91,26 +91,26 @@ function add_attachment(attachment) {
     bind();
 }
 
-$().ready(function() {
+$(function() {
 	var upload_btn = $("#upload_button");
 	new AjaxUpload('upload_button', {
 			action: url_attachments_ajax_upload,
 			responseType: 'json',
 			name: 'file',
 			onSubmit : function(file, ext){
-				upload_btn.text('Uploading');
+				upload_btn.text(lang_Uploading);
 				this.disable();
 				interval = window.setInterval(function(){
 					var text = upload_btn.text();
 					if (text.length < 13){
 						upload_btn.text(text + '.');					
 					} else {
-						upload_btn.text('Uploading');				
+						upload_btn.text(lang_Uploading);				
 					}
 				}, 200);
 			},
 			onComplete: function(file, response){
-				upload_btn.text('Upload');
+				upload_btn.text(lang_Upload);
 				window.clearInterval(interval);
 				this.enable();
 				if (response.valid) {

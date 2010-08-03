@@ -139,6 +139,7 @@
         </div>
     </div>
 
+    <script type="text/javascript" src="{% url lbforum_lang_js %}"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/jquery.min.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/markitup/jquery.markitup.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/markitup/sets/bbcode/set.js"></script>
@@ -152,7 +153,7 @@
         url_attachments_ajax_change_descn = "{% url attachments_ajax_change_descn %}";
         url_attachments_ajax_delete = "{% url attachments_ajax_delete %}";
         url_attachments_ajax_upload = "{% url attachments_ajax_upload %}";
-        $().ready(function() {
+        $(function() {
             {% for o in unpublished_attachments %}
             add_attachment({'id': '{{o.id}}','url': '{{o.file.url}}','fn': '{{o.org_filename}}','descn':'{{o.description}}'});
             {% endfor %}
