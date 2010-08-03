@@ -12,7 +12,7 @@ def update_forum_nums_topic_post(modeladmin, request, queryset):
         forum.num_topics = forum.count_nums_topic()
         forum.num_posts = forum.count_nums_post()
         if forum.num_topics:
-            forum.last_post = forum.topic_set.order_by('-sticky', '-last_reply_on')[0].last_post
+            forum.last_post = forum.topic_set.order_by('-last_reply_on')[0].last_post
         else:
             forum.last_post = ''
         forum.save()
