@@ -27,11 +27,13 @@ Requirements
 * django-pagination_
 * django-registration_
 * south_
+* postmarkup_
 
 .. _PIL: http://www.pythonware.com/products/pil/
 .. _django-pagination: http://code.google.com/p/django-pagination/
 .. _django-registration: http://bitbucket.org/ubernostrum/django-registration/
 .. _south: http://south.aeracode.org/
+.. _postmarkup: http://code.google.com/p/postmarkup/
 
 How to install LBForum
 ======================
