@@ -43,6 +43,7 @@ run on django dev server
 * use \scripts\create_lbforum_env.py to create lbforum  environment(create python virtualenv, install/unzip requirements libs)
 * use \scripts\lbforum_env.bat to start lbforum environment.
 * %mg% syncdb
+* %mg% migrate
 * %mg% runserver
 * LBForum Admin http://127.0.0.1:8000/admin/
 * LBForum http://127.0.0.1:8000/
