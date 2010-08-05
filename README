@@ -26,7 +26,7 @@ Requirements
 * PIL_
 * django-pagination_
 * django-registration_
-* south
+* south_
 
 .. _PIL: http://www.pythonware.com/products/pil/
 .. _django-pagination: http://code.google.com/p/django-pagination/
