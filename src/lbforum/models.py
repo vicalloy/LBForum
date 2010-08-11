@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import Sum
+from django.conf import settings
 
 from attachments.models import Attachment
 
@@ -164,7 +165,7 @@ class Post(models.Model):#can't edit...
     def get_absolute_url_ext(self):
         topic = self.topic
         post_idx = topic.post_set.filter(created_on__lte=self.created_on).count()
-        page = (post_idx - 1) / 20 + 1
+        page = (post_idx - 1) / settings.CTX_CONFIG['TOPIC_PAGE_SIZE'] + 1
         return '%s?page=%s#p%s' % (topic.get_absolute_url(), page, self.pk)
     
 class LBForumUserProfile(models.Model):
