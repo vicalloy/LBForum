@@ -24,6 +24,8 @@ def do_unzip():
 
 def do_easy_install():
     easy_install = os.path.join(LBFORUM_ENV, "Scripts/easy_install.exe")
+    if os.name == 'posix':
+        easy_install = os.path.join(LBFORUM_ENV, "bin/easy_install")
     print '== do_easy_install =='
     print run('%s %s' % (easy_install, 'http://code.djangoproject.com/svn/django/trunk/'))
     print run('%s %s' % (easy_install, 'PIL'))

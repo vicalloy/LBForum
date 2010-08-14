@@ -399,3 +399,11 @@ body {
 .brd .ajax-loader {
     background: url(ajax-loader.gif) center left no-repeat;
 }
+.brd .main-pagehead a:link, .brd .main-pagehead a:visited {
+    color: #ddd;
+    text-decoration: none;
+}
+.brd .main-pagehead a:hover, .brd .main-pagehead a:active, .brd .main-pagehead a:focus {
+    color: #fff;
+    text-decoration: underline;
+}

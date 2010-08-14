@@ -12,6 +12,10 @@
 	  {% if topic.sticky %}
 		<strong>({% trans "Sticky" %})</strong>
 	  {% endif %}		
+
+      {% if topic.level == 60 %}
+		<strong>({% trans "Distillate" %})</strong>
+	  {% endif %}		
 	  <a href="{% url lbforum_topic topic.id %}">{{topic.subject}} </a>   
 	</h3>
 	<p>

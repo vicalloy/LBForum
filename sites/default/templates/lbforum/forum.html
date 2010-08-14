@@ -3,7 +3,9 @@
 {% load i18n %}
 {% load lbforum %}
 
-{% block title %}{{  block.super }}{% endblock %}
+{% block title %}
+    {{ forum }} - {{ topic_type }} - {{ LBFORUM_TITLE }}
+{% endblock %}
 
 {% block content %}
 	<div id="actionbox">

@@ -1911,3 +1911,7 @@ body {
 	margin-left: 10px;
 	width: 120px;
 }
+
+.brd .main-pagehead span {
+    padding-left: 20px;
+}

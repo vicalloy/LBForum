@@ -37,8 +37,8 @@ update_topic_num_replies.short_description = _("Update replies nums")
 
 class TopicAdmin(admin.ModelAdmin):
     list_display        = ('subject', 'forum', 'posted_by', 'sticky', 'closed', \
-            'hidden', 'num_views', 'num_replies', 'created_on', 'updated_on', )
-    list_filter         = ('forum', 'sticky', 'closed', 'hidden',)
+            'hidden', 'level', 'num_views', 'num_replies', 'created_on', 'updated_on', )
+    list_filter         = ('forum', 'sticky', 'closed', 'hidden', 'level')
     search_fields       = ('subject', 'posted_by__username', )
     inlines             = (PostInline, )
     actions = [update_topic_num_replies]

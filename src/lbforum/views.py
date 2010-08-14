@@ -24,10 +24,14 @@ def index(request, template_name="lbforum/index.html"):
     ext_ctx.update(getOnlineInfos(True))
     return render_to_response(template_name, ext_ctx, RequestContext(request))
 
-def forum(request, forum_slug, template_name="lbforum/forum.html"):
+def forum(request, forum_slug, topic_type='', template_name="lbforum/forum.html"):
     forum = get_object_or_404(Forum, slug = forum_slug)
-    topics = forum.topic_set.order_by('-sticky', '-last_reply_on').select_related()
-    ext_ctx = {'forum': forum, 'topics': topics}
+    topics = forum.topic_set.all()
+    if topic_type == 'good':
+        topics = topics.filter(level__gt = 30)
+        topic_type = _("Distillate District")
+    topics = topics.order_by('-sticky', '-last_reply_on').select_related()
+    ext_ctx = {'forum': forum, 'topics': topics, 'topic_type': topic_type}
     return render_to_response(template_name, ext_ctx, RequestContext(request))
 
 def topic(request, topic_id, template_name="lbforum/topic.html"):

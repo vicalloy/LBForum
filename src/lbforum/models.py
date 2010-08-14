@@ -71,23 +71,32 @@ class TopicManager(models.Manager):
     def get_query_set(self):
         return super(TopicManager, self).get_query_set().filter(hidden = False)
     
+LEVEL_CHOICES = (
+        (30, _('Default')),
+        (60, _('Distillate')),
+        )
+
 class Topic(models.Model):
     forum = models.ForeignKey(Forum, verbose_name=_('Forum'))
     posted_by = models.ForeignKey(User)
     
     subject = models.CharField(max_length=999)
     num_views = models.IntegerField(default=0)
-    num_replies = models.PositiveSmallIntegerField(default = 0)#posts...
+    num_replies = models.PositiveSmallIntegerField(default=0)#posts...
     created_on = models.DateTimeField(auto_now_add=True)
-    updated_on = models.DateTimeField(blank = True, null = True)
-    last_reply_on = models.DateTimeField(auto_now_add = True)
+    updated_on = models.DateTimeField(blank=True, null=True)
+    last_reply_on = models.DateTimeField(auto_now_add=True)
+    last_post = models.CharField(max_length=255, blank=True)#pickle obj
 
-    last_post = models.CharField(max_length = 255, blank=True)#pickle obj
+    has_imgs = models.BooleanField(default=False)
+    has_attachments = models.BooleanField(default=False)
     
     #Moderation features
     closed = models.BooleanField(default=False)
     sticky = models.BooleanField(default=False)
     hidden = models.BooleanField(default=False)
+    level = models.SmallIntegerField(choices=LEVEL_CHOICES, default=30)
+    
     
     objects = TopicManager()
     
@@ -122,6 +131,9 @@ class Post(models.Model):#can't edit...
     #TODO add html/rst/..suport
     message = models.TextField()
     attachments = models.ManyToManyField(Attachment, blank = True)
+
+    has_imgs = models.BooleanField(default=False)
+    has_attachments = models.BooleanField(default=False)
     
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(blank = True, null = True)
@@ -147,6 +159,16 @@ class Post(models.Model):#can't edit...
     def img_attachments(self):
         return self.attachments.filter(is_img = True)
 
+    def update_attachments_flag(self):
+        self.has_attachments = self.file_attachments().count() > 0
+        self.has_imgs = self.img_attachments().count() > 0
+        self.save()
+        if self.topic_post:
+            t = self.topic
+            t.has_attachments = self.has_attachments
+            t.has_imgs = self.has_imgs
+            t.save()
+
     def update_attachments(self, attachment_ids):
         self.attachments.clear()
         for attachment_id in attachment_ids:
@@ -157,6 +179,7 @@ class Post(models.Model):#can't edit...
             attachment.activated = True
             attachment.save()
             self.attachments.add(attachment)
+        self.update_attachments_flag()
 
     @models.permalink
     def get_absolute_url(self):

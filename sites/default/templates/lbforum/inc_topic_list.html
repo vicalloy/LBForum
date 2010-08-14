@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load lbforum %}
 <div class="main-pagehead">
-    <h2 class="hn"><span><span class="item-info">{% trans "Topics" %} [ {% page_range_info page_obj %} ]</span></span></h2>
+    <h2 class="hn"><span><a href="{% url lbforum_forum_ext forum.slug 'good' %}">{% trans "Distillate District" %}</a></span> <span class="item-info">{% trans "Topics" %} [ {% page_range_info page_obj %} ]</span></h2>
 </div>
 <div class="main-subhead">
     <p class="item-summary forum-views">

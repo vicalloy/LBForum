@@ -33,7 +33,7 @@
                 {% if post.edited_by %}
                 <p class="postedit"><em>Last edited by {{post.edited_by}} ({{post.updated_on|date:"Y-m-d H:i"}})</em></p>
                 {% endif %}
-                {% if post.file_attachments %}
+                {% if post.has_attachments %}
                 <div class="entry-attachments">
                     <b>{% trans "Attachments" %}:</b>
                     <ul>
@@ -46,7 +46,7 @@
                     </ul>
                 </div>
                 {% endif %}
-                {% if post.img_attachments %}
+                {% if post.has_imgs %}
                 <div class="entry-attachments-img-s" id="entry-attachments-img-s{{ post.id }}">
                     <a href="#"><b>{% trans "Show Image Attachments" %}</b></a>
                 </div>
