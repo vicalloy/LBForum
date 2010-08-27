@@ -2,7 +2,6 @@
 # -*- coding: UTF-8 -*-
 import os, zipfile, subprocess
 
-
 def unzip(zip_file, obj_folder):
     z = zipfile.ZipFile(zip_file, 'r')
     for f in z.namelist():
@@ -13,8 +12,7 @@ def unzip(zip_file, obj_folder):
             file(new_filename, 'wb').write(z.read(f))
 
 def run(target, **args):
-    process = subprocess.Popen(target, shell=True, stdout=subprocess.PIPE, \
-            stderr=subprocess.STDOUT, **args)
+    process = subprocess.Popen(target, shell=True, **args)
     (stdoutput,erroutput) = process.communicate()
     return stdoutput
 

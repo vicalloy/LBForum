@@ -27,14 +27,14 @@ def do_easy_install():
     if os.name == 'posix':
         easy_install = os.path.join(LBFORUM_ENV, "bin/easy_install")
     print '== do_easy_install =='
-    print run('%s %s' % (easy_install, 'http://code.djangoproject.com/svn/django/trunk/'))
-    print run('%s %s' % (easy_install, 'PIL'))
-    print run('%s %s' % (easy_install, 'django-pagination'))
-    print run('%s %s' % (easy_install, 'South'))
+    run('%s %s' % (easy_install, 'http://code.djangoproject.com/svn/django/trunk/'))
+    run('%s %s' % (easy_install, 'PIL'))
+    run('%s %s' % (easy_install, 'django-pagination'))
+    run('%s %s' % (easy_install, 'South'))
 
 if __name__ == '__main__':
     do_unzip()
     virtualenv_py = os.path.join(TOOLS_FOLDER, "virtualenv.py")
     print '== create LBFORUM_ENV =='
-    print run('python %s %s' % (virtualenv_py, LBFORUM_ENV))
+    run('python %s %s' % (virtualenv_py, LBFORUM_ENV))
     do_easy_install()
