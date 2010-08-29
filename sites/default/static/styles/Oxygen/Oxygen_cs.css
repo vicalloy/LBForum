@@ -407,3 +407,7 @@ body {
     color: #fff;
     text-decoration: underline;
 }
+.brd .postbody .need-reply {
+    font-weight: bold;
+    color: red;
+}

@@ -29,38 +29,42 @@
         </div>
         <div class="post-entry">
             <div class="entry-content">
-                <p>{{ post.message|bbcode|safe }}</p>
-                {% if post.edited_by %}
-                <p class="postedit"><em>Last edited by {{post.edited_by}} ({{post.updated_on|date:"Y-m-d H:i"}})</em></p>
-                {% endif %}
-                {% if post.has_attachments %}
-                <div class="entry-attachments">
-                    <b>{% trans "Attachments" %}:</b>
-                    <ul>
-                        {% for attachment in post.file_attachments %}
-                        <li>
-                            <a href="{{attachment.file.url}}" target="_blank">{{ attachment.org_filename }}</a>
-                            <span>{{ attachment.description }}</span>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                {% endif %}
-                {% if post.has_imgs %}
-                <div class="entry-attachments-img-s" id="entry-attachments-img-s{{ post.id }}">
-                    <a href="#"><b>{% trans "Show Image Attachments" %}</b></a>
-                </div>
-                <div class="entry-attachments-img" id="entry-attachments-img-{{ post.id }}">
-                    <b>{% trans "Image Attachments" %}:</b>
-                    <ul>
-                        {% for attachment in post.img_attachments %}
-                        <li>
-                            <a href="{{attachment.file.url}}" target="_blank">{{ attachment.org_filename }}</a>
-                            <span>{{ attachment.description }}</span>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+                {% if not post.topic_post or has_replied %}
+                    <p>{{ post.message|bbcode|safe }}</p>
+                    {% if post.edited_by %}
+                    <p class="postedit"><em>Last edited by {{post.edited_by}} ({{post.updated_on|date:"Y-m-d H:i"}})</em></p>
+                    {% endif %}
+                    {% if post.has_attachments %}
+                    <div class="entry-attachments">
+                        <b>{% trans "Attachments" %}:</b>
+                        <ul>
+                            {% for attachment in post.file_attachments %}
+                            <li>
+                                <a href="{{attachment.file.url}}" target="_blank">{{ attachment.org_filename }}</a>
+                                <span>{{ attachment.description }}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    {% if post.has_imgs %}
+                    <div class="entry-attachments-img-s" id="entry-attachments-img-s{{ post.id }}">
+                        <a href="#"><b>{% trans "Show Image Attachments" %}</b></a>
+                    </div>
+                    <div class="entry-attachments-img" id="entry-attachments-img-{{ post.id }}">
+                        <b>{% trans "Image Attachments" %}:</b>
+                        <ul>
+                            {% for attachment in post.img_attachments %}
+                            <li>
+                                <a href="{{attachment.file.url}}" target="_blank">{{ attachment.org_filename }}</a>
+                                <span>{{ attachment.description }}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                {% else %}
+                <span class="need-reply">{% trans "to see the content, user must reply first." %}</span>
                 {% endif %}
                 {% if post.posted_by.lbforum_profile.signature %}
                 <div class="sig-content"> 

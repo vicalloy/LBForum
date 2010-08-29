@@ -90,6 +90,7 @@ class Topic(models.Model):
 
     has_imgs = models.BooleanField(default=False)
     has_attachments = models.BooleanField(default=False)
+    need_replay = models.BooleanField(default=False)
     
     #Moderation features
     closed = models.BooleanField(default=False)
@@ -120,7 +121,19 @@ class Topic(models.Model):
         if not self.last_post:
             return {}
         return pickle.loads(b64decode(self.last_post))
+
+    def has_replied(self, user):
+        if user.is_anonymous():
+            return False
+        if not self.need_replay:
+            return True
+        return Post.objects.filter(posted_by=user, topic=self).count()
         
+FORMAT_CHOICES = (
+        ('bbcode', _('BBCode')),
+        ('html', _('Html')),
+        )
+
 # Create Replies for a topic
 class Post(models.Model):#can't edit...
     topic = models.ForeignKey(Topic, verbose_name=_('Topic'))
@@ -128,7 +141,7 @@ class Post(models.Model):#can't edit...
     poster_ip = models.IPAddressField()
     topic_post = models.BooleanField(default=False)
     
-    #TODO add html/rst/..suport
+    format = models.CharField(max_length = 20, default='bbcode')#user name
     message = models.TextField()
     attachments = models.ManyToManyField(Attachment, blank = True)
 

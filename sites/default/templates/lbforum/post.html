@@ -76,21 +76,26 @@
                             <div class="txt-set {% if topic %}set1{% else %}set2{% endif %}">
                                 <div class="txt-box textarea required">
                                     <label for="id_message"><span>{% trans "Write message" %}: <em>({% trans "Required" %})</em></span></label>
-                                    <div class="txt-input"><span class="fld-input">
+                                    <div class="txt-input">
+                                        <span class="fld-input">
                                             {{form.message}}
                                         </span>
                                     </div>
                                 </div>
                             </div>
+                            {% if topic_post %}
                             <fieldset class="mf-set set3">
                                 <legend><span>{% trans "Optional post settings" %}:</span></legend>
                                 <div class="mf-box checkbox">
                                     <div class="mf-item">
-                                        <span class="fld-input"><input type="checkbox" value="1" name="hide_smilies" id="fld3"/></span> 
-                                        <label for="fld3">{% trans "Never show smilies as icons (images) for this post." %}</label>
+                                        <span class="fld-input">
+                                            {{form.need_replay}}
+                                        </span> 
+                                        <label for="fld3">{% trans "replay to see the post" %}</label>
                                     </div>
                                 </div>
                             </fieldset>
+                            {% endif %}
                             <fieldset class="mf-set set4">
                                 <legend><span>{% trans "Attachments" %}:</span></legend>
                                 <div class="mf-box checkbox">
@@ -147,9 +152,21 @@
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/simple_tpl.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/upload_attachment.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/common.js"></script>
+    <!--
+    <script type="text/javascript" src="{{ MEDIA_URL }}scripts/tiny_mce/tiny_mce.js"></script>
+    -->
     <script type="text/javascript">
         mySettings['previewParserPath']='{% url markitup_preview %}';
 	    $("#id_message").markItUp(mySettings);
+        function switchEditor(id, format) {
+            if ('html' == format) {
+                $('.bbcode').replaceWith($("#id_message"));
+                tinyMCE.execCommand('mceAddControl', false, id);
+            } else {
+                tinyMCE.execCommand('mceRemoveControl', false, id);
+	            $("#id_message").markItUp(mySettings);
+            }
+        }
         url_attachments_ajax_change_descn = "{% url attachments_ajax_change_descn %}";
         url_attachments_ajax_delete = "{% url attachments_ajax_delete %}";
         url_attachments_ajax_upload = "{% url attachments_ajax_upload %}";

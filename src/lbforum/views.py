@@ -40,6 +40,7 @@ def topic(request, topic_id, template_name="lbforum/topic.html"):
     topic.save()
     posts = topic.post_set.order_by('created_on').select_related()
     ext_ctx = {'topic': topic, 'posts': posts}
+    ext_ctx['has_replied'] = topic.has_replied(request.user)
     return render_to_response(template_name, ext_ctx, RequestContext(request))
 
 def post(request, post_id):
@@ -56,10 +57,12 @@ def new_post(request, forum_id=None, topic_id=None, form_class=NewPostForm, \
     qpost = topic = forum = first_post = preview = None
     show_subject_fld = True 
     post_type = _('topic')
+    topic_post = True
     if forum_id:
         forum = get_object_or_404(Forum, pk=forum_id)
     if topic_id:
         post_type = _('reply')
+        topic_post = False
         topic = get_object_or_404(Topic, pk=topic_id)
         forum = topic.forum
         first_post = topic.post_set.order_by('created_on').select_related()[0]
@@ -85,13 +88,16 @@ def new_post(request, forum_id=None, topic_id=None, form_class=NewPostForm, \
             'post_type':post_type, 'preview':preview, 'show_subject_fld': show_subject_fld}
     ext_ctx['unpublished_attachments'] = request.user.attachment_set.all().filter(activated=False)
     ext_ctx['is_new_post'] = True
+    ext_ctx['topic_post'] = topic_post
     return render_to_response(template_name, ext_ctx, RequestContext(request))
 
 @login_required
 def edit_post(request, post_id, form_class=EditPostForm, template_name="lbforum/post.html"):
     preview = None
-    post_type = _('topic')
+    post_type = _('reply')
     edit_post = get_object_or_404(Post, id=post_id)
+    if edit_post.topic_post:
+        post_type = _('topic')
     if request.method == "POST":
         form = form_class(instance=edit_post, user=request.user, data=request.POST)
         preview = request.POST.get('preview', '')
@@ -104,6 +110,7 @@ def edit_post(request, post_id, form_class=EditPostForm, template_name="lbforum/
             'forum':edit_post.topic.forum, 'post_type':post_type, 'preview':preview}
     ext_ctx['unpublished_attachments'] = request.user.attachment_set.all().filter(activated=False)
     ext_ctx['show_subject_fld'] = edit_post.topic_post
+    ext_ctx['topic_post'] = edit_post.topic_post
     return render_to_response(template_name, ext_ctx, RequestContext(request))
 
 @login_required

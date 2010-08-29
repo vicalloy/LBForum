@@ -31,7 +31,7 @@ _postmarkup.tag_factory.add_tag(LBQuoteTag, 'quote')
 def bbcode(s):
     if not s:
         return ""
-    return _postmarkup(s)
+    return _postmarkup(s, cosmetic_replace=False)
 #bbcode end
 
 @register.filter
