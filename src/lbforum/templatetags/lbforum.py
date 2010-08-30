@@ -3,7 +3,7 @@ from django.template.defaultfilters import timesince as _timesince
 from django.template.defaultfilters import date as _date
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_unicode
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, ugettext
 from django.conf import settings
 
 import datetime
@@ -12,6 +12,18 @@ from postmarkup import create, QuoteTag, PostMarkup
 register = template.Library()
 
 #bbcode
+class ReplyViewTag(QuoteTag):
+
+    def render_open(self, parser, node_index):
+        tag_data = parser.tag_data
+        if not tag_data.get('has_replied', False):
+            self.skip_contents(parser)
+            return '<p class="need-reply">%s</p>' % ugettext("to see the content, user must reply first.")
+        return ""
+
+    def render_close(self, parser, node_index):
+        return ""
+
 class LBQuoteTag(QuoteTag):
 
     def render_open(self, parser, node_index):
@@ -26,13 +38,22 @@ class LBQuoteTag(QuoteTag):
 
 _postmarkup = create(use_pygments=False, annotate_links=False)
 _postmarkup.tag_factory.add_tag(LBQuoteTag, 'quote')
+_postmarkup.tag_factory.add_tag(ReplyViewTag, 'replyview')
 
 @register.filter
 def bbcode(s):
     if not s:
         return ""
     return _postmarkup(s, cosmetic_replace=False)
+
+@register.simple_tag
+def bbcode(s, has_replied=False):
+    if not s:
+        return ""
+    tag_data = {'has_replied': has_replied}
+    return _postmarkup(s, cosmetic_replace=False, tag_data=tag_data)
 #bbcode end
+
 
 @register.filter
 def form_all_error(form):

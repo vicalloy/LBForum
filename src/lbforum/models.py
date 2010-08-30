@@ -90,7 +90,7 @@ class Topic(models.Model):
 
     has_imgs = models.BooleanField(default=False)
     has_attachments = models.BooleanField(default=False)
-    need_replay = models.BooleanField(default=False)
+    need_replay = models.BooleanField(default=False)#need_reply :-)
     
     #Moderation features
     closed = models.BooleanField(default=False)
@@ -125,8 +125,6 @@ class Topic(models.Model):
     def has_replied(self, user):
         if user.is_anonymous():
             return False
-        if not self.need_replay:
-            return True
         return Post.objects.filter(posted_by=user, topic=self).count()
         
 FORMAT_CHOICES = (
