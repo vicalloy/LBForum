@@ -20,7 +20,7 @@ acceptable_attributes = ['abbr', 'accept', 'accept-charset', 'accesskey',
   'multiple', 'name', 'nohref', 'noshade', 'nowrap', 'prompt', 
   'rel', 'rev', 'rows', 'rowspan', 'rules', 'scope', 'shape', 'size',
   'span', 'src', 'start', 'summary', 'tabindex', 'target', 'title', 'type',
-  'usemap', 'valign', 'value', 'vspace', 'width']
+  'usemap', 'valign', 'value', 'vspace', 'width', 'style']
 
 def clean_html( fragment ):
     soup = BeautifulSoup( fragment.strip() )
