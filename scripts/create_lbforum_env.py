@@ -15,7 +15,6 @@ def do_unzip():
     tools_zip_folder = os.path.join(TOOLS_FOLDER, "zip/")
     unzip(os.path.join(tools_zip_folder, "virtualenv.zip"), TOOLS_FOLDER)
     req_zip_folder = os.path.join(REQ_FOLDER, "zip/")
-    unzip(os.path.join(req_zip_folder, "postmarkup.zip"), REQ_FOLDER)
     unzip(os.path.join(req_zip_folder, "registration.zip"), REQ_FOLDER)
     static_scripts_folder = os.path.join(STATIC_FOLDER, 'scripts')
     unzip(os.path.join(req_zip_folder, "markitup.zip"), static_scripts_folder)
