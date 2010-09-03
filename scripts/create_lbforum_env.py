@@ -13,13 +13,9 @@ STATIC_FOLDER = os.path.join(LBFORUM_ROOT, "sites/default/static/")
 def do_unzip():
     print '== do_unzip =='
     tools_zip_folder = os.path.join(TOOLS_FOLDER, "zip/")
-    unzip(os.path.join(tools_zip_folder, "virtualenv.zip"), TOOLS_FOLDER)
     req_zip_folder = os.path.join(REQ_FOLDER, "zip/")
     unzip(os.path.join(req_zip_folder, "registration.zip"), REQ_FOLDER)
     static_scripts_folder = os.path.join(STATIC_FOLDER, 'scripts')
-    unzip(os.path.join(req_zip_folder, "markitup.zip"), static_scripts_folder)
-    unzip(os.path.join(req_zip_folder, "jquery.min.js.zip"), static_scripts_folder)
-    unzip(os.path.join(req_zip_folder, "ajaxupload.zip"), static_scripts_folder)
 
 def do_easy_install():
     easy_install = os.path.join(LBFORUM_ENV, "Scripts/easy_install.exe")

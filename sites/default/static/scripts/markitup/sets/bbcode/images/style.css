@@ -1,0 +1,54 @@
+/* -------------------------------------------------------------------
+// markItUp!
+// By Jay Salvat - http://markitup.jaysalvat.com/
+// ------------------------------------------------------------------*/
+.markItUp .colors a {
+	background-image:url(images/colors.png);
+}
+	.markItUp .colors ul {
+		width:81px;
+		padding:1px;	
+	}
+	.markItUp .colors  li {
+		border:1px solid white;
+		width:25px;	height:25px;
+		overflow:hidden;
+		padding:0px; margin:0px;
+		float:left;
+	}
+	.markItUp .colors ul a {
+		width:25px;	height:25px;
+	}
+	.markItUp .colors ul a:hover {
+		background-color:none;
+	}
+	
+	.markItUp .colors .col1-1 a {
+		background:yellow;
+	}
+	.markItUp .colors .col1-2 a {
+		background:orange;
+	}
+	.markItUp .colors .col1-3 a {
+		background:red;
+	}
+	
+	.markItUp .colors .col2-1 a {
+		background:blue;
+	}
+	.markItUp .colors .col2-2 a {
+		background:purple;
+	}
+	.markItUp .colors .col2-3 a {
+		background:green;
+	}
+	
+	.markItUp .colors .col3-1 a {
+		background:white;
+	}
+	.markItUp .colors .col3-2 a {
+		background:gray;
+	}
+	.markItUp .colors .col3-3 a {
+		background:black;
+	}

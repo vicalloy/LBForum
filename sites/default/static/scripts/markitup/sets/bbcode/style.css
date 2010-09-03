@@ -1,0 +1,98 @@
+/* -------------------------------------------------------------------
+// markItUp!
+// By Jay Salvat - http://markitup.jaysalvat.com/
+// ------------------------------------------------------------------*/
+.bbcode .markItUpButton1 a	{
+	background-image:url(images/bold.png);
+}
+.bbcode .markItUpButton2 a	{
+	background-image:url(images/italic.png);
+}
+.bbcode .markItUpButton3 a	{
+	background-image:url(images/underline.png);
+}
+
+.bbcode .markItUpButton4 a	{
+	background-image:url(images/picture.png);
+}
+.bbcode .markItUpButton5 a	{
+	background-image:url(images/link.png);
+}
+
+.bbcode .markItUpButton6 a {
+	background-image:url(images/colors.png);
+}
+.bbcode .markItUpButton6 ul {
+	width:81px;
+	padding:1px;	
+}
+.bbcode .markItUpButton6  li {
+	border:1px solid white;
+	width:25px;	height:25px;
+	overflow:hidden;
+	padding:0px; margin:0px;
+	float:left;
+}
+.bbcode .markItUpButton6 ul a {
+	width:25px;	height:25px;
+}
+.bbcode .markItUpButton6 ul a:hover {
+	background-color:none;
+}
+
+.bbcode .markItUpButton6 .col1-1 a {
+	background:yellow;
+}
+.bbcode .markItUpButton6 .col1-2 a {
+	background:orange;
+}
+.bbcode .markItUpButton6 .col1-3 a {
+	background:red;
+}
+
+.bbcode .markItUpButton6 .col2-1 a {
+	background:blue;
+}
+.bbcode .markItUpButton6 .col2-2 a {
+	background:purple;
+}
+.bbcode .markItUpButton6 .col2-3 a {
+	background:green;
+}
+
+.bbcode .markItUpButton6 .col3-1 a {
+	background:white;
+}
+.bbcode .markItUpButton6 .col3-2 a {
+	background:gray;
+}
+.bbcode .markItUpButton6 .col3-3 a {
+	background:black;
+}
+	
+.bbcode .markItUpButton7 a	{
+	background-image:url(images/fonts.png);
+}
+.bbcode .markItUpButton8 a	{
+	background-image:url(images/list-bullet.png);
+}
+.bbcode .markItUpButton9 a	{
+	background-image:url(images/list-numeric.png);
+}
+.bbcode .markItUpButton10 a	{
+	background-image:url(images/list-item.png);
+}
+
+.bbcode .markItUpButton11 a	{
+	background-image:url(images/quotes.png);
+}
+.bbcode .markItUpButton12 a	{
+	background-image:url(images/code.png);
+}
+	
+.bbcode .markItUpButton13 a	{
+	background-image:url(images/clean.png);
+}
+.bbcode .preview a {
+	background-image:url(images/preview.png);
+}
