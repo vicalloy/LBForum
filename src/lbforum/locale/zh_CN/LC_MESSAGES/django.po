@@ -18,8 +18,11 @@ msgstr ""
 msgid "to see the content, user must reply first."
 msgstr "只有在回复后才能查看"
 
-msgid "replay to see the post"
+msgid "reply to see the post"
 msgstr "回复可见"
+
+msgid "reply to see the attachments"
+msgstr "附件回复可见"
 
 msgid "Default"
 msgstr "默认"

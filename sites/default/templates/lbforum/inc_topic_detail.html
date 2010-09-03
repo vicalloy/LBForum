@@ -1,5 +1,6 @@
 {% load i18n %}
-{% load lbforum %}
+{% load lbforum_filters %}
+{% load lbforum_tags %}
 <div id="topic{{ topic.pk }}" class="main-item {% cycle 'odd' 'even' %} {% if forloop.first %}main-item1{% endif %} {{topic|topic_state}}">
   <span class="icon mm {{topic|topic_state}}"><!-- --></span>
   

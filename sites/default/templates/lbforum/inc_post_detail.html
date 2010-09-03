@@ -1,5 +1,6 @@
 {% load i18n %}
-{% load lbforum %}
+{% load lbforum_filters %}
+{% load lbforum_tags %}
 {% load avatar_tags %}
 <div class="post {% cycle 'odd' 'even' %} {{forloop|post_style}}" id="p{{post.pk}}">
     <div class="posthead">
@@ -29,7 +30,7 @@
         </div>
         <div class="post-entry">
             <div class="entry-content">
-                {% if not post.topic_post or not post.need_replay or has_replied %}
+                {% if not post.topic_post or not post.topic.need_reply or has_replied %}
                     <p>{% bbcode post.message has_replied %}</p>
                     {% if post.edited_by %}
                     <p class="postedit"><em>Last edited by {{post.edited_by}} ({{post.updated_on|date:"Y-m-d H:i"}})</em></p>
@@ -40,7 +41,11 @@
                         <ul>
                             {% for attachment in post.file_attachments %}
                             <li>
+                                {% if not post.topic_post or not post.topic.need_reply_attachments or has_replied %}
                                 <a href="{{attachment.file.url}}" target="_blank">{{ attachment.org_filename }}</a>
+                                {% else %}
+                                <a href="#" onclick="alert('{% trans "reply to see the attachments" %}');return false;">{{ attachment.org_filename }}</a>
+                                {% endif %}
                                 <span>{{ attachment.description }}</span>
                             </li>
                             {% endfor %}
@@ -56,7 +61,11 @@
                         <ul>
                             {% for attachment in post.img_attachments %}
                             <li>
+                                {% if not post.topic_post or not post.need_reply_attachments or has_replied %}
                                 <a href="{{attachment.file.url}}" target="_blank">{{ attachment.org_filename }}</a>
+                                {% else %}
+                                <a href="#" onclick="alert('{% trans "reply to see the attachments" %}');return false;">{{ attachment.org_filename }}</a>
+                                {% endif %}
                                 <span>{{ attachment.description }}</span>
                             </li>
                             {% endfor %}

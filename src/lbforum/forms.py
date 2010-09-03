@@ -4,7 +4,6 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from models import Topic, Post
-from attachments.models import Attachment
 
 class PostForm(forms.ModelForm):
     subject = forms.CharField(label=_('Subject'), \
@@ -14,10 +13,11 @@ class PostForm(forms.ModelForm):
     attachments = forms.Field(label=_('Attachments'), required=False,\
             widget=forms.SelectMultiple())
     need_replay = forms.BooleanField(label=_('Need Reply'), required=False)
+    need_reply_attachments = forms.BooleanField(label=_('Attachments Need Reply'), required=False)
 
     class Meta:
         model = Post
-        fields = ('message', 'need_replay')
+        fields = ('message')
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
@@ -26,13 +26,15 @@ class PostForm(forms.ModelForm):
         self.ip = kwargs.pop('ip', None)
         super(PostForm, self).__init__(*args, **kwargs)
 
-        self.fields.keyOrder = ['subject', 'message', 'attachments', 'need_replay']
+        self.fields.keyOrder = ['subject', 'message', 'attachments', 'need_replay', 
+                'need_reply_attachments']
 
 class EditPostForm(PostForm):
     def __init__(self, *args, **kwargs):
         super(EditPostForm, self).__init__(*args, **kwargs)
         self.initial['subject'] = self.instance.topic.subject
         self.initial['need_replay'] = self.instance.topic.need_replay
+        self.initial['need_reply_attachments'] = self.instance.topic.need_reply_attachments
         if not self.instance.topic_post:
             self.fields['subject'].required = False
 
@@ -47,6 +49,7 @@ class EditPostForm(PostForm):
         if post.topic_post:
             post.topic.subject = self.cleaned_data['subject']
             post.topic.need_replay = self.cleaned_data['need_replay']
+            post.topic.need_reply_attachments = self.cleaned_data['need_reply_attachments']
             post.topic.save()
         return post
 
@@ -62,7 +65,9 @@ class NewPostForm(PostForm):
             topic = Topic(forum=self.forum,
                           posted_by=self.user,
                           subject=self.cleaned_data['subject'],
-                          need_replay=self.cleaned_data['need_replay'])
+                          need_replay=self.cleaned_data['need_replay'],
+                          need_reply_attachments=self.cleaned_data['need_reply_attachments']
+                          )
             topic_post = True
             topic.save()
         else:

@@ -1,7 +1,8 @@
 {% extends 'account/base.html' %}
 
 {% load i18n %}
-{% load lbforum %}
+{% load lbforum_filters %}
+{% load lbforum_tags %}
 
 {% block title %}
 	{{ LBFORUM_TITLE }} - {% blocktrans %}{{ user }}'s profile{% endblocktrans %} : {% trans "Signature" %}

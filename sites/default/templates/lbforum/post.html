@@ -1,7 +1,8 @@
 {% extends "lbforum/base.html" %}
 
 {% load i18n %}
-{% load lbforum %}
+{% load lbforum_filters %}
+{% load lbforum_tags %}
 
 {% block title %}{{  block.super }}{% endblock %}
 
@@ -91,7 +92,13 @@
                                         <span class="fld-input">
                                             {{form.need_replay}}
                                         </span> 
-                                        <label for="fld3">{% trans "replay to see the post" %}</label>
+                                        <label for="fld3">{% trans "reply to see the post" %}</label>
+                                    </div>
+                                    <div class="mf-item">
+                                        <span class="fld-input">
+                                            {{form.need_reply_attachments}}
+                                        </span> 
+                                        <label for="fld3">{% trans "reply to see the attachments" %}</label>
                                     </div>
                                 </div>
                             </fieldset>
