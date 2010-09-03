@@ -89,8 +89,13 @@
 .bbcode .markItUpButton12 a	{
 	background-image:url(images/code.png);
 }
-	
-.bbcode .markItUpButton13 a	{
+.bbcode .html a {
+	background-image:url(images/html.png);
+}
+.bbcode .hide a	{
+	background-image:url(images/hide.gif);
+}
+.bbcode .clean a	{
 	background-image:url(images/clean.png);
 }
 .bbcode .preview a {
