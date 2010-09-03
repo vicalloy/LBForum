@@ -61,7 +61,7 @@
                         <ul>
                             {% for attachment in post.img_attachments %}
                             <li>
-                                {% if not post.topic_post or not post.need_reply_attachments or has_replied %}
+                                {% if not post.topic_post or not post.topic.need_reply_attachments or has_replied %}
                                 <a href="{{attachment.file.url}}" target="_blank">{{ attachment.org_filename }}</a>
                                 {% else %}
                                 <a href="#" onclick="alert('{% trans "reply to see the attachments" %}');return false;">{{ attachment.org_filename }}</a>
