@@ -41,11 +41,7 @@
                         <ul>
                             {% for attachment in post.file_attachments %}
                             <li>
-                                {% if not post.topic_post or not post.topic.need_reply_attachments or has_replied %}
-                                <a href="{{attachment.file.url}}" target="_blank">{{ attachment.org_filename }}</a>
-                                {% else %}
-                                <a href="#" onclick="alert('{% trans "reply to see the attachments" %}');return false;">{{ attachment.org_filename }}</a>
-                                {% endif %}
+                                {% show_attach attachment post has_replied hide_attachs %}
                                 <span>{{ attachment.description }}</span>
                             </li>
                             {% endfor %}
@@ -61,11 +57,7 @@
                         <ul>
                             {% for attachment in post.img_attachments %}
                             <li>
-                                {% if not post.topic_post or not post.topic.need_reply_attachments or has_replied %}
-                                <a href="{{attachment.file.url}}" target="_blank">{{ attachment.org_filename }}</a>
-                                {% else %}
-                                <a href="#" onclick="alert('{% trans "reply to see the attachments" %}');return false;">{{ attachment.org_filename }}</a>
-                                {% endif %}
+                                {% show_attach attachment post has_replied hide_attachs %}
                                 <span>{{ attachment.description }}</span>
                             </li>
                             {% endfor %}

@@ -72,11 +72,12 @@ function bind() {
 	$('#uploaded_files .nb .insert').click(function() {
 		var p = $(this).parent();
 		var f = p.children(".filename").attr("href");
+        var id = p.attr('id').replace('attachment_', '');
 		var fn = p.children(".filename").html();
 		if (isImg(f)) {
-			f = '[img]' + f + '[/img]';
+			f = '[attachimg]' + id + '[/attachimg]';
 		} else {
-			f = '[url=' + f + ']' + fn + '[/url]';
+			f = '[attach]' + id + '[/attach]';
 		}
 		$.markItUp( { replaceWith:f } );
 	});

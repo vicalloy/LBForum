@@ -2,18 +2,32 @@
 # -*- coding: UTF-8 -*-
 from django import template
 from django.conf import settings
+from django.utils.translation import ugettext as _
 
 from bbcode import _postmarkup
 
+from djangohelper.decorators import basictag
+
 register = template.Library()
 
-@register.simple_tag
-def bbcode(s, has_replied=False):
+@register.tag
+@basictag(takes_context=True)
+def bbcode(context, s, has_replied=False):
     if not s:
         return ""
     tag_data = {'has_replied': has_replied}
-    return _postmarkup(s, cosmetic_replace=False, tag_data=tag_data)
-#bbcode end
+    html = _postmarkup(s, cosmetic_replace=False, tag_data=tag_data)
+    context['hide_attachs'] = tag_data.get('hide_attachs', [])
+    return html
+
+@register.simple_tag
+def show_attach(attach, post, has_replied, hide_attachs):
+    if not has_replied and post.topic_post and \
+            (post.topic.need_reply_attachments or hide_attachs.count(u"%s" % attach.pk)):
+        return """<a href="#" onclick="alert('%s');return false;">%s</a>""" % \
+                (_("reply to see the attachments"), attach.org_filename)
+    else:
+        return """<a href="%s">%s</a>""" % (attach.file.url, attach.org_filename)
 
 @register.simple_tag
 def page_item_idx(page_obj, forloop):
