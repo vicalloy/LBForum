@@ -3,6 +3,8 @@
 from django.http import HttpResponse
 from django.utils import simplejson
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 
 def json_response(data):
     return HttpResponse(simplejson.dumps(data), mimetype='text/html')#application/json
@@ -21,6 +23,26 @@ def ajax_login_required(function=None, msg=_('please login first')):
     if function:
         return actual_decorator(function)
     return actual_decorator
+
+def flash_login_required(function):
+    """
+    Decorator to recognize a user  by its session.
+    Used for Flash-Uploading.
+    """
+
+    def decorator(request, *args, **kwargs):
+        try:
+            engine = __import__(settings.SESSION_ENGINE, {}, {}, [''])
+        except:
+            import django.contrib.sessions.backends.db
+            engine = django.contrib.sessions.backends.db
+        session_data = engine.SessionStore(request.POST.get('session_key'))
+        user_id = session_data['_auth_user_id']
+        # will return 404 if the session ID does not resolve to a valid user
+        request.user = get_object_or_404(User, pk=user_id)
+        # will return 404 if the session ID does not resolve to a valid user
+        return function(request, *args, **kwargs)
+    return decorator
 
 def request_get_next(request):
     """

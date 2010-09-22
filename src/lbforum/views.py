@@ -89,6 +89,7 @@ def new_post(request, forum_id=None, topic_id=None, form_class=NewPostForm, \
     ext_ctx['unpublished_attachments'] = request.user.attachment_set.all().filter(activated=False)
     ext_ctx['is_new_post'] = True
     ext_ctx['topic_post'] = topic_post
+    ext_ctx['session_key'] = request.session.session_key
     return render_to_response(template_name, ext_ctx, RequestContext(request))
 
 @login_required
@@ -111,6 +112,7 @@ def edit_post(request, post_id, form_class=EditPostForm, template_name="lbforum/
     ext_ctx['unpublished_attachments'] = request.user.attachment_set.all().filter(activated=False)
     ext_ctx['show_subject_fld'] = edit_post.topic_post
     ext_ctx['topic_post'] = edit_post.topic_post
+    ext_ctx['session_key'] = request.session.session_key
     return render_to_response(template_name, ext_ctx, RequestContext(request))
 
 @login_required

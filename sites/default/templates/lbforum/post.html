@@ -7,6 +7,7 @@
 {% block title %}{{  block.super }}{% endblock %}
 
 {% block extra_header %}
+	<link href="{{ MEDIA_URL }}scripts/jquery.uploadify/uploadify.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}scripts/markitup/skins/markitup/style.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}scripts/markitup/sets/bbcode/style.css" />
 {% endblock %}
@@ -107,7 +108,11 @@
                                 <legend><span>{% trans "Attachments" %}:</span></legend>
                                 <div class="mf-box checkbox">
 									<div class="mf-item">
-										<button id="upload_button">{% trans "Upload" %}</button>
+
+										<div id="uploadify" class="multi-file-upload">
+											<input id="fileInput" name="file" type="file" />
+										</div>
+
 										<ul id="uploaded_files">
 										</ul>
 									</div>
@@ -155,28 +160,22 @@
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/jquery.min.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/markitup/jquery.markitup.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/markitup/sets/bbcode/set.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}scripts/ajaxupload.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}scripts/json2.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}scripts/jquery.uploadify/swfobject.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}scripts/jquery.uploadify/jquery.uploadify.v2.1.0.min.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/simple_tpl.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/upload_attachment.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}scripts/common.js"></script>
-    <!--
-    <script type="text/javascript" src="{{ MEDIA_URL }}scripts/tiny_mce/tiny_mce.js"></script>
-    -->
     <script type="text/javascript">
         mySettings['previewParserPath']='{% url markitup_preview %}';
 	    $("#id_message").markItUp(mySettings);
-        function switchEditor(id, format) {
-            if ('html' == format) {
-                $('.bbcode').replaceWith($("#id_message"));
-                tinyMCE.execCommand('mceAddControl', false, id);
-            } else {
-                tinyMCE.execCommand('mceRemoveControl', false, id);
-	            $("#id_message").markItUp(mySettings);
-            }
-        }
         url_attachments_ajax_change_descn = "{% url attachments_ajax_change_descn %}";
         url_attachments_ajax_delete = "{% url attachments_ajax_delete %}";
         url_attachments_ajax_upload = "{% url attachments_ajax_upload %}";
+		ify_uploader = '{{ MEDIA_URL }}scripts/jquery.uploadify/uploadify.swf';
+		ify_script = '{% url attachments_uploadify %}';
+		ify_cancelImg = '{{ MEDIA_URL }}styles/Oxygen/cancel.png';
+		session_key = '{{ session_key }}';
         $(function() {
             {% for o in unpublished_attachments %}
             add_attachment({'id': '{{o.id}}','url': '{{o.file.url}}','fn': '{{o.org_filename}}','descn':'{{o.description}}'});
