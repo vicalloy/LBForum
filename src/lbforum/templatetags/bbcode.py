@@ -5,7 +5,7 @@ import re
 from django import template
 from django.utils.translation import ugettext
 
-from postmarkup import create, QuoteTag, TagBase, PostMarkup
+from postmarkup import create, QuoteTag, TagBase, PostMarkup, strip_bbcode
 
 from attachments.models import Attachment
 
@@ -79,6 +79,7 @@ class HTMLTag(TagBase):
 
     def render_open(self, parser, node_index):
         contents = self.get_contents(parser)
+        contents = strip_bbcode(contents)
         self.skip_contents(parser)
         return clean_html(contents)
 

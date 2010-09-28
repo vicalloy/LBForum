@@ -124,7 +124,7 @@ CTX_CONFIG = {
         'TOPIC_PAGE_SIZE': 20,
         }
 
-BBCODE_AUTO_URLS = False
+BBCODE_AUTO_URLS = True
 #HTML safe filter
 HTML_SAFE_TAGS = ['embed']
 HTML_SAFE_ATTRS = ['allowscriptaccess', 'allowfullscreen', 'wmode']
