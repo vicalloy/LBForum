@@ -16,7 +16,8 @@ def bbcode(context, s, has_replied=False):
     if not s:
         return ""
     tag_data = {'has_replied': has_replied}
-    html = _postmarkup(s, cosmetic_replace=False, tag_data=tag_data)
+    html = _postmarkup(s, cosmetic_replace=False, tag_data=tag_data, 
+            auto_urls=getattr(settings, 'BBCODE_AUTO_URLS', True))
     context['hide_attachs'] = tag_data.get('hide_attachs', [])
     return html
 

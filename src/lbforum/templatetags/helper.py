@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 from BeautifulSoup import BeautifulSoup, NavigableString
+from django.conf import settings
 
 acceptable_elements = ['a', 'abbr', 'acronym', 'address', 'area', 'b', 'big',
       'blockquote', 'br', 'button', 'caption', 'center', 'cite', 'code', 'col',
@@ -21,6 +22,11 @@ acceptable_attributes = ['abbr', 'accept', 'accept-charset', 'accesskey',
   'rel', 'rev', 'rows', 'rowspan', 'rules', 'scope', 'shape', 'size',
   'span', 'src', 'start', 'summary', 'tabindex', 'target', 'title', 'type',
   'usemap', 'valign', 'value', 'vspace', 'width', 'style']
+
+acceptable_elements.extend(getattr(settings, 'HTML_SAFE_TAGS', []))
+acceptable_attributes.extend(getattr(settings, 'HTML_SAFE_ATTRS', []))
+acceptable_elements = set(acceptable_elements) - set(getattr(settings, 'HTML_UNSAFE_TAGS', []))
+acceptable_attributes = set(acceptable_attributes) - set(getattr(settings, 'HTML_UNSAFE_ATTRS', []))
 
 def clean_html( fragment ):
     soup = BeautifulSoup( fragment.strip() )

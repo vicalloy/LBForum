@@ -19,7 +19,8 @@ register = template.Library()
 def bbcode(s):
     if not s:
         return ""
-    return _postmarkup(s, cosmetic_replace=False)
+    return _postmarkup(s, cosmetic_replace=False, 
+            auto_urls=getattr(settings, 'BBCODE_AUTO_URLS', True))
 
 @register.filter
 def form_all_error(form):
