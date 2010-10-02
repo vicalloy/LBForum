@@ -17,7 +17,7 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('message')
+        fields = ('message',)
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
