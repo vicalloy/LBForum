@@ -414,5 +414,5 @@ body {
 
 .brd .main-pagehead a.selected {
     font-weight: bold;
-    color: #E28822;
+	text-decoration: underline;
 }
