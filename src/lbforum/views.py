@@ -28,15 +28,14 @@ def forum(request, forum_slug, topic_type='', topic_type2='',
         template_name="lbforum/forum.html"):
     forum = get_object_or_404(Forum, slug = forum_slug)
     topics = forum.topic_set.all()
+    if topic_type and topic_type != 'good':
+        topic_type2 = topic_type
+        topic_type = ''
     if topic_type == 'good':
         topics = topics.filter(level__gt = 30)
         #topic_type = _("Distillate District")
-    elif topic_type:
-        topics = topics.filter(topic_type__slug = topic_type)
-        topic_type2 = topic_type
-        topic_type = ''
     if topic_type2:
-        topics = topics.filter(topic_type__slug = topic_type)
+        topics = topics.filter(topic_type__slug = topic_type2)
     topics = topics.order_by('-sticky', '-last_reply_on').select_related()
     ext_ctx = {'forum': forum, 'topics': topics, 'topic_type': topic_type,
             'topic_type2': topic_type2}
