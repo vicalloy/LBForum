@@ -17,7 +17,10 @@
       {% if topic.level == 60 %}
 		<strong>({% trans "Distillate" %})</strong>
 	  {% endif %}		
-	  <a href="{% url lbforum_topic topic.id %}">{{topic.subject}} </a>   
+      {% if topic.topic_type %}
+        [{{ topic.topic_type }}]
+	  {% endif %}		
+      <a href="{% url lbforum_topic topic.id %}">{{ topic.subject }} </a>   
 	</h3>
 	<p>
 		<span class="item-starter">

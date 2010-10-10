@@ -33,7 +33,7 @@ class Category(models.Model):
     
 class Forum(models.Model):
     name = models.CharField(max_length = 100)
-    slug = models.SlugField(max_length = 110)#unic...
+    slug = models.SlugField(max_length = 110)
     description = models.TextField(default = '')
     ordering = models.PositiveIntegerField(default = 1)
     category = models.ForeignKey(Category)
@@ -66,6 +66,15 @@ class Forum(models.Model):
 
     def __unicode__(self):
         return self.name 
+
+class TopicType(models.Model):
+    forum = models.ForeignKey(Forum, verbose_name=_('Forum'))
+    name = models.CharField(max_length = 100)
+    slug = models.SlugField(max_length = 100)
+    description = models.TextField(blank=True, default = '')
+
+    def __unicode__(self):
+        return self.name 
     
 class TopicManager(models.Manager):
     def get_query_set(self):
@@ -78,6 +87,8 @@ LEVEL_CHOICES = (
 
 class Topic(models.Model):
     forum = models.ForeignKey(Forum, verbose_name=_('Forum'))
+    topic_type = models.ForeignKey(TopicType, verbose_name=_('Topic Type'), 
+            blank=True, null=True)
     posted_by = models.ForeignKey(User)
     
     subject = models.CharField(max_length=999)
@@ -252,3 +263,6 @@ post_save.connect(create_user_profile, sender = User)
 post_save.connect(update_topic_on_post, sender = Post)
 post_save.connect(update_forum_on_post, sender = Post)
 post_save.connect(update_forum_on_topic, sender = Topic)
+
+#TODO performance optimization
+#Add txt topic_type for topic

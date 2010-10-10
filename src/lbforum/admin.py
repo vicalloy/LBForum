@@ -3,7 +3,7 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from models import Category, Forum, Topic, Post, LBForumUserProfile
+from models import Category, Forum, TopicType, Topic, Post, LBForumUserProfile
 
 admin.site.register(Category)
 
@@ -26,6 +26,12 @@ class ForumAdmin(admin.ModelAdmin):
 
 admin.site.register(Forum, ForumAdmin)
 
+class TopicTypeAdmin(admin.ModelAdmin):
+    list_display        = ('forum', 'name', 'slug', 'description', )
+    list_filter         = ('forum',)
+
+admin.site.register(TopicType, TopicTypeAdmin)
+
 class PostInline(admin.TabularInline):
     model = Post
 
@@ -36,7 +42,7 @@ def update_topic_num_replies(modeladmin, request, queryset):
 update_topic_num_replies.short_description = _("Update replies nums")
 
 class TopicAdmin(admin.ModelAdmin):
-    list_display        = ('subject', 'forum', 'posted_by', 'sticky', 'closed', \
+    list_display        = ('subject', 'forum', 'topic_type', 'posted_by', 'sticky', 'closed', \
             'hidden', 'level', 'num_views', 'num_replies', 'created_on', 'updated_on', )
     list_filter         = ('forum', 'sticky', 'closed', 'hidden', 'level')
     search_fields       = ('subject', 'posted_by__username', )

@@ -3,6 +3,7 @@
 from django import template
 from django.conf import settings
 from django.utils.translation import ugettext as _
+from django.core.urlresolvers import reverse
 
 from bbcode import _postmarkup
 
@@ -20,6 +21,14 @@ def bbcode(context, s, has_replied=False):
             auto_urls=getattr(settings, 'BBCODE_AUTO_URLS', True))
     context['hide_attachs'] = tag_data.get('hide_attachs', [])
     return html
+
+@register.simple_tag
+def forum_url(forum, topic_type, topic_type2):
+    if topic_type and topic_type2:
+        return reverse('lbforum_forum_ext2', args=[forum.slug, topic_type, topic_type2])
+    if topic_type or topic_type2:
+        return reverse('lbforum_forum_ext', args=[forum.slug, topic_type or topic_type2])
+    return reverse('lbforum_forum', args=[forum.slug])
 
 @register.simple_tag
 def show_attach(attach, post, has_replied, hide_attachs):

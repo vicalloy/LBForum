@@ -411,3 +411,8 @@ body {
     font-weight: bold;
     color: red;
 }
+
+.brd .main-pagehead a.selected {
+    font-weight: bold;
+    color: #E28822;
+}

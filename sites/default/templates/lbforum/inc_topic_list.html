@@ -3,9 +3,25 @@
 {% load lbforum_tags %}
 <div class="main-pagehead">
     <h2 class="hn">
-		{% if forum %}
-		<span><a href="{% url lbforum_forum_ext forum.slug 'good' %}">{% trans "Distillate District" %}</a></span>
-		{% endif %}
+        {% if forum %}
+        {% if forum.topictype_set.all.count %}
+        <span><a class="{% if not topic_type2 %}selected{% endif %}"
+                    href="{% forum_url forum topic_type "" %}">{% trans "All" %}</a></span>
+        {% for tp in forum.topictype_set.all %}     
+        <span><a class="{% if topic_type2 == tp.slug %}selected{% endif %}"
+                    href="{% forum_url forum topic_type tp.slug %}">{{ tp }}</a></span>
+        {% endfor %}
+        <span>|</span>
+        {% endif %}
+
+        <span>
+            <a class="{% if topic_type != "good" %}selected{% endif %}" 
+                    href="{% forum_url forum "" topic_type2 %}">{% trans "All" %}</a>
+        </span>
+        <span><a class="{% if topic_type == "good" %}selected{% endif %}" 
+                    href="{% forum_url forum "good" topic_type2 %}">{% trans "Distillate District" %}</a></span>
+        <span>|</span>
+        {% endif %}
 		<span class="item-info">{% trans "Topics" %} [ {% page_range_info page_obj %} ]</span></h2>
 </div>
 <div class="main-subhead">
