@@ -90,7 +90,7 @@ def new_post(request, forum_id=None, topic_id=None, form_class=NewPostForm, \
         if qid:
             qpost = get_object_or_404(Post, id=qid)
             initial['message'] = "[quote=%s]%s[/quote]" % (qpost.posted_by.username, qpost.message)
-        form = form_class(initial=initial)
+        form = form_class(initial=initial, forum=forum)
     ext_ctx = {'forum':forum, 'form':form, 'topic':topic, 'first_post':first_post, \
             'post_type':post_type, 'preview':preview, 'show_subject_fld': show_subject_fld}
     ext_ctx['unpublished_attachments'] = request.user.attachment_set.all().filter(activated=False)

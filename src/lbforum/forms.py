@@ -3,9 +3,10 @@ from datetime import datetime
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from models import Topic, Post
+from models import Topic, Post, TopicType
 
 class PostForm(forms.ModelForm):
+    topic_type = forms.ChoiceField(label=_('Topic Type'), required=False)
     subject = forms.CharField(label=_('Subject'), \
             widget=forms.TextInput(attrs={'size':'80'}))
     message = forms.CharField(label=_('Message'), \
@@ -25,8 +26,12 @@ class PostForm(forms.ModelForm):
         self.forum = kwargs.pop('forum', None)
         self.ip = kwargs.pop('ip', None)
         super(PostForm, self).__init__(*args, **kwargs)
-
-        self.fields.keyOrder = ['subject', 'message', 'attachments', 'need_replay', 
+        if self.instance.id:
+            self.forum = self.instance.topic.forum
+        topic_types = self.forum.topictype_set.all()
+        self.fields['topic_type'].choices = [(tp.id, tp.name) for tp in topic_types]
+        self.fields['topic_type'].choices.insert(0, (('', '--------')))
+        self.fields.keyOrder = ['topic_type', 'subject', 'message', 'attachments', 'need_replay', 
                 'need_reply_attachments']
 
 class EditPostForm(PostForm):
@@ -35,6 +40,8 @@ class EditPostForm(PostForm):
         self.initial['subject'] = self.instance.topic.subject
         self.initial['need_replay'] = self.instance.topic.need_replay
         self.initial['need_reply_attachments'] = self.instance.topic.need_reply_attachments
+        if self.instance.topic.topic_type:
+            self.initial['topic_type'] = self.instance.topic.topic_type.id
         if not self.instance.topic_post:
             self.fields['subject'].required = False
 
@@ -50,6 +57,12 @@ class EditPostForm(PostForm):
             post.topic.subject = self.cleaned_data['subject']
             post.topic.need_replay = self.cleaned_data['need_replay']
             post.topic.need_reply_attachments = self.cleaned_data['need_reply_attachments']
+            topic_type = self.cleaned_data['topic_type']
+            if topic_type:
+                topic_type = TopicType.objects.get(id=topic_type)
+            else:
+                topic_type = None
+            post.topic.topic_type = topic_type
             post.topic.save()
         return post
 
@@ -62,11 +75,17 @@ class NewPostForm(PostForm):
     def save(self):
         topic_post = False
         if not self.topic:
+            topic_type = self.cleaned_data['topic_type']
+            if topic_type:
+                topic_type = TopicType.objects.get(id=topic_type)
+            else:
+                topic_type = None
             topic = Topic(forum=self.forum,
                           posted_by=self.user,
                           subject=self.cleaned_data['subject'],
                           need_replay=self.cleaned_data['need_replay'],
-                          need_reply_attachments=self.cleaned_data['need_reply_attachments']
+                          need_reply_attachments=self.cleaned_data['need_reply_attachments'],
+                          topic_type=topic_type,
                           )
             topic_post = True
             topic.save()

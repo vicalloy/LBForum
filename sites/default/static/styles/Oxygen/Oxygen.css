@@ -1918,3 +1918,6 @@ body {
 #uploadify {
     margin-left:10px;
 }
+.brd .text .fld-input input#id_subject {
+    width: 80%;
+}
