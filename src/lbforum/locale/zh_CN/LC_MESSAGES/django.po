@@ -8,12 +8,24 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-07-21 17:28+0800\n"
-"PO-Revision-Date: 2010-09-03 18:16+0800\n"
+"PO-Revision-Date: 2010-10-17 18:02+0800\n"
 "Last-Translator: vicalloy <zbirder@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+msgid "Order By"
+msgstr "排序方式"
+
+msgid "Last Reply"
+msgstr "最新回复"
+
+msgid "Last Topic"
+msgstr "最新主题"
+
+msgid "Topic Type"
+msgstr "主题类别"
 
 msgid "to see the content, user must reply first."
 msgstr "只有在回复后才能查看"

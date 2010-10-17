@@ -1,9 +1,20 @@
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
 from datetime import datetime
 
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from models import Topic, Post, TopicType
+
+FORUM_ORDER_BY_CHOICES = (
+        ('-last_reply_on', _('Last Reply')), 
+        ('-created_on', _('Last Topic')), 
+        )
+
+class ForumForm(forms.Form):
+    order_by = forms.ChoiceField(label=_('Order By'), choices=FORUM_ORDER_BY_CHOICES,
+            required=False)
 
 class PostForm(forms.ModelForm):
     topic_type = forms.ChoiceField(label=_('Topic Type'), required=False)

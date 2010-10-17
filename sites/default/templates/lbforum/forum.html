@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load lbforum_filters %}
 {% load lbforum_tags %}
+{% load djangohelper_tags %}
 
 {% block title %}
     {{ forum }} - {{ topic_type }} - {{ topic_type2 }} - {{ LBFORUM_TITLE }}
@@ -60,7 +61,12 @@
 </div>
 <!-- brd-main ends -->
 
+
 <div class="crumbs gen-content" id="brd-crumbs-end">
+    <p id="forum_order_by">
+        {% trans "Order By"%}:
+        {{ form.order_by }}
+    </p>
     {% include 'lbforum/inc_forum_brd_crumbs.html' %}
 </div>
 
@@ -70,4 +76,11 @@
 
   </div>
 </div>
+
+<script type="text/javascript" src="{{ MEDIA_URL }}scripts/jquery.min.js"></script>
+<script type="text/javascript">
+    $('#id_order_by').change(function () {
+        window.location.href="?order_by=" + $('#id_order_by').val() + "{% getvars request 'order_by'%}";
+    })
+</script>
 {% endblock %}

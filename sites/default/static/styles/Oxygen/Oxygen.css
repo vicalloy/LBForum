@@ -1921,3 +1921,7 @@ body {
 .brd .text .fld-input input#id_subject {
     width: 80%;
 }
+
+.brd #forum_order_by {
+    float:right;
+}

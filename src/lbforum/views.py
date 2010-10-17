@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 
 from onlineuser.models import getOnlineInfos
-from forms import EditPostForm, NewPostForm
+from forms import EditPostForm, NewPostForm, ForumForm
 from models import Topic, Category, Forum, Post
 
 def index(request, template_name="lbforum/index.html"):
@@ -36,9 +36,11 @@ def forum(request, forum_slug, topic_type='', topic_type2='',
         #topic_type = _("Distillate District")
     if topic_type2:
         topics = topics.filter(topic_type__slug = topic_type2)
-    topics = topics.order_by('-sticky', '-last_reply_on').select_related()
-    ext_ctx = {'forum': forum, 'topics': topics, 'topic_type': topic_type,
-            'topic_type2': topic_type2}
+    order_by = request.GET.get('order_by', '-last_reply_on')
+    topics = topics.order_by('-sticky', order_by).select_related()
+    form = ForumForm(request.GET)
+    ext_ctx = {'form': form, 'forum': forum, 'topics': topics, 
+            'topic_type': topic_type, 'topic_type2': topic_type2}
     return render_to_response(template_name, ext_ctx, RequestContext(request))
 
 def topic(request, topic_id, template_name="lbforum/topic.html"):
