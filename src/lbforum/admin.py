@@ -41,13 +41,36 @@ def update_topic_num_replies(modeladmin, request, queryset):
         topic.save()
 update_topic_num_replies.short_description = _("Update replies nums")
 
+def update_topic_attr_as_not(modeladmin, request, queryset, attr):
+    for topic in queryset:
+        if attr == 'sticky':
+            topic.sticky = not topic.sticky
+        elif attr == 'closed':
+            topic.closed = not topic.closed
+        elif attr == 'hidden':
+            topic.hidden = not topic.hidden
+        topic.save()
+
+def sticky_unsticky_topic(modeladmin, request, queryset):
+    update_topic_attr_as_not(modeladmin, request, queryset, 'sticky')
+sticky_unsticky_topic.short_description = _("sticky/unsticky topics")
+
+def close_unclose_topic(modeladmin, request, queryset):
+    update_topic_attr_as_not(modeladmin, request, queryset, 'closed')
+close_unclose_topic.short_description = _("close/unclose topics")
+
+def hide_unhide_topic(modeladmin, request, queryset):
+    update_topic_attr_as_not(modeladmin, request, queryset, 'hidden')
+hide_unhide_topic.short_description = _("hide/unhide topics")
+
 class TopicAdmin(admin.ModelAdmin):
-    list_display        = ('subject', 'forum', 'topic_type', 'posted_by', 'sticky', 'closed', \
+    list_display        = ('subject', 'forum', 'topic_type', 'posted_by', 'sticky', 'closed',
             'hidden', 'level', 'num_views', 'num_replies', 'created_on', 'updated_on', )
     list_filter         = ('forum', 'sticky', 'closed', 'hidden', 'level')
     search_fields       = ('subject', 'posted_by__username', )
-    inlines             = (PostInline, )
-    actions = [update_topic_num_replies]
+    #inlines             = (PostInline, )
+    actions = [update_topic_num_replies, sticky_unsticky_topic, close_unclose_topic, 
+            hide_unhide_topic]
 
 admin.site.register(Topic, TopicAdmin)
 

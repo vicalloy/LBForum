@@ -8,12 +8,21 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-07-21 17:28+0800\n"
-"PO-Revision-Date: 2010-10-17 18:02+0800\n"
+"PO-Revision-Date: 2010-10-20 22:33+0800\n"
 "Last-Translator: vicalloy <zbirder@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+msgid "sticky/unsticky topics"
+msgstr "置顶主题/取消置顶"
+
+msgid "close/unclose topics"
+msgstr "关闭主题/取消关闭"
+
+msgid "hide/unhide topics"
+msgstr "隐藏主题/取消异常"
 
 msgid "Order By"
 msgstr "排序方式"
