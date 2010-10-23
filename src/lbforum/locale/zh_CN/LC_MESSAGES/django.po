@@ -2,27 +2,18 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-07-21 17:28+0800\n"
-"PO-Revision-Date: 2010-10-20 22:33+0800\n"
+"PO-Revision-Date: 2010-10-17 18:02+0800\n"
 "Last-Translator: vicalloy <zbirder@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-msgid "sticky/unsticky topics"
-msgstr "置顶主题/取消置顶"
-
-msgid "close/unclose topics"
-msgstr "关闭主题/取消关闭"
-
-msgid "hide/unhide topics"
-msgstr "隐藏主题/取消异常"
 
 msgid "Order By"
 msgstr "排序方式"
@@ -307,8 +298,7 @@ msgid "Topic by"
 msgstr "作者"
 
 #: .\sites\default\templates\lbforum\inc_post_detail.html.py:38
-#: .\sites\default\templates\lbforum\post.html.py:95
-#: .\src\lbforum\forms.py:14
+#: .\sites\default\templates\lbforum\post.html.py:95 .\src\lbforum\forms.py:14
 msgid "Attachments"
 msgstr "附件"
 
@@ -621,8 +611,7 @@ msgstr "电子邮件"
 msgid "A current valid e-mail address."
 msgstr "一个有效的邮件地址"
 
-#: .\src\account\forms.py:7
-#: .\src\lbforum\forms.py:12
+#: .\src\account\forms.py:7 .\src\lbforum\forms.py:12
 msgid "Message"
 msgstr "正文"
 
@@ -634,13 +623,11 @@ msgstr "附件"
 msgid "no file"
 msgstr "文件不存在"
 
-#: .\src\attachments\views.py:32
-#: .\src\attachments\views.py:48
+#: .\src\attachments\views.py:32 .\src\attachments\views.py:48
 msgid "some errors..."
 msgstr "出错"
 
-#: .\src\attachments\views.py:36
-#: .\src\attachments\views.py:52
+#: .\src\attachments\views.py:36 .\src\attachments\views.py:52
 msgid "no right"
 msgstr "无权限"
 
@@ -668,8 +655,7 @@ msgstr "分类"
 msgid "Categories"
 msgstr "分类"
 
-#: .\src\lbforum\models.py:47
-#: .\src\lbforum\models.py:74
+#: .\src\lbforum\models.py:47 .\src\lbforum\models.py:74
 msgid "Forum"
 msgstr "版块"
 
@@ -677,8 +663,7 @@ msgstr "版块"
 msgid "Forums"
 msgstr "论坛"
 
-#: .\src\lbforum\models.py:96
-#: .\src\lbforum\models.py:116
+#: .\src\lbforum\models.py:96 .\src\lbforum\models.py:116
 msgid "Topic"
 msgstr "主题"
 
@@ -694,15 +679,13 @@ msgstr "主题: %s"
 #: .\src\lbforum\models.py:141
 #, python-format
 msgid "Re: %s"
-msgstr ""
+msgstr "Re: %s"
 
-#: .\src\lbforum\models.py:171
-#: .\src\simpleavatar\models.py:56
+#: .\src\lbforum\models.py:171 .\src\simpleavatar\models.py:56
 msgid "User"
 msgstr "用户"
 
-#: .\src\lbforum\views.py:54
-#: .\src\lbforum\views.py:89
+#: .\src\lbforum\views.py:54 .\src\lbforum\views.py:89
 msgid "topic"
 msgstr "主题"
 
