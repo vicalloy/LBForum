@@ -1,0 +1,735 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-21 17:28+0800\n"
+"PO-Revision-Date: 2010-10-24 13:50+0100\n"
+"Last-Translator: el_libre - - www.catmidia.cat <el.libre@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Order By"
+msgstr ""
+
+msgid "Last Reply"
+msgstr ""
+
+msgid "Last Topic"
+msgstr ""
+
+msgid "Topic Type"
+msgstr "Escriu un tema"
+
+msgid "to see the content, user must reply first."
+msgstr ""
+
+msgid "reply to see the post"
+msgstr ""
+
+msgid "reply to see the attachments"
+msgstr ""
+
+msgid "Default"
+msgstr "Predeterminat"
+
+msgid "Distillate"
+msgstr ""
+
+msgid "Distillate District"
+msgstr ""
+
+msgid "Uploading"
+msgstr "S'està pujant"
+
+msgid "next"
+msgstr "següent"
+
+msgid "previous"
+msgstr "anterior"
+
+#: .\sites\default\templates\account\base.html.py:26
+#: .\sites\default\templates\account\base.html.py:74
+msgid "'s profile"
+msgstr "Perfil de"
+
+#: .\sites\default\templates\account\base.html.py:36
+#: .\sites\default\templates\account\base.html.py:39
+msgid "Introduction"
+msgstr "Introducció"
+
+#: .\sites\default\templates\account\base.html.py:44
+#: .\sites\default\templates\avatar\change.html.py:8
+#: .\sites\default\templates\avatar\change.html.py:14
+#: .\sites\default\templates\avatar\change.html.py:29
+msgid "Avatar"
+msgstr ""
+
+#: .\sites\default\templates\account\base.html.py:49
+#: .\sites\default\templates\account\signature.html.py:7
+#: .\sites\default\templates\account\signature.html.py:18
+#: .\sites\default\templates\account\signature.html.py:33
+msgid "Signature"
+msgstr "Signatura"
+
+#: .\sites\default\templates\account\profile.html.py:8
+#: .\sites\default\templates\account\profile.html.py:14
+#, python-format
+msgid "%(view_user)s's profile"
+msgstr ""
+
+#: .\sites\default\templates\account\profile.html.py:15
+msgid "Welcome to your profile"
+msgstr ""
+
+#: .\sites\default\templates\account\profile.html.py:20
+#: .\sites\default\templates\registration\password_change_form.html.py:8
+#: .\sites\default\templates\registration\password_change_form.html.py:14
+#: .\sites\default\templates\registration\password_change_form.html.py:15
+msgid "Change your password"
+msgstr "Canvia la contrasenya"
+
+#: .\sites\default\templates\account\profile.html.py:29
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:22
+msgid "Member"
+msgstr "Membre"
+
+#: .\sites\default\templates\account\profile.html.py:33
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:26
+msgid "Registered"
+msgstr "Registrat"
+
+#: .\sites\default\templates\account\profile.html.py:34
+msgid "Last login"
+msgstr "Darrera entrada"
+
+#: .\sites\default\templates\account\profile.html.py:35
+#: .\sites\default\templates\lbforum\inc_topic_list.html.py:4
+#: .\sites\default\templates\lbforum\inc_topic_list.html.py:9
+#: .\src\lbforum\models.py:97
+msgid "Topics"
+msgstr "Temes"
+
+#: .\sites\default\templates\account\profile.html.py:36
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:27
+#: .\sites\default\templates\lbforum\topic.html.py:42
+#: .\sites\default\templates\lbforum\user_posts.html.py:49
+#: .\src\lbforum\models.py:131
+msgid "Posts"
+msgstr ""
+
+#: .\sites\default\templates\account\profile.html.py:42
+msgid "Posts and topics"
+msgstr ""
+
+#: .\sites\default\templates\account\profile.html.py:44
+#, python-format
+msgid "View all %(view_user)s's posts"
+msgstr ""
+
+#: .\sites\default\templates\account\profile.html.py:45
+#, python-format
+msgid "View all %(view_user)s's topics"
+msgstr ""
+
+#: .\sites\default\templates\account\signature.html.py:7
+#: .\sites\default\templates\account\signature.html.py:18
+#: .\sites\default\templates\avatar\change.html.py:8
+#: .\sites\default\templates\avatar\change.html.py:14
+#: .\sites\default\templates\registration\password_change_form.html.py:14
+#, python-format
+msgid "%(user)s's profile"
+msgstr ""
+
+#: .\sites\default\templates\account\signature.html.py:19
+msgid "Create or modify a signature for display in your posts"
+msgstr ""
+
+#: .\sites\default\templates\account\signature.html.py:24
+#: .\sites\default\templates\avatar\change.html.py:20
+#: .\sites\default\templates\lbforum\post.html.py:56
+#: .\sites\default\templates\registration\login.html.py:40
+#: .\sites\default\templates\registration\password_change_form.html.py:20
+#: .\sites\default\templates\registration\registration_form.html.py:36
+msgid "Please correct the errors below."
+msgstr ""
+
+#: .\sites\default\templates\account\signature.html.py:36
+msgid "Current signature"
+msgstr ""
+
+#: .\sites\default\templates\account\signature.html.py:43
+msgid "Compose signature"
+msgstr ""
+
+#: .\sites\default\templates\account\signature.html.py:47
+msgid "Maximum size 400 characters long and 4 lines high."
+msgstr ""
+
+#: .\sites\default\templates\account\signature.html.py:56
+msgid "Update profile"
+msgstr ""
+
+#: .\sites\default\templates\avatar\change.html.py:15
+msgid "Set an avatar image to enhance your forum identity"
+msgstr ""
+
+#: .\sites\default\templates\avatar\change.html.py:32
+msgid "Current avatar"
+msgstr ""
+
+#: .\sites\default\templates\avatar\change.html.py:38
+msgid "Upload avatar file"
+msgstr ""
+
+#: .\sites\default\templates\avatar\change.html.py:40
+msgid "The allowed image file types are"
+msgstr ""
+
+#: .\sites\default\templates\avatar\change.html.py:40
+msgid "and"
+msgstr "i"
+
+#: .\sites\default\templates\avatar\change.html.py:43
+msgid "Avatar Image"
+msgstr ""
+
+#: .\sites\default\templates\avatar\change.html.py:48
+msgid "Upload New Image"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\forum.html.py:31
+#: .\sites\default\templates\lbforum\forum.html.py:51
+msgid "Post new topic"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\forum.html.py:33
+#: .\sites\default\templates\lbforum\forum.html.py:53
+#: .\sites\default\templates\lbforum\topic.html.py:33
+#: .\sites\default\templates\lbforum\topic.html.py:59
+msgid "You must"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\forum.html.py:33
+#: .\sites\default\templates\lbforum\forum.html.py:53
+#: .\sites\default\templates\lbforum\inc_header.html.py:22
+#: .\sites\default\templates\lbforum\inc_header.html.py:33
+#: .\sites\default\templates\lbforum\topic.html.py:33
+#: .\sites\default\templates\lbforum\topic.html.py:59
+#: .\sites\default\templates\registration\login.html.py:24
+#: .\sites\default\templates\registration\login.html.py:69
+#: .\sites\default\templates\registration\login.html.py:82
+msgid "Login"
+msgstr "Entra"
+
+#: .\sites\default\templates\lbforum\forum.html.py:33
+#: .\sites\default\templates\lbforum\forum.html.py:53
+#: .\sites\default\templates\lbforum\topic.html.py:33
+#: .\sites\default\templates\lbforum\topic.html.py:59
+msgid "or"
+msgstr "o"
+
+#: .\sites\default\templates\lbforum\forum.html.py:33
+#: .\sites\default\templates\lbforum\forum.html.py:53
+#: .\sites\default\templates\lbforum\topic.html.py:33
+#: .\sites\default\templates\lbforum\topic.html.py:59
+#: .\sites\default\templates\registration\login.html.py:36
+msgid "register"
+msgstr "enregistra"
+
+#: .\sites\default\templates\lbforum\forum.html.py:33
+#: .\sites\default\templates\lbforum\forum.html.py:53
+msgid "to post a topic"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\inc_announce.html.py:7
+msgid "New Announcement"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\inc_header.html.py:15
+msgid "Search"
+msgstr "Cerca"
+
+#: .\sites\default\templates\lbforum\inc_header.html.py:18
+msgid "My profile"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\inc_header.html.py:19
+#: .\sites\default\templates\lbforum\inc_header.html.py:31
+msgid "Logout"
+msgstr "Surt"
+
+#: .\sites\default\templates\lbforum\inc_header.html.py:21
+#: .\sites\default\templates\registration\registration_form.html.py:24
+#: .\sites\default\templates\registration\registration_form.html.py:74
+#: .\sites\default\templates\registration\registration_form.html.py:88
+msgid "Register"
+msgstr "Registre"
+
+#: .\sites\default\templates\lbforum\inc_header.html.py:31
+#, python-format
+msgid "Hello %(user)s"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\inc_header_left_links.html.py:2
+msgid "Home"
+msgstr "Inici"
+
+#: .\sites\default\templates\lbforum\inc_new_post_brd_crumbs.html.py:18
+#: .\sites\default\templates\lbforum\post.html.py:28
+msgid "Post new"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\inc_new_post_brd_crumbs.html.py:18
+#: .\sites\default\templates\lbforum\post.html.py:28
+msgid "Edit"
+msgstr "Edita"
+
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:9
+#: .\sites\default\templates\lbforum\post.html.py:37
+#: .\sites\default\templates\lbforum\user_posts.html.py:58
+msgid "Topic by"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:38
+#: .\sites\default\templates\lbforum\post.html.py:95
+#: .\src\lbforum\forms.py:14
+msgid "Attachments"
+msgstr "Fitxers adjunts"
+
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:51
+msgid "Show Image Attachments"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:54
+msgid "Image Attachments"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:80
+msgid "quote"
+msgstr "cometes"
+
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:82
+msgid "edit"
+msgstr "edita"
+
+#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:9
+msgid "Closed"
+msgstr "Tancat"
+
+#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:13
+msgid "Sticky"
+msgstr "Remarcat"
+
+#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:28
+#: .\sites\default\templates\lbforum\inc_topic_list.html.py:10
+#: .\sites\default\templates\lbforum\user_posts.html.py:68
+msgid "replies"
+msgstr "Respostes"
+
+#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:32
+#: .\sites\default\templates\lbforum\inc_topic_list.html.py:11
+msgid "views"
+msgstr "Vistes"
+
+#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:35
+#: .\sites\default\templates\lbforum\index.html.py:51
+msgid "Last post"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\inc_topic_list.html.py:12
+#: .\sites\default\templates\lbforum\index.html.py:28
+msgid "last post"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\index.html.py:26
+#: .\sites\default\templates\lbforum\index.html.py:45
+msgid "topics"
+msgstr "Temes"
+
+#: .\sites\default\templates\lbforum\index.html.py:27
+#: .\sites\default\templates\lbforum\index.html.py:48
+msgid "posts"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\index.html.py:72
+msgid "Total number of registered users"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\index.html.py:75
+msgid "Newest registered user"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\index.html.py:84
+msgid "Total number of topics"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\index.html.py:87
+msgid "Total number of posts"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\index.html.py:94
+msgid "Currently online"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\index.html.py:94
+msgid "guests"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\index.html.py:94
+msgid "registered user"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\index.html.py:102
+msgid "Friend Links"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\markitup_preview.html.py:10
+msgid "preview"
+msgstr "previsualització"
+
+#: .\sites\default\templates\lbforum\post.html.py:32
+msgid "Preview your"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\post.html.py:32
+#: .\sites\default\templates\lbforum\post.html.py:50
+msgid "new"
+msgstr "nou"
+
+#: .\sites\default\templates\lbforum\post.html.py:32
+#: .\sites\default\templates\lbforum\post.html.py:50
+msgid "edited"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\post.html.py:50
+msgid "Compose and post your"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\post.html.py:53
+#: .\sites\default\templates\lbforum\topic.html.py:73
+msgid "You may use"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\post.html.py:65
+#: .\sites\default\templates\registration\password_change_form.html.py:29
+msgid "Required information"
+msgstr "Informació necessària"
+
+#: .\sites\default\templates\lbforum\post.html.py:69
+msgid "Topic subject"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\post.html.py:69
+#: .\sites\default\templates\lbforum\post.html.py:78
+#: .\sites\default\templates\lbforum\topic.html.py:82
+#: .\sites\default\templates\registration\login.html.py:51
+#: .\sites\default\templates\registration\login.html.py:57
+#: .\sites\default\templates\registration\password_change_form.html.py:32
+#: .\sites\default\templates\registration\password_change_form.html.py:38
+#: .\sites\default\templates\registration\password_change_form.html.py:44
+#: .\sites\default\templates\registration\registration_form.html.py:50
+#: .\sites\default\templates\registration\registration_form.html.py:56
+#: .\sites\default\templates\registration\registration_form.html.py:62
+#: .\sites\default\templates\registration\registration_form.html.py:68
+msgid "Required"
+msgstr "Necessari"
+
+#: .\sites\default\templates\lbforum\post.html.py:78
+#: .\sites\default\templates\lbforum\topic.html.py:82
+msgid "Write message"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\post.html.py:86
+msgid "Optional post settings"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\post.html.py:90
+msgid "Never show smilies as icons (images) for this post."
+msgstr ""
+
+#: .\sites\default\templates\lbforum\post.html.py:98
+msgid "Upload"
+msgstr "Puja"
+
+#: .\sites\default\templates\lbforum\post.html.py:106
+#: .\sites\default\templates\lbforum\topic.html.py:88
+msgid "Submit"
+msgstr "Tramet"
+
+#: .\sites\default\templates\lbforum\post.html.py:107
+#: .\sites\default\templates\lbforum\topic.html.py:89
+msgid "Preview"
+msgstr "Previsualitza"
+
+#: .\sites\default\templates\lbforum\post.html.py:113
+msgid "Topic review (newest first)"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\post.html.py:119
+msgid "Post by"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\post.html.py:170
+msgid "submit"
+msgstr "envia"
+
+#: .\sites\default\templates\lbforum\redirect.html.py:17
+msgid "You should automatically be forwarded to a new page in 5 second."
+msgstr ""
+
+#: .\sites\default\templates\lbforum\redirect.html.py:20
+msgid "Click here if you do not want to wait any longer (or if your browser does not automatically forward you)"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\topic.html.py:31
+#: .\sites\default\templates\lbforum\topic.html.py:57
+msgid "Post reply"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\topic.html.py:33
+#: .\sites\default\templates\lbforum\topic.html.py:59
+msgid "to post a reply"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\topic.html.py:70
+msgid "Quick reply to this topic"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\topic.html.py:79
+msgid "Compose your post"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\user_posts.html.py:26
+#, python-format
+msgid "Posts by %(view_user)s"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\user_posts.html.py:42
+#: .\sites\default\templates\lbforum\user_posts.html.py:107
+#: .\sites\default\templates\lbforum\user_topics.html.py:26
+#: .\sites\default\templates\lbforum\user_topics.html.py:42
+#: .\sites\default\templates\lbforum\user_topics.html.py:69
+#, python-format
+msgid "Topics by %(view_user)s"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\user_posts.html.py:68
+msgid "posted in"
+msgstr ""
+
+#: .\sites\default\templates\registration\login.html.py:32
+#, python-format
+msgid "Login to %(LBFORUM_TITLE)s"
+msgstr ""
+
+#: .\sites\default\templates\registration\login.html.py:36
+msgid "Do you need to"
+msgstr ""
+
+#: .\sites\default\templates\registration\login.html.py:51
+#: .\sites\default\templates\registration\registration_form.html.py:50
+#: .\src\lbregistration\forms.py:17
+msgid "Username"
+msgstr "Nom d'usuari/a"
+
+#: .\sites\default\templates\registration\login.html.py:57
+#: .\sites\default\templates\registration\registration_form.html.py:56
+msgid "Password"
+msgstr "Contrasenya"
+
+#: .\sites\default\templates\registration\login.html.py:64
+msgid "Remember me"
+msgstr ""
+
+#: .\sites\default\templates\registration\login.html.py:64
+msgid "Log me in automatically each time I visit."
+msgstr ""
+
+#: .\sites\default\templates\registration\password_change_done.html.py:5
+msgid "Password change successful"
+msgstr ""
+
+#: .\sites\default\templates\registration\password_change_form.html.py:32
+msgid "Old password"
+msgstr "Contrasenya antiga"
+
+#: .\sites\default\templates\registration\password_change_form.html.py:32
+msgid "You must enter your existing password."
+msgstr ""
+
+#: .\sites\default\templates\registration\password_change_form.html.py:38
+msgid "New password"
+msgstr "Contrasenya nova"
+
+#: .\sites\default\templates\registration\password_change_form.html.py:38
+#: .\sites\default\templates\registration\registration_form.html.py:56
+msgid "Minimum 6 characters. Case sensitive."
+msgstr ""
+
+#: .\sites\default\templates\registration\password_change_form.html.py:44
+#: .\sites\default\templates\registration\registration_form.html.py:62
+msgid "Password (again)"
+msgstr "Contrasenya (de nou):"
+
+#: .\sites\default\templates\registration\password_change_form.html.py:44
+#: .\sites\default\templates\registration\registration_form.html.py:62
+msgid "Re-enter your password exactly as before."
+msgstr ""
+
+#: .\sites\default\templates\registration\password_change_form.html.py:50
+msgid "Change my password"
+msgstr ""
+
+#: .\sites\default\templates\registration\registration_complete.html.py:5
+msgid "register successful"
+msgstr ""
+
+#: .\sites\default\templates\registration\registration_form.html.py:31
+#, python-format
+msgid "Register at %(LBFORUM_TITLE)s"
+msgstr ""
+
+#: .\sites\default\templates\registration\registration_form.html.py:41
+msgid "All fields labelled <em>(Required)</em> must be completed before the form is submitted."
+msgstr ""
+
+#: .\sites\default\templates\registration\registration_form.html.py:50
+msgid "Between 2 and 25 characters."
+msgstr ""
+
+#: .\sites\default\templates\registration\registration_form.html.py:68
+msgid "e-mail"
+msgstr "correu electrònic"
+
+#: .\sites\default\templates\registration\registration_form.html.py:68
+msgid "A current valid e-mail address."
+msgstr ""
+
+#: .\src\account\forms.py:7
+#: .\src\lbforum\forms.py:12
+msgid "Message"
+msgstr "Missatge"
+
+#: .\src\attachments\models.py:39
+msgid "Attachment"
+msgstr "Adjunció"
+
+#: .\src\attachments\views.py:13
+msgid "no file"
+msgstr "Cap fitxer"
+
+#: .\src\attachments\views.py:32
+#: .\src\attachments\views.py:48
+msgid "some errors..."
+msgstr ""
+
+#: .\src\attachments\views.py:36
+#: .\src\attachments\views.py:52
+msgid "no right"
+msgstr ""
+
+#: .\src\djangohelper\helper.py:19
+msgid "please login first"
+msgstr ""
+
+#: .\src\lbforum\admin.py:15
+msgid "Update topic/post nums"
+msgstr ""
+
+#: .\src\lbforum\admin.py:32
+msgid "Update replies nums"
+msgstr ""
+
+#: .\src\lbforum\forms.py:10
+msgid "Subject"
+msgstr "Assumpte"
+
+#: .\src\lbforum\models.py:26
+msgid "Category"
+msgstr "Categoria"
+
+#: .\src\lbforum\models.py:27
+msgid "Categories"
+msgstr "Categories"
+
+#: .\src\lbforum\models.py:47
+#: .\src\lbforum\models.py:74
+msgid "Forum"
+msgstr "Fòrum"
+
+#: .\src\lbforum\models.py:48
+msgid "Forums"
+msgstr ""
+
+#: .\src\lbforum\models.py:96
+#: .\src\lbforum\models.py:116
+msgid "Topic"
+msgstr "Temes"
+
+#: .\src\lbforum\models.py:130
+msgid "Post"
+msgstr "Publica"
+
+#: .\src\lbforum\models.py:140
+#, python-format
+msgid "Topic: %s"
+msgstr "Temes: %s"
+
+#: .\src\lbforum\models.py:141
+#, python-format
+msgid "Re: %s"
+msgstr "Re: %s"
+
+#: .\src\lbforum\models.py:171
+#: .\src\simpleavatar\models.py:56
+msgid "User"
+msgstr "Usuari/a"
+
+#: .\src\lbforum\views.py:54
+#: .\src\lbforum\views.py:89
+msgid "topic"
+msgstr "tema"
+
+#: .\src\lbforum\views.py:58
+msgid "reply"
+msgstr "respon"
+
+#: .\src\lbforum\templates\lbforum\post_paginate.html.py:5
+msgid "Pages"
+msgstr "Pàgines"
+
+#: .\src\lbforum\templatetags\lbforum.py:76
+msgid "Online"
+msgstr "En línia"
+
+#: .\src\lbforum\templatetags\lbforum.py:79
+msgid "Offline"
+msgstr "Desconnectat"
+
+#: .\src\lbforum\templatetags\lbforum.py:99
+#, python-format
+msgid "%s ago"
+msgstr "fa %s"
+
+#: .\src\lbregistration\forms.py:18
+msgid "This value must contain only letters, numbers and underscores."
+msgstr ""
+
+#: .\src\simpleavatar\models.py:61
+#, python-format
+msgid "Avatar for %s"
+msgstr ""
+
+#: .\src\simpleavatar\views.py:18
+msgid "Successfully updated your avatar."
+msgstr ""
+
+#~ msgid "Re-enter your e-mail address exactly as before."
+#~ msgstr ""
