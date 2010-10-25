@@ -7,245 +7,211 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-21 17:28+0800\n"
-"PO-Revision-Date: 2010-10-24 13:50+0100\n"
-"Last-Translator: el_libre - - www.catmidia.cat <el.libre@gmail.com>\n"
+"POT-Creation-Date: 2010-10-25 20:15+0800\n"
+"PO-Revision-Date: 2010-10-25 20:21+0800\n"
+"Last-Translator: vicalloy <zbirder@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-msgid "Order By"
-msgstr ""
-
-msgid "Last Reply"
-msgstr ""
-
-msgid "Last Topic"
-msgstr ""
-
-msgid "Topic Type"
-msgstr "Escriu un tema"
-
-msgid "to see the content, user must reply first."
-msgstr ""
-
-msgid "reply to see the post"
-msgstr ""
-
-msgid "reply to see the attachments"
-msgstr ""
-
-msgid "Default"
-msgstr "Predeterminat"
-
-msgid "Distillate"
-msgstr ""
-
-msgid "Distillate District"
-msgstr ""
-
-msgid "Uploading"
-msgstr "S'està pujant"
-
-msgid "next"
-msgstr "següent"
-
-msgid "previous"
-msgstr "anterior"
-
-#: .\sites\default\templates\account\base.html.py:26
-#: .\sites\default\templates\account\base.html.py:74
+#: .\sites\default\templates\account\base.html.py:27
+#: .\sites\default\templates\account\base.html.py:75
 msgid "'s profile"
 msgstr "Perfil de"
 
-#: .\sites\default\templates\account\base.html.py:36
-#: .\sites\default\templates\account\base.html.py:39
+#: .\sites\default\templates\account\base.html.py:37
+#: .\sites\default\templates\account\base.html.py:40
 msgid "Introduction"
 msgstr "Introducció"
 
-#: .\sites\default\templates\account\base.html.py:44
-#: .\sites\default\templates\avatar\change.html.py:8
-#: .\sites\default\templates\avatar\change.html.py:14
-#: .\sites\default\templates\avatar\change.html.py:29
+#: .\sites\default\templates\account\base.html.py:45
+#: .\sites\default\templates\avatar\change.html.py:9
+#: .\sites\default\templates\avatar\change.html.py:15
+#: .\sites\default\templates\avatar\change.html.py:30
 msgid "Avatar"
 msgstr ""
 
-#: .\sites\default\templates\account\base.html.py:49
-#: .\sites\default\templates\account\signature.html.py:7
-#: .\sites\default\templates\account\signature.html.py:18
-#: .\sites\default\templates\account\signature.html.py:33
+#: .\sites\default\templates\account\base.html.py:50
+#: .\sites\default\templates\account\signature.html.py:8
+#: .\sites\default\templates\account\signature.html.py:19
+#: .\sites\default\templates\account\signature.html.py:34
 msgid "Signature"
 msgstr "Signatura"
 
-#: .\sites\default\templates\account\profile.html.py:8
-#: .\sites\default\templates\account\profile.html.py:14
+#: .\sites\default\templates\account\profile.html.py:9
+#: .\sites\default\templates\account\profile.html.py:15
 #, python-format
 msgid "%(view_user)s's profile"
 msgstr ""
 
-#: .\sites\default\templates\account\profile.html.py:15
+#: .\sites\default\templates\account\profile.html.py:16
 msgid "Welcome to your profile"
 msgstr ""
 
-#: .\sites\default\templates\account\profile.html.py:20
-#: .\sites\default\templates\registration\password_change_form.html.py:8
-#: .\sites\default\templates\registration\password_change_form.html.py:14
+#: .\sites\default\templates\account\profile.html.py:21
+#: .\sites\default\templates\registration\password_change_form.html.py:9
 #: .\sites\default\templates\registration\password_change_form.html.py:15
+#: .\sites\default\templates\registration\password_change_form.html.py:16
 msgid "Change your password"
 msgstr "Canvia la contrasenya"
 
-#: .\sites\default\templates\account\profile.html.py:29
-#: .\sites\default\templates\lbforum\inc_post_detail.html.py:22
+#: .\sites\default\templates\account\profile.html.py:30
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:23
 msgid "Member"
 msgstr "Membre"
 
-#: .\sites\default\templates\account\profile.html.py:33
-#: .\sites\default\templates\lbforum\inc_post_detail.html.py:26
+#: .\sites\default\templates\account\profile.html.py:34
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:27
 msgid "Registered"
 msgstr "Registrat"
 
-#: .\sites\default\templates\account\profile.html.py:34
+#: .\sites\default\templates\account\profile.html.py:35
 msgid "Last login"
 msgstr "Darrera entrada"
 
-#: .\sites\default\templates\account\profile.html.py:35
-#: .\sites\default\templates\lbforum\inc_topic_list.html.py:4
-#: .\sites\default\templates\lbforum\inc_topic_list.html.py:9
-#: .\src\lbforum\models.py:97
+#: .\sites\default\templates\account\profile.html.py:36
+#: .\sites\default\templates\lbforum\inc_topic_list.html.py:25
+#: .\sites\default\templates\lbforum\inc_topic_list.html.py:30
+#: .\src\lbforum\models.py:121
 msgid "Topics"
 msgstr "Temes"
 
-#: .\sites\default\templates\account\profile.html.py:36
-#: .\sites\default\templates\lbforum\inc_post_detail.html.py:27
-#: .\sites\default\templates\lbforum\topic.html.py:42
-#: .\sites\default\templates\lbforum\user_posts.html.py:49
-#: .\src\lbforum\models.py:131
+#: .\sites\default\templates\account\profile.html.py:37
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:28
+#: .\sites\default\templates\lbforum\topic.html.py:43
+#: .\sites\default\templates\lbforum\user_posts.html.py:50
+#: .\src\lbforum\models.py:168
 msgid "Posts"
 msgstr ""
 
-#: .\sites\default\templates\account\profile.html.py:42
+#: .\sites\default\templates\account\profile.html.py:43
 msgid "Posts and topics"
-msgstr ""
-
-#: .\sites\default\templates\account\profile.html.py:44
-#, python-format
-msgid "View all %(view_user)s's posts"
 msgstr ""
 
 #: .\sites\default\templates\account\profile.html.py:45
 #, python-format
+msgid "View all %(view_user)s's posts"
+msgstr ""
+
+#: .\sites\default\templates\account\profile.html.py:46
+#, python-format
 msgid "View all %(view_user)s's topics"
 msgstr ""
 
-#: .\sites\default\templates\account\signature.html.py:7
-#: .\sites\default\templates\account\signature.html.py:18
-#: .\sites\default\templates\avatar\change.html.py:8
-#: .\sites\default\templates\avatar\change.html.py:14
-#: .\sites\default\templates\registration\password_change_form.html.py:14
+#: .\sites\default\templates\account\signature.html.py:8
+#: .\sites\default\templates\account\signature.html.py:19
+#: .\sites\default\templates\avatar\change.html.py:9
+#: .\sites\default\templates\avatar\change.html.py:15
+#: .\sites\default\templates\registration\password_change_form.html.py:15
 #, python-format
 msgid "%(user)s's profile"
 msgstr ""
 
-#: .\sites\default\templates\account\signature.html.py:19
+#: .\sites\default\templates\account\signature.html.py:20
 msgid "Create or modify a signature for display in your posts"
 msgstr ""
 
-#: .\sites\default\templates\account\signature.html.py:24
-#: .\sites\default\templates\avatar\change.html.py:20
-#: .\sites\default\templates\lbforum\post.html.py:56
-#: .\sites\default\templates\registration\login.html.py:40
-#: .\sites\default\templates\registration\password_change_form.html.py:20
-#: .\sites\default\templates\registration\registration_form.html.py:36
+#: .\sites\default\templates\account\signature.html.py:25
+#: .\sites\default\templates\avatar\change.html.py:21
+#: .\sites\default\templates\lbforum\post.html.py:58
+#: .\sites\default\templates\registration\login.html.py:41
+#: .\sites\default\templates\registration\password_change_form.html.py:21
+#: .\sites\default\templates\registration\registration_form.html.py:37
 msgid "Please correct the errors below."
 msgstr ""
 
-#: .\sites\default\templates\account\signature.html.py:36
+#: .\sites\default\templates\account\signature.html.py:37
 msgid "Current signature"
 msgstr ""
 
-#: .\sites\default\templates\account\signature.html.py:43
+#: .\sites\default\templates\account\signature.html.py:44
 msgid "Compose signature"
 msgstr ""
 
-#: .\sites\default\templates\account\signature.html.py:47
+#: .\sites\default\templates\account\signature.html.py:48
 msgid "Maximum size 400 characters long and 4 lines high."
 msgstr ""
 
-#: .\sites\default\templates\account\signature.html.py:56
+#: .\sites\default\templates\account\signature.html.py:57
 msgid "Update profile"
 msgstr ""
 
-#: .\sites\default\templates\avatar\change.html.py:15
+#: .\sites\default\templates\avatar\change.html.py:16
 msgid "Set an avatar image to enhance your forum identity"
 msgstr ""
 
-#: .\sites\default\templates\avatar\change.html.py:32
+#: .\sites\default\templates\avatar\change.html.py:33
 msgid "Current avatar"
 msgstr ""
 
-#: .\sites\default\templates\avatar\change.html.py:38
+#: .\sites\default\templates\avatar\change.html.py:39
 msgid "Upload avatar file"
 msgstr ""
 
-#: .\sites\default\templates\avatar\change.html.py:40
+#: .\sites\default\templates\avatar\change.html.py:41
 msgid "The allowed image file types are"
 msgstr ""
 
-#: .\sites\default\templates\avatar\change.html.py:40
+#: .\sites\default\templates\avatar\change.html.py:41
 msgid "and"
 msgstr "i"
 
-#: .\sites\default\templates\avatar\change.html.py:43
+#: .\sites\default\templates\avatar\change.html.py:44
 msgid "Avatar Image"
 msgstr ""
 
-#: .\sites\default\templates\avatar\change.html.py:48
+#: .\sites\default\templates\avatar\change.html.py:49
 msgid "Upload New Image"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\forum.html.py:31
-#: .\sites\default\templates\lbforum\forum.html.py:51
+#: .\sites\default\templates\lbforum\forum.html.py:35
+#: .\sites\default\templates\lbforum\forum.html.py:55
 msgid "Post new topic"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\forum.html.py:33
-#: .\sites\default\templates\lbforum\forum.html.py:53
-#: .\sites\default\templates\lbforum\topic.html.py:33
-#: .\sites\default\templates\lbforum\topic.html.py:59
+#: .\sites\default\templates\lbforum\forum.html.py:37
+#: .\sites\default\templates\lbforum\forum.html.py:57
+#: .\sites\default\templates\lbforum\topic.html.py:34
+#: .\sites\default\templates\lbforum\topic.html.py:60
 msgid "You must"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\forum.html.py:33
-#: .\sites\default\templates\lbforum\forum.html.py:53
+#: .\sites\default\templates\lbforum\forum.html.py:37
+#: .\sites\default\templates\lbforum\forum.html.py:57
 #: .\sites\default\templates\lbforum\inc_header.html.py:22
 #: .\sites\default\templates\lbforum\inc_header.html.py:33
-#: .\sites\default\templates\lbforum\topic.html.py:33
-#: .\sites\default\templates\lbforum\topic.html.py:59
-#: .\sites\default\templates\registration\login.html.py:24
-#: .\sites\default\templates\registration\login.html.py:69
-#: .\sites\default\templates\registration\login.html.py:82
+#: .\sites\default\templates\lbforum\topic.html.py:34
+#: .\sites\default\templates\lbforum\topic.html.py:60
+#: .\sites\default\templates\registration\login.html.py:25
+#: .\sites\default\templates\registration\login.html.py:70
+#: .\sites\default\templates\registration\login.html.py:83
 msgid "Login"
 msgstr "Entra"
 
-#: .\sites\default\templates\lbforum\forum.html.py:33
-#: .\sites\default\templates\lbforum\forum.html.py:53
-#: .\sites\default\templates\lbforum\topic.html.py:33
-#: .\sites\default\templates\lbforum\topic.html.py:59
+#: .\sites\default\templates\lbforum\forum.html.py:37
+#: .\sites\default\templates\lbforum\forum.html.py:57
+#: .\sites\default\templates\lbforum\topic.html.py:34
+#: .\sites\default\templates\lbforum\topic.html.py:60
 msgid "or"
 msgstr "o"
 
-#: .\sites\default\templates\lbforum\forum.html.py:33
-#: .\sites\default\templates\lbforum\forum.html.py:53
-#: .\sites\default\templates\lbforum\topic.html.py:33
-#: .\sites\default\templates\lbforum\topic.html.py:59
-#: .\sites\default\templates\registration\login.html.py:36
+#: .\sites\default\templates\lbforum\forum.html.py:37
+#: .\sites\default\templates\lbforum\forum.html.py:57
+#: .\sites\default\templates\lbforum\topic.html.py:34
+#: .\sites\default\templates\lbforum\topic.html.py:60
+#: .\sites\default\templates\registration\login.html.py:37
 msgid "register"
 msgstr "enregistra"
 
-#: .\sites\default\templates\lbforum\forum.html.py:33
-#: .\sites\default\templates\lbforum\forum.html.py:53
+#: .\sites\default\templates\lbforum\forum.html.py:37
+#: .\sites\default\templates\lbforum\forum.html.py:57
 msgid "to post a topic"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\forum.html.py:67
+#: .\src\lbforum\forms.py:16
+msgid "Order By"
 msgstr ""
 
 #: .\sites\default\templates\lbforum\inc_announce.html.py:7
@@ -266,9 +232,10 @@ msgid "Logout"
 msgstr "Surt"
 
 #: .\sites\default\templates\lbforum\inc_header.html.py:21
-#: .\sites\default\templates\registration\registration_form.html.py:24
-#: .\sites\default\templates\registration\registration_form.html.py:74
-#: .\sites\default\templates\registration\registration_form.html.py:88
+#: .\sites\default\templates\lbforum\inc_header.html.py:35
+#: .\sites\default\templates\registration\registration_form.html.py:25
+#: .\sites\default\templates\registration\registration_form.html.py:75
+#: .\sites\default\templates\registration\registration_form.html.py:89
 msgid "Register"
 msgstr "Registre"
 
@@ -277,206 +244,222 @@ msgstr "Registre"
 msgid "Hello %(user)s"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\inc_header_left_links.html.py:2
-msgid "Home"
-msgstr "Inici"
-
 #: .\sites\default\templates\lbforum\inc_new_post_brd_crumbs.html.py:18
-#: .\sites\default\templates\lbforum\post.html.py:28
+#: .\sites\default\templates\lbforum\post.html.py:30
 msgid "Post new"
 msgstr ""
 
 #: .\sites\default\templates\lbforum\inc_new_post_brd_crumbs.html.py:18
-#: .\sites\default\templates\lbforum\post.html.py:28
+#: .\sites\default\templates\lbforum\post.html.py:30
 msgid "Edit"
 msgstr "Edita"
 
-#: .\sites\default\templates\lbforum\inc_post_detail.html.py:9
-#: .\sites\default\templates\lbforum\post.html.py:37
-#: .\sites\default\templates\lbforum\user_posts.html.py:58
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:10
+#: .\sites\default\templates\lbforum\post.html.py:39
+#: .\sites\default\templates\lbforum\user_posts.html.py:59
 msgid "Topic by"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\inc_post_detail.html.py:38
-#: .\sites\default\templates\lbforum\post.html.py:95
-#: .\src\lbforum\forms.py:14
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:40
+#: .\sites\default\templates\lbforum\post.html.py:108
+#: .\src\lbforum\forms.py:25
 msgid "Attachments"
 msgstr "Fitxers adjunts"
 
-#: .\sites\default\templates\lbforum\inc_post_detail.html.py:51
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:53
 msgid "Show Image Attachments"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\inc_post_detail.html.py:54
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:56
 msgid "Image Attachments"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\inc_post_detail.html.py:80
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:68
+#: .\src\lbforum\templatetags\bbcode.py:31
+msgid "to see the content, user must reply first."
+msgstr ""
+
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:85
 msgid "quote"
 msgstr "cometes"
 
-#: .\sites\default\templates\lbforum\inc_post_detail.html.py:82
+#: .\sites\default\templates\lbforum\inc_post_detail.html.py:87
 msgid "edit"
 msgstr "edita"
 
-#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:9
+#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:10
 msgid "Closed"
 msgstr "Tancat"
 
-#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:13
+#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:14
 msgid "Sticky"
 msgstr "Remarcat"
 
-#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:28
-#: .\sites\default\templates\lbforum\inc_topic_list.html.py:10
-#: .\sites\default\templates\lbforum\user_posts.html.py:68
+#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:18
+#: .\src\lbforum\models.py:86
+msgid "Distillate"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:36
+#: .\sites\default\templates\lbforum\inc_topic_list.html.py:31
+#: .\sites\default\templates\lbforum\user_posts.html.py:69
 msgid "replies"
 msgstr "Respostes"
 
-#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:32
-#: .\sites\default\templates\lbforum\inc_topic_list.html.py:11
+#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:40
+#: .\sites\default\templates\lbforum\inc_topic_list.html.py:32
 msgid "views"
 msgstr "Vistes"
 
-#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:35
-#: .\sites\default\templates\lbforum\index.html.py:51
+#: .\sites\default\templates\lbforum\inc_topic_detail.html.py:43
+#: .\sites\default\templates\lbforum\index.html.py:52
 msgid "Last post"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\inc_topic_list.html.py:12
-#: .\sites\default\templates\lbforum\index.html.py:28
+#: .\sites\default\templates\lbforum\inc_topic_list.html.py:9
+#: .\sites\default\templates\lbforum\inc_topic_list.html.py:19
+msgid "All"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\inc_topic_list.html.py:22
+msgid "Distillate District"
+msgstr ""
+
+#: .\sites\default\templates\lbforum\inc_topic_list.html.py:33
+#: .\sites\default\templates\lbforum\index.html.py:29
 msgid "last post"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\index.html.py:26
-#: .\sites\default\templates\lbforum\index.html.py:45
+#: .\sites\default\templates\lbforum\index.html.py:27
+#: .\sites\default\templates\lbforum\index.html.py:46
 msgid "topics"
 msgstr "Temes"
 
-#: .\sites\default\templates\lbforum\index.html.py:27
-#: .\sites\default\templates\lbforum\index.html.py:48
+#: .\sites\default\templates\lbforum\index.html.py:28
+#: .\sites\default\templates\lbforum\index.html.py:49
 msgid "posts"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\index.html.py:72
+#: .\sites\default\templates\lbforum\index.html.py:73
 msgid "Total number of registered users"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\index.html.py:75
+#: .\sites\default\templates\lbforum\index.html.py:76
 msgid "Newest registered user"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\index.html.py:84
+#: .\sites\default\templates\lbforum\index.html.py:85
 msgid "Total number of topics"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\index.html.py:87
+#: .\sites\default\templates\lbforum\index.html.py:88
 msgid "Total number of posts"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\index.html.py:94
+#: .\sites\default\templates\lbforum\index.html.py:95
 msgid "Currently online"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\index.html.py:94
+#: .\sites\default\templates\lbforum\index.html.py:95
 msgid "guests"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\index.html.py:94
+#: .\sites\default\templates\lbforum\index.html.py:95
 msgid "registered user"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\index.html.py:102
+#: .\sites\default\templates\lbforum\index.html.py:103
 msgid "Friend Links"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\markitup_preview.html.py:10
+#: .\sites\default\templates\lbforum\markitup_preview.html.py:11
 msgid "preview"
 msgstr "previsualització"
 
-#: .\sites\default\templates\lbforum\post.html.py:32
+#: .\sites\default\templates\lbforum\post.html.py:34
 msgid "Preview your"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\post.html.py:32
-#: .\sites\default\templates\lbforum\post.html.py:50
+#: .\sites\default\templates\lbforum\post.html.py:34
+#: .\sites\default\templates\lbforum\post.html.py:52
 msgid "new"
 msgstr "nou"
 
-#: .\sites\default\templates\lbforum\post.html.py:32
-#: .\sites\default\templates\lbforum\post.html.py:50
+#: .\sites\default\templates\lbforum\post.html.py:34
+#: .\sites\default\templates\lbforum\post.html.py:52
 msgid "edited"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\post.html.py:50
+#: .\sites\default\templates\lbforum\post.html.py:52
 msgid "Compose and post your"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\post.html.py:53
-#: .\sites\default\templates\lbforum\topic.html.py:73
+#: .\sites\default\templates\lbforum\post.html.py:55
+#: .\sites\default\templates\lbforum\topic.html.py:74
 msgid "You may use"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\post.html.py:65
-#: .\sites\default\templates\registration\password_change_form.html.py:29
+#: .\sites\default\templates\lbforum\post.html.py:67
+#: .\sites\default\templates\registration\password_change_form.html.py:30
 msgid "Required information"
 msgstr "Informació necessària"
 
-#: .\sites\default\templates\lbforum\post.html.py:69
+#: .\sites\default\templates\lbforum\post.html.py:71
 msgid "Topic subject"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\post.html.py:69
-#: .\sites\default\templates\lbforum\post.html.py:78
-#: .\sites\default\templates\lbforum\topic.html.py:82
-#: .\sites\default\templates\registration\login.html.py:51
-#: .\sites\default\templates\registration\login.html.py:57
-#: .\sites\default\templates\registration\password_change_form.html.py:32
-#: .\sites\default\templates\registration\password_change_form.html.py:38
-#: .\sites\default\templates\registration\password_change_form.html.py:44
-#: .\sites\default\templates\registration\registration_form.html.py:50
-#: .\sites\default\templates\registration\registration_form.html.py:56
-#: .\sites\default\templates\registration\registration_form.html.py:62
-#: .\sites\default\templates\registration\registration_form.html.py:68
+#: .\sites\default\templates\lbforum\post.html.py:71
+#: .\sites\default\templates\lbforum\post.html.py:80
+#: .\sites\default\templates\lbforum\topic.html.py:83
+#: .\sites\default\templates\registration\login.html.py:52
+#: .\sites\default\templates\registration\login.html.py:58
+#: .\sites\default\templates\registration\password_change_form.html.py:33
+#: .\sites\default\templates\registration\password_change_form.html.py:39
+#: .\sites\default\templates\registration\password_change_form.html.py:45
+#: .\sites\default\templates\registration\registration_form.html.py:51
+#: .\sites\default\templates\registration\registration_form.html.py:57
+#: .\sites\default\templates\registration\registration_form.html.py:63
+#: .\sites\default\templates\registration\registration_form.html.py:69
 msgid "Required"
 msgstr "Necessari"
 
-#: .\sites\default\templates\lbforum\post.html.py:78
-#: .\sites\default\templates\lbforum\topic.html.py:82
+#: .\sites\default\templates\lbforum\post.html.py:80
+#: .\sites\default\templates\lbforum\topic.html.py:83
 msgid "Write message"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\post.html.py:86
+#: .\sites\default\templates\lbforum\post.html.py:90
 msgid "Optional post settings"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\post.html.py:90
-msgid "Never show smilies as icons (images) for this post."
+#: .\sites\default\templates\lbforum\post.html.py:96
+msgid "reply to see the post"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\post.html.py:98
-msgid "Upload"
-msgstr "Puja"
+#: .\sites\default\templates\lbforum\post.html.py:102
+#: .\src\lbforum\templatetags\lbforum_tags.py:38
+msgid "reply to see the attachments"
+msgstr ""
 
-#: .\sites\default\templates\lbforum\post.html.py:106
-#: .\sites\default\templates\lbforum\topic.html.py:88
+#: .\sites\default\templates\lbforum\post.html.py:123
+#: .\sites\default\templates\lbforum\topic.html.py:89
 msgid "Submit"
 msgstr "Tramet"
 
-#: .\sites\default\templates\lbforum\post.html.py:107
-#: .\sites\default\templates\lbforum\topic.html.py:89
+#: .\sites\default\templates\lbforum\post.html.py:124
+#: .\sites\default\templates\lbforum\topic.html.py:90
 msgid "Preview"
 msgstr "Previsualitza"
 
-#: .\sites\default\templates\lbforum\post.html.py:113
+#: .\sites\default\templates\lbforum\post.html.py:130
 msgid "Topic review (newest first)"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\post.html.py:119
+#: .\sites\default\templates\lbforum\post.html.py:136
 msgid "Post by"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\post.html.py:170
+#: .\sites\default\templates\lbforum\post.html.py:194
 msgid "submit"
 msgstr "envia"
 
@@ -488,67 +471,77 @@ msgstr ""
 msgid "Click here if you do not want to wait any longer (or if your browser does not automatically forward you)"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\topic.html.py:31
-#: .\sites\default\templates\lbforum\topic.html.py:57
+#: .\sites\default\templates\lbforum\topic.html.py:32
+#: .\sites\default\templates\lbforum\topic.html.py:58
 msgid "Post reply"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\topic.html.py:33
-#: .\sites\default\templates\lbforum\topic.html.py:59
+#: .\sites\default\templates\lbforum\topic.html.py:34
+#: .\sites\default\templates\lbforum\topic.html.py:60
 msgid "to post a reply"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\topic.html.py:70
+#: .\sites\default\templates\lbforum\topic.html.py:71
 msgid "Quick reply to this topic"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\topic.html.py:79
+#: .\sites\default\templates\lbforum\topic.html.py:80
 msgid "Compose your post"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\user_posts.html.py:26
+#: .\sites\default\templates\lbforum\user_posts.html.py:27
 #, python-format
 msgid "Posts by %(view_user)s"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\user_posts.html.py:42
-#: .\sites\default\templates\lbforum\user_posts.html.py:107
-#: .\sites\default\templates\lbforum\user_topics.html.py:26
-#: .\sites\default\templates\lbforum\user_topics.html.py:42
-#: .\sites\default\templates\lbforum\user_topics.html.py:69
+#: .\sites\default\templates\lbforum\user_posts.html.py:43
+#: .\sites\default\templates\lbforum\user_posts.html.py:108
+#: .\sites\default\templates\lbforum\user_topics.html.py:27
+#: .\sites\default\templates\lbforum\user_topics.html.py:43
+#: .\sites\default\templates\lbforum\user_topics.html.py:70
 #, python-format
 msgid "Topics by %(view_user)s"
 msgstr ""
 
-#: .\sites\default\templates\lbforum\user_posts.html.py:68
+#: .\sites\default\templates\lbforum\user_posts.html.py:69
 msgid "posted in"
 msgstr ""
 
-#: .\sites\default\templates\registration\login.html.py:32
+#: .\sites\default\templates\pagination\pagination.html.py:5
+#: .\sites\default\templates\pagination\pagination.html.py:7
+msgid "previous"
+msgstr "anterior"
+
+#: .\sites\default\templates\pagination\pagination.html.py:21
+#: .\sites\default\templates\pagination\pagination.html.py:23
+msgid "next"
+msgstr "següent"
+
+#: .\sites\default\templates\registration\login.html.py:33
 #, python-format
 msgid "Login to %(LBFORUM_TITLE)s"
 msgstr ""
 
-#: .\sites\default\templates\registration\login.html.py:36
+#: .\sites\default\templates\registration\login.html.py:37
 msgid "Do you need to"
 msgstr ""
 
-#: .\sites\default\templates\registration\login.html.py:51
-#: .\sites\default\templates\registration\registration_form.html.py:50
+#: .\sites\default\templates\registration\login.html.py:52
+#: .\sites\default\templates\registration\registration_form.html.py:51
 #: .\src\lbregistration\forms.py:17
 msgid "Username"
 msgstr "Nom d'usuari/a"
 
-#: .\sites\default\templates\registration\login.html.py:57
-#: .\sites\default\templates\registration\registration_form.html.py:56
+#: .\sites\default\templates\registration\login.html.py:58
+#: .\sites\default\templates\registration\registration_form.html.py:57
 msgid "Password"
 msgstr "Contrasenya"
 
-#: .\sites\default\templates\registration\login.html.py:64
+#: .\sites\default\templates\registration\login.html.py:65
 msgid "Remember me"
 msgstr ""
 
-#: .\sites\default\templates\registration\login.html.py:64
+#: .\sites\default\templates\registration\login.html.py:65
 msgid "Log me in automatically each time I visit."
 msgstr ""
 
@@ -556,34 +549,34 @@ msgstr ""
 msgid "Password change successful"
 msgstr ""
 
-#: .\sites\default\templates\registration\password_change_form.html.py:32
+#: .\sites\default\templates\registration\password_change_form.html.py:33
 msgid "Old password"
 msgstr "Contrasenya antiga"
 
-#: .\sites\default\templates\registration\password_change_form.html.py:32
+#: .\sites\default\templates\registration\password_change_form.html.py:33
 msgid "You must enter your existing password."
 msgstr ""
 
-#: .\sites\default\templates\registration\password_change_form.html.py:38
+#: .\sites\default\templates\registration\password_change_form.html.py:39
 msgid "New password"
 msgstr "Contrasenya nova"
 
-#: .\sites\default\templates\registration\password_change_form.html.py:38
-#: .\sites\default\templates\registration\registration_form.html.py:56
+#: .\sites\default\templates\registration\password_change_form.html.py:39
+#: .\sites\default\templates\registration\registration_form.html.py:57
 msgid "Minimum 6 characters. Case sensitive."
 msgstr ""
 
-#: .\sites\default\templates\registration\password_change_form.html.py:44
-#: .\sites\default\templates\registration\registration_form.html.py:62
+#: .\sites\default\templates\registration\password_change_form.html.py:45
+#: .\sites\default\templates\registration\registration_form.html.py:63
 msgid "Password (again)"
 msgstr "Contrasenya (de nou):"
 
-#: .\sites\default\templates\registration\password_change_form.html.py:44
-#: .\sites\default\templates\registration\registration_form.html.py:62
+#: .\sites\default\templates\registration\password_change_form.html.py:45
+#: .\sites\default\templates\registration\registration_form.html.py:63
 msgid "Re-enter your password exactly as before."
 msgstr ""
 
-#: .\sites\default\templates\registration\password_change_form.html.py:50
+#: .\sites\default\templates\registration\password_change_form.html.py:51
 msgid "Change my password"
 msgstr ""
 
@@ -591,29 +584,29 @@ msgstr ""
 msgid "register successful"
 msgstr ""
 
-#: .\sites\default\templates\registration\registration_form.html.py:31
+#: .\sites\default\templates\registration\registration_form.html.py:32
 #, python-format
 msgid "Register at %(LBFORUM_TITLE)s"
 msgstr ""
 
-#: .\sites\default\templates\registration\registration_form.html.py:41
+#: .\sites\default\templates\registration\registration_form.html.py:42
 msgid "All fields labelled <em>(Required)</em> must be completed before the form is submitted."
 msgstr ""
 
-#: .\sites\default\templates\registration\registration_form.html.py:50
+#: .\sites\default\templates\registration\registration_form.html.py:51
 msgid "Between 2 and 25 characters."
 msgstr ""
 
-#: .\sites\default\templates\registration\registration_form.html.py:68
+#: .\sites\default\templates\registration\registration_form.html.py:69
 msgid "e-mail"
 msgstr "correu electrònic"
 
-#: .\sites\default\templates\registration\registration_form.html.py:68
+#: .\sites\default\templates\registration\registration_form.html.py:69
 msgid "A current valid e-mail address."
 msgstr ""
 
 #: .\src\account\forms.py:7
-#: .\src\lbforum\forms.py:12
+#: .\src\lbforum\forms.py:23
 msgid "Message"
 msgstr "Missatge"
 
@@ -621,83 +614,131 @@ msgstr "Missatge"
 msgid "Attachment"
 msgstr "Adjunció"
 
-#: .\src\attachments\views.py:13
+#: .\src\attachments\views.py:16
 msgid "no file"
 msgstr "Cap fitxer"
 
-#: .\src\attachments\views.py:32
-#: .\src\attachments\views.py:48
+#: .\src\attachments\views.py:39
+#: .\src\attachments\views.py:55
 msgid "some errors..."
 msgstr ""
 
-#: .\src\attachments\views.py:36
-#: .\src\attachments\views.py:52
+#: .\src\attachments\views.py:43
+#: .\src\attachments\views.py:59
 msgid "no right"
 msgstr ""
 
-#: .\src\djangohelper\helper.py:19
+#: .\src\djangohelper\helper.py:21
 msgid "please login first"
 msgstr ""
 
-#: .\src\lbforum\admin.py:15
+#: .\src\lbforum\admin.py:19
 msgid "Update topic/post nums"
 msgstr ""
 
-#: .\src\lbforum\admin.py:32
+#: .\src\lbforum\admin.py:42
 msgid "Update replies nums"
 msgstr ""
 
-#: .\src\lbforum\forms.py:10
+#: .\src\lbforum\admin.py:56
+msgid "sticky/unsticky topics"
+msgstr ""
+
+#: .\src\lbforum\admin.py:60
+msgid "close/unclose topics"
+msgstr ""
+
+#: .\src\lbforum\admin.py:64
+msgid "hide/unhide topics"
+msgstr ""
+
+#: .\src\lbforum\forms.py:11
+msgid "Last Reply"
+msgstr ""
+
+#: .\src\lbforum\forms.py:12
+msgid "Last Topic"
+msgstr ""
+
+#: .\src\lbforum\forms.py:20
+#: .\src\lbforum\models.py:91
+msgid "Topic Type"
+msgstr "Escriu un tema"
+
+#: .\src\lbforum\forms.py:21
 msgid "Subject"
 msgstr "Assumpte"
 
-#: .\src\lbforum\models.py:26
+#: .\src\lbforum\forms.py:27
+msgid "Need Reply"
+msgstr ""
+
+#: .\src\lbforum\forms.py:28
+#, fuzzy
+msgid "Attachments Need Reply"
+msgstr "Fitxers adjunts"
+
+#: .\src\lbforum\models.py:28
 msgid "Category"
 msgstr "Categoria"
 
-#: .\src\lbforum\models.py:27
+#: .\src\lbforum\models.py:29
 msgid "Categories"
 msgstr "Categories"
 
-#: .\src\lbforum\models.py:47
-#: .\src\lbforum\models.py:74
+#: .\src\lbforum\models.py:49
+#: .\src\lbforum\models.py:72
+#: .\src\lbforum\models.py:90
 msgid "Forum"
 msgstr "Fòrum"
 
-#: .\src\lbforum\models.py:48
+#: .\src\lbforum\models.py:50
 msgid "Forums"
 msgstr ""
 
-#: .\src\lbforum\models.py:96
-#: .\src\lbforum\models.py:116
+#: .\src\lbforum\models.py:85
+msgid "Default"
+msgstr "Predeterminat"
+
+#: .\src\lbforum\models.py:120
+#: .\src\lbforum\models.py:150
 msgid "Topic"
 msgstr "Temes"
 
-#: .\src\lbforum\models.py:130
+#: .\src\lbforum\models.py:144
+msgid "BBCode"
+msgstr ""
+
+#: .\src\lbforum\models.py:145
+msgid "Html"
+msgstr ""
+
+#: .\src\lbforum\models.py:167
 msgid "Post"
 msgstr "Publica"
 
-#: .\src\lbforum\models.py:140
+#: .\src\lbforum\models.py:177
 #, python-format
 msgid "Topic: %s"
 msgstr "Temes: %s"
 
-#: .\src\lbforum\models.py:141
+#: .\src\lbforum\models.py:178
 #, python-format
 msgid "Re: %s"
 msgstr "Re: %s"
 
-#: .\src\lbforum\models.py:171
+#: .\src\lbforum\models.py:219
 #: .\src\simpleavatar\models.py:56
 msgid "User"
 msgstr "Usuari/a"
 
-#: .\src\lbforum\views.py:54
-#: .\src\lbforum\views.py:89
+#: .\src\lbforum\views.py:68
+#: .\src\lbforum\views.py:110
 msgid "topic"
 msgstr "tema"
 
-#: .\src\lbforum\views.py:58
+#: .\src\lbforum\views.py:73
+#: .\src\lbforum\views.py:107
 msgid "reply"
 msgstr "respon"
 
@@ -705,15 +746,15 @@ msgstr "respon"
 msgid "Pages"
 msgstr "Pàgines"
 
-#: .\src\lbforum\templatetags\lbforum.py:76
+#: .\src\lbforum\templatetags\lbforum_filters.py:64
 msgid "Online"
 msgstr "En línia"
 
-#: .\src\lbforum\templatetags\lbforum.py:79
+#: .\src\lbforum\templatetags\lbforum_filters.py:67
 msgid "Offline"
 msgstr "Desconnectat"
 
-#: .\src\lbforum\templatetags\lbforum.py:99
+#: .\src\lbforum\templatetags\lbforum_filters.py:87
 #, python-format
 msgid "%s ago"
 msgstr "fa %s"
@@ -731,5 +772,12 @@ msgstr ""
 msgid "Successfully updated your avatar."
 msgstr ""
 
-#~ msgid "Re-enter your e-mail address exactly as before."
-#~ msgstr ""
+msgid "Uploading"
+msgstr "S'està pujant"
+
+msgid "Home"
+msgstr "Inici"
+
+msgid "Upload"
+msgstr "Puja"
+
