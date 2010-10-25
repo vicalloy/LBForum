@@ -17,19 +17,19 @@ def do_unzip():
     unzip(os.path.join(req_zip_folder, "registration.zip"), REQ_FOLDER)
     static_scripts_folder = os.path.join(STATIC_FOLDER, 'scripts')
 
-def do_easy_install():
+def do_pip():
     pip = os.path.join(LBFORUM_ENV, "Scripts/pip.exe")
     if os.name == 'posix':
-        easy_install = os.path.join(LBFORUM_ENV, "bin/pip")
-    print '== do_easy_install =='
-    run('%s %s' % (easy_install, 'Django==1.2.3'))
-    run('%s %s' % (easy_install, 'PIL'))
-    run('%s %s' % (easy_install, 'django-pagination'))
-    run('%s %s' % (easy_install, 'South'))
+        pip = os.path.join(LBFORUM_ENV, "bin/pip")
+    print '== do_pip =='
+    run('%s %s' % (pip, 'Django==1.2.3'))
+    run('%s %s' % (pip, 'PIL'))
+    run('%s %s' % (pip, 'django-pagination'))
+    run('%s %s' % (pip, 'South'))
 
 if __name__ == '__main__':
     do_unzip()
     virtualenv_py = os.path.join(TOOLS_FOLDER, "virtualenv.py")
     print '== create LBFORUM_ENV =='
     run('python %s %s' % (virtualenv_py, LBFORUM_ENV))
-    do_easy_install()
+    do_pip()
