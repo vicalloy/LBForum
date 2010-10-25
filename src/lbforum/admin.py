@@ -84,6 +84,6 @@ admin.site.register(Post, PostAdmin)
 class LBForumUserProfileAdmin(admin.ModelAdmin):
     list_display        = ('user', 'userrank', 'last_activity', 'last_posttime', \
             'signature', )
-    search_fields       = ('user', 'userrank', )
+    search_fields       = ('user__username', 'userrank', )
 
 admin.site.register(LBForumUserProfile, LBForumUserProfileAdmin)

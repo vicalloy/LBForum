@@ -11,6 +11,7 @@ from django.db.models import Sum
 from django.conf import settings
 
 from attachments.models import Attachment
+from onlineuser.models import Online
 
 class Config(models.Model):
     key = models.CharField(max_length = 255)#PK
@@ -243,10 +244,14 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 def update_topic_on_post(sender, instance, created, **kwargs):
     if created:
-        instance.topic.last_post = gen_last_post_info(instance)
-        instance.topic.last_reply_on = instance.created_on
-        instance.topic.num_replies += 1
-        instance.topic.save()
+        t = instance.topic
+        t.last_post = gen_last_post_info(instance)
+        t.last_reply_on = instance.created_on
+        t.num_replies += 1
+        t.save()
+        p = instance.posted_by.lbforum_profile
+        p.last_posttime = instance.created_on
+        p.save()
 
 def update_forum_on_post(sender, instance, created, **kwargs):
     if created:
@@ -259,10 +264,14 @@ def update_forum_on_topic(sender, instance, created, **kwargs):
         instance.forum.num_topics += 1
         instance.forum.save()
 
+def update_user_last_activity(sender, instance, created, **kwargs):
+    if instance.user:
+        p = instance.user.lbforum_profile
+        p.last_activity = instance.updated_on
+        p.save()
+
 post_save.connect(create_user_profile, sender = User)
 post_save.connect(update_topic_on_post, sender = Post)
 post_save.connect(update_forum_on_post, sender = Post)
 post_save.connect(update_forum_on_topic, sender = Topic)
-
-#TODO performance optimization
-#Add txt topic_type for topic
+post_save.connect(update_user_last_activity, sender = Online)
