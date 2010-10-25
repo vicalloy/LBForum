@@ -18,11 +18,11 @@ def do_unzip():
     static_scripts_folder = os.path.join(STATIC_FOLDER, 'scripts')
 
 def do_easy_install():
-    easy_install = os.path.join(LBFORUM_ENV, "Scripts/easy_install.exe")
+    pip = os.path.join(LBFORUM_ENV, "Scripts/pip.exe")
     if os.name == 'posix':
-        easy_install = os.path.join(LBFORUM_ENV, "bin/easy_install")
+        easy_install = os.path.join(LBFORUM_ENV, "bin/pip")
     print '== do_easy_install =='
-    run('%s %s' % (easy_install, 'http://code.djangoproject.com/svn/django/trunk/'))
+    run('%s %s' % (easy_install, 'Django==1.2.3'))
     run('%s %s' % (easy_install, 'PIL'))
     run('%s %s' % (easy_install, 'django-pagination'))
     run('%s %s' % (easy_install, 'South'))

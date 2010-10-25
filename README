@@ -22,7 +22,7 @@ Requirements
 ============
 
 * Python 2.5+
-* Django(svn)
+* Django(1.2.3)
 * PIL_
 * django-pagination_
 * django-registration_
