@@ -30,9 +30,9 @@
             {% if user.is_authenticated %}
             {% blocktrans %}Hello {{user}}{% endblocktrans %}, <a href='{% url auth_logout %}?next={% url lbforum_index %}'>{% trans "Logout" %}</a>
             {% else %}
-            <a href="{% url registration_register %}">{% trans "Register" %}</a>
-            |
             <a href="{% url auth_login %}">{% trans "Login" %}</a>
+            |
+            <a href="{% url registration_register %}">{% trans "Register" %}</a>
             {% endif %}
         </span>
     </p>
