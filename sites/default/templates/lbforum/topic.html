@@ -48,7 +48,9 @@
                     {% endfor %}
                 </div>
                 <div class="main-options gen-content">
-                    <p class="options"></p>
+                    <p class="options">
+                        {% include 'lbforum/plugins/inc_topic_footer.html' %}
+                    </p>
                 </div>
                 <div class="main-pagepost gen-content" id="brd-pagepost-end">
                     {% paginate %}
