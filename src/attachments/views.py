@@ -10,8 +10,6 @@ from djangohelper.helper import flash_login_required, ajax_login_required, \
 from forms import AttachmentForm
 from models import Attachment
 
-@csrf_exempt
-@flash_login_required
 def __ajax_upload(request):
     data = {'valid': False, 'errors': ugettext('no file')}
     attachment_form = AttachmentForm(user=request.user)
@@ -39,7 +37,7 @@ def ajax_delete(request):
     data = {'valid': False, 'errors': ugettext('some errors...')}
     attachment_id = request.POST['id']
     attachment = Attachment.objects.get(pk=attachment_id)
-    if (attachment.user != request.user):
+    if (not request.user.is_staff and attachment.user != request.user):
         data['errors'] = ugettext('no right')
     else:
         attachment.delete()
