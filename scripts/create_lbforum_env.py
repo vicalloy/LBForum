@@ -23,6 +23,10 @@ def do_pip():
         pip = os.path.join(LBFORUM_ENV, "bin/pip")
     print '== do_pip =='
     run('%s %s' % (pip, 'Django==1.2.3'))
+    run('%s %s' % (pip, 'django-helper'))
+    run('%s %s' % (pip, 'django-attachments'))
+    run('%s %s' % (pip, 'django-onlineuser'))
+    run('%s %s' % (pip, 'django-simple-avatar'))
     run('%s %s' % (pip, 'BeautifulSoup'))
     run('%s %s' % (pip, 'postmarkup'))
     run('%s %s' % (pip, 'PIL'))
