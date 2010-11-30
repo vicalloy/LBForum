@@ -22,16 +22,16 @@ def do_pip():
     if os.name == 'posix':
         pip = os.path.join(LBFORUM_ENV, "bin/pip")
     print '== do_pip =='
-    run('%s %s' % (pip, 'Django==1.2.3'))
-    run('%s %s' % (pip, 'django-helper'))
-    run('%s %s' % (pip, 'django-attachments'))
-    run('%s %s' % (pip, 'django-onlineuser'))
-    run('%s %s' % (pip, 'django-simple-avatar'))
-    run('%s %s' % (pip, 'BeautifulSoup'))
-    run('%s %s' % (pip, 'postmarkup'))
-    run('%s %s' % (pip, 'PIL'))
-    run('%s %s' % (pip, 'django-pagination'))
-    run('%s %s' % (pip, 'South'))
+    run('%s install %s' % (pip, 'Django==1.2.3'))
+    run('%s install %s' % (pip, 'django-helper'))
+    run('%s install %s' % (pip, 'django-lb-attachments'))
+    run('%s install %s' % (pip, 'django-onlineuser'))
+    run('%s install %s' % (pip, 'django-simple-avatar'))
+    run('%s install %s' % (pip, 'BeautifulSoup'))
+    run('%s install %s' % (pip, 'postmarkup'))
+    run('%s install %s' % (pip, 'PIL'))
+    run('%s install %s' % (pip, 'django-pagination'))
+    run('%s install %s' % (pip, 'South'))
 
 if __name__ == '__main__':
     do_unzip()
