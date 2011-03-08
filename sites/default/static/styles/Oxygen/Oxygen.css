@@ -144,7 +144,8 @@ body {
 
 .brd {
     overflow: auto;
-    margin: 20px 30px;
+    margin: 0 auto;
+	width: 960px;
 }
 
 #brd-redirect, #brd-maint, #brd-util {
