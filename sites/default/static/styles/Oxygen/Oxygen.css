@@ -64,7 +64,10 @@ body {
 /* Float Clearing
  -------------------------------------------------------------*/
 
-#brd-main {position: relative}
+#brd-main {
+	position: relative;
+	/*width: 735px;*/
+}
 
 .brd-page:after,
 #brd-main:after,
@@ -143,7 +146,6 @@ body {
  -------------------------------------------------------------*/
 
 .brd {
-    overflow: auto;
     margin: 0 auto;
 	width: 960px;
 }
@@ -329,7 +331,7 @@ body {
 
 .brd .ct-set .ct-legend {
     float: left;
-    margin-left: -18em;
+    margin-left: -15em;
     width: 15.5em;
     display: inline;
     position: relative;
@@ -601,6 +603,7 @@ body {
 
 .brd .crumbs {
     padding: 0.5em 1.5em;
+	clear: both;
 }
 
 /* Statistics
@@ -979,7 +982,7 @@ body {
     border-style: solid;
     border-width: 1px;
     margin: 1.417em;
-    padding: 0 0 0 18em;
+    padding: 0 0 0 15em;
     position: relative;
 }
 
@@ -1036,20 +1039,20 @@ body {
 
 .brd .sf-set .text label span, .brd .sf-set .select label span, .brd .sf-set .aslabel span {
     float: left;
-    margin-left: -18em;
+    margin-left: -15em;
     display: inline;
     position: relative;
     padding: 2px 1em 2px 1em;
-    width: 16em;
+    width: 13em;
 }
 
 .brd .sf-set .checkbox label span {
     float: left;
-    margin-left: -18em;
+    margin-left: -15em;
     display: inline;
     position: relative;
     padding: 0 1em;
-    width: 16em;
+    width: 13em;
     left: -3em;
 }
 
@@ -1106,8 +1109,8 @@ body {
 
 .brd .mf-set legend span {
     position: absolute;
-    left: -18em;
-    width: 16em;
+    left: -15em;
+    width: 13em;
     padding: 0.75em 1em;
     margin: 1px 0 2px 0;
     overflow: hidden;
@@ -1252,11 +1255,11 @@ body {
 
 .brd .txt-set label span {
     float: left;
-    margin-left: -18em;
+    margin-left: -15em;
     display: inline;
     position: relative;
     padding: 2px 1em;
-    width: 16em;
+    width: 13em;
     height: 1em;
 }
 
@@ -1304,7 +1307,7 @@ body {
     float: left;
     font-size: 0.917em;
     line-height: 1.2em;
-    width: 16em;
+    width: 13em;
     position: relative;
 }
 
@@ -1497,7 +1500,7 @@ body {
 
 .brd .postfoot .post-contacts {
     float: left;
-    margin-left: -18em;
+    margin-left: -15em;
     width: 15.5em;
     padding: 0.5em 1em 0.5em 1.5em;
     position: relative;
@@ -1925,4 +1928,11 @@ body {
 
 .brd #forum_order_by {
     float:right;
+}
+
+#sidebar {
+    float: right;
+    margin-bottom: 60px;
+    overflow: hidden;
+    width: 220px;
 }

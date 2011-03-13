@@ -24,7 +24,7 @@ def do_pip():
     print '== do_pip =='
     run('%s %s' % (pip, 'Django==1.2.3'))
     run('%s %s' % (pip, 'django-helper'))
-    run('%s %s' % (pip, 'django-attachments'))
+    run('%s %s' % (pip, 'django-lb-attachments'))
     run('%s %s' % (pip, 'django-onlineuser'))
     run('%s %s' % (pip, 'django-simple-avatar'))
     run('%s %s' % (pip, 'BeautifulSoup'))
