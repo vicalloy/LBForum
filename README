@@ -47,6 +47,7 @@ run on django dev server
 * %mg% syncdb
 
   - Would you like to create one now? (yes/no):**no**
+* %mg% migrate attachments
 * %mg% migrate
 * %mg% createsuperuser
 * %mg% runserver
