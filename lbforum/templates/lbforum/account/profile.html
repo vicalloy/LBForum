@@ -1,0 +1,51 @@
+{% extends 'lbforum/account/base.html' %}
+
+{% load i18n %}
+{% load lbforum_filters %}
+{% load lbforum_tags %}
+{% load avatar_tags %}
+
+{% block title %}
+	{{ LBFORUM_TITLE }} - {% blocktrans %}{{ view_user }}'s profile{% endblocktrans %}
+{% endblock %}
+
+{% block brd-page-id %}brd-profile-about{% endblock %}
+
+{% block main_menu_profile_class %}active{% endblock %}
+{% block main_head %}{% blocktrans %}{{ view_user }}'s profile{% endblocktrans %}{% endblock %}
+{% block main_subhead %}{% trans "Welcome to your profile" %}{% endblock %}
+
+{% block account_main_content %}
+    {% if user == view_user %}
+	<p class="content-options options">
+		<span class="item1"><a href="{% url auth_password_change %}">{% trans "Change your password" %}</a></span> 
+	</p>
+    {% endif %}
+    
+	<div class="profile ct-group data-group vcard">
+		<div class="ct-set data-set set1">
+			<div class="ct-box data-box">
+				<ul class="user-ident ct-legend">
+                    <li class="username fn nickname"><strong>{{ view_user }}</strong></li>
+					<li class="usertitle"><span>{% trans "Member" %}</span></li>					
+					<li class="useravatar">{% avatar view_user %}</li>
+				</ul>
+				<ul class="data-list">
+					<li><span>{% trans "Registered" %}: <strong>{{view_user.date_joined|date:"Y-m-d"}}</strong></span></li>
+					<li><span>{% trans "Last login" %}: <strong>{{view_user.last_login|date:"Y-m-d"}}</strong></span></li>
+                    <li><span>{% trans "Topics" %}: <strong>{{view_user.topic_set.all.count}}</strong> </span></li>
+					<li><span>{% trans "Posts" %}: <strong>{{view_user.post_set.all.count}}</strong> </span></li>
+				</ul>
+			</div>
+		</div>
+        <div class="ct-set data-set set2">
+            <div class="ct-box data-box">
+                <h3 class="ct-legend hn"><span>{% trans "Posts and topics" %}</span></h3>
+                <p class="options">
+                    <span class="item1"><a href="{% url lbforum_user_posts view_user.pk %}">{% blocktrans %}View all {{view_user}}'s posts{% endblocktrans %}</a></span>
+                    <span><a href="{% url lbforum_user_topics view_user.pk %}">{% blocktrans %}View all {{view_user}}'s topics{% endblocktrans %}</a></span>
+                </p>
+            </div>
+        </div>
+	</div>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'lbforum/base.html' %}
+
+{% load i18n %}
+{% load lbforum_tags %}
+{% load lbforum_filters %}
+{% load avatar_tags %}
+
+{% block title %} {{ LBFORUM_TITLE }} - {{ LBFORUM_SUB_TITLE }} {% endblock %}
+
+{% block content %}
+	<div id="replybox">
+		<div id="actionbox">
+		</div>
+	</div>
+	<div id="brd-wrap" class="brd">
+		<div id="{% block brd-page-id %}{% endblock %}" class="brd-page menu-page">
+			{% include 'lbforum/inc_header.html' %}
+			{% include 'lbforum/inc_announce.html' %}
+			<div class="hr"><hr/></div>
+            <div id="brd-crumbs-top" class="crumbs gen-content">
+                <p>
+                    <span class="crumb crumbfirst">
+                        <a href="{% url lbforum_index %}">{{ LBFORUM_TITLE }}</a>
+                    </span> 
+                    <span class="crumb crumblast">
+                        <span> &raquo; </span>
+                        {% firstof view_user user %}{% trans "'s profile" %}
+                    </span> 
+                </p>
+            </div>
+
+			<div class="main-wrapper" id="brd-main">
+				<div class="main-menu gen-content">
+					<ul>
+						<li class="item1 {% block main_menu_profile_class %}{% endblock %}">
+                            {% if view_only %}
+                            <a href="{% url lbforum_account_index %}"><span>{% trans "Introduction" %}</span></a>
+                            {% endif %}
+                            {% if not view_only %}
+                            <a href="{% url user_profile user.pk %}"><span>{% trans "Introduction" %}</span></a>
+                            {% endif %}
+                        </li>
+                        {% if not view_only %}
+                        <li class="{% block main_menu_avatar_class %}{% endblock %}">
+                            <a href="{% url lbforum_avatar_change %}"><span>{% trans "Avatar" %}</span></a>
+                        </li>
+                        {% endif %}
+                        {% if not view_only %}
+                        <li class="{% block main_menu_sig_class %}{% endblock %}">
+                            <a href="{% url lbforum_signature %}"><span>{% trans "Signature" %}</span></a>
+                        </li>
+                        {% endif %}
+					</ul>
+				</div>
+
+				<div class="main-head">
+					<h1 class="hn"><span>{% block main_head %}{% endblock %}</span></h1>
+				</div>
+				<div class="main-subhead">
+					<h2 class="hn"><span>{% block main_subhead %}{% endblock %}</span></h2>
+				</div>
+				<div class="main-content main-frm">
+                {% block account_main_content %}
+                {% endblock %}
+				</div>
+			</div>
+
+			<div class="crumbs gen-content" id="brd-crumbs-end">
+                <p>
+                    <span class="crumb crumbfirst">
+                        <a href="{% url lbforum_index %}">{{ LBFORUM_TITLE }}</a>
+                    </span> 
+                    <span class="crumb crumblast">
+                        <span> &raquo; </span>
+                        {% firstof view_user user %}{% trans "'s profile" %}
+                    </span> 
+                </p>
+			</div>
+			<div class="hr"><hr /></div>
+			{% include 'lbforum/inc_copyright.html' %}
+		</div>
+	</div>
+    {% block content_footer %}{% endblock %}
+{% endblock %}

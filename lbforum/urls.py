@@ -1,7 +1,8 @@
 from django.conf.urls.defaults import *
 from django.views.generic.simple import direct_to_template
+from django.contrib.auth.decorators import login_required
 
-from lbforum import views
+from lbforum import views, accountviews 
 
 urlpatterns = patterns('',
     url(r'^$', views.index, name='lbforum_index'),
@@ -21,3 +22,15 @@ urlpatterns = patterns('',
 
     url('^markitup_preview/$', views.markitup_preview, name='markitup_preview'),    
 )
+
+urlpatterns += patterns('',
+    url(r'^account/$', login_required(accountviews.profile), name='lbforum_account_index'),
+    url(r'^account/signature/$', accountviews.signature, name='lbforum_signature'),
+    (r'^accounts/avatar/', include('simpleavatar.urls')),
+)
+
+urlpatterns += patterns('simpleavatar.views',
+        url('^account/avatar/change/$', 'change', {'template_name': 'lbforum/account/avatar/change.html'}, \
+                name='lbforum_avatar_change'),
+)
+

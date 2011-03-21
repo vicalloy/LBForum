@@ -1,0 +1,71 @@
+{% extends 'lbforum/account/base.html' %}
+
+{% load i18n %}
+{% load lbforum_filters %}
+{% load lbforum_tags %}
+
+{% block title %}
+	{{ LBFORUM_TITLE }} - {% blocktrans %}{{ user }}'s profile{% endblocktrans %} : {% trans "Signature" %}
+{% endblock %}
+
+{% block extra_header %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}scripts/markitup/skins/markitup/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}scripts/markitup/sets/bbcode/style.css" />
+{% endblock %}
+
+{% block brd-page-id %}brd-profile-signature{% endblock %}
+
+{% block main_menu_sig_class %}active{% endblock %}
+{% block main_head %}{% blocktrans %}{{ user }}'s profile{% endblocktrans %} : {% trans "Signature" %}{% endblock %}
+{% block main_subhead %}{% trans "Create or modify a signature for display in your posts" %}{% endblock %}
+
+{% block account_main_content %}
+    {% if form.errors %}
+        <div class="ct-box error-box" id="req-msg">
+            <p class="errornote"> {% trans "Please correct the errors below." %}  </p>
+            {{ form|form_all_error }}
+        </div>
+    {% endif %}
+    <form enctype="multipart/form-data" method="POST" action="">
+        <div class="hidden">
+            {% csrf_token %}
+        </div>
+        <fieldset class="frm-group group1">
+            <legend class="group-legend"><strong>{% trans "Signature" %}</strong></legend>
+            <div class="ct-set info-set set1">
+                <div class="ct-box info-box">
+                    <h3 class="ct-legend hn">{% trans "Current signature" %}</h3>
+                    <div class="sig-demo">{{ user.lbforum_profile.signature|bbcode|safe }}</div>
+                </div>
+            </div>
+            <div class="txt-set set2">
+                <div class="txt-box textarea">
+                    <label for="fld1">
+                        <span>{% trans "Compose signature" %}:</span>
+                    </label>
+                    <div class="txt-input">
+                        <span class="fld-input">
+                            <small>{% trans "Maximum size 400 characters long and 4 lines high." %}</small>
+                            {{ form.signature }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="frm-buttons">
+            <span class="submit">
+                <input type="submit" name="update" value="{% trans "Update profile" %}" />
+            </span>
+        </div>
+    </form>
+{% endblock %}
+
+{% block content_footer %}
+    <script type="text/javascript" src="{{ MEDIA_URL }}scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}scripts/markitup/jquery.markitup.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}scripts/markitup/sets/bbcode/set.js"></script>
+    <script type="text/javascript">
+        mySettings['previewParserPath']='{% url markitup_preview %}';
+	    $("#id_signature").markItUp(mySettings);
+    </script>
+{% endblock %}

@@ -6,6 +6,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from models import Topic, Post, TopicType
+from models import LBForumUserProfile
 
 FORUM_ORDER_BY_CHOICES = (
         ('-last_reply_on', _('Last Reply')), 
@@ -108,3 +109,11 @@ class NewPostForm(PostForm):
         attachments = self.cleaned_data['attachments']
         post.update_attachments(attachments)
         return post
+
+class SignatureForm(forms.ModelForm):
+    signature = forms.CharField(label=_('Message'), required=False,\
+            widget=forms.Textarea(attrs={'cols':'65', 'rows':'4'}))
+
+    class Meta:
+        model = LBForumUserProfile
+        fields = ('signature',)
