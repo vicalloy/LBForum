@@ -294,7 +294,7 @@ body {
     border-style: solid;
     border-width: 1px;
     margin: 1.417em;
-    padding: 0 0 0 18em;
+    padding: 0 0 0 15em;
     position: relative;
 }
 
@@ -1065,7 +1065,7 @@ body {
 }
 
 .brd .sf-set .fld-input {
-    position: absolute;
+    /*position: absolute;*/
     top: 0;
     left: 0;
     display: block;
