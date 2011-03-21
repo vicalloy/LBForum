@@ -122,6 +122,7 @@ CTX_CONFIG = {
         'LBFORUM_SUB_TITLE': 'A forum engine written in Python using Django',
         'FORUM_PAGE_SIZE': 50,
         'TOPIC_PAGE_SIZE': 20,
+        'LBFORUM_MEDIA_PREFIX': '%slbforum/' % MEDIA_URL,
         }
 
 BBCODE_AUTO_URLS = True
