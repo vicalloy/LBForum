@@ -103,7 +103,7 @@ INSTALLED_APPS = (
     'pagination',
     #'sorl.thumbnail',
     #'debug_toolbar',
-    'registration',    
+    #'registration',    
     'south',
 
     'simpleavatar',
@@ -114,15 +114,23 @@ INSTALLED_APPS = (
     'attachments',
 )
 
-LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = "%saccounts/login/" % LOGIN_REDIRECT_URL
+LBFORUM_MEDIA_PREFIX = '%slbforum/' % MEDIA_URL
+
+ROOT_URL = '/'
+LOGIN_REDIRECT_URL = ROOT_URL
+LOGIN_URL = "%saccounts/login/" % ROOT_URL
+REGISTER_URL = '%saccounts/register/' % ROOT_URL#registration_register
 
 CTX_CONFIG = {
         'LBFORUM_TITLE': 'LBForum',
         'LBFORUM_SUB_TITLE': 'A forum engine written in Python using Django',
         'FORUM_PAGE_SIZE': 50,
         'TOPIC_PAGE_SIZE': 20,
-        'LBFORUM_MEDIA_PREFIX': '%slbforum/' % MEDIA_URL,
+
+        #URLS....
+        'LBFORUM_MEDIA_PREFIX': LBFORUM_MEDIA_PREFIX,
+        'LOGIN_URL': LOGIN_URL,
+        'REGISTER_URL': REGISTER_URL,
         }
 
 BBCODE_AUTO_URLS = True
@@ -173,5 +181,6 @@ DEBUG_TOOLBAR_PANELS = (
 #TODO add a config model
 try:
     from lbforum_settings import *
+    CTX_CONFIG.update(CTX_CONFIG_)
 except Exception, e:
     pass

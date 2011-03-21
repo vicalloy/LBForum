@@ -18,8 +18,8 @@
         <li id="navprofile"><a href="{% url account_index %}">{% trans "My profile" %}</a></li>
         <li id="navlogout"><a href="{% url auth_logout %}?next={% url lbforum_index %}">{% trans "Logout" %}</a></li>
         {% else %}
-        <li id="navregister"><a href="{% url registration_register %}">{% trans "Register" %}</a></li>
-        <li id="navlogin"><a href="{% url auth_login %}">{% trans "Login" %}</a></li>
+        <li id="navregister"><a href="{{ REGISTER_URL }}">{% trans "Register" %}</a></li>
+        <li id="navlogin"><a href="{{ LOGIN_URL }}">{% trans "Login" %}</a></li>
         {% endif %}
     </ul>
 </div>
@@ -30,9 +30,9 @@
             {% if user.is_authenticated %}
             {% blocktrans %}Hello {{user}}{% endblocktrans %}, <a href='{% url auth_logout %}?next={% url lbforum_index %}'>{% trans "Logout" %}</a>
             {% else %}
-            <a href="{% url auth_login %}">{% trans "Login" %}</a>
+            <a href="{{ LOGIN_URL }}">{% trans "Login" %}</a>
             |
-            <a href="{% url registration_register %}">{% trans "Register" %}</a>
+            <a href="{{ REGISTER_URL }}">{% trans "Register" %}</a>
             {% endif %}
         </span>
     </p>
