@@ -38,23 +38,5 @@ Requirements
 How to install LBForum
 ======================
 
-run on django dev server
-------------------------
-
-* Clone LBForum repository from http://github.com/vicalloy/LBForum
-* use \scripts\create_lbforum_env.py to create lbforum  environment(create python virtualenv, install/unzip requirements libs)
-* use \scripts\lbforum_env.bat to start lbforum environment.
-* %mg% syncdb
-
-  - Would you like to create one now? (yes/no):**no**
-* %mg% migrate attachments
-* %mg% migrate
-* %mg% createsuperuser
-* %mg% runserver
-* LBForum Admin http://127.0.0.1:8000/admin/
-* LBForum http://127.0.0.1:8000/
-
-plug into exist django project
-------------------------------
-
-TODO ...
+* lbforum is a reuseable app.
+* the project lbforum-site show how to use lbforum in a web project. https://github.com/vicalloy/lbforum-site
