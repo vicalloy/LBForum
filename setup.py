@@ -65,7 +65,7 @@ if len(sys.argv) > 1 and sys.argv[1] == 'bdist_wininst':
     for file_info in data_files:
         file_info[0] = '\\PURELIB\\%s' % file_info[0]
 
-version = '0.9'
+version = '0.9.1'
 
 setup(
     name = "LBForum",
