@@ -3,6 +3,10 @@ from distutils.command.install_data import install_data
 from distutils.command.install import INSTALL_SCHEMES
 import os
 import sys
+import lbforum
+
+version = lbforum.__version__
+
 
 class osx_install_data(install_data):
     # On MacOS, the platform-specific lib dir is /System/Library/Framework/Python/.../
@@ -65,8 +69,6 @@ if len(sys.argv) > 1 and sys.argv[1] == 'bdist_wininst':
     for file_info in data_files:
         file_info[0] = '\\PURELIB\\%s' % file_info[0]
 
-version = '0.9.2'
-
 setup(
     name = "LBForum",
     version = version,
@@ -76,6 +78,18 @@ setup(
     description = 'LBForum is a quick and simple forum which uses the Django Framework.',
     packages = packages,
     cmdclass = cmdclasses,
+    install_requires=[
+        "Django>=1.2",
+        "django-helper>=0.8.1",
+        "django-lb-attachments>=0.8",
+        "django-onlineuser>=0.8",
+        "django-simple-avatar>=0.8.1",
+        "BeautifulSoup",
+        "postmarkup",
+        "django-pagination",
+        "PIL",
+        "south>=0.7.2",
+        ],
     data_files = data_files,
     classifiers = ['Development Status :: 5 - Production/Stable',
                    'Environment :: Web Environment',
