@@ -1,10 +1,19 @@
-What is LBForum
-===============
+=======
+LBForum
+=======
+
+.. contents::
+
+.. |rst| replace:: :emphasis:`re`\ :strong:`Structured`\ :sup:`Text`
 
 LBForum is a quick and simple forum which uses the Django Framework (written 
-in Python language). LBForum is distributed under the BSD license. 
+in Python language). LBForum is a reusable Django application, can be added 
+to any existing django project.
+LBForum is distributed under the BSD license. 
 
-http://vik.haoluobo.com/lbforum/
+Demo site: http://vik.haoluobo.com/lbforum/
+
+Demo site's source: https://github.com/vicalloy/lbforum-site
 
 Features
 ========
@@ -21,22 +30,141 @@ Features
 Requirements
 ============
 
-* Python 2.5+
-* Django(1.2.3)
+* `Python 2.5+`_
+* `Django 1.2+`_
 * PIL_
 * django-pagination_
-* django-registration_
-* south_
+* `south 0.7.2+`_
 * postmarkup_
+* BeautifulSoup_
+* django-helper_
+* django-lb-attachments_
+* django-onlineuser_
+* django-simple-avatar_
 
+.. _`Python 2.5+`: http://python.org/
+.. _`Django 1.2+`: http://www.djangoproject.com/
 .. _PIL: http://www.pythonware.com/products/pil/
 .. _django-pagination: http://code.google.com/p/django-pagination/
-.. _django-registration: http://bitbucket.org/ubernostrum/django-registration/
-.. _south: http://south.aeracode.org/
+.. _`south 0.7.2+`: http://south.aeracode.org/
+.. _BeautifulSoup: http://www.crummy.com/software/BeautifulSoup/
 .. _postmarkup: http://code.google.com/p/postmarkup/
+.. _django-helper: https://github.com/vicalloy/django-helper
+.. _django-lb-attachments: https://github.com/vicalloy/django-lb-attachments
+.. _django-onlineuser: https://github.com/vicalloy/onlineuser
+.. _django-simple-avatar: https://github.com/vicalloy/django-simple-avatar
 
-How to install LBForum
-======================
+Installation
+============
 
-* lbforum is a reuseable app.
-* the project lbforum-site show how to use lbforum in a web project. https://github.com/vicalloy/lbforum-site
+Installation
+------------
+
+#. Install LBForum by easy_install or pip.
+
+``easy_install``::
+
+    $ easy_install lbforum
+
+``pip``::
+
+    $ pip install lbforum
+
+Configuration
+-------------
+
+The LBForum has some settings should be set in `settings.py`:
+
+#. Add the following app to ``INSTALLED_APPS``::
+
+    'pagination', 
+    'south',
+    'lbforum',
+    'simpleavatar',
+    'djangohelper',
+    'onlineuser',
+    'attachments',
+
+#. Add the following middleware to ``MIDDLEWARE_CLASSES``::
+
+    'pagination.middleware.PaginationMiddleware',
+    'onlineuser.middleware.OnlineUserMiddleware',
+    
+#. add ``"djangohelper.context_processors.ctx_config",`` to ``TEMPLATE_CONTEXT_PROCESSORS``::
+
+    TEMPLATE_CONTEXT_PROCESSORS = (
+        "django.core.context_processors.auth",
+        "django.core.context_processors.debug",
+        "django.core.context_processors.i18n",
+        "django.core.context_processors.media",
+        "django.core.context_processors.request",
+
+        "djangohelper.context_processors.ctx_config",
+    )
+
+#. setting urls for lbforum::
+    
+    # URL prefix for lbforum media -- CSS, JavaScript and images. Make sure to use a
+    # trailing slash.
+    # Examples: "http://foo.com/media/", "/media/".    
+    LBFORUM_MEDIA_PREFIX = '%slbforum/' % MEDIA_URL
+    
+    #The URL where requests are redirected after login
+    LOGIN_REDIRECT_URL = '/'
+    #The URL where requests are redirected for login
+    LOGIN_URL = "/accounts/login/"
+    #LOGIN_URL counterpart
+    LOGOUT_URL = "/accounts/logout/"
+    #register url 
+    REGISTER_URL = '%saccounts/register/' % ROOT_URL
+    
+#. vars for templates::
+
+    CTX_CONFIG = {
+            'LBFORUM_TITLE': 'LBForum',
+            'LBFORUM_SUB_TITLE': 'A forum engine written in Python using Django',
+            'FORUM_PAGE_SIZE': 50,
+            'TOPIC_PAGE_SIZE': 20,
+    
+            'LBFORUM_MEDIA_PREFIX': LBFORUM_MEDIA_PREFIX,
+            'LOGIN_URL': LOGIN_URL,
+            'LOGOUT_URL': LOGOUT_URL,
+            'REGISTER_URL': REGISTER_URL,
+            }
+            
+#. settings for BBCODE::
+
+    BBCODE_AUTO_URLS = True
+    #add allow tags
+    HTML_SAFE_TAGS = ['embed']
+    HTML_SAFE_ATTRS = ['allowscriptaccess', 'allowfullscreen', 'wmode']
+    #add forbid tags
+    HTML_UNSAFE_TAGS = []
+    HTML_UNSAFE_ATTRS = []
+    
+    """
+    #default html safe settings 
+    acceptable_elements = ['a', 'abbr', 'acronym', 'address', 'area', 'b', 'big',
+        'blockquote', 'br', 'button', 'caption', 'center', 'cite', 'code', 'col',
+        'colgroup', 'dd', 'del', 'dfn', 'dir', 'div', 'dl', 'dt', 'em',
+        'font', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'i', 'img', 
+        'ins', 'kbd', 'label', 'legend', 'li', 'map', 'menu', 'ol', 
+        'p', 'pre', 'q', 's', 'samp', 'small', 'span', 'strike',
+        'strong', 'sub', 'sup', 'table', 'tbody', 'td', 'tfoot', 'th',
+        'thead', 'tr', 'tt', 'u', 'ul', 'var']
+    acceptable_attributes = ['abbr', 'accept', 'accept-charset', 'accesskey',
+        'action', 'align', 'alt', 'axis', 'border', 'cellpadding', 'cellspacing',
+        'char', 'charoff', 'charset', 'checked', 'cite', 'clear', 'cols',
+        'colspan', 'color', 'compact', 'coords', 'datetime', 'dir', 
+        'enctype', 'for', 'headers', 'height', 'href', 'hreflang', 'hspace',
+        'id', 'ismap', 'label', 'lang', 'longdesc', 'maxlength', 'method',
+        'multiple', 'name', 'nohref', 'noshade', 'nowrap', 'prompt', 
+        'rel', 'rev', 'rows', 'rowspan', 'rules', 'scope', 'shape', 'size',
+        'span', 'src', 'start', 'summary', 'tabindex', 'target', 'title', 'type',
+        'usemap', 'valign', 'value', 'vspace', 'width', 'style']
+    """
+    
+Initialize The Database
+-----------------------
+
+#. Run command ``manage.py migrate``
