@@ -26,11 +26,13 @@ urlpatterns = patterns('',
 urlpatterns += patterns('',
     url(r'^account/$', login_required(accountviews.profile), name='lbforum_account_index'),
     url(r'^account/signature/$', accountviews.signature, name='lbforum_signature'),
-    (r'^accounts/avatar/', include('simpleavatar.urls')),
+
+    url(r'^user/(?P<user_id>\d+)/$', profile, name='lbforum_user_profile'),
 )
 
 urlpatterns += patterns('simpleavatar.views',
         url('^account/avatar/change/$', 'change', {'template_name': 'lbforum/account/avatar/change.html'}, \
                 name='lbforum_avatar_change'),
-)
 
+    (r'^accounts/avatar/', include('simpleavatar.urls')),
+)

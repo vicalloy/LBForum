@@ -37,7 +37,7 @@
                             <a href="{% url lbforum_account_index %}"><span>{% trans "Introduction" %}</span></a>
                             {% endif %}
                             {% if not view_only %}
-                            <a href="{% url user_profile user.pk %}"><span>{% trans "Introduction" %}</span></a>
+                            <a href="{% url lbforum_user_profile user.pk %}"><span>{% trans "Introduction" %}</span></a>
                             {% endif %}
                         </li>
                         {% if not view_only %}

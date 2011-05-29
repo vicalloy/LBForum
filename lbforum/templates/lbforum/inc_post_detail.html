@@ -8,7 +8,7 @@
             <span class="post-num">{% page_item_idx page_obj forloop %}</span>
             <span class="post-byline">
                 <span>{% trans "Topic by" %}</span>
-                <a href="{% url user_profile post.posted_by.pk %}">{{post.posted_by.username}}</a>
+                <a href="{% url lbforum_user_profile post.posted_by.pk %}">{{post.posted_by.username}}</a>
             </span>
             <span class="post-link">
                 {{ post.created_on|lbtimesince }}
@@ -18,8 +18,8 @@
     <div class="postbody">
         <div class="post-author">
             <ul class="author-ident">
-                <li class="useravatar"><a href="{% url user_profile post.posted_by.pk %}">{% avatar post.posted_by %}</a></li>
-                <li class="username"> <a href="{% url user_profile post.posted_by.pk %}">{{post.posted_by.username}}</a> </li>
+                <li class="useravatar"><a href="{% url lbforum_user_profile post.posted_by.pk %}">{% avatar post.posted_by %}</a></li>
+                <li class="username"> <a href="{% url lbforum_user_profile post.posted_by.pk %}">{{post.posted_by.username}}</a> </li>
                 <li class="usertitle"><span>{% trans "Member" %}</span></li>
                 <li class="userstatus"><span>{{post.posted_by|online}}</span></li>
             </ul>
