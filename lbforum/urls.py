@@ -27,7 +27,7 @@ urlpatterns += patterns('',
     url(r'^account/$', login_required(accountviews.profile), name='lbforum_account_index'),
     url(r'^account/signature/$', accountviews.signature, name='lbforum_signature'),
 
-    url(r'^user/(?P<user_id>\d+)/$', profile, name='lbforum_user_profile'),
+    url(r'^user/(?P<user_id>\d+)/$', accountviews.signature, name='lbforum_user_profile'),
 )
 
 urlpatterns += patterns('simpleavatar.views',
