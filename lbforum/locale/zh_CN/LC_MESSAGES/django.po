@@ -5,12 +5,12 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: 0.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-10-25 20:15+0800\n"
-"PO-Revision-Date: 2010-10-25 20:21+0800\n"
+"PO-Revision-Date: 2011-06-22 21:25+0800\n"
 "Last-Translator: vicalloy <zbirder@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: LANGUAGE <zbirder@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -785,4 +785,10 @@ msgstr "上传"
 
 msgid "Re-enter your e-mail address exactly as before."
 msgstr "重新输入您的邮件地址"
+
+msgid "Recent Topics"
+msgstr "最新主题"
+
+msgid "Forum Status"
+msgstr "社区运行状态"
 

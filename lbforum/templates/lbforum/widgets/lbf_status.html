@@ -1,0 +1,24 @@
+{% load i18n %}
+<div id="brd-stats" class="gen-content">
+    <h2 class="hn"><span>Forum statistics</span></h2>
+    <ul>
+        <li class="st-users">
+            <span>{% trans "Total number of registered users" %}: <strong>{{ total_users }} </strong></span>
+        </li>
+        <li class="st-users">
+            <span>{% trans "Newest registered user" %}: 
+                <strong>
+                    <a href="{% url lbforum_user_profile last_registered_user.pk %}">
+                        {{ last_registered_user.username }}
+                    </a>
+                </strong>
+            </span>
+        </li>
+        <li class="st-activity">
+            <span>{% trans "Total number of topics" %}: <strong>{{ total_topics }}</strong></span>
+        </li>
+        <li class="st-activity">
+            <span>{% trans "Total number of posts" %}: <strong> {{ total_posts }} </strong></span>
+        </li>
+    </ul>
+</div>

@@ -6,6 +6,7 @@ from lbforum import views, accountviews
 
 urlpatterns = patterns('',
     url(r'^$', views.index, name='lbforum_index'),
+    url(r'^recent/$', views.recent, name='lbforum_recent'),
     url(r'^forum/(?P<forum_slug>\w+)/$', views.forum, name='lbforum_forum'),
     url(r'^forum/(?P<forum_slug>\w+)/(?P<topic_type>\w+)/$', views.forum, name='lbforum_forum_ext'),
     url(r'^forum/(?P<forum_slug>\w+)/(?P<topic_type>\w+)/(?P<topic_type2>\w+)/$', 

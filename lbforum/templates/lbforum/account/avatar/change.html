@@ -19,7 +19,7 @@
 	{% if form.errors %}
 		<div class="ct-box error-box" id="req-msg">
 			<p class="errornote"> {% trans "Please correct the errors below." %}  </p>
-			{{ form|form_all_error }}
+			{{ avatar_form|form_all_error }}
 		</div>
 	{% endif %}
     <form enctype="multipart/form-data" method="POST" action="">

@@ -92,6 +92,9 @@ class Topic(models.Model):
             blank=True, null=True)
     posted_by = models.ForeignKey(User)
     
+    #TODO ADD TOPIC POST.
+    post = models.ForeignKey('Post', verbose_name=_('Post'), related_name='topics_',
+            blank=True, null=True)
     subject = models.CharField(max_length=999)
     num_views = models.IntegerField(default=0)
     num_replies = models.PositiveSmallIntegerField(default=0)#posts...
@@ -111,7 +114,6 @@ class Topic(models.Model):
     hidden = models.BooleanField(default=False)
     level = models.SmallIntegerField(choices=LEVEL_CHOICES, default=30)
     
-    
     objects = TopicManager()
     
     class Meta:
@@ -124,7 +126,7 @@ class Topic(models.Model):
         return self.subject
 
     def count_nums_replies(self):
-        return self.post_set.all().count()
+        return self.posts.all().count()
     
     @models.permalink
     def get_absolute_url(self):
@@ -147,7 +149,7 @@ FORMAT_CHOICES = (
 
 # Create Replies for a topic
 class Post(models.Model):#can't edit...
-    topic = models.ForeignKey(Topic, verbose_name=_('Topic'))
+    topic = models.ForeignKey(Topic, verbose_name=_('Topic'), related_name='posts')
     posted_by = models.ForeignKey(User)
     poster_ip = models.IPAddressField()
     topic_post = models.BooleanField(default=False)
@@ -211,7 +213,7 @@ class Post(models.Model):#can't edit...
 
     def get_absolute_url_ext(self):
         topic = self.topic
-        post_idx = topic.post_set.filter(created_on__lte=self.created_on).count()
+        post_idx = topic.posts.filter(created_on__lte=self.created_on).count()
         page = (post_idx - 1) / settings.CTX_CONFIG['TOPIC_PAGE_SIZE'] + 1
         return '%s?page=%s#p%s' % (topic.get_absolute_url(), page, self.pk)
     
@@ -226,7 +228,7 @@ class LBForumUserProfile(models.Model):
         return self.user.username
     
     def get_total_posts(self):
-        return self.user.post_set.count()
+        return self.user.posts.count()
 
     def get_absolute_url(self):
         return self.user.get_absolute_url()

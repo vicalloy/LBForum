@@ -106,6 +106,9 @@ class NewPostForm(PostForm):
         post = Post(topic=topic, posted_by=self.user, poster_ip=self.ip,
                     message=self.cleaned_data['message'], topic_post=topic_post)
         post.save()
+        if topic_post:
+            topic.post = post
+            topic.save()
         attachments = self.cleaned_data['attachments']
         post.update_attachments(attachments)
         return post

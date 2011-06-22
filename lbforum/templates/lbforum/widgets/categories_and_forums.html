@@ -1,0 +1,41 @@
+{% load i18n %}
+{% load lbforum_filters %}
+{% load lbforum_tags %}
+{% for category in categories %}
+<div class="main-subhead">
+    <h2 class="hn"><span>{{ category }}</span></h2>
+    <p class="item-summary"> 
+        <span>
+            <strong class="info-topics">{% trans "topics" %}</strong>,
+            <strong class="info-posts">{% trans "posts" %}</strong>, 
+            <strong class="info-lastpost">{% trans "last post" %}</strong>
+        </span> 
+    </p>
+</div>
+<div class="main-content main-category">
+    {% for forum in category.forum_set.all %}
+    <div id="forum" class="main-item {% cycle 'odd' 'even' %} {% if forloop.first %}main-item1{% endif %}">
+        <span class="icon "><!-- --></span>
+
+        <div class="item-subject">
+            <h3 class="hn"><a href="{% url lbforum_forum forum.slug %}"><span> {{forum}} </span></a></h3>
+            <p>{{ forum.description }}</p>
+        </div>
+
+        <ul class="item-info">
+            <li class="info-topics">
+                <strong>{{ forum.num_topics }} </strong> <span class="label">{% trans "topics" %}</span>
+            </li>
+            <li class="info-posts">
+                <strong>{{ forum.num_posts }} </strong> <span class="label">{% trans "posts" %}</span>
+            </li>
+            <li class="info-lastpost">
+                <span class="label">{% trans "Last post" %}:</span>
+                <strong>{{ forum.get_last_post.update|lbtimesince }}</strong> 
+                <cite>by {{ forum.get_last_post.posted_by }}</cite>
+            </li>
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+{% endfor %}
