@@ -10,7 +10,7 @@ from django.contrib.csrf.middleware import csrf_exempt
 
 from forms import EditPostForm, NewPostForm, ForumForm
 from models import Topic, Forum, Post
-import lbforum.settings as lbf_settings
+import settings as lbf_settings
 
 def index(request, template_name="lbforum/index.html"):
     ctx = {}
