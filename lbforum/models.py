@@ -228,7 +228,7 @@ class LBForumUserProfile(models.Model):
         return self.user.username
     
     def get_total_posts(self):
-        return self.user.posts.count()
+        return self.user.post_set.count()
 
     def get_absolute_url(self):
         return self.user.get_absolute_url()

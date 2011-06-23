@@ -10,10 +10,12 @@ from django.contrib.csrf.middleware import csrf_exempt
 
 from forms import EditPostForm, NewPostForm, ForumForm
 from models import Topic, Forum, Post
+import settings as lbf_settings
 
 def index(request, template_name="lbforum/index.html"):
     ctx = {}
-    ctx['topics'] = Topic.objects.all().order_by('-last_reply_on')[:20]
+    if lbf_settings.LAST_TOPIC_NO_INDEX: 
+        ctx['topics'] = Topic.objects.all().order_by('-last_reply_on')[:20]
     return render(request, template_name, ctx)
 
 def recent(request, template_name="lbforum/recent.html"):
@@ -45,7 +47,7 @@ def topic(request, topic_id, template_name="lbforum/topic.html"):
     topic.num_views += 1
     topic.save()
     posts = topic.posts
-    if True:#sticky topic post
+    if lbf_settings.STICKY_TOPIC_POST:#sticky topic post
         posts = posts.filter(topic_post=False)
     posts = posts.order_by('created_on').select_related()
     ext_ctx = {'topic': topic, 'posts': posts}
@@ -119,7 +121,7 @@ def edit_post(request, post_id, form_class=EditPostForm, template_name="lbforum/
     ext_ctx['unpublished_attachments'] = request.user.attachment_set.all().filter(activated=False)
     ext_ctx['topic_post'] = edit_post.topic_post
     ext_ctx['session_key'] = request.session.session_key
-    return render(template_name, ext_ctx)
+    return render(request, template_name, ext_ctx)
 
 @login_required
 def user_topics(request, user_id, template_name='lbforum/account/user_topics.html'):
@@ -131,7 +133,7 @@ def user_topics(request, user_id, template_name='lbforum/account/user_topics.htm
 def user_posts(request, user_id, template_name='lbforum/account/user_posts.html'):
     view_user = User.objects.get(pk=user_id)
     posts = view_user.post_set.order_by('-created_on').select_related()
-    return render(template_name, {'posts': posts, 'view_user': view_user})
+    return render(request, template_name, {'posts': posts, 'view_user': view_user})
 #Feed...
 #Add Post
 #Add Topic
