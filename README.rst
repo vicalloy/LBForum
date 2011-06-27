@@ -164,6 +164,21 @@ The LBForum has some settings should be set in `settings.py`:
         'usemap', 'valign', 'value', 'vspace', 'width', 'style']
     """
     
+#. if you want to use skin v2ex, you should add the follow config to settings.py::
+
+    #always show topic post in topic page.
+    LBF_STICKY_TOPIC_POST = True
+    #show last topic in index page
+    LBF_LAST_TOPIC_NO_INDEX = True
+    #add v2ex template dir to TEMPLATE_DIRS
+    import lbforum
+    V2EX_TEMPLATE_DIR = os.path.join(lbforum.__path__[0], 'templates_v2ex')
+    TEMPLATE_DIRS = (
+            os.path.join(HERE, 'templates_plus'),
+            os.path.join(HERE, 'templates_v2ex'),
+            V2EX_TEMPLATE_DIR,
+    )
+    
 Initialize The Database
 -----------------------
 

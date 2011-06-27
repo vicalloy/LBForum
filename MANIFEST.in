@@ -1,4 +1,4 @@
-include README
+include README.rst
 include LICENSE
 include MANIFEST.in
 recursive-include lbforum/locale *
