@@ -13,10 +13,12 @@
                 <div class="fr" id="reply-btns">
                     <strong>
                         <small class="snow">#{% page_item_idx page_obj forloop %} - {{ post.created_on|lbtimesince }}
+                            {% if user.is_authenticated %}
                             &bull;
                             <a href="{% url lbforum_new_replay topic.pk %}?qid={{post.pk}}">{% trans "quote" %}</a>
                             {% if user == post.posted_by or user.is_staff %}
-                                <a href="{% url lbforum_post_edit post.pk %}">{% trans "edit" %}</a>
+                            <a href="{% url lbforum_post_edit post.pk %}">{% trans "edit" %}</a>
+                            {% endif %}
                             {% endif %}
                         </small>
                     </strong>

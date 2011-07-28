@@ -90,10 +90,11 @@
 </div>
 {% endif %}
 
+{% if user.is_authenticated %}
 <div class="sep20"></div>
 <div class="box" id="quick-reply-box">
     <form action="{% url lbforum_new_replay topic.pk %}" accept-charset="utf-8" method="post" class="frm-form">
-        <div class="cell"><div class="fr fade"><a class="dark" href="#_top">Top&uarr;</a></div>
+        <div class="cell"><div class="fr fade"><a class="dark" href="#Top">Top&uarr;</a></div>
             <span class="fade">
                 {% trans "Quick reply to this topic" %}
             </span>
@@ -116,6 +117,7 @@
         </span>
     </div>
 </div>
+{% endif %}
 {% endblock %}
 
 {% block footer_js %}
