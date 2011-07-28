@@ -108,7 +108,6 @@ The LBForum has some settings should be set in `settings.py`:
     # URL prefix for lbforum media -- CSS, JavaScript and images. Make sure to use a
     # trailing slash.
     # Examples: "http://foo.com/media/", "/media/".    
-    LBFORUM_MEDIA_PREFIX = '%slbforum/' % MEDIA_URL
     
     #The URL where requests are redirected after login
     LOGIN_REDIRECT_URL = '/'
@@ -127,7 +126,6 @@ The LBForum has some settings should be set in `settings.py`:
             'FORUM_PAGE_SIZE': 50,
             'TOPIC_PAGE_SIZE': 20,
     
-            'LBFORUM_MEDIA_PREFIX': LBFORUM_MEDIA_PREFIX,
             'LOGIN_URL': LOGIN_URL,
             'LOGOUT_URL': LOGOUT_URL,
             'REGISTER_URL': REGISTER_URL,

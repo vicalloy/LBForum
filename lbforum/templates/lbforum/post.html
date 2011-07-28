@@ -7,9 +7,9 @@
 {% block title %}{{  block.super }}{% endblock %}
 
 {% block extra_header %}
-	<link href="{{ LBFORUM_MEDIA_PREFIX }}scripts/jquery.uploadify/uploadify.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ LBFORUM_MEDIA_PREFIX }}scripts/markitup/skins/markitup/style.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ LBFORUM_MEDIA_PREFIX }}scripts/markitup/sets/bbcode/style.css" />
+	<link href="{{ STATIC_URL }}lbforum/scripts/jquery.uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}lbforum/scripts/markitup/skins/markitup/style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}lbforum/scripts/markitup/sets/bbcode/style.css" />
 {% endblock %}
 
 {% block content %}
@@ -157,24 +157,24 @@
     </div>
 
     <script type="text/javascript" src="{% url lbforum_lang_js %}"></script>
-    <script type="text/javascript" src="{{ LBFORUM_MEDIA_PREFIX }}scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ LBFORUM_MEDIA_PREFIX }}scripts/markitup/jquery.markitup.js"></script>
-    <script type="text/javascript" src="{{ LBFORUM_MEDIA_PREFIX }}scripts/markitup/sets/bbcode/set.js"></script>
-	<script type="text/javascript" src="{{ LBFORUM_MEDIA_PREFIX }}scripts/json2.js"></script>
-	<script type="text/javascript" src="{{ LBFORUM_MEDIA_PREFIX }}scripts/jquery.uploadify/swfobject.js"></script>
-	<script type="text/javascript" src="{{ LBFORUM_MEDIA_PREFIX }}scripts/jquery.uploadify/jquery.uploadify.v2.1.0.min.js"></script>
-    <script type="text/javascript" src="{{ LBFORUM_MEDIA_PREFIX }}scripts/simple_tpl.js"></script>
-    <script type="text/javascript" src="{{ LBFORUM_MEDIA_PREFIX }}scripts/upload_attachment.js"></script>
-    <script type="text/javascript" src="{{ LBFORUM_MEDIA_PREFIX }}scripts/common.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}lbforum/scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}lbforum/scripts/markitup/jquery.markitup.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}lbforum/scripts/markitup/sets/bbcode/set.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}lbforum/scripts/json2.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}lbforum/scripts/jquery.uploadify/swfobject.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}lbforum/scripts/jquery.uploadify/jquery.uploadify.v2.1.0.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}lbforum/scripts/simple_tpl.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}lbforum/scripts/upload_attachment.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}lbforum/scripts/common.js"></script>
     <script type="text/javascript">
         mySettings['previewParserPath']='{% url markitup_preview %}';
 	    $("#id_message").markItUp(mySettings);
         url_attachments_ajax_change_descn = "{% url attachments_ajax_change_descn %}";
         url_attachments_ajax_delete = "{% url attachments_ajax_delete %}";
         url_attachments_ajax_upload = "{% url attachments_ajax_upload %}";
-		ify_uploader = '{{ LBFORUM_MEDIA_PREFIX }}scripts/jquery.uploadify/uploadify.swf';
+		ify_uploader = '{{ STATIC_URL }}lbforum/scripts/jquery.uploadify/uploadify.swf';
 		ify_script = '{% url attachments_uploadify %}';
-		ify_cancelImg = '{{ LBFORUM_MEDIA_PREFIX }}styles/Oxygen/cancel.png';
+		ify_cancelImg = '{{ STATIC_URL }}lbforum/styles/Oxygen/cancel.png';
 		session_key = '{{ session_key }}';
         $(function() {
             {% for o in unpublished_attachments %}
