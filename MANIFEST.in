@@ -4,4 +4,4 @@ include MANIFEST.in
 recursive-include lbforum/locale *
 recursive-include lbforum/templates *.html
 recursive-include lbforum/templates_v2ex *.html
-recursive-include lbforum/media *
+recursive-include lbforum/static *
