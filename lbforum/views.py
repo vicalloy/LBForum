@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.contrib.csrf.middleware import csrf_exempt
+#from django.contrib import messages
 
 from forms import EditPostForm, NewPostForm, ForumForm
 from models import Topic, Forum, Post
@@ -103,6 +104,7 @@ def new_post(request, forum_id=None, topic_id=None, form_class=NewPostForm, \
 
 @login_required
 def edit_post(request, post_id, form_class=EditPostForm, template_name="lbforum/post.html"):
+    #TODO permission
     preview = None
     post_type = _('reply')
     edit_post = get_object_or_404(Post, id=post_id)
@@ -134,6 +136,34 @@ def user_posts(request, user_id, template_name='lbforum/account/user_posts.html'
     view_user = User.objects.get(pk=user_id)
     posts = view_user.post_set.order_by('-created_on').select_related()
     return render(request, template_name, {'posts': posts, 'view_user': view_user})
+
+#TODO permission
+def delete_topic(request, topic_id):
+    topic = get_object_or_404(Topic, id = topic_id)
+    forum = topic.forum
+    topic.delete()
+    #TODO update forum count...
+    return HttpResponseRedirect(reverse("lbforum_forum", args=[forum.slug]))
+
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    topic = post.topic
+    post.delete()
+    #TODO update forum/topic count...
+    #return HttpResponseRedirect(request.path)
+    return HttpResponseRedirect(reverse("lbforum_topic", args=[topic.id]))
+
+def update_topic_attr_as_not(request, topic_id, attr):
+    #TODO permission
+    topic = get_object_or_404(Topic, id = topic_id)
+    if attr == 'sticky':
+        topic.sticky = not topic.sticky
+    elif attr == 'closed':
+        topic.closed = not topic.closed
+    elif attr == 'hidden':
+        topic.hidden = not topic.hidden
+    topic.save()
+    return HttpResponseRedirect(reverse("lbforum_topic", args=[topic.id]))
 #Feed...
 #Add Post
 #Add Topic
