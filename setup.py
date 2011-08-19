@@ -79,7 +79,7 @@ setup(
     packages = packages,
     cmdclass = cmdclasses,
     install_requires=[
-        "Django>=1.2",
+        "Django>=1.3",
         "django-helper>=0.8.1",
         "django-lb-attachments>=0.8",
         "django-onlineuser>=0.8",

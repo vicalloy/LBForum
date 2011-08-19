@@ -44,7 +44,7 @@ Requirements
 * django-simple-avatar_
 
 .. _`Python 2.5+`: http://python.org/
-.. _`Django 1.2+`: http://www.djangoproject.com/
+.. _`Django 1.3+`: http://www.djangoproject.com/
 .. _PIL: http://www.pythonware.com/products/pil/
 .. _django-pagination: http://code.google.com/p/django-pagination/
 .. _`south 0.7.2+`: http://south.aeracode.org/
@@ -73,6 +73,12 @@ Installation
 
 Configuration
 -------------
+
+Config urls.py::
+
+    (r'^attachments/', include('attachments.urls')),
+    (r'^', include('lbforum.urls')),
+
 
 The LBForum has some settings should be set in `settings.py`:
 
