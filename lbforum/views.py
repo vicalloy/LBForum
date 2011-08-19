@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from django.contrib.csrf.middleware import csrf_exempt
-#from django.contrib import messages
+from django.contrib import messages
 
 from forms import EditPostForm, NewPostForm, ForumForm
 from models import Topic, Forum, Post
@@ -137,15 +137,22 @@ def user_posts(request, user_id, template_name='lbforum/account/user_posts.html'
     posts = view_user.post_set.order_by('-created_on').select_related()
     return render(request, template_name, {'posts': posts, 'view_user': view_user})
 
-#TODO permission
+@login_required
 def delete_topic(request, topic_id):
+    if not request.user.is_staff:
+        messages.error(_('no right'))
+        return HttpResponseRedirect(request.path)
     topic = get_object_or_404(Topic, id = topic_id)
     forum = topic.forum
     topic.delete()
     #TODO update forum count...
     return HttpResponseRedirect(reverse("lbforum_forum", args=[forum.slug]))
 
+@login_required
 def delete_post(request, post_id):
+    if not request.user.is_staff:
+        messages.error(_('no right'))
+        return HttpResponseRedirect(request.path)
     post = get_object_or_404(Post, id=post_id)
     topic = post.topic
     post.delete()
@@ -153,8 +160,11 @@ def delete_post(request, post_id):
     #return HttpResponseRedirect(request.path)
     return HttpResponseRedirect(reverse("lbforum_topic", args=[topic.id]))
 
+@login_required
 def update_topic_attr_as_not(request, topic_id, attr):
-    #TODO permission
+    if not request.user.is_staff:
+        messages.error(_('no right'))
+        return HttpResponseRedirect(request.path)
     topic = get_object_or_404(Topic, id = topic_id)
     if attr == 'sticky':
         topic.sticky = not topic.sticky
@@ -163,7 +173,9 @@ def update_topic_attr_as_not(request, topic_id, attr):
     elif attr == 'hidden':
         topic.hidden = not topic.hidden
     topic.save()
+    messages.success(request, _('success'))
     return HttpResponseRedirect(reverse("lbforum_topic", args=[topic.id]))
+
 #Feed...
 #Add Post
 #Add Topic
