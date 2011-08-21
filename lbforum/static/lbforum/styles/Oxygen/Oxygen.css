@@ -52,7 +52,7 @@ body {
 .brd samp, .brd code, .brd pre, .brd option, .brd optgroup,
 .brd input, .brd select, .brd textarea, .brd td, .brd th {
     font-family: Verdana,Helvetica,Arial,sans-serif;
-    font-size: 1em;
+    font-size: 1.084em;
     font-style: normal;
     font-weight: normal;
 }

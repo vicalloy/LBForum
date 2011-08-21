@@ -1,6 +1,7 @@
 include README.rst
 include LICENSE
 include MANIFEST.in
+include requirements.txt
 recursive-include lbforum/locale *
 recursive-include lbforum/templates *.html
 recursive-include lbforum/templates_v2ex *.html
