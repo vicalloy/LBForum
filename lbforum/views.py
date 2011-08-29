@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext
 from django.core.urlresolvers import reverse
-from django.contrib.csrf.middleware import csrf_exempt
-from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
+#from django.contrib import messages
 
 from forms import EditPostForm, NewPostForm, ForumForm
 from models import Topic, Forum, Post
@@ -104,10 +105,11 @@ def new_post(request, forum_id=None, topic_id=None, form_class=NewPostForm, \
 
 @login_required
 def edit_post(request, post_id, form_class=EditPostForm, template_name="lbforum/post.html"):
-    #TODO permission
     preview = None
     post_type = _('reply')
     edit_post = get_object_or_404(Post, id=post_id)
+    if not (request.user.is_staff or request.user == edit_post.posted_by):
+        return HttpResponse(ugettext('no right'))
     if edit_post.topic_post:
         post_type = _('topic')
     if request.method == "POST":
@@ -140,41 +142,44 @@ def user_posts(request, user_id, template_name='lbforum/account/user_posts.html'
 @login_required
 def delete_topic(request, topic_id):
     if not request.user.is_staff:
-        messages.error(_('no right'))
-        return HttpResponseRedirect(request.path)
+        #messages.error(_('no right'))
+        return HttpResponse(ugettext('no right'))
     topic = get_object_or_404(Topic, id = topic_id)
     forum = topic.forum
     topic.delete()
-    #TODO update forum count...
+    forum.update_state_info()
     return HttpResponseRedirect(reverse("lbforum_forum", args=[forum.slug]))
 
 @login_required
 def delete_post(request, post_id):
     if not request.user.is_staff:
-        messages.error(_('no right'))
-        return HttpResponseRedirect(request.path)
+        return HttpResponse(ugettext('no right'))
     post = get_object_or_404(Post, id=post_id)
     topic = post.topic
     post.delete()
-    #TODO update forum/topic count...
+    topic.update_state_info()
+    topic.forum.update_state_info()
     #return HttpResponseRedirect(request.path)
     return HttpResponseRedirect(reverse("lbforum_topic", args=[topic.id]))
 
 @login_required
 def update_topic_attr_as_not(request, topic_id, attr):
     if not request.user.is_staff:
-        messages.error(_('no right'))
-        return HttpResponseRedirect(request.path)
+        return HttpResponse(ugettext('no right'))
     topic = get_object_or_404(Topic, id = topic_id)
     if attr == 'sticky':
         topic.sticky = not topic.sticky
-    elif attr == 'closed':
+    elif attr == 'close':
         topic.closed = not topic.closed
-    elif attr == 'hidden':
+    elif attr == 'hide':
         topic.hidden = not topic.hidden
+    elif attr == 'distillate':
+        topic.level = 30 if topic.level >= 60 else 60
     topic.save()
-    messages.success(request, _('success'))
-    return HttpResponseRedirect(reverse("lbforum_topic", args=[topic.id]))
+    if topic.hidden:
+        return HttpResponseRedirect(reverse("lbforum_forum", args=[topic.forum.slug]))
+    else:
+        return HttpResponseRedirect(reverse("lbforum_topic", args=[topic.id]))
 
 #Feed...
 #Add Post

@@ -40,7 +40,37 @@
                     <h1 class="hn"><span><a title="Permanent link to this topic" rel="bookmark" href="{{ topic.get_absolute_url }}" class="permalink">{{ topic }}</a></span></h1>
                 </div>
                 <div class="main-pagehead">
-                    <h2 class="hn"><span><span class="item-info">{% trans "Posts" %} [ {% page_range_info page_obj %} ]</span></span></h2>
+                    <h2 class="hn">
+                        {% if user.is_staff %}
+                        <span>
+                            <a href="{% url lbforum_update_topic_attr_as_not topic.id 'sticky' %}">
+                                {% if topic.sticky %} {% trans "unsticky" %} {% else %} {% trans "sticky" %} {% endif %}
+                            </a>
+                        </span>
+                        <span>
+                            <a href="{% url lbforum_update_topic_attr_as_not topic.id 'distillate' %}">
+                                {% if topic.level >= 60 %} {% trans "undistillate" %} {% else %} {% trans "distillate" %} {% endif %}
+                            </a>
+                        </span>
+                        <span>
+                            <a href="{% url lbforum_update_topic_attr_as_not topic.id 'close' %}">
+                                {% if topic.closed %} {% trans "unclose" %} {% else %} {% trans "close" %} {% endif %}
+                            </a>
+                        </span>
+                        <span>
+                            <a href="{% url lbforum_update_topic_attr_as_not topic.id 'hide' %}">
+                                {% if topic.hidden %} {% trans "unhide" %} {% else %} {% trans "hide" %} {% endif %}
+                            </a>
+                        </span>
+                        <span>
+                            <a href="{% url lbforum_delete_topic topic.id %}" onclick="return confirm('{% trans "Do you want to delete it?" %}')">{% trans "delete" %}</a>
+                        </span>
+                        <span>|</span>
+                        {% endif %}
+                        <span>
+                            <span class="item-info">{% trans "Posts" %} [ {% page_range_info page_obj %} ]</span>
+                        </span>
+                    </h2>
                 </div>
                 <div class="main-content main-topic" id="forum">
                     {% for post in posts %}     

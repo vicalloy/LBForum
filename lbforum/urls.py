@@ -11,11 +11,19 @@ urlpatterns = patterns('',
     url(r'^forum/(?P<forum_slug>\w+)/(?P<topic_type>\w+)/$', views.forum, name='lbforum_forum_ext'),
     url(r'^forum/(?P<forum_slug>\w+)/(?P<topic_type>\w+)/(?P<topic_type2>\w+)/$', 
         views.forum, name='lbforum_forum_ext2'),
+
     url('^topic/(?P<topic_id>\d+)/$', views.topic, name='lbforum_topic'),    
+    url('^topic/(?P<topic_id>\d+)/delete/$', views.delete_topic, name='lbforum_delete_topic'),    
+    url('^topic/(?P<topic_id>\d+)/update_topic_attr_as_not/(?P<attr>\w+)/$', 
+        views.update_topic_attr_as_not, name='lbforum_update_topic_attr_as_not'),    
+
     url('^topic/new/(?P<forum_id>\d+)/$', views.new_post, name='lbforum_new_topic'),
     url('^reply/new/(?P<topic_id>\d+)/$', views.new_post, name='lbforum_new_replay'),    
+
     url('^post/(?P<post_id>\d+)/$', views.post, name='lbforum_post'),    
     url('^post/(?P<post_id>\d+)/edit/$', views.edit_post, name='lbforum_post_edit'),    
+    url('^post/(?P<post_id>\d+)/delete/$', views.delete_post, name='lbforum_post_delete'),    
+
     url('^user/(?P<user_id>\d+)/topics/$', views.user_topics, name='lbforum_user_topics'),    
     url('^user/(?P<user_id>\d+)/posts/$', views.user_posts, name='lbforum_user_posts'),    
 

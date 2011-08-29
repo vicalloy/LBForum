@@ -50,10 +50,10 @@ class Forum(models.Model):
         verbose_name_plural = _("Forums")
         ordering = ('ordering','-created_on')
 
-    def count_nums_topic(self):
+    def _count_nums_topic(self):
         return self.topic_set.all().count()
 
-    def count_nums_post(self):
+    def _count_nums_post(self):
         return self.topic_set.all().aggregate(Sum('num_replies'))['num_replies__sum'] or 0
 
     def get_last_post(self):
@@ -67,6 +67,17 @@ class Forum(models.Model):
 
     def __unicode__(self):
         return self.name 
+
+    def update_state_info(self, commit=True):
+        self.num_topics = self._count_nums_topic()
+        self.num_posts = self._count_nums_post()
+        if self.num_topics:
+            last_post = Post.objects.all().order_by('-created_on')[0]
+            self.last_post = gen_last_post_info(last_post)
+        else:
+            self.last_post = ''
+        if commit:
+            self.save()
 
 class TopicType(models.Model):
     forum = models.ForeignKey(Forum, verbose_name=_('Forum'))
@@ -141,6 +152,14 @@ class Topic(models.Model):
         if user.is_anonymous():
             return False
         return Post.objects.filter(posted_by=user, topic=self).count()
+
+    def update_state_info(self, commit=True):
+        self.num_replies = self.count_nums_replies()
+        last_post = self.posts.order_by('-created_on')[0]
+        self.last_post = gen_last_post_info(last_post)
+        self.save()
+        if commit:
+            self.save()
         
 FORMAT_CHOICES = (
         ('bbcode', _('BBCode')),

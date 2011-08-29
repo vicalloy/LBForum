@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 0.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-10-25 20:15+0800\n"
-"PO-Revision-Date: 2011-06-22 21:25+0800\n"
+"PO-Revision-Date: 2011-08-29 21:15+0800\n"
 "Last-Translator: vicalloy <zbirder@gmail.com>\n"
 "Language-Team: LANGUAGE <zbirder@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -633,12 +633,12 @@ msgid "please login first"
 msgstr "请先登录"
 
 #: .\src\lbforum\admin.py:19
-msgid "Update topic/post nums"
-msgstr "更新主题/文章数"
+msgid "Update forum state info"
+msgstr "更新版块状态信息"
 
 #: .\src\lbforum\admin.py:42
-msgid "Update replies nums"
-msgstr "更新回复数"
+msgid "Update topic state info"
+msgstr "更新主题状态信息"
 
 #: .\src\lbforum\admin.py:56
 msgid "sticky/unsticky topics"
@@ -791,4 +791,34 @@ msgstr "最新主题"
 
 msgid "Forum Status"
 msgstr "社区运行状态"
+
+msgid "sticky"
+msgstr "置顶"
+
+msgid "unsticky"
+msgstr "取消置顶"
+
+msgid "distillate"
+msgstr "精华帖"
+
+msgid "undistillate"
+msgstr "取消精华贴"
+
+msgid "close"
+msgstr "关闭"
+
+msgid "unclose"
+msgstr "取消关闭"
+
+msgid "hide"
+msgstr "隐藏"
+
+msgid "unhide"
+msgstr "取消隐藏"
+
+msgid "delete"
+msgstr "删除"
+
+msgid "Do you want to delete it?"
+msgstr "去定要删除？"
 

@@ -86,6 +86,9 @@
                 {% if user == post.posted_by or user.is_staff %}
                 <span class="edit-post"><a href="{% url lbforum_post_edit post.pk %}">{% trans "edit" %}</a></span> 
                 {% endif %}
+                {% if user.is_staff and not post.topic_post %}
+                <span class="del-post"><a href="{% url lbforum_post_delete post.id %}" onclick="return confirm('{% trans "Do you want to delete it?" %}')">{% trans "delete" %}</a></span> 
+                {% endif %}
             </p>
         </div>
     </div>
