@@ -33,6 +33,27 @@
                 <a href="{% url lbforum_user_profile post.posted_by.pk %}">{{post.posted_by.username}}</a>
                 at {{ topic.get_last_post.update|lbtimesince }},
                 {{topic.num_views}} hits
+				{% if user.is_staff %}
+				<span>|</span>
+				<span>
+					<a href="{% url lbforum_update_topic_attr_as_not topic.id 'distillate' %}">
+						{% if topic.level >= 60 %} {% trans "undistillate" %} {% else %} {% trans "distillate" %} {% endif %}
+					</a>
+				</span>
+				<span>
+					<a href="{% url lbforum_update_topic_attr_as_not topic.id 'close' %}">
+						{% if topic.closed %} {% trans "unclose" %} {% else %} {% trans "close" %} {% endif %}
+					</a>
+				</span>
+				<span>
+					<a href="{% url lbforum_update_topic_attr_as_not topic.id 'hide' %}">
+						{% if topic.hidden %} {% trans "unhide" %} {% else %} {% trans "hide" %} {% endif %}
+					</a>
+				</span>
+				<span>
+					<a href="{% url lbforum_delete_topic topic.id %}" onclick="return confirm('{% trans "Do you want to delete it?" %}')">{% trans "delete" %}</a>
+				</span>
+				{% endif %}
             </small>
         </div>
         <div class="inner">
