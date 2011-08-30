@@ -9,7 +9,7 @@ LBForum
 LBForum is a quick and simple forum which uses the Django Framework (written 
 in Python language). LBForum is a reusable Django application, can be added 
 to any existing django project.
-LBForum is distributed under the BSD license. 
+LBForum is distributed under the BSD and GPL license. 
 
 Demo site(Skin FluxBB): http://vik.haoluobo.com/lbforum/
 Demo site(Skin V2EX): http://vik.haoluobo.com/lbforum2/
