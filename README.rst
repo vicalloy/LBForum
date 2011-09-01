@@ -32,7 +32,7 @@ Requirements
 ============
 
 * `Python 2.5+`_
-* `Django 1.2+`_
+* `Django 1.3+`_
 * PIL_
 * django-pagination_
 * `south 0.7.2+`_
