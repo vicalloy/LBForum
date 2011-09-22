@@ -72,7 +72,7 @@ class Forum(models.Model):
         self.num_topics = self._count_nums_topic()
         self.num_posts = self._count_nums_post()
         if self.num_topics:
-            last_post = Post.objects.all().filter('topic__forum'=self).order_by('-created_on')[0]
+            last_post = Post.objects.all().filter(topic__forum=self).order_by('-created_on')[0]
             self.last_post = gen_last_post_info(last_post)
         else:
             self.last_post = ''
