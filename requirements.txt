@@ -8,3 +8,4 @@ postmarkup
 django-pagination
 PIL
 south>=0.7.2
+django-simple-captcha
