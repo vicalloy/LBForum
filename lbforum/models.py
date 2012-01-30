@@ -287,7 +287,7 @@ def update_forum_on_topic(sender, instance, created, **kwargs):
 
 def update_user_last_activity(sender, instance, created, **kwargs):
     if instance.user:
-        p = instance.user.lbforum_profile
+        p, created = LBForumUserProfile.objects.get_or_create(user=instance.user)
         p.last_activity = instance.updated_on
         p.save()
 
