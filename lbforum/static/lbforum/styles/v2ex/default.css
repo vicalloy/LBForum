@@ -1138,3 +1138,6 @@ a.fade:hover {
     width: 100%;
     margin: 0px;
 }
+.content img {
+    max-width: 640px;
+}
