@@ -1,23 +1,23 @@
-"""
-This file demonstrates two different styles of tests (one doctest and one
-unittest). These will both pass when you run "manage.py test".
-
-Replace these with more appropriate tests for your application.
-"""
-
+# -*- coding: UTF-8 -*-
 from django.test import TestCase
+from django.core.urlresolvers import reverse
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.failUnlessEqual(1 + 1, 2)
+class ViewsBaseCase(TestCase):
 
-__test__ = {"doctest": """
-Another way to test that 1 + 1 is equal to 2.
+    fixtures = ['test_lbforum.json']
 
->>> 1 + 1 == 2
-True
-"""}
+class ViewsSimpleTest(ViewsBaseCase):
 
+    def test_index(self):
+        resp = self.client.get(reverse('lbforum_index'))
+        self.assertEqual(resp.status_code, 200)
+
+    def _test_recent(self):
+        resp = self.client.get(reverse('lbforum_recent'))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_forum(self):
+        resp = self.client.get(reverse('lbforum_forum', args=("notexistforum", )))
+        self.assertEqual(resp.status_code, 404)
+        resp = self.client.get(reverse('lbforum_forum', args=("forum", )))
+        self.assertEqual(resp.status_code, 200)
