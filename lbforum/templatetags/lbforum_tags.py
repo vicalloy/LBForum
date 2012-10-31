@@ -25,11 +25,9 @@ def bbcode(context, s, has_replied=False):
 
 @register.simple_tag
 def forum_url(forum, topic_type, topic_type2):
-    if topic_type and topic_type2:
-        return reverse('lbforum_forum_ext2', args=[forum.slug, topic_type, topic_type2])
-    if topic_type or topic_type2:
-        return reverse('lbforum_forum_ext', args=[forum.slug, topic_type or topic_type2])
-    return reverse('lbforum_forum', args=[forum.slug])
+    args = [forum.slug, topic_type, topic_type2]
+    args = [e for e in args if e]
+    return reverse('lbforum_forum', args=args)
 
 @register.simple_tag
 def show_attach(attach, post, has_replied, hide_attachs):
