@@ -1,0 +1,219 @@
+[
+ {
+  "pk": 1, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "admin", 
+   "first_name": "", 
+   "last_name": "", 
+   "is_active": true, 
+   "is_superuser": true, 
+   "is_staff": true, 
+   "last_login": "2012-10-30T20:17:32.343", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "pbkdf2_sha256$10000$h3Ivj4iAjtxh$NXwIIDAXZJvsCN/k5vCBAPgNszuhRYWFZt6UtbUNGGg=", 
+   "email": "a@a.cn", 
+   "date_joined": "2012-10-30T04:42:37.080"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "auth.user", 
+  "fields": {
+   "username": "vicalloy", 
+   "first_name": "", 
+   "last_name": "", 
+   "is_active": true, 
+   "is_superuser": false, 
+   "is_staff": false, 
+   "last_login": "2012-10-30T20:19:26.933", 
+   "groups": [], 
+   "user_permissions": [], 
+   "password": "pbkdf2_sha256$10000$cZjl9suPFfzp$h+WNUPPf0AdP5emEt8+cveB5jPfaVt3QTnb1KbHqSoc=", 
+   "email": "v@v.cn", 
+   "date_joined": "2012-10-30T04:53:31.298"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "lbforum.category", 
+  "fields": {
+   "ordering": 1, 
+   "updated_on": null, 
+   "created_on": "2012-10-30T04:44:26.852", 
+   "name": "category", 
+   "description": "category"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "lbforum.forum", 
+  "fields": {
+   "category": 1, 
+   "description": "a test forum", 
+   "ordering": 1, 
+   "created_on": "2012-10-30T04:44:51.666", 
+   "num_posts": 4, 
+   "updated_on": null, 
+   "num_topics": 2, 
+   "last_post": "gAJ9cQAoVQlwb3N0ZWRfYnlxAVgIAAAAdmljYWxsb3lxAlUGdXBkYXRlcQNjZGF0ZXRpbWUKZGF0ZXRpbWUKcQRVCgfcCh4UEywAnpdxBYVxBlJxB3Uu", 
+   "slug": "forum", 
+   "name": "forum"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "lbforum.topictype", 
+  "fields": {
+   "description": "forum topic type", 
+   "name": "topictype", 
+   "forum": 1, 
+   "slug": "topictype"
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "lbforum.topic", 
+  "fields": {
+   "hidden": false, 
+   "num_replies": 2, 
+   "forum": 1, 
+   "level": 30, 
+   "need_reply_attachments": false, 
+   "num_views": 2, 
+   "created_on": "2012-10-30T04:54:13.499", 
+   "has_imgs": false, 
+   "need_replay": false, 
+   "topic_type": null, 
+   "has_attachments": false, 
+   "closed": false, 
+   "updated_on": null, 
+   "post": 1, 
+   "sticky": false, 
+   "last_post": "gAJ9cQAoVQlwb3N0ZWRfYnlxAVgIAAAAdmljYWxsb3lxAlUGdXBkYXRlcQNjZGF0ZXRpbWUKZGF0ZXRpbWUKcQRVCgfcCh4UEywAnpdxBYVxBlJxB3Uu", 
+   "posted_by": 2, 
+   "last_reply_on": "2012-10-30T20:19:44.040", 
+   "subject": "topic"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "lbforum.topic", 
+  "fields": {
+   "hidden": false, 
+   "num_replies": 2, 
+   "forum": 1, 
+   "level": 30, 
+   "need_reply_attachments": false, 
+   "num_views": 2, 
+   "created_on": "2012-10-30T20:18:27.919", 
+   "has_imgs": false, 
+   "need_replay": false, 
+   "topic_type": 1, 
+   "has_attachments": false, 
+   "closed": false, 
+   "updated_on": null, 
+   "post": 2, 
+   "sticky": false, 
+   "last_post": "gAJ9cQAoVQlwb3N0ZWRfYnlxAVgFAAAAYWRtaW5xAlUGdXBkYXRlcQNjZGF0ZXRpbWUKZGF0ZXRpbWUKcQRVCgfcCh4UEi8OwB1xBYVxBlJxB3Uu", 
+   "posted_by": 1, 
+   "last_reply_on": "2012-10-30T20:18:47.966", 
+   "subject": "topic"
+  }
+ }, 
+ {
+  "pk": 4, 
+  "model": "lbforum.post", 
+  "fields": {
+   "poster_ip": "127.0.0.1", 
+   "attachments": [], 
+   "format": "bbcode", 
+   "posted_by": 2, 
+   "has_imgs": false, 
+   "topic": 1, 
+   "created_on": "2012-10-30T20:19:44.040", 
+   "topic_post": false, 
+   "updated_on": null, 
+   "has_attachments": false, 
+   "message": "user reply", 
+   "edited_by": ""
+  }
+ }, 
+ {
+  "pk": 3, 
+  "model": "lbforum.post", 
+  "fields": {
+   "poster_ip": "127.0.0.1", 
+   "attachments": [], 
+   "format": "bbcode", 
+   "posted_by": 1, 
+   "has_imgs": false, 
+   "topic": 2, 
+   "created_on": "2012-10-30T20:18:47.966", 
+   "topic_post": false, 
+   "updated_on": null, 
+   "has_attachments": false, 
+   "message": "reply", 
+   "edited_by": ""
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "lbforum.post", 
+  "fields": {
+   "poster_ip": "127.0.0.1", 
+   "attachments": [], 
+   "format": "bbcode", 
+   "posted_by": 1, 
+   "has_imgs": false, 
+   "topic": 2, 
+   "created_on": "2012-10-30T20:18:28.296", 
+   "topic_post": true, 
+   "updated_on": null, 
+   "has_attachments": false, 
+   "message": "test topic", 
+   "edited_by": ""
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "lbforum.post", 
+  "fields": {
+   "poster_ip": "127.0.0.1", 
+   "attachments": [], 
+   "format": "bbcode", 
+   "posted_by": 2, 
+   "has_imgs": false, 
+   "topic": 1, 
+   "created_on": "2012-10-30T04:54:13.792", 
+   "topic_post": true, 
+   "updated_on": null, 
+   "has_attachments": false, 
+   "message": "topic content.", 
+   "edited_by": ""
+  }
+ }, 
+ {
+  "pk": 1, 
+  "model": "lbforum.lbforumuserprofile", 
+  "fields": {
+   "last_activity": "2012-10-30T20:19:06.046", 
+   "userrank": "Junior Member", 
+   "signature": "", 
+   "user": 1, 
+   "last_posttime": "2012-10-30T20:18:47.966"
+  }
+ }, 
+ {
+  "pk": 2, 
+  "model": "lbforum.lbforumuserprofile", 
+  "fields": {
+   "last_activity": "2012-10-30T20:19:56.574", 
+   "userrank": "Junior Member", 
+   "signature": "", 
+   "user": 2, 
+   "last_posttime": "2012-10-30T20:19:44.040"
+  }
+ } 
+]
