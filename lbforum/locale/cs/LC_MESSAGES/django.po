@@ -1,0 +1,716 @@
+# Initial Czech translation
+# Copyright (C) 2013 Robert Smol robert.smol@stereoit.com
+# This file is distributed under the same license as the LBForum package.
+# Robert Smol <robert.smol@stereoit.com>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 20130121\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-01-21 19:16+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Robert Smol <robert.smol@stereoit.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: admin.py:14
+msgid "Update forum state info"
+msgstr ""
+
+#: admin.py:36
+msgid "Update topic state info"
+msgstr ""
+
+#: admin.py:50
+msgid "sticky/unsticky topics"
+msgstr ""
+
+#: admin.py:54
+msgid "close/unclose topics"
+msgstr ""
+
+#: admin.py:58
+msgid "hide/unhide topics"
+msgstr "skrýt/zobrazit téma"
+
+#: forms.py:12
+msgid "Last Reply"
+msgstr "Poslední odpověd"
+
+#: forms.py:13
+msgid "Last Topic"
+msgstr "Poslední téma"
+
+#: forms.py:17 templates/lbforum/forum.html:67
+msgid "Order By"
+msgstr "Řadit dle"
+
+#: forms.py:21 models.py:102 templates_v2ex/lbforum/forum.html:28
+msgid "Topic Type"
+msgstr "Typ téma"
+
+#: forms.py:22
+msgid "Subject"
+msgstr "Předmět"
+
+#: forms.py:24 forms.py:117
+msgid "Message"
+msgstr "Zpráva"
+
+#: forms.py:26 templates/lbforum/inc_post_detail.html:40
+#: templates/lbforum/post.html:108
+#: templates_v2ex/lbforum/inc_post_content.html:12
+msgid "Attachments"
+msgstr "Přílohy"
+
+#: forms.py:28
+msgid "Need Reply"
+msgstr ""
+
+#: forms.py:29
+msgid "Attachments Need Reply"
+msgstr ""
+
+#: models.py:28
+msgid "Category"
+msgstr "Kategorie"
+
+#: models.py:29
+msgid "Categories"
+msgstr "Kategorie"
+
+#: models.py:49 models.py:83 models.py:101
+msgid "Forum"
+msgstr "Fórum"
+
+#: models.py:50 templates_v2ex/lbforum/widgets/categories_and_forums.html:4
+msgid "Forums"
+msgstr "Fóra"
+
+#: models.py:96
+msgid "Default"
+msgstr ""
+
+#: models.py:97 templates/lbforum/inc_topic_detail.html:18
+#: templates_v2ex/lbforum/inc_topic_detail.html:25
+msgid "Distillate"
+msgstr "Horké téma"
+
+#: models.py:107 models.py:188
+msgid "Post"
+msgstr "Poslat"
+
+#: models.py:133 models.py:171
+msgid "Topic"
+msgstr "Téma"
+
+#: models.py:134 templates/lbforum/inc_topic_list.html:25
+#: templates/lbforum/inc_topic_list.html:30
+#: templates/lbforum/account/profile.html:36
+#: templates_v2ex/lbforum/forum.html:55
+#: templates_v2ex/lbforum/account/inc_base_profile.html:26
+msgid "Topics"
+msgstr "Témata"
+
+#: models.py:165
+msgid "BBCode"
+msgstr ""
+
+#: models.py:166
+msgid "Html"
+msgstr ""
+
+#: models.py:189 templates/lbforum/inc_post_detail.html:28
+#: templates/lbforum/topic.html:71 templates/lbforum/account/profile.html:37
+#: templates/lbforum/account/user_posts.html:50
+#: templates_v2ex/lbforum/topic.html:98
+#: templates_v2ex/lbforum/account/inc_base_profile.html:29
+msgid "Posts"
+msgstr "Příspěvky"
+
+#: models.py:198
+#, python-format
+msgid "Topic: %s"
+msgstr "Téma: %s"
+
+#: models.py:199
+#, python-format
+msgid "Re: %s"
+msgstr ""
+
+#: models.py:240
+msgid "User"
+msgstr "Uživatel"
+
+#: views.py:71 views.py:114
+msgid "topic"
+msgstr "téma"
+
+#: views.py:76 views.py:109
+msgid "reply"
+msgstr "odpovědět"
+
+#: views.py:112 views.py:146 views.py:156 views.py:168
+msgid "no right"
+msgstr "není povoleno"
+
+#: templates/lbforum/forum.html:35 templates/lbforum/forum.html.py:55
+#: templates_v2ex/lbforum/forum.html:68
+msgid "Post new topic"
+msgstr "Přidat nový příspěvek"
+
+#: templates/lbforum/forum.html:37 templates/lbforum/forum.html.py:57
+#: templates/lbforum/topic.html:34 templates/lbforum/topic.html.py:92
+msgid "You must"
+msgstr "Musíte"
+
+#: templates/lbforum/forum.html:37 templates/lbforum/forum.html.py:57
+#: templates/lbforum/inc_header.html:22 templates/lbforum/inc_header.html:33
+#: templates/lbforum/topic.html:34 templates/lbforum/topic.html.py:92
+#: templates_v2ex/lbforum/inc_header.html:13
+#: templates_v2ex/lbforum/widgets/cur_user_profile.html:41
+msgid "Login"
+msgstr "Přihlást"
+
+#: templates/lbforum/forum.html:37 templates/lbforum/forum.html.py:57
+#: templates/lbforum/topic.html:34 templates/lbforum/topic.html.py:92
+msgid "or"
+msgstr "nebo"
+
+#: templates/lbforum/forum.html:37 templates/lbforum/forum.html.py:57
+#: templates/lbforum/topic.html:34 templates/lbforum/topic.html.py:92
+msgid "register"
+msgstr "zaregistrovat"
+
+#: templates/lbforum/forum.html:37 templates/lbforum/forum.html.py:57
+msgid "to post a topic"
+msgstr "pro odeslání příspěvku"
+
+#: templates/lbforum/inc_announce.html:7
+msgid "New Announcement"
+msgstr "Nové oznámení"
+
+#: templates/lbforum/inc_header.html:15
+msgid "Search"
+msgstr "Vyhledat"
+
+#: templates/lbforum/inc_header.html:18
+#: templates_v2ex/lbforum/inc_header.html:9
+msgid "My profile"
+msgstr "Můj profil"
+
+#: templates/lbforum/inc_header.html:19 templates/lbforum/inc_header.html:31
+#: templates_v2ex/lbforum/inc_header.html:10
+msgid "Logout"
+msgstr "Odhlásit"
+
+#: templates/lbforum/inc_header.html:21 templates/lbforum/inc_header.html:35
+#: templates_v2ex/lbforum/inc_header.html:12
+#: templates_v2ex/lbforum/widgets/cur_user_profile.html:38
+msgid "Register"
+msgstr "Registrace"
+
+#: templates/lbforum/inc_header.html:31
+#, python-format
+msgid "Hello %(user)s"
+msgstr "Dobrý den %(user)s"
+
+#: templates/lbforum/inc_new_post_brd_crumbs.html:18
+#: templates/lbforum/post.html:30 templates_v2ex/lbforum/post.html:47
+msgid "Post new"
+msgstr "Přidat nový"
+
+#: templates/lbforum/inc_new_post_brd_crumbs.html:18
+#: templates/lbforum/post.html:30 templates_v2ex/lbforum/post.html:47
+msgid "Edit"
+msgstr "Editovat"
+
+#: templates/lbforum/inc_post_detail.html:10 templates/lbforum/post.html:39
+#: templates/lbforum/account/user_posts.html:59
+msgid "Topic by"
+msgstr ""
+
+#: templates/lbforum/inc_post_detail.html:23
+#: templates/lbforum/account/profile.html:30
+msgid "Member"
+msgstr "Člen"
+
+#: templates/lbforum/inc_post_detail.html:27
+#: templates/lbforum/account/profile.html:34
+#: templates_v2ex/lbforum/account/inc_base_profile.html:19
+#: templates_v2ex/lbforum/widgets/cur_user_profile.html:25
+msgid "Registered"
+msgstr "Registrován"
+
+#: templates/lbforum/inc_post_detail.html:53
+#: templates_v2ex/lbforum/inc_post_content.html:25
+msgid "Show Image Attachments"
+msgstr "Zobrazit obrázkové přílohy"
+
+#: templates/lbforum/inc_post_detail.html:56
+#: templates_v2ex/lbforum/inc_post_content.html:28
+msgid "Image Attachments"
+msgstr "Obrázkové přílohy"
+
+#: templates/lbforum/inc_post_detail.html:68
+#: templates_v2ex/lbforum/inc_post_content.html:40 templatetags/bbcode.py:31
+msgid "to see the content, user must reply first."
+msgstr "pro zobrazení obsahu, musíte nejprve odpovědět."
+
+#: templates/lbforum/inc_post_detail.html:85
+#: templates_v2ex/lbforum/inc_post_detail.html:18
+#: templates_v2ex/lbforum/topic.html:73
+msgid "quote"
+msgstr "Citovat"
+
+#: templates/lbforum/inc_post_detail.html:87
+#: templates_v2ex/lbforum/inc_post_detail.html:20
+#: templates_v2ex/lbforum/topic.html:68
+msgid "edit"
+msgstr "Editovat"
+
+#: templates/lbforum/inc_post_detail.html:90 templates/lbforum/topic.html:66
+#: templates_v2ex/lbforum/inc_post_detail.html:23
+#: templates_v2ex/lbforum/topic.html:54
+msgid "Do you want to delete it?"
+msgstr "Chcete to smazat?"
+
+#: templates/lbforum/inc_post_detail.html:90 templates/lbforum/topic.html:66
+#: templates_v2ex/lbforum/inc_post_detail.html:23
+#: templates_v2ex/lbforum/topic.html:54
+msgid "delete"
+msgstr "Smazat"
+
+#: templates/lbforum/inc_topic_detail.html:10
+#: templates_v2ex/lbforum/inc_topic_detail.html:17
+msgid "Closed"
+msgstr "Uzavřeno"
+
+#: templates/lbforum/inc_topic_detail.html:14
+#: templates_v2ex/lbforum/inc_topic_detail.html:21
+msgid "Sticky"
+msgstr "Lepivé"
+
+#: templates/lbforum/inc_topic_detail.html:36
+#: templates/lbforum/inc_topic_list.html:31
+#: templates/lbforum/account/user_posts.html:69
+#: templates_v2ex/lbforum/account/user_topics.html:29
+msgid "replies"
+msgstr "odpovědi"
+
+#: templates/lbforum/inc_topic_detail.html:40
+#: templates/lbforum/inc_topic_list.html:32
+#: templates_v2ex/lbforum/inc_topic_detail.html:38
+msgid "views"
+msgstr "zobrazení"
+
+#: templates/lbforum/inc_topic_detail.html:43
+#: templates/lbforum/widgets/categories_and_forums.html:33
+#: templates_v2ex/lbforum/inc_topic_detail.html:39
+#: templates_v2ex/lbforum/topic.html:100
+msgid "Last post"
+msgstr "Poslední příspěvek"
+
+#: templates/lbforum/inc_topic_list.html:9
+#: templates/lbforum/inc_topic_list.html:19
+#: templates_v2ex/lbforum/forum.html:33 templates_v2ex/lbforum/forum.html:75
+msgid "All"
+msgstr "Vše"
+
+#: templates/lbforum/inc_topic_list.html:22
+#: templates_v2ex/lbforum/forum.html:78
+msgid "Distillate District"
+msgstr "Horké příspěvky"
+
+#: templates/lbforum/inc_topic_list.html:33
+#: templates/lbforum/widgets/categories_and_forums.html:11
+#: templates_v2ex/lbforum/account/user_topics.html:31
+msgid "last post"
+msgstr "poslední příspěvek"
+
+#: templates/lbforum/index.html:34 templates_v2ex/lbforum/index.html:19
+msgid "Friend Links"
+msgstr "Spřátelené odkazy"
+
+#: templates/lbforum/markitup_preview.html:11
+#: templates_v2ex/lbforum/markitup_preview.html:11
+msgid "preview"
+msgstr "náhled"
+
+#: templates/lbforum/post.html:34
+msgid "Preview your"
+msgstr "Nahlédněte Váš"
+
+#: templates/lbforum/post.html:34 templates/lbforum/post.html.py:52
+msgid "new"
+msgstr "nový"
+
+#: templates/lbforum/post.html:34 templates/lbforum/post.html.py:52
+msgid "edited"
+msgstr "editovaný"
+
+#: templates/lbforum/post.html:52
+msgid "Compose and post your"
+msgstr "Vytvořit a odeslat Váš"
+
+#: templates/lbforum/post.html:55 templates/lbforum/topic.html:106
+#: templates_v2ex/lbforum/post.html:26 templates_v2ex/lbforum/topic.html:135
+msgid "You may use"
+msgstr "Můžete použít"
+
+#: templates/lbforum/post.html:58 templates/lbforum/account/signature.html:25
+#: templates/lbforum/account/avatar/change.html:21
+#: templates_v2ex/lbforum/post.html:61
+msgid "Please correct the errors below."
+msgstr "Prosím, opravte následující chyby"
+
+#: templates/lbforum/post.html:67
+msgid "Required information"
+msgstr "Požadovaná informace"
+
+#: templates/lbforum/post.html:71
+msgid "Topic subject"
+msgstr "Předmět tématu"
+
+#: templates/lbforum/post.html:71 templates/lbforum/post.html.py:80
+#: templates/lbforum/topic.html:115
+msgid "Required"
+msgstr "Povinné"
+
+#: templates/lbforum/post.html:80 templates/lbforum/topic.html:115
+msgid "Write message"
+msgstr "Napsat zprávu"
+
+#: templates/lbforum/post.html:90
+msgid "Optional post settings"
+msgstr "Volitelné nastavení příspěvku"
+
+#: templates/lbforum/post.html:96
+msgid "reply to see the post"
+msgstr "odpovědet pro zobrazení příspěvku"
+
+#: templates/lbforum/post.html:102 templatetags/lbforum_tags.py:37
+msgid "reply to see the attachments"
+msgstr ""
+
+#: templates/lbforum/post.html:123 templates/lbforum/topic.html:121
+#: templates_v2ex/lbforum/post.html:82 templates_v2ex/lbforum/topic.html:128
+msgid "Submit"
+msgstr "Odeslat"
+
+#: templates/lbforum/post.html:124 templates/lbforum/topic.html:122
+#: templates_v2ex/lbforum/post.html:83 templates_v2ex/lbforum/topic.html:129
+msgid "Preview"
+msgstr "Náhled"
+
+#: templates/lbforum/post.html:130
+msgid "Topic review (newest first)"
+msgstr ""
+
+#: templates/lbforum/post.html:136
+msgid "Post by"
+msgstr "Přidal"
+
+#: templates/lbforum/post.html:194 templates_v2ex/lbforum/post.html:125
+msgid "submit"
+msgstr "odeslat"
+
+#: templates/lbforum/post_paginate.html:5
+#: templates_v2ex/lbforum/post_paginate.html:5
+msgid "Pages"
+msgstr "Stránky"
+
+#: templates/lbforum/redirect.html:17 templates_v2ex/lbforum/redirect.html:18
+msgid "You should automatically be forwarded to a new page in 5 second."
+msgstr "Budete automaticky přesměrován na novou stránku za 5 vteřin."
+
+#: templates/lbforum/redirect.html:20 templates_v2ex/lbforum/redirect.html:21
+msgid ""
+"Click here if you do not want to wait any longer (or if your browser does "
+"not automatically forward you)"
+msgstr ""
+
+#: templates/lbforum/topic.html:32 templates/lbforum/topic.html.py:90
+#: templates_v2ex/lbforum/topic.html:78
+msgid "Post reply"
+msgstr "odpovědět"
+
+#: templates/lbforum/topic.html:34 templates/lbforum/topic.html.py:92
+msgid "to post a reply"
+msgstr "pro odeslání odpovědi"
+
+#: templates/lbforum/topic.html:47
+msgid "unsticky"
+msgstr "odlepit"
+
+#: templates/lbforum/topic.html:47
+msgid "sticky"
+msgstr "přilepit"
+
+#: templates/lbforum/topic.html:52 templates_v2ex/lbforum/topic.html:40
+msgid "undistillate"
+msgstr "zchladit"
+
+#: templates/lbforum/topic.html:52 templates_v2ex/lbforum/topic.html:40
+msgid "distillate"
+msgstr "Horké"
+
+#: templates/lbforum/topic.html:57 templates_v2ex/lbforum/topic.html:45
+msgid "unclose"
+msgstr "Otevřít"
+
+#: templates/lbforum/topic.html:57 templates_v2ex/lbforum/topic.html:45
+msgid "close"
+msgstr "Zavřít"
+
+#: templates/lbforum/topic.html:62 templates_v2ex/lbforum/topic.html:50
+msgid "unhide"
+msgstr "Zobrazit"
+
+#: templates/lbforum/topic.html:62 templates_v2ex/lbforum/topic.html:50
+msgid "hide"
+msgstr "Schovat"
+
+#: templates/lbforum/topic.html:103 templates_v2ex/lbforum/topic.html:120
+msgid "Quick reply to this topic"
+msgstr "Rychlá odpověď na tento příspěvek"
+
+#: templates/lbforum/topic.html:112
+msgid "Compose your post"
+msgstr "Vytvořte příspěvek"
+
+#: templates/lbforum/account/base.html:27
+#: templates/lbforum/account/base.html:75
+msgid "'s profile"
+msgstr " profil"
+
+#: templates/lbforum/account/base.html:37
+#: templates/lbforum/account/base.html:40
+#: templates_v2ex/lbforum/account/base.html:18
+#: templates_v2ex/lbforum/account/base.html:21
+msgid "Introduction"
+msgstr "Úvod"
+
+#: templates/lbforum/account/base.html:45
+#: templates/lbforum/account/avatar/change.html:9
+#: templates/lbforum/account/avatar/change.html:15
+#: templates/lbforum/account/avatar/change.html:30
+#: templates_v2ex/lbforum/account/base.html:29
+#: templates_v2ex/lbforum/account/avatar/change.html:16
+msgid "Avatar"
+msgstr "Avatar"
+
+#: templates/lbforum/account/base.html:50
+#: templates/lbforum/account/signature.html:8
+#: templates/lbforum/account/signature.html:19
+#: templates/lbforum/account/signature.html:34
+msgid "Signature"
+msgstr "Podpis"
+
+#: templates/lbforum/account/profile.html:9
+#: templates/lbforum/account/profile.html:15
+#: templates_v2ex/lbforum/account/profile.html:9
+#: templates_v2ex/lbforum/account/user_posts.html:9
+#: templates_v2ex/lbforum/account/user_topics.html:9
+#: templates_v2ex/lbforum/account/avatar/change.html:9
+#, python-format
+msgid "%(view_user)s's profile"
+msgstr "%(view_user)s profil"
+
+#: templates/lbforum/account/profile.html:16
+msgid "Welcome to your profile"
+msgstr "Vítejte na svém profilu"
+
+#: templates/lbforum/account/profile.html:21
+#: templates_v2ex/lbforum/account/base.html:26
+msgid "Change your password"
+msgstr "Změnit heslo"
+
+#: templates/lbforum/account/profile.html:35
+msgid "Last login"
+msgstr "Poslední přihlášení"
+
+#: templates/lbforum/account/profile.html:43
+msgid "Posts and topics"
+msgstr "Příspěvky a témata"
+
+#: templates/lbforum/account/profile.html:45
+#: templates_v2ex/lbforum/account/inc_base_profile.html:37
+#, python-format
+msgid "View all %(view_user)s's posts"
+msgstr "Zobrazit všechny příspěvky uživatele %(view_user)s"
+
+#: templates/lbforum/account/profile.html:46
+#: templates_v2ex/lbforum/account/inc_base_profile.html:34
+#, python-format
+msgid "View all %(view_user)s's topics"
+msgstr "Zobrazit všechny témata uživatele %(view_user)s"
+
+#: templates/lbforum/account/signature.html:8
+#: templates/lbforum/account/signature.html:19
+#: templates/lbforum/account/avatar/change.html:9
+#: templates/lbforum/account/avatar/change.html:15
+#, python-format
+msgid "%(user)s's profile"
+msgstr "%(user)s profil"
+
+#: templates/lbforum/account/signature.html:20
+msgid "Create or modify a signature for display in your posts"
+msgstr "Vytvořit či modifikovat podpis přispěvků"
+
+#: templates/lbforum/account/signature.html:37
+msgid "Current signature"
+msgstr "Současný podpis"
+
+#: templates/lbforum/account/signature.html:44
+msgid "Compose signature"
+msgstr "Vytvořte podpise"
+
+#: templates/lbforum/account/signature.html:48
+msgid "Maximum size 400 characters long and 4 lines high."
+msgstr "Maximálně 400 znaků a 4 řádky."
+
+#: templates/lbforum/account/signature.html:57
+msgid "Update profile"
+msgstr "Upravit profil"
+
+#: templates/lbforum/account/user_posts.html:27
+#, python-format
+msgid "Posts by %(view_user)s"
+msgstr ""
+
+#: templates/lbforum/account/user_posts.html:43
+#: templates/lbforum/account/user_posts.html:108
+#: templates/lbforum/account/user_topics.html:27
+#: templates/lbforum/account/user_topics.html:43
+#: templates/lbforum/account/user_topics.html:70
+#: templates_v2ex/lbforum/account/user_posts.html:24
+#: templates_v2ex/lbforum/account/user_topics.html:24
+#, python-format
+msgid "Topics by %(view_user)s"
+msgstr ""
+
+#: templates/lbforum/account/user_posts.html:69
+msgid "posted in"
+msgstr "zařazeno v"
+
+#: templates/lbforum/account/avatar/change.html:16
+msgid "Set an avatar image to enhance your forum identity"
+msgstr ""
+
+#: templates/lbforum/account/avatar/change.html:33
+#: templates_v2ex/lbforum/account/avatar/change.html:24
+msgid "Current avatar"
+msgstr "Současný avatar"
+
+#: templates/lbforum/account/avatar/change.html:39
+#: templates_v2ex/lbforum/account/avatar/change.html:42
+msgid "Upload avatar file"
+msgstr "Nahrajte ikonku avatara"
+
+#: templates/lbforum/account/avatar/change.html:41
+#: templates_v2ex/lbforum/account/avatar/change.html:36
+msgid "The allowed image file types are"
+msgstr "Povolené typy obrázků jsou"
+
+#: templates/lbforum/account/avatar/change.html:41
+#: templates_v2ex/lbforum/account/avatar/change.html:36
+msgid "and"
+msgstr "a"
+
+#: templates/lbforum/account/avatar/change.html:44
+#: templates_v2ex/lbforum/account/avatar/change.html:45
+msgid "Avatar Image"
+msgstr "ikonka avatara."
+
+#: templates/lbforum/account/avatar/change.html:49
+#: templates_v2ex/lbforum/account/avatar/change.html:52
+msgid "Upload New Image"
+msgstr "Nahrát nový obrázek"
+
+#: templates/lbforum/widgets/categories_and_forums.html:9
+#: templates/lbforum/widgets/categories_and_forums.html:27
+#: templates_v2ex/lbforum/account/user_topics.html:30
+msgid "topics"
+msgstr "témata"
+
+#: templates/lbforum/widgets/categories_and_forums.html:10
+#: templates/lbforum/widgets/categories_and_forums.html:30
+msgid "posts"
+msgstr "příspěvky"
+
+#: templates/lbforum/widgets/lbf_status.html:6
+#: templates_v2ex/lbforum/widgets/lbf_status.html:10
+msgid "Total number of registered users"
+msgstr "Celkový počet registrovaných uživatelů"
+
+#: templates/lbforum/widgets/lbf_status.html:9
+msgid "Newest registered user"
+msgstr "Poslední registrovaný uživatel"
+
+#: templates/lbforum/widgets/lbf_status.html:18
+#: templates_v2ex/lbforum/widgets/lbf_status.html:14
+msgid "Total number of topics"
+msgstr "Celkový počet témat"
+
+#: templates/lbforum/widgets/lbf_status.html:21
+#: templates_v2ex/lbforum/widgets/lbf_status.html:18
+msgid "Total number of posts"
+msgstr "Celkový počet příspěvků"
+
+#: templates/lbforum/widgets/onlineinfos.html:4
+#: templates_v2ex/lbforum/widgets/onlineinfos.html:5
+msgid "Currently online"
+msgstr "Nyní online"
+
+#: templates/lbforum/widgets/onlineinfos.html:4
+#: templates_v2ex/lbforum/widgets/onlineinfos.html:6
+msgid "guests"
+msgstr "hostů"
+
+#: templates/lbforum/widgets/onlineinfos.html:4
+#: templates_v2ex/lbforum/widgets/onlineinfos.html:6
+msgid "registered user"
+msgstr "registrovaných uživatelů"
+
+#: templates/pagination/pagination.html:5
+#: templates/pagination/pagination.html:7
+msgid "previous"
+msgstr "předchozí"
+
+#: templates/pagination/pagination.html:21
+#: templates/pagination/pagination.html:23
+msgid "next"
+msgstr "další"
+
+#: templates_v2ex/lbforum/index.html:39
+msgid "More"
+msgstr "Více"
+
+#: templates_v2ex/lbforum/recent.html:23
+msgid "Recent Topics"
+msgstr "Poslední témata"
+
+#: templates_v2ex/lbforum/topic.html:91
+msgid "No Reply"
+msgstr "Bez odpovědi"
+
+#: templates_v2ex/lbforum/widgets/lbf_status.html:4
+msgid "Forum Status"
+msgstr "Status fóra"
+
+#: templatetags/lbforum_filters.py:64
+msgid "Online"
+msgstr "Online"
+
+#: templatetags/lbforum_filters.py:67
+msgid "Offline"
+msgstr "Offline"
+
+#: templatetags/lbforum_filters.py:87
+#, python-format
+msgid "%s ago"
+msgstr "před %s"
