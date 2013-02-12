@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 
 from lbforum import views, accountviews
 
-forum_patterns = patterns('',
+forum_patterns = patterns(
+    '',
     url(r'^(?P<forum_slug>\w+)/$', views.forum, name='lbforum_forum'),
     url(r'^(?P<forum_slug>\w+)/(?P<topic_type>\w+)/$',
         views.forum, name='lbforum_forum'),
@@ -12,7 +13,8 @@ forum_patterns = patterns('',
         views.forum, name='lbforum_forum'),
 )
 
-topic_patterns = patterns('',
+topic_patterns = patterns(
+    '',
     url('^(?P<topic_id>\d+)/$', views.topic, name='lbforum_topic'),
     url('^(?P<topic_id>\d+)/delete/$', views.delete_topic,
         name='lbforum_delete_topic'),
@@ -21,6 +23,14 @@ topic_patterns = patterns('',
         name='lbforum_update_topic_attr_as_not'),
 
     url('^new/(?P<forum_id>\d+)/$', views.new_post, name='lbforum_new_topic'),
+)
+
+post_patterns = patterns(
+    '',
+    url('^(?P<post_id>\d+)/$', views.post, name='lbforum_post'),
+    url('^(?P<post_id>\d+)/edit/$', views.edit_post, name='lbforum_post_edit'),
+    url('^(?P<post_id>\d+)/delete/$', views.delete_post,
+        name='lbforum_post_delete'),
 )
 
 urlpatterns = patterns(
@@ -34,11 +44,7 @@ urlpatterns = patterns(
     url('^reply/new/(?P<topic_id>\d+)/$', views.new_post,
         name='lbforum_new_replay'),
 
-    url('^post/(?P<post_id>\d+)/$', views.post, name='lbforum_post'),
-    url('^post/(?P<post_id>\d+)/edit/$', views.edit_post,
-        name='lbforum_post_edit'),
-    url('^post/(?P<post_id>\d+)/delete/$', views.delete_post,
-        name='lbforum_post_delete'),
+    (r'^post/', include(post_patterns)),
 
     url('^user/(?P<user_id>\d+)/topics/$', views.user_topics,
         name='lbforum_user_topics'),
