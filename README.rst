@@ -104,6 +104,7 @@ The LBForum has some settings should be set in `settings.py`:
         "django.core.context_processors.debug",
         "django.core.context_processors.i18n",
         "django.core.context_processors.media",
+        "django.core.context_processors.static",
         "django.core.context_processors.request",
 
         "djangohelper.context_processors.ctx_config",
