@@ -31,8 +31,10 @@
             </li>
             <li class="info-lastpost">
                 <span class="label">{% trans "Last post" %}:</span>
-                <strong>{{ forum.get_last_post.update|lbtimesince }}</strong> 
-                <cite>by {{ forum.get_last_post.posted_by }}</cite>
+                {% if forum.get_last_post %}
+                  <strong>{{ forum.get_last_post.update|lbtimesince }}</strong> 
+                  <cite>by {{ forum.get_last_post.posted_by }}</cite>
+                {% endif %}
             </li>
         </ul>
     </div>
