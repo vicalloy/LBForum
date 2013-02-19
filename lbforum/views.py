@@ -24,7 +24,9 @@ def index(request, template_name="lbforum/index.html"):
 
 def recent(request, template_name="lbforum/recent.html"):
     ctx = {}
-    ctx['topics'] = Topic.objects.all().order_by('-last_reply_on').select_related()
+    ctx['topics'] = Topic.objects.all().order_by('-last_reply_on')
+    ctx['topics'] = ctx['topics'].select_related()
+
     return render(request, template_name, ctx)
 
 
@@ -86,25 +88,33 @@ def new_post(request, forum_id=None, topic_id=None, form_class=NewPostForm,
         forum = topic.forum
         first_post = topic.posts.order_by('created_on').select_related()[0]
     if request.method == "POST":
-        form = form_class(request.POST, user=request.user, forum=forum, topic=topic,
-                ip=request.META['REMOTE_ADDR'])
+        form = form_class(request.POST, user=request.user, forum=forum,
+                topic=topic, ip=request.META['REMOTE_ADDR'])
         preview = request.POST.get('preview', '')
         if form.is_valid() and request.POST.get('submit', ''):
             post = form.save()
             if topic:
                 return HttpResponseRedirect(post.get_absolute_url_ext())
             else:
-                return HttpResponseRedirect(reverse("lbforum_forum", args=[forum.slug]))
+                return HttpResponseRedirect(reverse("lbforum_forum",
+                                                    args=[forum.slug]))
     else:
         initial = {}
         qid = request.GET.get('qid', '')
         if qid:
             qpost = get_object_or_404(Post, id=qid)
-            initial['message'] = "[quote=%s]%s[/quote]" % (qpost.posted_by.username, qpost.message)
+            initial['message'] = "[quote=%s]%s[/quote]"
+            initial['message'] %= (qpost.posted_by.username, qpost.message)
         form = form_class(initial=initial, forum=forum)
-    ext_ctx = {'forum': forum, 'form': form, 'topic': topic, 'first_post': first_post,
-            'post_type': post_type, 'preview': preview}
-    ext_ctx['unpublished_attachments'] = request.user.attachment_set.all().filter(activated=False)
+    ext_ctx = {
+        'forum': forum,
+        'form': form,
+        'topic': topic,
+        'first_post': first_post,
+        'post_type': post_type,
+        'preview': preview
+    }
+    ext_ctx['unpublished_attachments'] = request.user.attachment_set.filter(activated=False)
     ext_ctx['is_new_post'] = True
     ext_ctx['topic_post'] = topic_post
     ext_ctx['session_key'] = request.session.session_key
@@ -112,7 +122,8 @@ def new_post(request, forum_id=None, topic_id=None, form_class=NewPostForm,
 
 
 @login_required
-def edit_post(request, post_id, form_class=EditPostForm, template_name="lbforum/post.html"):
+def edit_post(request, post_id, form_class=EditPostForm,
+              template_name="lbforum/post.html"):
     preview = None
     post_type = _('reply')
     edit_post = get_object_or_404(Post, id=post_id)
@@ -121,33 +132,53 @@ def edit_post(request, post_id, form_class=EditPostForm, template_name="lbforum/
     if edit_post.topic_post:
         post_type = _('topic')
     if request.method == "POST":
-        form = form_class(instance=edit_post, user=request.user, data=request.POST)
+        form = form_class(instance=edit_post, user=request.user,
+                          data=request.POST)
         preview = request.POST.get('preview', '')
         if form.is_valid() and request.POST.get('submit', ''):
             edit_post = form.save()
             return HttpResponseRedirect('../')
     else:
         form = form_class(instance=edit_post)
-    ext_ctx = {'form': form, 'post': edit_post, 'topic': edit_post.topic,
-            'forum': edit_post.topic.forum, 'post_type': post_type, 'preview': preview}
-    ext_ctx['unpublished_attachments'] = request.user.attachment_set.all().filter(activated=False)
+    ext_ctx = {
+        'form': form,
+        'post': edit_post,
+        'topic': edit_post.topic,
+        'forum': edit_post.topic.forum,
+        'post_type': post_type,
+        'preview': preview
+    }
+    ext_ctx['unpublished_attachments'] = request.user.attachment_set.filter(activated=False)
     ext_ctx['topic_post'] = edit_post.topic_post
     ext_ctx['session_key'] = request.session.session_key
     return render(request, template_name, ext_ctx)
 
 
 @login_required
-def user_topics(request, user_id, template_name='lbforum/account/user_topics.html'):
+def user_topics(request, user_id,
+                template_name='lbforum/account/user_topics.html'):
     view_user = User.objects.get(pk=user_id)
     topics = view_user.topic_set.order_by('-created_on').select_related()
-    return render(request, template_name, {'topics': topics, 'view_user': view_user})
+    context = {
+        'topics': topics,
+        'view_user': view_user
+    }
+
+    return render(request, template_name, context)
+
 
 
 @login_required
-def user_posts(request, user_id, template_name='lbforum/account/user_posts.html'):
+def user_posts(request, user_id,
+               template_name='lbforum/account/user_posts.html'):
     view_user = User.objects.get(pk=user_id)
     posts = view_user.post_set.order_by('-created_on').select_related()
-    return render(request, template_name, {'posts': posts, 'view_user': view_user})
+    context = {
+        'posts': posts,
+        'view_user': view_user
+    }
+    return render(request, template_name, context)
+
 
 
 @login_required
@@ -190,7 +221,8 @@ def update_topic_attr_as_not(request, topic_id, attr):
         topic.level = 30 if topic.level >= 60 else 60
     topic.save()
     if topic.hidden:
-        return HttpResponseRedirect(reverse("lbforum_forum", args=[topic.forum.slug]))
+        return HttpResponseRedirect(reverse("lbforum_forum",
+                                            args=[topic.forum.slug]))
     else:
         return HttpResponseRedirect(reverse("lbforum_topic", args=[topic.id]))
 

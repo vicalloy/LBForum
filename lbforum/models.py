@@ -57,7 +57,8 @@ class Forum(models.Model):
         return self.topic_set.all().count()
 
     def _count_nums_post(self):
-        return self.topic_set.all().aggregate(Sum('num_replies'))['num_replies__sum'] or 0
+        num_posts = self.topic_set.all().aggregate(Sum('num_replies'))
+        return num_posts['num_replies__sum'] or 0
 
     def get_last_post(self):
         if not self.last_post:
@@ -75,7 +76,8 @@ class Forum(models.Model):
         self.num_topics = self._count_nums_topic()
         self.num_posts = self._count_nums_post()
         if self.num_topics:
-            last_post = Post.objects.all().filter(topic__forum=self).order_by('-created_on')[0]
+            last_post = Post.objects.all().filter(topic__forum=self)
+            last_post = last_post.order_by('-created_on')[0]
             self.last_post = gen_last_post_info(last_post)
         else:
             self.last_post = ''
@@ -97,7 +99,6 @@ class TopicManager(models.Manager):
     def get_query_set(self):
         return super(TopicManager, self).get_query_set().filter(hidden=False)
 
-
 LEVEL_CHOICES = (
     (30, _('Default')),
     (60, _('Distillate')),
@@ -111,8 +112,8 @@ class Topic(models.Model):
     posted_by = models.ForeignKey(User)
 
     #TODO ADD TOPIC POST.
-    post = models.ForeignKey('Post', verbose_name=_('Post'), related_name='topics_',
-            blank=True, null=True)
+    post = models.ForeignKey('Post', verbose_name=_('Post'),
+                             related_name='topics_', blank=True, null=True)
     subject = models.CharField(max_length=999)
     num_views = models.IntegerField(default=0)
     num_replies = models.PositiveSmallIntegerField(default=0)  # posts...
@@ -245,7 +246,8 @@ class Post(models.Model):
 
 
 class LBForumUserProfile(models.Model):
-    user = models.OneToOneField(User, related_name='lbforum_profile', verbose_name=_('User'))
+    user = models.OneToOneField(User, related_name='lbforum_profile',
+                                verbose_name=_('User'))
     last_activity = models.DateTimeField(auto_now_add=True)
     userrank = models.CharField(max_length=30, default="Junior Member")
     last_posttime = models.DateTimeField(auto_now_add=True)
@@ -263,7 +265,10 @@ class LBForumUserProfile(models.Model):
 
 #### do smoe connect ###
 def gen_last_post_info(post):
-    last_post = {'posted_by': post.posted_by.username, 'update': post.created_on}
+    last_post = {
+        'posted_by': post.posted_by.username,
+        'update': post.created_on
+    }
     return b64encode(pickle.dumps(last_post, pickle.HIGHEST_PROTOCOL))
 
 
@@ -299,7 +304,9 @@ def update_forum_on_topic(sender, instance, created, **kwargs):
 
 def update_user_last_activity(sender, instance, created, **kwargs):
     if instance.user:
-        p, created = LBForumUserProfile.objects.get_or_create(user=instance.user)
+        p, created = LBForumUserProfile.objects.get_or_create(
+            user=instance.user)
+
         p.last_activity = instance.updated_on
         p.save()
 
