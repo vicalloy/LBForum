@@ -2,9 +2,10 @@ from django.core.management.base import BaseCommand
 
 from lbforum.models import Topic
 
+
 class Command(BaseCommand):
     help = "update topic/post's base info."
-    
+
     def handle(self, **options):
         topics = Topic.objects.all()
         for t in topics:

@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 import re
 
@@ -17,6 +16,7 @@ register = template.Library()
 _RE_ATTACH = r"""\[attach\](\d*?)\[/attach\]"""
 _RE_ATTACHIMG = r"""\[attachimg\](\d*?)\[/attachimg\]"""
 
+
 class ReplyViewTag(TagBase):
 
     def render_open(self, parser, node_index):
@@ -31,17 +31,18 @@ class ReplyViewTag(TagBase):
             return '<p class="need-reply">%s</p>' % ugettext("to see the content, user must reply first.")
         return ""
 
+
 class LBQuoteTag(QuoteTag):
 
     def render_open(self, parser, node_index):
         if self.params:
-            return u'<div class="quotebox"><cite>%s:</cite><blockquote><p>'%(PostMarkup.standard_replace(self.params))
+            return u'<div class="quotebox"><cite>%s:</cite><blockquote><p>' % (PostMarkup.standard_replace(self.params))
         else:
             return u'<div class="quotebox"><blockquote><p>'
 
-
     def render_close(self, parser, node_index):
         return u"</p></blockquote></div>"
+
 
 class AttachTag(TagBase):
 
@@ -56,8 +57,9 @@ class AttachTag(TagBase):
         except:
             return u'[attach]%s[/attach]' % contents
             pass
-        return u'<a title="%s" href="%s">%s</a>' % (attach.description, \
+        return u'<a title="%s" href="%s">%s</a>' % (attach.description,
                 attach.file.url, attach.org_filename)
+
 
 class AttachImgTag(TagBase):
 
@@ -72,8 +74,9 @@ class AttachImgTag(TagBase):
         except:
             return u'[attachimg]%s[/attachimg]' % contents
             pass
-        return u'<img title="%s" src="%s"/>' % (attach.description, \
+        return u'<img title="%s" src="%s"/>' % (attach.description,
                 attach.file.url)
+
 
 class HTMLTag(TagBase):
 

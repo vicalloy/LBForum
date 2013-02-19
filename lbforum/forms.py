@@ -9,22 +9,20 @@ from models import Topic, Post, TopicType
 from models import LBForumUserProfile
 
 FORUM_ORDER_BY_CHOICES = (
-        ('-last_reply_on', _('Last Reply')), 
-        ('-created_on', _('Last Topic')), 
-        )
+    ('-last_reply_on', _('Last Reply')),
+    ('-created_on', _('Last Topic')),
+)
+
 
 class ForumForm(forms.Form):
-    order_by = forms.ChoiceField(label=_('Order By'), choices=FORUM_ORDER_BY_CHOICES,
-            required=False)
+    order_by = forms.ChoiceField(label=_('Order By'), choices=FORUM_ORDER_BY_CHOICES, required=False)
+
 
 class PostForm(forms.ModelForm):
     topic_type = forms.ChoiceField(label=_('Topic Type'), required=False)
-    subject = forms.CharField(label=_('Subject'), \
-            widget=forms.TextInput(attrs={'size':'80'}))
-    message = forms.CharField(label=_('Message'), \
-            widget=forms.Textarea(attrs={'cols':'95', 'rows':'14'}))
-    attachments = forms.Field(label=_('Attachments'), required=False,\
-            widget=forms.SelectMultiple())
+    subject = forms.CharField(label=_('Subject'), widget=forms.TextInput(attrs={'size': '80'}))
+    message = forms.CharField(label=_('Message'), widget=forms.Textarea(attrs={'cols': '95', 'rows': '14'}))
+    attachments = forms.Field(label=_('Attachments'), required=False, widget=forms.SelectMultiple())
     need_replay = forms.BooleanField(label=_('Need Reply'), required=False)
     need_reply_attachments = forms.BooleanField(label=_('Attachments Need Reply'), required=False)
 
@@ -43,8 +41,9 @@ class PostForm(forms.ModelForm):
         topic_types = self.forum.topictype_set.all()
         self.fields['topic_type'].choices = [(tp.id, tp.name) for tp in topic_types]
         self.fields['topic_type'].choices.insert(0, (('', '--------')))
-        self.fields.keyOrder = ['topic_type', 'subject', 'message', 'attachments', 'need_replay', 
+        self.fields.keyOrder = ['topic_type', 'subject', 'message', 'attachments', 'need_replay',
                 'need_reply_attachments']
+
 
 class EditPostForm(PostForm):
     def __init__(self, *args, **kwargs):
@@ -77,6 +76,7 @@ class EditPostForm(PostForm):
             post.topic.topic_type = topic_type
             post.topic.save()
         return post
+
 
 class NewPostForm(PostForm):
     def __init__(self, *args, **kwargs):
@@ -113,9 +113,10 @@ class NewPostForm(PostForm):
         post.update_attachments(attachments)
         return post
 
+
 class SignatureForm(forms.ModelForm):
-    signature = forms.CharField(label=_('Message'), required=False,\
-            widget=forms.Textarea(attrs={'cols':'65', 'rows':'4'}))
+    signature = forms.CharField(label=_('Message'), required=False,
+            widget=forms.Textarea(attrs={'cols': '65', 'rows': '4'}))
 
     class Meta:
         model = LBForumUserProfile

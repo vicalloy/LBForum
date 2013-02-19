@@ -2,9 +2,10 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 
-class ViewsBaseCase(TestCase):
 
+class ViewsBaseCase(TestCase):
     fixtures = ['test_lbforum.json']
+
 
 class ViewsSimpleTest(ViewsBaseCase):
 

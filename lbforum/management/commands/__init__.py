@@ -1,6 +1,3 @@
-
-# Common framework for syncdb actions
-
 import copy
 
 from django.core import management
@@ -11,6 +8,7 @@ import django.template.loaders.app_directories
 
 from south.management.commands.syncdb import Command as SyncCommand
 
+
 class MigrateAndSyncCommand(SyncCommand):
     """Used for situations where "syncdb" is called by test frameworks."""
 
@@ -20,6 +18,7 @@ class MigrateAndSyncCommand(SyncCommand):
         if "--migrate" == opt.get_opt_string():
             opt.default = True
             break
+
 
 def patch_for_test_db_setup():
     # Load the commands cache

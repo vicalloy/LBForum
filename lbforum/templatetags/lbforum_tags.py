@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 from django import template
 from django.conf import settings
@@ -11,23 +10,26 @@ from djangohelper.decorators import basictag
 
 register = template.Library()
 
+
 @register.tag
 @basictag(takes_context=True)
 def bbcode(context, s, has_replied=False):
     if not s:
         return ""
     tag_data = {'has_replied': has_replied}
-    html = _postmarkup(s, #cosmetic_replace=False, 
-            tag_data=tag_data, 
+    html = _postmarkup(s,  # cosmetic_replace=False,
+            tag_data=tag_data,
             auto_urls=getattr(settings, 'BBCODE_AUTO_URLS', True))
     context['hide_attachs'] = tag_data.get('hide_attachs', [])
     return html
+
 
 @register.simple_tag
 def forum_url(forum, topic_type, topic_type2):
     args = [forum.slug, topic_type, topic_type2]
     args = [e for e in args if e]
     return reverse('lbforum_forum', args=args)
+
 
 @register.simple_tag
 def show_attach(attach, post, has_replied, hide_attachs):
@@ -38,20 +40,23 @@ def show_attach(attach, post, has_replied, hide_attachs):
     else:
         return """<a href="%s">%s</a>""" % (attach.file.url, attach.org_filename)
 
+
 @register.simple_tag
 def page_item_idx(page_obj, forloop):
     return page_obj.start_index() + forloop['counter0']
+
 
 @register.simple_tag
 def page_range_info(page_obj):
     paginator = page_obj.paginator
     if paginator.num_pages == 1:
         return paginator.count
-    return str(page_obj.start_index()) +' ' + 'to' + ' ' +  \
-            str(page_obj.end_index()) + ' ' + 'of' + ' ' +  str(page_obj.paginator.count)
+    return str(page_obj.start_index()) + ' ' + 'to' + ' ' + \
+            str(page_obj.end_index()) + ' ' + 'of' + ' ' + str(page_obj.paginator.count)
 
 DEFAULT_PAGINATION = getattr(settings, 'PAGINATION_DEFAULT_PAGINATION', 20)
 DEFAULT_WINDOW = getattr(settings, 'PAGINATION_DEFAULT_WINDOW', 4)
+
 
 @register.inclusion_tag('lbforum/post_paginate.html', takes_context=True)
 def post_paginate(context, count, paginate_by=DEFAULT_PAGINATION, window=DEFAULT_WINDOW):
@@ -69,7 +74,7 @@ def post_paginate(context, count, paginate_by=DEFAULT_PAGINATION, window=DEFAULT
     elif window >= page_count:
         pages = [e + 1 for e in range(page_count)]
     else:
-        pages = [e + 1 for e in range(window-1)]
+        pages = [e + 1 for e in range(window - 1)]
     context['pages'] = pages
     context['window'] = window
     return context

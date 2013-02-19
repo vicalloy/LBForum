@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 import datetime
 
@@ -15,12 +14,14 @@ from bbcode import _postmarkup
 
 register = template.Library()
 
+
 @register.filter
 def bbcode(s):
     if not s:
         return ""
-    return _postmarkup(s, #cosmetic_replace=False, 
+    return _postmarkup(s,  # cosmetic_replace=False,
             auto_urls=getattr(settings, 'BBCODE_AUTO_URLS', True))
+
 
 @register.filter
 def form_all_error(form):
@@ -32,11 +33,12 @@ def form_all_error(form):
         e = form.errors.get(name, '')
         if e:
             errors.append((field.label, force_unicode(e), ))
-    return mark_safe(u'<ul class="errorlist">%s %s</ul>'
-            % (global_error, ''.join([u'<li>%s%s</li>' % (k, v) for k, v in errors])))
+    return mark_safe(u'<ul class="errorlist">%s %s</ul>' % (global_error,
+        ''.join([u'<li>%s%s</li>' % (k, v) for k, v in errors])))
+
 
 @register.filter
-def topic_state(topic): 
+def topic_state(topic):
     c = []
     if topic.closed:
         c.append('closed')
@@ -45,6 +47,7 @@ def topic_state(topic):
     else:
         c.append('normal')
     return ' '.join(c)
+
 
 @register.filter
 def post_style(forloop):
@@ -57,6 +60,7 @@ def post_style(forloop):
         styles += ' lastpost'
     return styles
 
+
 @register.filter
 def online(user):
     try:
@@ -65,6 +69,7 @@ def online(user):
     except:
         pass
     return _('Offline')
+
 
 @register.filter
 def lbtimesince(d, now=None):
