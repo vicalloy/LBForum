@@ -6,10 +6,10 @@ from lbforum import views, accountviews
 
 forum_patterns = patterns(
     '',
-    url(r'^(?P<forum_slug>\w+)/$', views.forum, name='lbforum_forum'),
-    url(r'^(?P<forum_slug>\w+)/(?P<topic_type>\w+)/$',
+    url(r'^(?P<forum_slug>[\w-]+)/$', views.forum, name='lbforum_forum'),
+    url(r'^(?P<forum_slug>[\w-]+)/(?P<topic_type>[\w-]+)/$',
         views.forum, name='lbforum_forum'),
-    url(r'^(?P<forum_slug>\w+)/(?P<topic_type>\w+)/(?P<topic_type2>\w+)/$',
+    url(r'^(?P<forum_slug>[\w-]+)/(?P<topic_type>[\w-]+)/(?P<topic_type2>[\w-]+)/$',
         views.forum, name='lbforum_forum'),
 )
 
@@ -18,7 +18,7 @@ topic_patterns = patterns(
     url('^(?P<topic_id>\d+)/$', views.topic, name='lbforum_topic'),
     url('^(?P<topic_id>\d+)/delete/$', views.delete_topic,
         name='lbforum_delete_topic'),
-    url('^(?P<topic_id>\d+)/update_topic_attr_as_not/(?P<attr>\w+)/$',
+    url('^(?P<topic_id>\d+)/update_topic_attr_as_not/(?P<attr>[\w-]+)/$',
         views.update_topic_attr_as_not,
         name='lbforum_update_topic_attr_as_not'),
     url('^new/(?P<forum_id>\d+)/$', views.new_post, name='lbforum_new_topic'),
