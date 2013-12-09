@@ -65,7 +65,7 @@
             <div class="fr">
                 {% if user == post.posted_by or user.is_staff %}
                     <span>
-                        <a href="{% url 'lbforum_post_edit' topic_id=post.pk %}">{% trans "edit" %}</a>
+                        <a href="{% url 'lbforum_post_edit' post_id=post.pk %}">{% trans "edit" %}</a>
                     </span>
                     |
                 {% endif %}

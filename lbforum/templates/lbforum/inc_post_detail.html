@@ -84,10 +84,10 @@
             <p class="post-actions">
                 <span class="quote-post"><a href="{% url 'lbforum_new_replay' topic_id=topic.pk %}?qid={{post.pk}}">{% trans "quote" %}</a></span>
                 {% if user == post.posted_by or user.is_staff %}
-                <span class="edit-post"><a href="{% url 'lbforum_post_edit' topic_id=post.pk %}">{% trans "edit" %}</a></span>
+                <span class="edit-post"><a href="{% url 'lbforum_post_edit' post_id=post.pk %}">{% trans "edit" %}</a></span>
                 {% endif %}
                 {% if user.is_staff and not post.topic_post %}
-                <span class="del-post"><a href="{% url 'lbforum_post_delete' topic_id=post.id %}" onclick="return confirm('{% trans "Do you want to delete it?" %}')">{% trans "delete" %}</a></span>
+                <span class="del-post"><a href="{% url 'lbforum_post_delete' post_id=post.id %}" onclick="return confirm('{% trans "Do you want to delete it?" %}')">{% trans "delete" %}</a></span>
                 {% endif %}
             </p>
         </div>
