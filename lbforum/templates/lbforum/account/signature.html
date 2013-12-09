@@ -65,7 +65,7 @@
     <script type="text/javascript" src="{{ STATIC_URL }}lbforum/scripts/markitup/jquery.markitup.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}lbforum/scripts/markitup/sets/bbcode/set.js"></script>
     <script type="text/javascript">
-        mySettings['previewParserPath']='{% url markitup_preview %}';
+        mySettings['previewParserPath']="{% url 'markitup_preview' %}";
 	    $("#id_signature").markItUp(mySettings);
     </script>
 {% endblock %}

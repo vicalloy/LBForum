@@ -20,7 +20,7 @@
 			<div class="crumbs gen-content" id="brd-crumbs-top">
 				<p>
 					<span class="crumb crumbfirst">
-						<a href="{% url lbforum_index %}">{{ LBFORUM_TITLE }}</a>
+						<a href="{% url 'lbforum_index' %}">{{ LBFORUM_TITLE }}</a>
 					</span> 
 					<span class="crumb crumblast">
 						<span>&raquo;</span>
@@ -57,7 +57,7 @@
 									<span class="post-num">{% page_item_idx page_obj forloop %}</span>
 									<span class="post-byline">
 										<span>{% trans "Topic by" %} </span>
-										<a href="{% url lbforum_user_profile post.posted_by.pk %}">{{post.posted_by.username}}</a>
+										<a href="{% url 'lbforum_user_profile' user_id=post.posted_by.pk %}">{{post.posted_by.username}}</a>
 									</span>
 									<span class="post-link">
 										<a href="{{ post.get_absolute_url }}" title="Permanent link to this post" rel="bookmark" class="permalink">{{ post.created_on|lbtimesince }}</a>
@@ -73,7 +73,7 @@
 							<div class="postbody">
 								<div class="post-author">
 									<ul class="author-ident">
-										<li class="username"> <a href="{% url lbforum_user_profile post.posted_by.pk %}">{{post.posted_by.username}}</a> </li>
+										<li class="username"> <a href="{% url 'lbforum_user_profile' user_id=post.posted_by.pk %}">{{post.posted_by.username}}</a> </li>
 									</ul>
 								</div>
 								<div class="post-entry">
@@ -101,7 +101,7 @@
 			<div class="crumbs gen-content" id="brd-crumbs-end">
 				<p>
 					<span class="crumb crumbfirst">
-						<a href="{% url lbforum_index %}">{{ LBFORUM_TITLE }}</a>
+						<a href="{% url 'lbforum_index' %}">{{ LBFORUM_TITLE }}</a>
 					</span> 
 					<span class="crumb crumblast">
 						<span>&raquo;</span>

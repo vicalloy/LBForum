@@ -4,6 +4,6 @@
 		<span>{% trans "Currently online" %} <strong> {{ total_onlines }} </strong> ( <strong> {{ total_onlines_guest }} </strong> {% trans "guests" %}, <strong>{{ total_onlines_user }}</strong> {% trans "registered user" %} )</span>
 	</h3>
     <p>
-        {% for o in online_users %} <a href="{% url lbforum_user_profile o.user_id %}">{{o.username}}</a> {% endfor %}
+        {% for o in online_users %} <a href="{% url 'lbforum_user_profile' user_id=o.user_id %}">{{o.username}}</a> {% endfor %}
 	</p>
 </div>

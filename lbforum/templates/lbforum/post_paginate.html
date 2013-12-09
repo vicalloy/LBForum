@@ -4,11 +4,11 @@
 	( 
 	<span>{% trans "Pages" %}&nbsp;</span>
 	{% for p in pages %}
-	<a href="{% url lbforum_topic topic.id %}?page={{p}}">{{p}}</a>
+	<a href="{% url 'lbforum_topic' topic_id=topic.id %}?page={{p}}">{{p}}</a>
 	{% endfor %}
 	{% if page_count > window %}
 	...
-	<a href="{% url lbforum_topic topic.id %}?page={{page_count}}">{{page_count}}</a>
+	<a href="{% url 'lbforum_topic' topic_id=topic.id %}?page={{page_count}}">{{page_count}}</a>
 	{% endif %}
 	)
 </span>

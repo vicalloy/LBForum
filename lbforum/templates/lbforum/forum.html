@@ -39,7 +39,7 @@
         </p>
 	</div>
 	<div class="main-head">
-        <h1 class="hn"><span><a title="Permanent link to this forum." rel="bookmark" href="{% url lbforum_forum forum.slug %}" class="permalink">{{ forum }}</a> <small></small></span></h1>
+        <h1 class="hn"><span><a title="Permanent link to this forum." rel="bookmark" href="{% url 'lbforum_forum' forum_slug=forum.slug %}" class="permalink">{{ forum }}</a> <small></small></span></h1>
 	</div>
 
     {% include 'lbforum/inc_topic_list.html' %}
