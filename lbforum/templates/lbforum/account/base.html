@@ -20,7 +20,7 @@
             <div id="brd-crumbs-top" class="crumbs gen-content">
                 <p>
                     <span class="crumb crumbfirst">
-                        <a href="{% url lbforum_index %}">{{ LBFORUM_TITLE }}</a>
+                        <a href="{% url 'lbforum_index' %}">{{ LBFORUM_TITLE }}</a>
                     </span> 
                     <span class="crumb crumblast">
                         <span> &raquo; </span>
@@ -34,20 +34,20 @@
 					<ul>
 						<li class="item1 {% block main_menu_profile_class %}{% endblock %}">
                             {% if view_only %}
-                            <a href="{% url lbforum_account_index %}"><span>{% trans "Introduction" %}</span></a>
+                            <a href="{% url 'lbforum_account_index' %}"><span>{% trans "Introduction" %}</span></a>
                             {% endif %}
                             {% if not view_only %}
-                            <a href="{% url lbforum_user_profile user.pk %}"><span>{% trans "Introduction" %}</span></a>
+                            <a href="{% url 'lbforum_user_profile' user_id=user.pk %}"><span>{% trans "Introduction" %}</span></a>
                             {% endif %}
                         </li>
                         {% if not view_only %}
                         <li class="{% block main_menu_avatar_class %}{% endblock %}">
-                            <a href="{% url lbforum_avatar_change %}"><span>{% trans "Avatar" %}</span></a>
+                            <a href="{% url 'lbforum_avatar_change' %}"><span>{% trans "Avatar" %}</span></a>
                         </li>
                         {% endif %}
                         {% if not view_only %}
                         <li class="{% block main_menu_sig_class %}{% endblock %}">
-                            <a href="{% url lbforum_signature %}"><span>{% trans "Signature" %}</span></a>
+                            <a href="{% url 'lbforum_signature' %}"><span>{% trans "Signature" %}</span></a>
                         </li>
                         {% endif %}
 					</ul>
@@ -68,7 +68,7 @@
 			<div class="crumbs gen-content" id="brd-crumbs-end">
                 <p>
                     <span class="crumb crumbfirst">
-                        <a href="{% url lbforum_index %}">{{ LBFORUM_TITLE }}</a>
+                        <a href="{% url 'lbforum_index' %}">{{ LBFORUM_TITLE }}</a>
                     </span> 
                     <span class="crumb crumblast">
                         <span> &raquo; </span>

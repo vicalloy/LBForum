@@ -8,7 +8,7 @@
             <span class="post-num">{% page_item_idx page_obj forloop %}</span>
             <span class="post-byline">
                 <span>{% trans "Topic by" %}</span>
-                <a href="{% url lbforum_user_profile post.posted_by.pk %}">{{post.posted_by.username}}</a>
+                <a href="{% url 'lbforum_user_profile' user_id=post.posted_by.pk %}">{{post.posted_by.username}}</a>
             </span>
             <span class="post-link">
                 {{ post.created_on|lbtimesince }}
@@ -18,8 +18,8 @@
     <div class="postbody">
         <div class="post-author">
             <ul class="author-ident">
-                <li class="useravatar"><a href="{% url lbforum_user_profile post.posted_by.pk %}">{% avatar post.posted_by %}</a></li>
-                <li class="username"> <a href="{% url lbforum_user_profile post.posted_by.pk %}">{{post.posted_by.username}}</a> </li>
+                <li class="useravatar"><a href="{% url 'lbforum_user_profile' user_id=post.posted_by.pk %}">{% avatar post.posted_by %}</a></li>
+                <li class="username"> <a href="{% url 'lbforum_user_profile' user_id=post.posted_by.pk %}">{{post.posted_by.username}}</a> </li>
                 <li class="usertitle"><span>{% trans "Member" %}</span></li>
                 <li class="userstatus"><span>{{post.posted_by|online}}</span></li>
             </ul>
@@ -82,12 +82,12 @@
         <div class="post-options">
             <p class="post-contacts"></p>
             <p class="post-actions">
-                <span class="quote-post"><a href="{% url lbforum_new_replay topic.pk %}?qid={{post.pk}}">{% trans "quote" %}</a></span> 
+                <span class="quote-post"><a href="{% url 'lbforum_new_replay' topic_id=topic.pk %}?qid={{post.pk}}">{% trans "quote" %}</a></span>
                 {% if user == post.posted_by or user.is_staff %}
-                <span class="edit-post"><a href="{% url lbforum_post_edit post.pk %}">{% trans "edit" %}</a></span> 
+                <span class="edit-post"><a href="{% url 'lbforum_post_edit' post_id=post.pk %}">{% trans "edit" %}</a></span>
                 {% endif %}
                 {% if user.is_staff and not post.topic_post %}
-                <span class="del-post"><a href="{% url lbforum_post_delete post.id %}" onclick="return confirm('{% trans "Do you want to delete it?" %}')">{% trans "delete" %}</a></span> 
+                <span class="del-post"><a href="{% url 'lbforum_post_delete' post_id=post.id %}" onclick="return confirm('{% trans "Do you want to delete it?" %}')">{% trans "delete" %}</a></span>
                 {% endif %}
             </p>
         </div>

@@ -29,7 +29,7 @@
                     <p class="posting">
                         {% if not topic.closed %} 
                             {% if user.is_authenticated %}
-                                <a class="newpost" href="{% url lbforum_new_replay topic.pk %}"><span>{% trans "Post reply" %}</span></a>
+                                <a class="newpost" href="{% url 'lbforum_new_replay' topic_id=topic.pk %}"><span>{% trans "Post reply" %}</span></a>
                             {% else %}
                                 {% trans "You must" %} <a href="{{ LOGIN_URL }}">{% trans "Login" %}</a> {% trans "or" %} <a href="{{ REGISTER_URL }}">{% trans "register" %}</a> {% trans "to post a reply" %}
                             {% endif %} 
@@ -43,27 +43,27 @@
                     <h2 class="hn">
                         {% if user.is_staff %}
                         <span>
-                            <a href="{% url lbforum_update_topic_attr_as_not topic.id 'sticky' %}">
+                            <a href="{% url 'lbforum_update_topic_attr_as_not' topic_id=topic.id attr='sticky' %}">
                                 {% if topic.sticky %} {% trans "unsticky" %} {% else %} {% trans "sticky" %} {% endif %}
                             </a>
                         </span>
                         <span>
-                            <a href="{% url lbforum_update_topic_attr_as_not topic.id 'distillate' %}">
+                            <a href="{% url 'lbforum_update_topic_attr_as_not' topic_id=topic.id attr='distillate' %}">
                                 {% if topic.level >= 60 %} {% trans "undistillate" %} {% else %} {% trans "distillate" %} {% endif %}
                             </a>
                         </span>
                         <span>
-                            <a href="{% url lbforum_update_topic_attr_as_not topic.id 'close' %}">
+                            <a href="{% url 'lbforum_update_topic_attr_as_not' topic_id=topic.id attr='close' %}">
                                 {% if topic.closed %} {% trans "unclose" %} {% else %} {% trans "close" %} {% endif %}
                             </a>
                         </span>
                         <span>
-                            <a href="{% url lbforum_update_topic_attr_as_not topic.id 'hide' %}">
+                            <a href="{% url 'lbforum_update_topic_attr_as_not' topic_id=topic.id attr='hide' %}">
                                 {% if topic.hidden %} {% trans "unhide" %} {% else %} {% trans "hide" %} {% endif %}
                             </a>
                         </span>
                         <span>
-                            <a href="{% url lbforum_delete_topic topic.id %}" onclick="return confirm('{% trans "Do you want to delete it?" %}')">{% trans "delete" %}</a>
+                            <a href="{% url 'lbforum_delete_topic' topic_id=topic.id %}" onclick="return confirm('{% trans "Do you want to delete it?" %}')">{% trans "delete" %}</a>
                         </span>
                         <span>|</span>
                         {% endif %}
@@ -87,7 +87,7 @@
                     <p class="posting">
                         {% if not topic.closed %}
                             {% if user.is_authenticated %}
-                                <a class="newpost" href="{% url lbforum_new_replay topic.pk %}"><span>{% trans "Post reply" %}</span></a>
+                                <a class="newpost" href="{% url 'lbforum_new_replay' topic_id=topic.pk %}"><span>{% trans "Post reply" %}</span></a>
                             {% else %}
                                 {% trans "You must" %} <a href="{{ LOGIN_URL }}">{% trans "Login" %}</a> {% trans "or" %} <a href="{{ REGISTER_URL }}">{% trans "register" %}</a> {% trans "to post a reply" %}
                             {% endif %} 
@@ -104,7 +104,7 @@
                     </div>
                     <div class="main-content main-frm" id="brd-qpost">
                         <p class="content-options options">{% trans "You may use" %}: <span class="item1"><a title="Help with: BBCode" href="http://fluxbb.org/forums/help/bbcode/" class="exthelp">BBCode</a></span> <span><a title="Help with: Images" href="http://fluxbb.org/forums/help/img/" class="exthelp">Images</a></span> <span><a title="Help with: Smilies" href="http://fluxbb.org/forums/help/smilies/" class="exthelp">Smilies</a></span></p>
-                        <form action="{% url lbforum_new_replay topic.pk %}" accept-charset="utf-8" method="post" class="frm-form">
+                        <form action="{% url 'lbforum_new_replay' topic_id=topic.pk %}" accept-charset="utf-8" method="post" class="frm-form">
                             <div class="hidden">
                                 {% csrf_token %} 
                             </div>

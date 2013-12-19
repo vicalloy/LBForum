@@ -6,7 +6,7 @@
     <table cellpadding="0" cellspacing="0" border="0" width="100%">
         <tr>
             <td width="48" valign="top">
-                <a href="{% url lbforum_user_profile post.posted_by.pk %}">{% avatar post.posted_by 48 %}</a>
+                <a href="{% url 'lbforum_user_profile' user_id=post.posted_by.pk %}">{% avatar post.posted_by 48 %}</a>
             </td>
             <td width="10"></td>
             <td width="auto" valign="top">
@@ -15,12 +15,12 @@
                         <small class="snow">#{% page_item_idx page_obj forloop %} - {{ post.created_on|lbtimesince }}
                             {% if user.is_authenticated %}
                             &bull;
-                            <a href="{% url lbforum_new_replay topic.pk %}?qid={{post.pk}}">{% trans "quote" %}</a>
+                            <a href="{% url 'lbforum_new_replay' topic_id=topic.pk %}?qid={{post.pk}}">{% trans "quote" %}</a>
                             {% if user == post.posted_by or user.is_staff %}
-                            <a href="{% url lbforum_post_edit post.pk %}">{% trans "edit" %}</a>
+                            <a href="{% url 'lbforum_post_edit' post_id=post.pk %}">{% trans "edit" %}</a>
                             {% endif %}
                             {% if user.is_staff and not post.topic_post %}
-                            <a href="{% url lbforum_post_delete post.id %}" onclick="return confirm('{% trans "Do you want to delete it?" %}')">{% trans "delete" %}</a>
+                            <a href="{% url 'lbforum_post_delete' post_id=post.id %}" onclick="return confirm('{% trans "Do you want to delete it?" %}')">{% trans "delete" %}</a>
                             {% endif %}
                             {% endif %}
                         </small>

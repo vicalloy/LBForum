@@ -8,7 +8,7 @@
         <li class="st-users">
             <span>{% trans "Newest registered user" %}:
                 <strong>
-                    <a href="{% url lbforum_user_profile last_registered_user.pk %}">
+                    <a href="{% url 'lbforum_user_profile' user_id=last_registered_user.pk %}">
                         {{ last_registered_user.username }}
                     </a>
                 </strong>

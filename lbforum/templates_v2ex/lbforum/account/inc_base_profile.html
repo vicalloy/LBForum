@@ -31,10 +31,10 @@
                                 </tr>
                                 <tr>
                                     <td width="50%">
-                                        <a href="{% url lbforum_user_topics view_user.pk %}">{% blocktrans %}View all {{view_user}}'s topics{% endblocktrans %}</a>
+                                        <a href="{% url 'lbforum_user_topics' user_id=view_user.pk %}">{% blocktrans %}View all {{view_user}}'s topics{% endblocktrans %}</a>
                                     </td>
                                     <td width="50%">
-                                        <a href="{% url lbforum_user_posts view_user.pk %}">{% blocktrans %}View all {{view_user}}'s posts{% endblocktrans %}</a>
+                                        <a href="{% url 'lbforum_user_posts' user_id=view_user.pk %}">{% blocktrans %}View all {{view_user}}'s posts{% endblocktrans %}</a>
                                     </td>
                                 </tr>
 

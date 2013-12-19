@@ -18,7 +18,7 @@
         <span class="icon "><!-- --></span>
 
         <div class="item-subject">
-            <h3 class="hn"><a href="{% url lbforum_forum forum.slug %}"><span> {{forum}} </span></a></h3>
+            <h3 class="hn"><a href="{% url 'lbforum_forum' forum_slug=forum.slug %}"><span> {{forum}} </span></a></h3>
             <p>{{ forum.description }}</p>
         </div>
 

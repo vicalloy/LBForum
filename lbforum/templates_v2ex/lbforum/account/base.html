@@ -15,18 +15,18 @@
             <ul>
                 <li class="item1 {% block main_menu_profile_class %}{% endblock %}">
                     {% if view_only %}
-                        <a href="{% url lbforum_account_index %}"><span>{% trans "Introduction" %}</span></a>
+                        <a href="{% url 'lbforum_account_index' %}"><span>{% trans "Introduction" %}</span></a>
                     {% endif %}
                     {% if not view_only %}
-                        <a href="{% url lbforum_user_profile user.pk %}"><span>{% trans "Introduction" %}</span></a>
+                        <a href="{% url 'lbforum_user_profile' user_id=user.pk %}"><span>{% trans "Introduction" %}</span></a>
                     {% endif %}
                 </li>
                 {% if not view_only %}
                     <li class="{% block main_menu_pwd_class %}{% endblock %}">
-                        <a href="{% url lbforum_avatar_change %}"><span><a href="{{CHANGE_PSWD_URL}}">{% trans "Change your password" %}</a></span></a>
+                        <a href="{% url 'lbforum_avatar_change' %}"><span><a href="{{CHANGE_PSWD_URL}}">{% trans "Change your password" %}</a></span></a>
                     </li>
                     <li class="{% block main_menu_avatar_class %}{% endblock %}">
-                        <a href="{% url lbforum_avatar_change %}"><span>{% trans "Avatar" %}</span></a>
+                        <a href="{% url 'lbforum_avatar_change' %}"><span>{% trans "Avatar" %}</span></a>
                     </li>
                 {% endif %}
             </ul>

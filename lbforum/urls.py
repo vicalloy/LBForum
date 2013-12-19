@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from django.views.generic.simple import direct_to_template
+from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
 
 from lbforum import views, accountviews
@@ -45,7 +45,7 @@ urlpatterns = patterns(
         name='lbforum_user_topics'),
     url('^user/(?P<user_id>\d+)/posts/$', views.user_posts,
         name='lbforum_user_posts'),
-    url(r'^lang.js$', direct_to_template, {'template': 'lbforum/lang.js'},
+    url(r'^lang.js$', TemplateView.as_view(template_name='lbforum/lang.js'),
         name='lbforum_lang_js'),
     url('^markitup_preview/$', views.markitup_preview,
         name='markitup_preview'),

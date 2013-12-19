@@ -156,7 +156,7 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="{% url lbforum_lang_js %}"></script>
+    <script type="text/javascript" src="{% url 'lbforum_lang_js' %}"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}lbforum/scripts/jquery.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}lbforum/scripts/markitup/jquery.markitup.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}lbforum/scripts/markitup/sets/bbcode/set.js"></script>
@@ -167,13 +167,13 @@
     <script type="text/javascript" src="{{ STATIC_URL }}lbforum/scripts/upload_attachment.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}lbforum/scripts/common.js"></script>
     <script type="text/javascript">
-        mySettings['previewParserPath']='{% url markitup_preview %}';
+        mySettings['previewParserPath']="{% url 'markitup_preview' %}";
 	    $("#id_message").markItUp(mySettings);
-        url_attachments_ajax_change_descn = "{% url attachments_ajax_change_descn %}";
-        url_attachments_ajax_delete = "{% url attachments_ajax_delete %}";
-        url_attachments_ajax_upload = "{% url attachments_ajax_upload %}";
+        url_attachments_ajax_change_descn = "{% url 'attachments_ajax_change_descn' %}";
+        url_attachments_ajax_delete = "{% url 'attachments_ajax_delete' %}";
+        url_attachments_ajax_upload = "{% url 'attachments_ajax_upload' %}";
 		ify_uploader = '{{ STATIC_URL }}lbforum/scripts/jquery.uploadify/uploadify.swf';
-		ify_script = '{% url attachments_uploadify %}';
+		ify_script = "{% url 'attachments_uploadify' %}";
 		ify_cancelImg = '{{ STATIC_URL }}lbforum/styles/Oxygen/cancel.png';
 		session_key = '{{ session_key }}';
         $(function() {
