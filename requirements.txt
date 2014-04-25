@@ -6,5 +6,4 @@ django-simple-avatar>=0.8.1
 BeautifulSoup
 postmarkup
 django-pagination
-PIL
 south>=0.7.2
