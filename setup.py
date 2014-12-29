@@ -81,9 +81,9 @@ setup(
     install_requires=[
         "Django>=1.3",
         "django-helper>=0.8.1",
-        #"django-lb-attachments>=0.8",
-        #"django-onlineuser>=0.8",
-        #"django-simple-avatar>=0.8.1",
+        "django-lb-attachments>=0.8",
+        "django-onlineuser>=0.8",
+        "django-simple-avatar>=0.8.1",
         "BeautifulSoup",
         "postmarkup",
         "django-pagination",
