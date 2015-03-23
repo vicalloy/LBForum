@@ -165,7 +165,6 @@ class Topic(models.Model):
         self.num_replies = self.count_nums_replies()
         last_post = self.posts.order_by('-created_on')[0]
         self.last_post = gen_last_post_info(last_post)
-        self.save()
         if commit:
             self.save()
 
