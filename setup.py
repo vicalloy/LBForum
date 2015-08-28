@@ -83,7 +83,6 @@ setup(
         "django-helper>=0.8.1",
         "django-lb-attachments>=0.8",
         "django-onlineuser>=0.8",
-        "git+https://github.com/nyafka/django-simple-avatar.git",
         "BeautifulSoup",
         "postmarkup",
         "django-pagination",
