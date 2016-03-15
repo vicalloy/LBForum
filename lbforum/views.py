@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.exceptions import FieldError
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext
 from django.core.urlresolvers import reverse
@@ -42,8 +43,14 @@ def forum(request, forum_slug, topic_type='', topic_type2='',
         #topic_type = _("Distillate District")
     if topic_type2:
         topics = topics.filter(topic_type__slug=topic_type2)
+
     order_by = request.GET.get('order_by', '-last_reply_on')
-    topics = topics.order_by('-sticky', order_by).select_related()
+
+    try:
+        topics = topics.order_by('-sticky', order_by).select_related()
+    except FieldError:
+        topics = topics.order_by('-sticky', '-last_reply_on').select_related()
+
     form = ForumForm(request.GET)
     ext_ctx = {'form': form, 'forum': forum, 'topics': topics,
             'topic_type': topic_type, 'topic_type2': topic_type2}
