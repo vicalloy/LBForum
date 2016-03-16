@@ -3,7 +3,8 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from models import Category, Forum, TopicType, Topic
+from models import Category, Forum, TopicType, Topic, \
+    gen_last_post_info
 from models import Post, LBForumUserProfile
 
 admin.site.register(Category)
@@ -81,6 +82,22 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'topic', 'posted_by', 'poster_ip',
             'created_on', 'updated_on', )
     search_fields = ('topic__subject', 'posted_by__username', 'message', )
+    actions = ['delete_model']
+
+    def get_actions(self, request):
+        actions = super(PostAdmin, self).get_actions(request)
+        del actions['delete_selected']
+        return actions
+
+    def delete_model(self, request, obj):
+        for o in obj.all():
+            topic = o.topic
+            o.delete()
+            last_post = topic.posts.latest()
+            topic.last_post = gen_last_post_info(last_post)
+            topic.num_replies = topic.count_nums_replies()
+            topic.save()
+    delete_model.short_description = 'Delete posts'
 
 admin.site.register(Post, PostAdmin)
 
