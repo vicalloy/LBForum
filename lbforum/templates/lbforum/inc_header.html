@@ -1,41 +1,26 @@
 {% load i18n %}
+{% load lbutils %}
 
-<div id="brd-head" class="gen-content">
-    <p id="brd-access"><a href="#brd-main">Skip to forum content</a></p>
-    <p id="brd-title"><a href="{% url 'lbforum_index' %}">{{ LBFORUM_TITLE }}</a></p>
-    <p id="brd-desc">{{ LBFORUM_SUB_TITLE }}</p>
-</div>
-
-<div id="brd-navlinks" class="gen-content">
-    <ul id="brd-navlinks-left">
-		{% include 'lbforum/plugins/inc_header_left_links.html' %}
-    </ul>
-    <ul id="brd-navlinks-right">
-        <li>
-            <a href="#">{% trans "Search" %}</a>
-        </li>
+<div id="Top">
+  <div id="TopMain">
+    <p id="title"><a href="{% url 'lbforum_index' %}">{% get_setting "LBFORUM_TITLE" %}</a></p>
+    <div id="Navigation">
+      <ul>
+        {% include 'lbforum/plugins/inc_header_left_links.html' %}
         {% if user.is_authenticated %}
-        <li id="navprofile"><a href="{% url 'lbforum_account_index' %}">{% trans "My profile" %}</a></li>
-        <li id="navlogout"><a href="{{ LOGOUT_URL }}?next={% url 'lbforum_index' %}">{% trans "Logout" %}</a></li>
+          <li id="navprofile"><a href="{% url 'lbforum_profile' %}">{% trans "My profile" %}</a></li>
+          <li id="navlogout"><a href="{{ LOGOUT_URL }}?next={% url 'lbforum_index' %}">{% trans "Logout" %}</a></li>
         {% else %}
-        <li id="navregister"><a href="{{ REGISTER_URL }}">{% trans "Register" %}</a></li>
-        <li id="navlogin"><a href="{{ LOGIN_URL }}">{% trans "Login" %}</a></li>
+          <li id="navregister"><a href="{{ REGISTER_URL }}">{% trans "Register" %}</a></li>
+          <li id="navlogin"><a href="{{ LOGIN_URL }}">{% trans "Login" %}</a></li>
         {% endif %}
-    </ul>
+      </ul>
+    </div>
+    <div id="Search">
+      <form action="{% url 'lbforum_recent' %}">
+        <input type="text" class="search" maxlength="40" name="q" value="" id="q">
+        <input type="submit" class="super normal button" value="{% trans "Search" %}" style="-moz-border-radius: 0px 5px 5px 0px; border: none;">
+      </form>
+    </div>
+  </div>
 </div>
-
-<div id="brd-visit" class="gen-content">
-    <p id="welcome">
-        <span>
-            {% if user.is_authenticated %}
-            {% blocktrans %}Hello {{user}}{% endblocktrans %}, <a href="{{ LOGOUT_URL }}?next={% url 'lbforum_index' %}">{% trans "Logout" %}</a>
-            {% else %}
-            <a href="{{ LOGIN_URL }}">{% trans "Login" %}</a>
-            |
-            <a href="{{ REGISTER_URL }}">{% trans "Register" %}</a>
-            {% endif %}
-        </span>
-    </p>
-    <p id="visit-links" class="options">
-    </p>
-</div> 

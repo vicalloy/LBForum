@@ -1,44 +1,41 @@
-{% extends "lbforum/base.html" %}
+{% extends "lbforum/base_site.html" %}
 
 {% load i18n %}
-{% load onlineuser_tags %}
+{% load lbutils %}
 {% load lbforum_widget_tags %}
 
-{% block content %}
-    <!-- brd-wrap begins -->
-<div id="brd-wrap" class="brd">
-
-    <!-- brd-index begins -->
-<div id="brd-index" class="brd-page basic-page">
-    {% include 'lbforum/inc_header.html' %}
-    {% include 'lbforum/inc_announce.html' %}
-    <p></p>
-    <div class="hr"><hr /></div>
-    <!-- brd-main begins -->
-<div id="brd-main">
-    <div class="main-head">
-        <h1 class="hn"><span>{{ LBFORUM_TITLE }}</span></h1>
-    </div>
+{% block content_right_bar %}
+    {% include 'lbforum/widgets/cur_user_profile.html' %}
+    <div class="sep20"></div>
     {% lbf_categories_and_forums %}
-</div>
-<!-- brd-main ends -->
+    <div class="sep20"></div>
+    {% lbf_status %}
+    <div class="sep20"></div>
+    <div class="box" id="friend-links-box">
+        <div class="cell">
+            <span class="fade">
+                {% trans "Friend Links" %}
+            </span>
+        </div>
+        <div class="inner">
+            {% include 'lbforum/plugins/inc_friend_links.html' %}
+        </div>
+    </div>
+{% endblock %}
 
-<!-- forum_qpost -->
+{% block content_content %}
+    <div class="box" id="topics_index">
+        <div class="cell" align="left">
+            <div class="fr"><span style="font-size: 110%;" class="fade">{% get_setting "LBFORUM_SUB_TITLE" %}</span></div>
+            <span class="bigger">Welcome to <strong>{% get_setting "LBFORUM_TITLE" %}</strong></span>
+            <div class="sep10"></div>
+            <a href="{% url 'lbforum_new_topic' %}" class="super normal button">{% trans "Post new topic" %}</a>
+        </div>
 
-<!-- brd-stats begins -->
-{% lbf_status %}
-<!-- brd-stats ends -->
-{% onlineinfos 1 "lbforum/widgets/onlineinfos.html" %}
+        {% include 'lbforum/inc_topic_list.html' %}
 
-<div class="gen-content" id="brd-friend-links">
-		<span>{% trans "Friend Links" %}</span> {% include 'lbforum/plugins/inc_friend_links.html' %}
-</div>
-
-<div class="hr"><hr /></div>
-
-{% include 'lbforum/inc_copyright.html' %}
-
-</div><!-- brd-index ends -->
-</div><!-- brd-wrap ends -->
-
+        <div class="inner">
+            <a href="{% url 'lbforum_recent' %}">{% trans "More" %}</a>
+        </div>
+    </div>
 {% endblock %}

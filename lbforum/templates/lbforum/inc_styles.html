@@ -1,4 +1,2 @@
-<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}lbforum/styles/Oxygen/Oxygen.css" />
-<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}lbforum/styles/Oxygen/Oxygen_cs.css" />
-<!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}lbforum/styles/Oxygen/Oxygen_ie6.css" /><![endif]-->
-<!--[if IE 7]><link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}lbforum/styles/Oxygen/Oxygen_ie7.css" /><![endif]-->
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" media="screen" href="{% static 'lbforum/styles/v2ex/default.css' %}"/>

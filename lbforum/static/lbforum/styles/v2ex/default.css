@@ -12,6 +12,10 @@
 html {
 }
 
+small {
+    font-size: 11px;
+}
+
 body {
 	padding: 0px;
 	margin: 0px;
@@ -283,8 +287,7 @@ td.avatar_mini {
 }
 
 .created {
-	font-size: 10px;
-	font-weight: bold;
+	font-size: 11px;
 	color: #ccc;
 	display: block;
 }
@@ -297,13 +300,13 @@ td.avatar_mini {
 .note {
 	font-family: "Panic Sans", "Menlo", "DejaVu Sans Mono", "Luxi Mono", "Courier New", "Helvetica Neue", "Tahoma", "Verdana", "Hiragino Sans GB", STHeiti !important;
 	font-size: 14px;
-	line-height: 180%;
+	line-height: 1.8;
 }
 
 .page {
 	font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
 	font-size: 14px;
-	line-height: 180%;
+	line-height: 1.8;
 	padding: 0px 20px 20px 20px;
 }
 
@@ -324,7 +327,7 @@ td.avatar_mini {
 
 .content {
 	font-size: 14px;
-	line-height: 180%;
+	line-height: 1.8;
 	color: #000;
 	text-overflow: ellipsis;
 	overflow:hidden;
@@ -798,7 +801,7 @@ table.grid td.left {
 }
 
 a.tiny_label:link, a.tiny_label:visited, a.tiny_label:active {
-	font-size: 10px;
+	font-size: 11px;
 	line-height: 10px;
 	color: #fff;
 	background-color: #dde;
@@ -814,7 +817,7 @@ a.tiny_label:hover {
 
 a.node:link, a.node:visited, a.node:active {
 	background-color: #f5f5f5;
-	font-size: 10px;
+	font-size: 11px;
 	line-height: 10px;
 	display: inline-block;
 	padding: 4px 4px 3px 4px;
@@ -832,7 +835,7 @@ a.node:hover {
 
 a.op:link, a.op:visited, a.op:active {
 	background-color: #dde;
-	font-size: 10px;
+	font-size: 11px;
 	line-height: 10px;
 	display: inline-block;
 	padding: 2px 4px 2px 4px;
@@ -850,7 +853,7 @@ a.op:hover {
 a.opo:link, a.opo:visited, a.opo:active {
 	background-color: #334;
 	color: #fff;
-	font-size: 10px;
+	font-size: 11px;
 	line-height: 10px;
 	display: inline-block;
 	padding: 2px 4px 2px 4px;
@@ -938,7 +941,7 @@ a.opo:hover {
     color: #cc9;
     font-family: "Panic Sans";
     font-size: 16px;
-    line-height: 180%;
+    line-height: 1.8;
 	width: 616px;
 	height: 500px;
 }
@@ -1013,7 +1016,7 @@ a.fade:hover {
 #TopMain #title {
     display: block;
     float: left;
-    margin-top: 11px;
+    margin-top: 8px;
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -1065,19 +1068,19 @@ a.fade:hover {
     padding-left:20px;
 }
 #uploaded_files .descn {
-    background: url(../Oxygen/note_edit.png) center left no-repeat;
+    background: url(../../imgs/note_edit.png) center left no-repeat;
 }
 #uploaded_files .remove {
-    background: url(../Oxygen/delete.png) center left no-repeat;
+    background: url(../../imgs/delete.png) center left no-repeat;
 }
 #uploaded_files .insert {
-    background: url(../Oxygen/arrow_up.png) center left no-repeat;
+    background: url(../../imgs/arrow_up.png) center left no-repeat;
 }
 #uploaded_files .removed-fn {
     text-decoration:line-through;
 }
 .ajax-loader {
-    background: url(../Oxygen/ajax-loader.gif) center left no-repeat;
+    background: url(../../imgs/ajax-loader.gif) center left no-repeat;
 }
 
 #Content input {
@@ -1140,4 +1143,8 @@ a.fade:hover {
 }
 .content img {
     max-width: 640px;
+}
+
+#id_subject {
+    width: 620px !important;
 }

@@ -92,8 +92,8 @@
 .bbcode .html a {
 	background-image:url(images/html.png);
 }
-.bbcode .hide a	{
-	background-image:url(images/hide.gif);
+.bbcode .video a	{
+	background-image:url(images/video.gif);
 }
 .bbcode .clean a	{
 	background-image:url(images/clean.png);

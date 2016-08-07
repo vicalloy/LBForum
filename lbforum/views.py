@@ -1,46 +1,82 @@
-#!/usr/bin/env python
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.exceptions import FieldError
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext
 from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_exempt
-#from django.contrib import messages
+from django.db.models import Q
+# from django.contrib import messages
+from lbutils import get_client_ip
 
-from forms import EditPostForm, NewPostForm, ForumForm
-from models import Topic, Forum, Post
-import settings as lbf_settings
+from .templatetags.lbforum_filters import topic_can_post
+from .forms import EditPostForm, NewPostForm, ForumForm
+from .models import Topic, Forum, Post
+from . import settings as lbf_settings
+
+
+User = get_user_model()
+
+
+def get_all_topics(user):
+    topics = Topic.objects.all()
+    if not (user.has_perm('lbforum.sft_mgr_forum')):
+        topics = topics.filter(
+            Q(forum__admins=user) | Q(posted_by=user) | Q(hidden=False))
+    return topics.distinct()
+
+
+def get_all_posts(user):
+    qs = Post.objects.all()
+    if not (user.has_perm('lbforum.sft_mgr_forum')):
+        qs = qs.filter(
+            Q(topic__forum__admins=user) | Q(posted_by=user) | Q(topic__hidden=False))
+    return qs.distinct()
 
 
 def index(request, template_name="lbforum/index.html"):
     ctx = {}
-    if lbf_settings.LAST_TOPIC_NO_INDEX:
-        ctx['topics'] = Topic.objects.all().order_by('-last_reply_on')[:20]
+    topics = None
+    user = request.user
+    if not user.lbforum_profile.nickname:
+        return redirect('lbforum_change_profile')
+    topics = get_all_topics(user)
+    topics = topics.order_by('-last_reply_on')[:20]
+    ctx['topics'] = topics
     return render(request, template_name, ctx)
 
 
 def recent(request, template_name="lbforum/recent.html"):
     ctx = {}
-    ctx['topics'] = Topic.objects.all().order_by('-last_reply_on')
-    ctx['topics'] = ctx['topics'].select_related()
-
+    user = request.user
+    topics = get_all_topics(user)
+    q = request.GET.get('q', '')
+    if q:
+        topics = topics.filter(subject__icontains=q)
+    ctx['q'] = q
+    ctx['topics'] = topics.order_by('-last_reply_on').select_related()
+    ctx['request'] = request
     return render(request, template_name, ctx)
 
 
-def forum(request, forum_slug, topic_type='', topic_type2='',
+def forum(
+        request, forum_slug, topic_type='', topic_type2='',
         template_name="lbforum/forum.html"):
     forum = get_object_or_404(Forum, slug=forum_slug)
-    topics = forum.topic_set.all()
+    user = request.user
+    topics = get_all_topics(user)
+    topics = topics.filter(forum=forum)
     if topic_type and topic_type != 'good':
         topic_type2 = topic_type
         topic_type = ''
     if topic_type == 'good':
         topics = topics.filter(level__gt=30)
-        #topic_type = _("Distillate District")
     if topic_type2:
         topics = topics.filter(topic_type__slug=topic_type2)
 
@@ -52,21 +88,31 @@ def forum(request, forum_slug, topic_type='', topic_type2='',
         topics = topics.order_by('-sticky', '-last_reply_on').select_related()
 
     form = ForumForm(request.GET)
-    ext_ctx = {'form': form, 'forum': forum, 'topics': topics,
-            'topic_type': topic_type, 'topic_type2': topic_type2}
+    ext_ctx = {
+        'request': request,
+        'form': form, 'forum': forum, 'topics': topics,
+        'topic_type': topic_type, 'topic_type2': topic_type2}
     return render(request, template_name, ext_ctx)
 
 
 def topic(request, topic_id, template_name="lbforum/topic.html"):
-    topic = get_object_or_404(Topic, id=topic_id)
+    user = request.user
+    topic = get_object_or_404(Topic, pk=topic_id)
+    if topic.hidden and not topic.forum.is_admin(user):
+        return HttpResponse(ugettext('no right'))
     topic.num_views += 1
     topic.save()
-    posts = topic.posts
-    if lbf_settings.STICKY_TOPIC_POST:  # sticky topic post
-        posts = posts.filter(topic_post=False)
+    posts = get_all_posts(user)
+    posts = posts.filter(topic=topic)
+    posts = posts.filter(topic_post=False)
     posts = posts.order_by('created_on').select_related()
-    ext_ctx = {'topic': topic, 'posts': posts}
-    ext_ctx['has_replied'] = topic.has_replied(request.user)
+    ext_ctx = {
+        'request': request,
+        'topic': topic,
+        'posts': posts,
+        'has_replied': topic.has_replied(request.user),
+        'can_admin': topic.forum.is_admin(user)
+    }
     return render(request, template_name, ext_ctx)
 
 
@@ -81,50 +127,61 @@ def markitup_preview(request, template_name="lbforum/markitup_preview.html"):
 
 
 @login_required
-def new_post(request, forum_id=None, topic_id=None, form_class=NewPostForm,
+def new_post(
+        request, forum_id=None, topic_id=None, form_class=NewPostForm,
         template_name='lbforum/post.html'):
+    user = request.user
+    if not user.lbforum_profile.nickname:
+        return redirect('lbforum_change_profile')
     qpost = topic = forum = first_post = preview = None
     post_type = _('topic')
     topic_post = True
+    initial = {}
     if forum_id:
         forum = get_object_or_404(Forum, pk=forum_id)
     if topic_id:
         post_type = _('reply')
         topic_post = False
         topic = get_object_or_404(Topic, pk=topic_id)
+        if not topic_can_post(topic, user):
+            return HttpResponse(_("you can't reply, this topic closed."))
         forum = topic.forum
-        first_post = topic.posts.order_by('created_on').select_related()[0]
+        first_post = topic.posts.order_by('created_on').select_related().first()
+    initial['forum'] = forum
     if request.method == "POST":
-        form = form_class(request.POST, user=request.user, forum=forum,
-                topic=topic, ip=request.META['REMOTE_ADDR'])
+        form = form_class(
+            request.POST, user=user, forum=forum,
+            initial=initial,
+            topic=topic, ip=get_client_ip(request))
         preview = request.POST.get('preview', '')
         if form.is_valid() and request.POST.get('submit', ''):
             post = form.save()
+            forum = post.topic.forum
             if topic:
                 return HttpResponseRedirect(post.get_absolute_url_ext())
             else:
                 return HttpResponseRedirect(reverse("lbforum_forum",
                                                     args=[forum.slug]))
     else:
-        initial = {}
         qid = request.GET.get('qid', '')
         if qid:
             qpost = get_object_or_404(Post, id=qid)
             initial['message'] = "[quote=%s]%s[/quote]"
-            initial['message'] %= (qpost.posted_by.username, qpost.message)
+            initial['message'] %= (qpost.posted_by.lbforum_profile.nickname, qpost.message)
         form = form_class(initial=initial, forum=forum)
     ext_ctx = {
         'forum': forum,
+        'show_forum_field': topic_post,
         'form': form,
         'topic': topic,
         'first_post': first_post,
         'post_type': post_type,
         'preview': preview
     }
-    ext_ctx['unpublished_attachments'] = request.user.attachment_set.filter(activated=False)
+    ext_ctx['attachments'] = user.lbattachment_set.filter(
+        pk__in=request.POST.getlist('attachments'))
     ext_ctx['is_new_post'] = True
     ext_ctx['topic_post'] = topic_post
-    ext_ctx['session_key'] = request.session.session_key
     return render(request, template_name, ext_ctx)
 
 
@@ -153,45 +210,18 @@ def edit_post(request, post_id, form_class=EditPostForm,
         'topic': edit_post.topic,
         'forum': edit_post.topic.forum,
         'post_type': post_type,
-        'preview': preview
+        'preview': preview,
+        'attachments': edit_post.attachments.all()
     }
-    ext_ctx['unpublished_attachments'] = request.user.attachment_set.filter(activated=False)
+    # ext_ctx['unpublished_attachments'] = request.user.lbattachment_set.filter(activated=False)
     ext_ctx['topic_post'] = edit_post.topic_post
-    ext_ctx['session_key'] = request.session.session_key
     return render(request, template_name, ext_ctx)
-
-
-@login_required
-def user_topics(request, user_id,
-                template_name='lbforum/account/user_topics.html'):
-    view_user = User.objects.get(pk=user_id)
-    topics = view_user.topic_set.order_by('-created_on').select_related()
-    context = {
-        'topics': topics,
-        'view_user': view_user
-    }
-
-    return render(request, template_name, context)
-
-
-
-@login_required
-def user_posts(request, user_id,
-               template_name='lbforum/account/user_posts.html'):
-    view_user = User.objects.get(pk=user_id)
-    posts = view_user.post_set.order_by('-created_on').select_related()
-    context = {
-        'posts': posts,
-        'view_user': view_user
-    }
-    return render(request, template_name, context)
-
 
 
 @login_required
 def delete_topic(request, topic_id):
     if not request.user.is_staff:
-        #messages.error(_('no right'))
+        # messages.error(_('no right'))
         return HttpResponse(ugettext('no right'))
     topic = get_object_or_404(Topic, id=topic_id)
     forum = topic.forum
@@ -209,15 +239,16 @@ def delete_post(request, post_id):
     post.delete()
     topic.update_state_info()
     topic.forum.update_state_info()
-    #return HttpResponseRedirect(request.path)
+    # return HttpResponseRedirect(request.path)
     return HttpResponseRedirect(reverse("lbforum_topic", args=[topic.id]))
 
 
 @login_required
-def update_topic_attr_as_not(request, topic_id, attr):
-    if not request.user.is_staff:
-        return HttpResponse(ugettext('no right'))
+def toggle_topic_attr(request, topic_id, attr):
     topic = get_object_or_404(Topic, id=topic_id)
+    forum = topic.forum
+    if not forum.is_admin(request.user):
+        return HttpResponse(ugettext('no right'))
     if attr == 'sticky':
         topic.sticky = not topic.sticky
     elif attr == 'close':
@@ -227,12 +258,4 @@ def update_topic_attr_as_not(request, topic_id, attr):
     elif attr == 'distillate':
         topic.level = 30 if topic.level >= 60 else 60
     topic.save()
-    if topic.hidden:
-        return HttpResponseRedirect(reverse("lbforum_forum",
-                                            args=[topic.forum.slug]))
-    else:
-        return HttpResponseRedirect(reverse("lbforum_topic", args=[topic.id]))
-
-#Feed...
-#Add Post
-#Add Topic
+    return HttpResponseRedirect(reverse("lbforum_topic", args=[topic.id]))

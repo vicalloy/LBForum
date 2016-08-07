@@ -1,142 +1,163 @@
-{% extends 'lbforum/base.html' %}
+{% extends "lbforum/base_site.html" %}
 
 {% load i18n %}
 {% load lbforum_filters %}
 {% load lbforum_tags %}
+{% load el_pagination_tags %}
+{% load staticfiles %}
+{% load lbutils %}
 
 {% block title %}
-    {{ topic.subject }} - {{ LBFORUM_TITLE }}
+  {{ topic.subject }} - {% get_setting "LBFORUM_TITLE" %}
 {% endblock %}
 
-{% block content %}
-    <div id="replybox">
-        <div id="actionbox">
-        </div>
-    </div>
-    <div id="brd-wrap" class="brd">
-        <div id="brd-viewtopic" class="brd-page paged-page">
-            {% include 'lbforum/inc_header.html' %}
-            {% include 'lbforum/inc_announce.html' %}
-            <div class="hr"><hr/></div>
-            <div id="brd-crumbs-top" class="crumbs gen-content">
-                {% include 'lbforum/inc_topic_brd_crumbs.html' %}
-            </div>
-            <div class="main-wrapper" id="brd-main">
-                <div class="main-pagepost gen-content" id="brd-pagepost-top">
-                    {% load pagination_tags %}
-                    {% autopaginate posts TOPIC_PAGE_SIZE %}
-                    {% paginate %}
-                    <p class="posting">
-                        {% if not topic.closed %} 
-                            {% if user.is_authenticated %}
-                                <a class="newpost" href="{% url 'lbforum_new_replay' topic_id=topic.pk %}"><span>{% trans "Post reply" %}</span></a>
-                            {% else %}
-                                {% trans "You must" %} <a href="{{ LOGIN_URL }}">{% trans "Login" %}</a> {% trans "or" %} <a href="{{ REGISTER_URL }}">{% trans "register" %}</a> {% trans "to post a reply" %}
-                            {% endif %} 
-                        {% endif %}
-                    </p>
-                </div>
-                <div class="main-head">
-                    <h1 class="hn"><span><a title="Permanent link to this topic" rel="bookmark" href="{{ topic.get_absolute_url }}" class="permalink">{{ topic }}</a></span></h1>
-                </div>
-                <div class="main-pagehead">
-                    <h2 class="hn">
-                        {% if user.is_staff %}
-                        <span>
-                            <a href="{% url 'lbforum_update_topic_attr_as_not' topic_id=topic.id attr='sticky' %}">
-                                {% if topic.sticky %} {% trans "unsticky" %} {% else %} {% trans "sticky" %} {% endif %}
-                            </a>
-                        </span>
-                        <span>
-                            <a href="{% url 'lbforum_update_topic_attr_as_not' topic_id=topic.id attr='distillate' %}">
-                                {% if topic.level >= 60 %} {% trans "undistillate" %} {% else %} {% trans "distillate" %} {% endif %}
-                            </a>
-                        </span>
-                        <span>
-                            <a href="{% url 'lbforum_update_topic_attr_as_not' topic_id=topic.id attr='close' %}">
-                                {% if topic.closed %} {% trans "unclose" %} {% else %} {% trans "close" %} {% endif %}
-                            </a>
-                        </span>
-                        <span>
-                            <a href="{% url 'lbforum_update_topic_attr_as_not' topic_id=topic.id attr='hide' %}">
-                                {% if topic.hidden %} {% trans "unhide" %} {% else %} {% trans "hide" %} {% endif %}
-                            </a>
-                        </span>
-                        <span>
-                            <a href="{% url 'lbforum_delete_topic' topic_id=topic.id %}" onclick="return confirm('{% trans "Do you want to delete it?" %}')">{% trans "delete" %}</a>
-                        </span>
-                        <span>|</span>
-                        {% endif %}
-                        <span>
-                            <span class="item-info">{% trans "Posts" %} [ {% page_range_info page_obj %} ]</span>
-                        </span>
-                    </h2>
-                </div>
-                <div class="main-content main-topic" id="forum">
-                    {% for post in posts %}     
-                        {% include 'lbforum/inc_post_detail.html' %}
-                    {% endfor %}
-                </div>
-                <div class="main-options gen-content">
-                    <p class="options">
-                        {% include 'lbforum/plugins/inc_topic_footer.html' %}
-                    </p>
-                </div>
-                <div class="main-pagepost gen-content" id="brd-pagepost-end">
-                    {% paginate %}
-                    <p class="posting">
-                        {% if not topic.closed %}
-                            {% if user.is_authenticated %}
-                                <a class="newpost" href="{% url 'lbforum_new_replay' topic_id=topic.pk %}"><span>{% trans "Post reply" %}</span></a>
-                            {% else %}
-                                {% trans "You must" %} <a href="{{ LOGIN_URL }}">{% trans "Login" %}</a> {% trans "or" %} <a href="{{ REGISTER_URL }}">{% trans "register" %}</a> {% trans "to post a reply" %}
-                            {% endif %} 
-                        {% endif %}
-                    </p>
-                </div>
-            </div>
-            <div class="crumbs gen-content" id="brd-crumbs-end">
-                {% include 'lbforum/inc_topic_brd_crumbs.html' %}
-            </div>
-            {% if not topic.closed %} {% if user.is_authenticated %}
-                    <div class="main-subhead">
-                        <h2 class="hn"><span>{% trans "Quick reply to this topic" %}</span></h2>
-                    </div>
-                    <div class="main-content main-frm" id="brd-qpost">
-                        <p class="content-options options">{% trans "You may use" %}: <span class="item1"><a title="Help with: BBCode" href="http://fluxbb.org/forums/help/bbcode/" class="exthelp">BBCode</a></span> <span><a title="Help with: Images" href="http://fluxbb.org/forums/help/img/" class="exthelp">Images</a></span> <span><a title="Help with: Smilies" href="http://fluxbb.org/forums/help/smilies/" class="exthelp">Smilies</a></span></p>
-                        <form action="{% url 'lbforum_new_replay' topic_id=topic.pk %}" accept-charset="utf-8" method="post" class="frm-form">
-                            <div class="hidden">
-                                {% csrf_token %} 
-                            </div>
-                            <fieldset class="frm-group group1">
-                                <legend class="group-legend"><strong>{% trans "Compose your post" %}</strong></legend>
-                                <div class="txt-set set1">
-                                    <div class="txt-box textarea required">
-                                        <label for="fld1"><span>{% trans "Write message" %}: <em>({% trans "Required" %})</em></span></label>
-                                        <div class="txt-input"><span class="fld-input"><textarea cols="95" rows="7" name="message" id="fld1"></textarea></span></div>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <div class="frm-buttons">
-                                <span class="submit"><input type="submit" value="{% trans "Submit" %}" name="submit"/></span>
-                                <span class="submit"><input type="submit" value="{% trans "Preview" %}" name="preview"/></span>
-                            </div>
-                        </form>
-                    </div>
-                {% endif %} {% endif %}
-            <div class="hr"><hr /></div>
-            {% include 'lbforum/inc_copyright.html' %}
-        </div>
-    </div>
+{% block content_right_bar %}
+  {% include 'lbforum/widgets/cur_user_profile.html' %}
+{% endblock %}
 
-    <script type="text/javascript" src="{{ STATIC_URL }}lbforum/scripts/jquery.min.js"></script>
-    <script type="text/javascript">
-        $('.entry-attachments-img-s a').click(function() {
-            var p = $(this).parent();
-            p.hide();
-            p.next().show()
-            return false;
-        })
-        $('.post-entry a').attr({ target: "_blank" });
-    </script>
+{% block content_content %}
+  {% paginate posts %}
+  {% get_pages %}
+  <div class="box">
+    {% with post=topic.post %}
+    <div class="cell" style="min-height: 73px;">
+      <div class="fr snow" style="padding-left: 10px; padding-bottom: 10px;">
+        <a href="{% url 'lbforum_profile' user_id=post.posted_by.pk %}">{# avatar post.posted_by #}</a>
+      </div>
+      <span class="bigger">
+        <a href="{% url 'lbforum_index' %}">{% trans "Home" %}</a>
+        <span class="chevron">&raquo;</span>
+        <a href="{{ topic.forum.get_absolute_url }}">{{ topic.forum.name }}</a>
+      </span>
+      <h1>{{topic}}</h1>
+      <small class="fade">
+        By
+        <a href="{% url 'lbforum_profile' user_id=post.posted_by.pk %}">{{post.posted_by.username}}</a>
+        at {{ topic.last_post.created_on|lbtimesince }},
+        {{topic.num_views}} hits
+        {% if can_admin %}
+          <span>|</span>
+          <span>
+            <a href="{% url 'lbforum_toggle_topic_attr' topic_id=topic.id attr='distillate' %}">
+              {% if topic.level >= 60 %} {% trans "undistillate" %} {% else %} {% trans "distillate" %} {% endif %}
+            </a>
+          </span>
+          <span>
+            <a href="{% url 'lbforum_toggle_topic_attr' topic_id=topic.id attr='sticky' %}">
+              {% if topic.sticky %} {% trans "unsticky" %} {% else %} {% trans "sticky" %} {% endif %}
+            </a>
+          </span>
+          <span>
+            <a href="{% url 'lbforum_toggle_topic_attr' topic_id=topic.id attr='close' %}">
+              {% if topic.closed %} {% trans "unclose" %} {% else %} {% trans "close" %} {% endif %}
+            </a>
+          </span>
+          <span>
+            <a href="{% url 'lbforum_toggle_topic_attr' topic_id=topic.id attr='hide' %}">
+              {% if topic.hidden %} {% trans "unhide" %} {% else %} {% trans "hide" %} {% endif %}
+            </a>
+          </span>
+          <span>
+            <a href="{% url 'lbforum_delete_topic' topic_id=topic.id %}" onclick="return confirm('{% trans "Do you want to delete it?" %}')">{% trans "delete" %}</a>
+          </span>
+        {% endif %}
+      </small>
+    </div>
+    <div class="inner">
+      <div class="content topic_content">
+        {% include 'lbforum/inc_post_content.html' %}
+      </div>
+    </div>
+    <div class="inner" id="topic-post-footer">
+      <div class="fr">
+        {% if user == post.posted_by or can_admin %}
+          <span>
+            <a href="{% url 'lbforum_post_edit' post_id=post.pk %}">{% trans "edit" %}</a>
+          </span>
+          |
+        {% endif %}
+        <span>
+          <a href="{% url 'lbforum_new_replay' topic_id=topic.pk %}?qid={{post.pk}}">{% trans "quote" %}</a>
+        </span>
+        {% if topic|topic_can_post:user %}
+          <span>
+            <a class="newpost" href="{% url 'lbforum_new_replay' topic_id=topic.pk %}">
+              {% trans "Post reply" %}
+            </a>
+          </span>
+        {% endif %}
+      </div>
+      &nbsp;
+    </div>
+    {% endwith %}
+  </div>
+
+  <div class="sep20"></div>
+
+  {% if not posts %}
+    <div align="center" class="glass"><div class="inner"><span class="white">{% trans "No Reply" %}</span></div></div>
+  {% else %}
+    <div class="box">
+      <div class="cell">
+        <div class="fr">
+        </div>
+        <span class="fade">
+          {% trans "Posts" %} [ {% page_range_info pages %} ]
+          <span class="snow">|</span>
+          {% trans "Last post" %} {{ topic.last_post.created_on|lbtimesince }}
+        </span>
+      </div>
+      <div id="replies">
+        {% for post in posts %}
+          {% include 'lbforum/inc_post_detail.html' %}
+        {% endfor %}
+      </div>
+      <div class="inner">
+        {% show_pages %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if  topic|topic_can_post:user %}
+    <div class="sep20"></div>
+    <div class="box" id="quick-reply-box">
+      <form action="{% url 'lbforum_new_replay' topic_id=topic.pk %}" accept-charset="utf-8" method="post" class="frm-form">
+        <div class="cell"><div class="fr fade"><a class="dark" href="#Top">Top&uarr;</a></div>
+          <span class="fade">
+            {% trans "Quick reply to this topic" %}
+          </span>
+        </div>
+        <div class="cell">
+          <textarea id="reply_content" name="message" class="mll"></textarea>
+          <div class="sep10"></div>
+          <div id="e" class="fr fade"></div>
+          {% csrf_token %}
+          <input type="submit" value="{% trans "Submit" %}" name="submit" class="super normal button">
+          <input type="submit" value="{% trans "Preview" %}" name="preview" class="super normal button">
+        </div>
+      </form>
+
+      <div class="inner">
+        <span class="fade" style="font-size: 120%">
+          <small>{% trans "You may use" %}: </small>
+          <a class="node" target="_blank" title="Help with: BBCode" href="http://fluxbb.org/forums/help/bbcode/" class="exthelp">BBCode</a>
+        </span>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block footer_js %}
+  <script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'mediaelement/build/mediaelement-and-player.min.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'mediaelement/build/mediaelementplayer.css' %}" />
+  <script type="text/javascript">
+    $('.entry-attachments-img-s a').click(function() {
+      var p = $(this).parent();
+      p.hide();
+      p.next().show()
+      return false;
+    })
+    $('.content a').attr({ target: "_blank" });
+  </script>
 {% endblock %}

@@ -3,25 +3,25 @@ from django import template
 from django.conf import settings
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
+from django.utils.safestring import mark_safe
+from django.core.urlresolvers import reverse
 
 from bbcode import _postmarkup
-
-from djangohelper.decorators import basictag
 
 register = template.Library()
 
 
-@register.tag
-@basictag(takes_context=True)
+@register.simple_tag(takes_context=True)
 def bbcode(context, s, has_replied=False):
     if not s:
         return ""
     tag_data = {'has_replied': has_replied}
-    html = _postmarkup(s,  # cosmetic_replace=False,
-            tag_data=tag_data,
-            auto_urls=getattr(settings, 'BBCODE_AUTO_URLS', True))
+    html = _postmarkup(
+        s,  # cosmetic_replace=False,
+        tag_data=tag_data,
+        auto_urls=getattr(settings, 'BBCODE_AUTO_URLS', True))
     context['hide_attachs'] = tag_data.get('hide_attachs', [])
-    return html
+    return mark_safe(html)
 
 
 @register.simple_tag
@@ -35,24 +35,26 @@ def forum_url(forum, topic_type, topic_type2):
 def show_attach(attach, post, has_replied, hide_attachs):
     if not has_replied and post.topic_post and \
             (post.topic.need_reply_attachments or hide_attachs.count(u"%s" % attach.pk)):
-        return """<a href="#" onclick="alert('%s');return false;">%s</a>""" % \
-                (_("reply to see the attachments"), attach.org_filename)
+        html = """<a href="#" onclick="alert('%s');return false;">%s</a>""" % \
+            (_("reply to see the attachments"), attach.filename)
     else:
-        return """<a href="%s">%s</a>""" % (attach.file.url, attach.org_filename)
+        url = "%s?pk=%s" % (reverse('lbattachment_download'), attach.pk)
+        html = """<a href="%s">%s</a>""" % (url, attach.filename)
+    return mark_safe(html)
 
 
 @register.simple_tag
-def page_item_idx(page_obj, forloop):
-    return page_obj.start_index() + forloop['counter0']
+def page_item_idx(pages, forloop):
+    return pages.current_start_index() + forloop['counter0']
 
 
 @register.simple_tag
-def page_range_info(page_obj):
-    paginator = page_obj.paginator
-    if paginator.num_pages == 1:
-        return paginator.count
-    return str(page_obj.start_index()) + ' ' + 'to' + ' ' + \
-            str(page_obj.end_index()) + ' ' + 'of' + ' ' + str(page_obj.paginator.count)
+def page_range_info(pages):
+    if pages.paginated:
+        return pages.total_count()
+    return "%s to %s of %s" % (
+        pages.current_start_index(), pages.current_end_index(),
+        pages.total_count())
 
 DEFAULT_PAGINATION = getattr(settings, 'PAGINATION_DEFAULT_PAGINATION', 20)
 DEFAULT_WINDOW = getattr(settings, 'PAGINATION_DEFAULT_WINDOW', 4)

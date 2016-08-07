@@ -35,7 +35,7 @@ mySettings = {
       {name:'Code', openWith:'[code]', closeWith:'[/code]'}, 
       {name:'Html', className:"html", openWith:'[html]', closeWith:'[/html]'}, 
       {separator:'---------------' },
-      {name:'Hide', className:"hide", openWith:'[hide]', closeWith:'[/hide]'}, 
+      {name:'Video', className:"video", openWith:'[video][![Url]!]', closeWith:'[/video]', placeHolder:''},
       {name:'Clean', className:"clean", replaceWith:function(h) { return h.selection.replace(/\[(.*?)\]/g, "") } },
       {name:'Preview', className:"preview", call:'preview' }
    ]

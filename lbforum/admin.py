@@ -1,10 +1,10 @@
-#!/usr/bin/env python
 # -*- coding: UTF-8 -*-
+from __future__ import unicode_literals
+
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from models import Category, Forum, TopicType, Topic, \
-    gen_last_post_info
+from models import Category, Forum, TopicType, Topic
 from models import Post, LBForumUserProfile
 
 admin.site.register(Category)
@@ -19,6 +19,7 @@ update_forum_state_info.short_description = _("Update forum state info")
 class ForumAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug', 'category', 'num_topics', 'num_posts',)
     list_filter = ('category',)
+    raw_id_fields = ('admins',)
     actions = [update_forum_state_info]
 
 admin.site.register(Forum, ForumAdmin)
@@ -68,19 +69,22 @@ hide_unhide_topic.short_description = _("hide/unhide topics")
 
 
 class TopicAdmin(admin.ModelAdmin):
-    list_display = ('subject', 'forum', 'topic_type', 'posted_by', 'sticky', 'closed',
-            'hidden', 'level', 'num_views', 'num_replies', 'created_on', 'updated_on', )
+    list_display = (
+        'subject', 'forum', 'topic_type', 'posted_by', 'sticky', 'closed',
+        'hidden', 'level', 'num_views', 'num_replies', 'created_on', 'updated_on', )
     list_filter = ('forum', 'sticky', 'closed', 'hidden', 'level')
     search_fields = ('subject', 'posted_by__username', )
-    #inlines = (PostInline, )
+    # inlines = (PostInline, )
+    raw_id_fields = ('posted_by', 'post')
     actions = [update_topic_state_info, sticky_unsticky_topic, close_unclose_topic, hide_unhide_topic]
 
 admin.site.register(Topic, TopicAdmin)
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('__unicode__', 'topic', 'posted_by', 'poster_ip',
-            'created_on', 'updated_on', )
+    list_display = (
+        '__unicode__', 'topic', 'posted_by', 'poster_ip',
+        'created_on', 'updated_on', )
     search_fields = ('topic__subject', 'posted_by__username', 'message', )
     actions = ['delete_model']
 
@@ -93,17 +97,15 @@ class PostAdmin(admin.ModelAdmin):
         for o in obj.all():
             topic = o.topic
             o.delete()
-            last_post = topic.posts.latest()
-            topic.last_post = gen_last_post_info(last_post)
-            topic.num_replies = topic.count_nums_replies()
-            topic.save()
+            topic.update_state_info()
     delete_model.short_description = 'Delete posts'
 
 admin.site.register(Post, PostAdmin)
 
 
 class LBForumUserProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'userrank', 'last_activity', 'last_posttime', 'signature',)
-    search_fields = ('user__username', 'userrank', )
+    list_display = ('user', 'nickname', 'bio',)
+    search_fields = ('user__username', 'nickname', )
+    raw_id_fields = ('user',)
 
 admin.site.register(LBForumUserProfile, LBForumUserProfileAdmin)

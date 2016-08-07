@@ -1,86 +1,113 @@
-{% extends "lbforum/base.html" %}
+{% extends "lbforum/base_site.html" %}
 
 {% load i18n %}
 {% load lbforum_filters %}
 {% load lbforum_tags %}
-{% load djangohelper_tags %}
+{% load lbutils %}
+{% load lbforum_widget_tags %}
+{% load el_pagination_tags %}
 
 {% block title %}
-    {{ forum }} - {{ topic_type }} - {{ topic_type2 }} - {{ LBFORUM_TITLE }}
+  {{ forum }} - {% get_setting "LBFORUM_TITLE" %}
 {% endblock %}
 
-{% block content %}
-	<div id="actionbox">
-	</div>  
+{% block content_right_bar %}
 
-	<div id="brd-wrap" class="brd">
-		<div id="brd-viewforum" class="brd-page paged-page">
-			{% include 'lbforum/inc_header.html' %}
-			{% include 'lbforum/inc_announce.html' %}
-
-			<div class="hr"><hr /></div>
-
-			<div class="crumbs gen-content" id="brd-crumbs-top">
-                {% include 'lbforum/inc_forum_brd_crumbs.html' %}
-			</div>
-
-<!-- brd-main begin -->
-<div id="brd-main">
-	<div class="main-pagepost gen-content" id="brd-pagepost-top">
-		{% load pagination_tags %}
-		{% autopaginate topics FORUM_PAGE_SIZE %}
-		{% paginate %}
-        <p class="posting">
-            {% if user.is_authenticated %}
-                <a class="newpost" href="{% url 'lbforum_new_topic' forum_id=forum.pk %}"><span>{% trans "Post new topic" %}</span></a>
-            {% else %}
-                {% trans "You must" %} <a href="{{ LOGIN_URL }}">{% trans "Login" %}</a> {% trans "or" %} <a href="{{ REGISTER_URL }}">{% trans "register" %}</a> {% trans "to post a topic" %}
-            {% endif %} 
-        </p>
-	</div>
-	<div class="main-head">
-        <h1 class="hn"><span><a title="Permanent link to this forum." rel="bookmark" href="{% url 'lbforum_forum' forum_slug=forum.slug %}" class="permalink">{{ forum }}</a> <small></small></span></h1>
-	</div>
-
-    {% include 'lbforum/inc_topic_list.html' %}
-
-    <div class="main-options gen-content">
-        <p class="options"></p>
+  {% if forum.description %}
+    <div class="box">
+      <div class="cell">
+        <span class="fade">{% trans "Forum Description" %}</span>
+      </div>
+      <div class="inner">
+        {{forum.description|bbcode|safe}}
+      </div>
     </div>
+    <div class="sep20"></div>
+  {% endif %}
 
-	<div class="main-pagepost gen-content" id="brd-pagepost-end">
-        {% paginate %}	
-		<p class="posting">
-            {% if user.is_authenticated %}
-                <a class="newpost" href="{% url 'lbforum_new_topic' forum_id=forum.pk %}"><span>{% trans "Post new topic" %}</span></a>
-            {% else %}
-                {% trans "You must" %} <a href="{{ LOGIN_URL }}">{% trans "Login" %}</a> {% trans "or" %} <a href="{{ REGISTER_URL }}">{% trans "register" %}</a> {% trans "to post a topic" %}
-            {% endif %} 
-        </p>
-	</div>
-</div>
-<!-- brd-main ends -->
+  {% if forum.admins.all.count %}
+    <div class="box">
+      <div class="cell">
+        <span class="fade">{% trans "Forum Admin" %}</span>
+      </div>
+      <div class="inner">
+        {% for o in forum.admins.all %}
+          <a class="item_node" href="{% url 'lbforum_user_profile' o.pk %}">
+            <span> {{ o.lbforum_profile }} </span>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="sep20"></div>
+  {% endif %}
 
+    {% lbf_categories_and_forums %}
+    <div class="sep20"></div>
 
-<div class="crumbs gen-content" id="brd-crumbs-end">
-    <p id="forum_order_by">
-        {% trans "Order By"%}:
-        {{ form.order_by }}
-    </p>
-    {% include 'lbforum/inc_forum_brd_crumbs.html' %}
-</div>
+    {% if forum.topictype_set.all.count %}
+      <div class="box">
+        <div class="cell">
+          <span class="fade">{% trans "Topic Type" %}</span>
+        </div>
+        <div class="inner">
+          <a class="item_node {% if not topic_type2 %}selected{% endif %}" 
+              href="{% forum_url forum topic_type "" %}">
+            <span> {% trans "All" %} </span>
+          </a>
+          {% for tp in forum.topictype_set.all %}
+            <a class="item_node {% if topic_type2 == tp.slug %}selected{% endif %}" 
+                href="{% forum_url forum topic_type tp.slug %}">
+              <span> {{ tp }} </span>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+{% endblock %}
 
-<div class="hr"><hr /></div>
-
-{% include 'lbforum/inc_copyright.html' %}
-
+{% block content_content %}
+  {% paginate topics %}
+  {% get_pages %}
+  <div class="box">
+    <div class="cell" style="padding-bottom: 0px;">
+      <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+          <td width="auto" valign="top">
+            <div class="fr" align="right">
+              <span class="snow">
+                {% trans "Topics" %}
+                <strong>
+                  [ {% page_range_info pages %} ]
+                </strong>
+              </span>
+            </div>
+            <span class="bigger">
+              <a href="{% url 'lbforum_index' %}">{% trans "Home" %}</a>
+              <span class="chevron">&raquo;</span>
+              {{ forum }}
+            </span>
+            <div class="sep10"></div>
+            <div class="sep10"></div>
+            <div align="left">
+              <a href="{% url 'lbforum_new_topic' forum_id=forum.pk %}" class="super normal button">{% trans "Post new topic" %}</a>
+            </div>
+            <div class="sep5"></div>
+            <div class="sep10"></div>
+            <div>
+              <div class="tp-btn {% if topic_type != "good" %}selected{% endif %}">
+                <a href="{% forum_url forum "" topic_type2 %}">{% trans "All" %}</a>
+              </div>
+              <div class="tp-btn {% if topic_type == "good" %}selected{% endif %}">
+                <a href="{% forum_url forum "good" topic_type2 %}">{% trans "Distillate District" %}</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    {% include 'lbforum/inc_topic_list.html' %}
+    <div class="inner">
+      {% show_pages %}
+    </div>
   </div>
-</div>
-
-<script type="text/javascript" src="{{ STATIC_URL }}lbforum/scripts/jquery.min.js"></script>
-<script type="text/javascript">
-    $('#id_order_by').change(function () {
-        window.location.href="?order_by=" + $('#id_order_by').val() + "{% getvars request 'order_by'%}";
-    })
-</script>
 {% endblock %}

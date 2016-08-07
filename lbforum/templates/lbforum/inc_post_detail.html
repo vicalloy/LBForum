@@ -1,97 +1,41 @@
 {% load i18n %}
 {% load lbforum_filters %}
 {% load lbforum_tags %}
-{% load avatar_tags %}
-<div class="post {% cycle 'odd' 'even' %} {{forloop|post_style}}" id="p{{post.pk}}">
-    <div class="posthead">
-        <h3 class="hn post-ident">
-            <span class="post-num">{% page_item_idx page_obj forloop %}</span>
-            <span class="post-byline">
-                <span>{% trans "Topic by" %}</span>
-                <a href="{% url 'lbforum_user_profile' user_id=post.posted_by.pk %}">{{post.posted_by.username}}</a>
-            </span>
-            <span class="post-link">
-                {{ post.created_on|lbtimesince }}
-            </span>
-        </h3>
-    </div>
-    <div class="postbody">
-        <div class="post-author">
-            <ul class="author-ident">
-                <li class="useravatar"><a href="{% url 'lbforum_user_profile' user_id=post.posted_by.pk %}">{% avatar post.posted_by %}</a></li>
-                <li class="username"> <a href="{% url 'lbforum_user_profile' user_id=post.posted_by.pk %}">{{post.posted_by.username}}</a> </li>
-                <li class="usertitle"><span>{% trans "Member" %}</span></li>
-                <li class="userstatus"><span>{{post.posted_by|online}}</span></li>
-            </ul>
-            <ul class="author-info">
-                <li><span>{% trans "Registered" %}: <strong>{{ post.posted_by.date_joined|date:"Y-m-d" }}</strong></span></li>
-                <li><span>{% trans "Posts" %}: <strong>{{ post.posted_by.lbforum_profile.get_total_posts  }}</strong></span></li>
-            </ul>
-        </div>
-        <div class="post-entry">
-            <div class="entry-content">
-                {% if not post.topic_post or not post.topic.need_reply or has_replied %}
-                    <p>{% bbcode post.message has_replied %}</p>
-                    {% if post.edited_by %}
-                    <p class="postedit"><em>Last edited by {{post.edited_by}} ({{post.updated_on|date:"Y-m-d H:i"}})</em></p>
-                    {% endif %}
-                    {% if post.has_attachments %}
-                    <div class="entry-attachments">
-                        <b>{% trans "Attachments" %}:</b>
-                        <ul>
-                            {% for attachment in post.file_attachments %}
-                            <li>
-                                {% show_attach attachment post has_replied hide_attachs %}
-                                <span>{{ attachment.description }}</span>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    {% endif %}
-                    {% if post.has_imgs %}
-                    <div class="entry-attachments-img-s" id="entry-attachments-img-s{{ post.id }}">
-                        <a href="#"><b>{% trans "Show Image Attachments" %}</b></a>
-                    </div>
-                    <div class="entry-attachments-img" id="entry-attachments-img-{{ post.id }}">
-                        <b>{% trans "Image Attachments" %}:</b>
-                        <ul>
-                            {% for attachment in post.img_attachments %}
-                            <li>
-                                {% show_attach attachment post has_replied hide_attachs %}
-                                <span>{{ attachment.description }}</span>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    {% endif %}
-                {% else %}
-                <span class="need-reply">{% trans "to see the content, user must reply first." %}</span>
-                {% endif %}
-                {% if post.posted_by.lbforum_profile.signature %}
-                <div class="sig-content"> 
-                    <span class="sig-line"><!-- --></span>
-                    {{ post.posted_by.lbforum_profile.signature|bbcode|safe }}
-                </div>
-                {% endif %}
-            </div>
-        </div>
-    </div>
 
-    {% if user.is_authenticated %}
-    <div class="postfoot">
-        <div class="post-options">
-            <p class="post-contacts"></p>
-            <p class="post-actions">
-                <span class="quote-post"><a href="{% url 'lbforum_new_replay' topic_id=topic.pk %}?qid={{post.pk}}">{% trans "quote" %}</a></span>
-                {% if user == post.posted_by or user.is_staff %}
-                <span class="edit-post"><a href="{% url 'lbforum_post_edit' post_id=post.pk %}">{% trans "edit" %}</a></span>
+<div class="cell reply" id="p{{post.id}}">
+  <table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+      <td width="48" valign="top">
+        <a href="{% url 'lbforum_profile' user_id=post.posted_by.pk %}">
+          <img width="48px" height="48px" src="{{ post.posted_by.lbforum_profile.get_avatar_url }}" alt=""/>
+        </a>
+      </td>
+      <td width="10"></td>
+      <td width="auto" valign="top">
+        <div class="fr" id="reply-btns">
+          <strong>
+            <small class="snow">#{% page_item_idx pages forloop %} - {{ post.created_on|lbtimesince }}
+              {% if post.topic|topic_can_post:user %}
+                &bull;
+                <a href="{% url 'lbforum_new_replay' topic_id=topic.pk %}?qid={{post.pk}}">{% trans "quote" %}</a>
+                {% if user == post.posted_by or can_admin %}
+                  <a href="{% url 'lbforum_post_edit' post_id=post.pk %}">{% trans "edit" %}</a>
                 {% endif %}
-                {% if user.is_staff and not post.topic_post %}
-                <span class="del-post"><a href="{% url 'lbforum_post_delete' post_id=post.id %}" onclick="return confirm('{% trans "Do you want to delete it?" %}')">{% trans "delete" %}</a></span>
+                {% if can_admin and not post.topic_post %}
+                  <a href="{% url 'lbforum_post_delete' post_id=post.id %}" onclick="return confirm('{% trans "Do you want to delete it?" %}')">{% trans "delete" %}</a>
                 {% endif %}
-            </p>
+              {% endif %}
+            </small>
+          </strong>
         </div>
-    </div>
-    {% endif %}
 
+        <div class="sep3"></div>
+        <strong><a href="{% url 'lbforum_profile' post.posted_by.pk %}" class="dark">{{post.posted_by.lbforum_profile}}</a></strong>
+        <div class="sep5"></div>
+        <div class="content reply_content">
+          {% include 'lbforum/inc_post_content.html' %}
+        </div>
+      </td>
+    </tr>
+  </table>
 </div>

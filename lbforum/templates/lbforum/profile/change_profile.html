@@ -1,0 +1,84 @@
+{% extends 'lbforum/profile/base.html' %}
+
+{% load i18n %}
+{% load lbforum_filters %}
+{% load lbforum_tags %}
+
+{% block title %}
+  {% blocktrans %}Change {{ view_user }}'s profile{% endblocktrans %}
+{% endblock %}
+
+{% block extra_header %}
+  {{ block.super }}
+  <style>
+    table input,table textarea {
+      width: 520px !important;
+    }
+    table input.button {
+      width: auto !important;
+    }
+    #avatar-clear_id {
+      width: auto !important;
+    }
+    #id_avatar {
+      width: 490px !important;
+    }
+  </style>
+{% endblock %}
+
+{% block content_content %}
+	<div class="box">
+		<div class="cell">
+			<span class="fade">
+        {% blocktrans %}Change {{ view_user }}'s profile{% endblocktrans %}
+      </span>
+		</div>
+		<div class="inner">
+      <form enctype="multipart/form-data" method="POST" action="">
+				{% csrf_token %}
+				{% if form.errors %}
+					<strong> {% trans "Please correct the errors below." %}</strong>
+					<br/>
+					{{ form|form_all_error }}
+					<br/>
+				{% endif %}
+				<table cellspacing="0" cellpadding="5" border="0">
+					<tbody>
+            <tr>
+							<td align="right">
+                {% trans "Avatar" %}
+							</td>
+							<td align="left">
+								{{ form.avatar }}
+							</td>
+						</tr>
+						<tr>
+							<td align="right">
+                {% trans "Nickname" %}
+							</td>
+							<td align="left">
+								{{ form.nickname }}
+                <br>
+							</td>
+						</tr>
+						<tr>
+							<td align="right">
+                {% trans "Bio" %}
+							</td>
+							<td align="left">
+								{{ form.bio }}
+							</td>
+						</tr>
+						<tr>
+							<td align="right">
+							</td>
+							<td align="left">
+								<input type="submit" class="super normal button" value="{% trans 'Submit' %}">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</div>
+{% endblock %}

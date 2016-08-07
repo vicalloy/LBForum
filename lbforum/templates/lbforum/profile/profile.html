@@ -1,0 +1,13 @@
+{% extends 'lbforum/profile/base.html' %}
+
+{% load i18n %}
+{% load lbforum_filters %}
+{% load lbforum_tags %}
+
+{% block title %}
+    {{ LBFORUM_TITLE }} - {% blocktrans %}{{ view_user }}'s profile{% endblocktrans %}
+{% endblock %}
+
+{% block content_content %}
+    {% include 'lbforum/profile/inc_base_profile.html' %}
+{% endblock %}
