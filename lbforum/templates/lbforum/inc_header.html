@@ -11,7 +11,7 @@
           <li id="navprofile"><a href="{% url 'lbforum_profile' %}">{% trans "My profile" %}</a></li>
           <li id="navlogout"><a href="{% get_setting 'LOGOUT_URL' %}?next={% url 'lbforum_index' %}">{% trans "Logout" %}</a></li>
         {% else %}
-          <li id="navregister"><a href="{% get_setting 'REGISTER_URL' %}">{% trans "Register" %}</a></li>
+          <li id="navregister"><a href="{% get_setting 'SIGNUP_URL' %}">{% trans "Sign Up" %}</a></li>
           <li id="navlogin"><a href="{% get_setting 'LOGIN_URL' %}">{% trans "Login" %}</a></li>
         {% endif %}
       </ul>
