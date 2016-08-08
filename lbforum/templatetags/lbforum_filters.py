@@ -3,7 +3,6 @@ import datetime
 
 from django import template
 from django.template.defaultfilters import timesince as _timesince
-# from django.template.defaultfilters import date as _date
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_unicode
 from django.utils import timezone

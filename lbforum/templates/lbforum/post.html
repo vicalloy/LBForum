@@ -94,41 +94,40 @@
 
 {% block footer_js %}
   <script>
-    AUTO_INIT_DATEINPUT = false;
     var URL_UPLOAD_ATTACH = "{% url 'lbattachment_upload__' %}";
   </script>
-    <script type="text/javascript" src="{% url 'lbforum_lang_js' %}"></script>
-    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'markitup/markitup/jquery.markitup.js' %}" />
-    <script type="text/javascript" src="{% static 'markitup/markitup/jquery.markitup.js' %}"></script>
-    <script type="text/javascript" src="{% static 'lbforum/scripts/markitup/sets/bbcode/set.js' %}"></script>
-    <script src="{% static 'blueimp-file-upload/js/vendor/jquery.ui.widget.js' %}"></script>
-    <script src="{% static 'blueimp-file-upload/js/jquery.fileupload.js' %}"></script>
-    <script src="{% static 'blueimp-file-upload/js/jquery.iframe-transport.js' %}"></script>
-    <script type="text/javascript" src="{% static 'lbforum/scripts/upload_attachment.js' %}"></script>
-    <script type="text/javascript" src="{% static 'lbforum/scripts/simple_tpl.js' %}"></script>
-    <script type="text/javascript" src="{% static 'lbforum/scripts/common.js' %}"></script>
-    <script type="text/javascript">
-      mySettings['previewParserPath']="{% url 'markitup_preview' %}";
-	    $("#id_message").markItUp(mySettings);
-      url_attachments_ajax_change_descn = "{% url 'lbattachment_change_descn__' %}";
-      url_attachments_ajax_delete = "{% url 'lbattachment_delete__' %}";
-      $(function() {
-        {% for o in attachments %}
-          add_attachment({'pk': '{{o.pk}}','url': '{% url "lbattachment_download" %}?pk={{ o.pk }}','fn': '{{o.filename}}','descn':'{{ o.description }}'});
-        {% endfor %}
-      });
-    </script>
-    <script type="text/html" id="attachment_li_tmpl">
-        <li id="attachment_<%=pk%>" class="nb">
-        <a class="filename" href="<%=url%>" target="_blank"><%=fn%></a>
-        <span class="icon descn" style="">&nbsp;</span>
-        <span style="display: none;">
-        <input class="fld-descn" value="<%=descn%>"/>
-        <a class="submit-descn" href="#">{% trans "submit" %}</a>
-        </span>
-        <span class="icon remove">&nbsp;</span>
-        <span class="icon insert">&nbsp;</span>
-        <span class="ext">&nbsp;</span>
-        </li>
-    </script>
+  <script type="text/javascript" src="{% url 'lbforum_lang_js' %}"></script>
+  <link rel="stylesheet" type="text/css" media="screen" href="{% static 'markitup/markitup/jquery.markitup.js' %}" />
+  <script type="text/javascript" src="{% static 'markitup/markitup/jquery.markitup.js' %}"></script>
+  <script type="text/javascript" src="{% static 'lbforum/scripts/markitup/sets/bbcode/set.js' %}"></script>
+  <script src="{% static 'blueimp-file-upload/js/vendor/jquery.ui.widget.js' %}"></script>
+  <script src="{% static 'blueimp-file-upload/js/jquery.fileupload.js' %}"></script>
+  <script src="{% static 'blueimp-file-upload/js/jquery.iframe-transport.js' %}"></script>
+  <script type="text/javascript" src="{% static 'lbforum/scripts/upload_attachment.js' %}"></script>
+  <script type="text/javascript" src="{% static 'lbforum/scripts/simple_tpl.js' %}"></script>
+  <script type="text/javascript" src="{% static 'lbforum/scripts/common.js' %}"></script>
+  <script type="text/javascript">
+    mySettings['previewParserPath']="{% url 'markitup_preview' %}";
+    $("#id_message").markItUp(mySettings);
+    url_attachments_ajax_change_descn = "{% url 'lbattachment_change_descn__' %}";
+    url_attachments_ajax_delete = "{% url 'lbattachment_delete__' %}";
+    $(function() {
+      {% for o in attachments %}
+        add_attachment({'pk': '{{o.pk}}','url': '{% url "lbattachment_download" %}?pk={{ o.pk }}','fn': '{{o.filename}}','descn':'{{ o.description }}'});
+      {% endfor %}
+    });
+  </script>
+  <script type="text/html" id="attachment_li_tmpl">
+    <li id="attachment_<%=pk%>" class="nb">
+    <a class="filename" href="<%=url%>" target="_blank"><%=fn%></a>
+    <span class="icon descn" style="">&nbsp;</span>
+    <span style="display: none;">
+    <input class="fld-descn" value="<%=descn%>"/>
+    <a class="submit-descn" href="#">{% trans "submit" %}</a>
+    </span>
+    <span class="icon remove">&nbsp;</span>
+    <span class="icon insert">&nbsp;</span>
+    <span class="ext">&nbsp;</span>
+    </li>
+  </script>
 {% endblock %}

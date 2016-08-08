@@ -5,7 +5,7 @@
 {% if not post.topic_post or not post.topic.need_reply or has_replied %}
   <p>{% bbcode post.message has_replied %}</p>
   {% if post.edited_by %}
-    <p class="postedit"><em>最近编辑 {{post.edited_by}} ({{post.updated_on|lbtimesince}})</em></p>
+    <p class="postedit"><em>{% trans "Last edit by" %} {{post.edited_by}} ({{ post.updated_on|lbtimesince }})</em></p>
   {% endif %}
   {% if post.has_attachments %}
     <div class="entry-attachments">
@@ -38,11 +38,4 @@
   {% endif %}
 {% else %}
   <span class="need-reply">{% trans "to see the content, user must reply first." %}</span>
-{% endif %}
-{% if 0 %}
-  <!-- not support signature -->
-<div class="sig-content"> 
-  <span class="sig-line"><!-- --></span>
-  {{ post.posted_by.lbforum_profile.signature|bbcode|safe }}
-</div>
 {% endif %}

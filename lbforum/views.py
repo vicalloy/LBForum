@@ -18,7 +18,6 @@ from lbutils import get_client_ip
 from .templatetags.lbforum_filters import topic_can_post
 from .forms import EditPostForm, NewPostForm, ForumForm
 from .models import Topic, Forum, Post
-from . import settings as lbf_settings
 
 
 User = get_user_model()
@@ -27,16 +26,20 @@ User = get_user_model()
 def get_all_topics(user):
     topics = Topic.objects.all()
     if not (user.has_perm('lbforum.sft_mgr_forum')):
-        topics = topics.filter(
-            Q(forum__admins=user) | Q(posted_by=user) | Q(hidden=False))
+        qparam = Q(hidden=False)
+        if user.is_authenticated:
+            qparam = qparam | Q(forum__admins=user) | Q(posted_by=user)
+        topics = topics.filter(qparam)
     return topics.distinct()
 
 
 def get_all_posts(user):
     qs = Post.objects.all()
     if not (user.has_perm('lbforum.sft_mgr_forum')):
-        qs = qs.filter(
-            Q(topic__forum__admins=user) | Q(posted_by=user) | Q(topic__hidden=False))
+        qparam = Q(topic__hidden=False)
+        if user.is_authenticated:
+            qparam = qparam | Q(topic__forum__admins=user) | Q(posted_by=user)
+        qs = qs.filter(qparam)
     return qs.distinct()
 
 
@@ -44,8 +47,6 @@ def index(request, template_name="lbforum/index.html"):
     ctx = {}
     topics = None
     user = request.user
-    if not user.lbforum_profile.nickname:
-        return redirect('lbforum_change_profile')
     topics = get_all_topics(user)
     topics = topics.order_by('-last_reply_on')[:20]
     ctx['topics'] = topics

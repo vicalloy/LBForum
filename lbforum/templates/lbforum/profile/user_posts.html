@@ -16,7 +16,7 @@
   {% get_pages %}
   <div class="box">
     <div class="cell">
-      <span class="fade">{% blocktrans %}Topics by {{ view_user.lbforum_profile }}{% endblocktrans %}</span>
+      <span class="fade">{% blocktrans %}Posts by{% endblocktrans %} {{ view_user.lbforum_profile }}</span>
     </div>
     {% for post in posts %}
       <div class="cell reply">

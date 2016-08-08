@@ -69,7 +69,7 @@ class PostForm(forms.ModelForm):
         forum = self.cleaned_data['forum']
         forum = forum or self.forum
         if not forum:
-            raise forms.ValidationError("请选择主题想要发布到的版块")
+            raise forms.ValidationError(_('Please chose a forum'))
         self.forum = forum
         return forum
 
@@ -79,7 +79,7 @@ class PostForm(forms.ModelForm):
         for word in forbidden_words.split(','):
             word = word.strip()
             if word and word in msg:
-                raise forms.ValidationError("您发布的内容包含敏感词，请修正后再发言")
+                raise forms.ValidationError(_('Some word in you post is forbidden, please correct it.'))
         return msg
 
     def __init__(self, *args, **kwargs):

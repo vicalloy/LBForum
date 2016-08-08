@@ -15,7 +15,7 @@
             <h2 style="padding: 0px; margin: 0px; font-size: 22px; line-height: 22px;">{{ view_user.lbforum_profile }}</h2>
             <div class="sep5"></div>
             <span class="snow">
-              {% trans "Registered" %}: <strong>{{ view_user.date_joined|date:"Y-m-d" }}</strong>
+              {% trans "Joined on" %}: <strong>{{ view_user.date_joined|date:"Y-m-d" }}</strong>
             </span>
             <div class="sep10"></div>
             <table width="100%" cellspacing="0" cellpadding="2" border="0">
@@ -30,10 +30,10 @@
                 </tr>
                 <tr>
                   <td width="50%">
-                    <a href="{% url 'lbforum_user_topics' user_id=view_user.pk %}">{% blocktrans %}View all {{view_user}}'s topics{% endblocktrans %}</a>
+                    <a href="{% url 'lbforum_user_topics' user_id=view_user.pk %}">{% blocktrans %}View all topics{% endblocktrans %}</a>
                   </td>
                   <td width="50%">
-                    <a href="{% url 'lbforum_user_posts' user_id=view_user.pk %}">{% blocktrans %}View all {{view_user}}'s posts{% endblocktrans %}</a>
+                    <a href="{% url 'lbforum_user_posts' user_id=view_user.pk %}">{% blocktrans %}View all posts{% endblocktrans %}</a>
                   </td>
                 </tr>
               </tbody>

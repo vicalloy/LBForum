@@ -1,7 +1,8 @@
-#!/usr/bin/env python
 # -*- coding: UTF-8 -*-
-from BeautifulSoup import BeautifulSoup, NavigableString
+from __future__ import unicode_literals
+
 from django.conf import settings
+from BeautifulSoup import BeautifulSoup, NavigableString
 
 acceptable_elements = [
     'a', 'abbr', 'acronym', 'address', 'area', 'b', 'big',

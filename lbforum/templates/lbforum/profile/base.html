@@ -4,8 +4,7 @@
 {% load lbforum_tags %}
 {% load lbforum_filters %}
 {% load staticfiles %}
-
-{% block title %} {{ LBFORUM_TITLE }} - {{ LBFORUM_SUB_TITLE }} {% endblock %}
+{% load lbutils %}
 
 {% block content_right_bar %}
   <div class="box">
@@ -31,6 +30,9 @@
         {% if not view_user or view_user == user %}
           <li class="{% block main_menu_change_profile_class %}{% endblock %}">
             <a href="{% url 'lbforum_change_profile' %}"><span>{% trans "Change profile" %}</span></a>
+          </li>
+          <li class="{% block main_menu_change_password_class %}{% endblock %}">
+            <a href="{% get_setting 'CHANGE_PASSWORD_URL' %}"><span>{% trans "Change password" %}</span></a>
           </li>
         {% endif %}
       </ul>

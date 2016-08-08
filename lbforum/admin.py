@@ -19,7 +19,7 @@ update_forum_state_info.short_description = _("Update forum state info")
 class ForumAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug', 'category', 'num_topics', 'num_posts',)
     list_filter = ('category',)
-    raw_id_fields = ('admins',)
+    raw_id_fields = ('admins', 'last_post')
     actions = [update_forum_state_info]
 
 admin.site.register(Forum, ForumAdmin)
@@ -75,7 +75,7 @@ class TopicAdmin(admin.ModelAdmin):
     list_filter = ('forum', 'sticky', 'closed', 'hidden', 'level')
     search_fields = ('subject', 'posted_by__username', )
     # inlines = (PostInline, )
-    raw_id_fields = ('posted_by', 'post')
+    raw_id_fields = ('posted_by', 'post', 'last_post')
     actions = [update_topic_state_info, sticky_unsticky_topic, close_unclose_topic, hide_unhide_topic]
 
 admin.site.register(Topic, TopicAdmin)
@@ -86,6 +86,7 @@ class PostAdmin(admin.ModelAdmin):
         '__unicode__', 'topic', 'posted_by', 'poster_ip',
         'created_on', 'updated_on', )
     search_fields = ('topic__subject', 'posted_by__username', 'message', )
+    raw_id_fields = ('topic', 'posted_by', 'attachments', 'last_updated_by')
     actions = ['delete_model']
 
     def get_actions(self, request):

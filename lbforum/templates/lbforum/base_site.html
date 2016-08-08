@@ -3,31 +3,32 @@
 {% load lbutils %}
 {% load i18n %}
 
-{% block title %} {% trans "Home" %} - {% get_setting "LBFORUM_TITLE" %}{% endblock %}
+{% block title %}
+  {% get_setting "LBFORUM_TITLE" %}
+{% endblock %}
 
 {% block content %}
-    {% include 'lbforum/inc_header.html' %}
+  {% include 'lbforum/inc_header.html' %}
 
-    <div id="Wrapper">
-        <div id="Main">
-            <div id="Sidebar">
-            </div>
+  <div id="Wrapper">
+    <div id="Main">
+      <div id="Sidebar">
+      </div>
 
-            <div id="Rightbar">
-                {% block content_right_bar%}
-                {% endblock %}
-            </div>
+      <div id="Rightbar">
+        {% block content_right_bar%}
+        {% endblock %}
+      </div>
 
-            <div id="Content">
-                {% block content_content %}
-                {% endblock %}
-            </div>
+      <div id="Content">
+        {% block content_content %}
+        {% endblock %}
+      </div>
 
-            <div class="c">
-            </div>
-        </div>
+      <div class="c">
+      </div>
     </div>
+  </div>
 
-    {% include 'lbforum/plugins/inc_footer.html'%}
-
+  {% include 'lbforum/plugins/inc_footer.html'%}
 {% endblock %}
