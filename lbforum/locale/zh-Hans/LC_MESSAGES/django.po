@@ -1,0 +1,507 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-08 05:30+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: lbforum/admin.py:16
+msgid "Update forum state info"
+msgstr "更新版块状态信息"
+
+#: lbforum/admin.py:42
+msgid "Update topic state info"
+msgstr "更新主题状态信息"
+
+#: lbforum/admin.py:58
+msgid "sticky/unsticky topics"
+msgstr "置顶/取消置顶主题"
+
+#: lbforum/admin.py:63
+msgid "close/unclose topics"
+msgstr "关闭/解锁主题"
+
+#: lbforum/admin.py:68
+msgid "hide/unhide topics"
+msgstr "隐藏/显示主题"
+
+#: lbforum/forms.py:15
+msgid "Last Reply"
+msgstr "最新回复"
+
+#: lbforum/forms.py:16
+msgid "Last Topic"
+msgstr "最新主题"
+
+#: lbforum/forms.py:52
+msgid "Order By"
+msgstr "排序方式"
+
+#: lbforum/forms.py:56 lbforum/models.py:51 lbforum/models.py:88
+#: lbforum/models.py:103
+msgid "Forum"
+msgstr "版块"
+
+#: lbforum/forms.py:57 lbforum/models.py:105
+#: lbforum/templates/lbforum/forum.html:50
+msgid "Topic Type"
+msgstr "主题类型"
+
+#: lbforum/forms.py:58
+msgid "Subject"
+msgstr "标题"
+
+#: lbforum/forms.py:59 lbforum/forms.py:181 lbforum/forms.py:191
+msgid "Message"
+msgstr "内容"
+
+#: lbforum/forms.py:60 lbforum/templates/lbforum/inc_post_content.html:12
+msgid "Attachments"
+msgstr "附件"
+
+#: lbforum/forms.py:61
+msgid "Need Reply"
+msgstr "回复可见"
+
+#: lbforum/forms.py:62
+msgid "Attachments Need Reply"
+msgstr "附件回复可见"
+
+#: lbforum/forms.py:72
+msgid "Please chose a forum"
+msgstr "请选择一个版块"
+
+#: lbforum/forms.py:82
+msgid "Some word in you post is forbidden, please correct it."
+msgstr "您的内容包含敏感词，请修正"
+
+#: lbforum/models.py:25
+msgid "Category"
+msgstr "类别"
+
+#: lbforum/models.py:26
+msgid "Categories"
+msgstr "类别"
+
+#: lbforum/models.py:47 lbforum/models.py:120
+#: lbforum/templates/lbforum/inc_topic_detail.html:44
+#: lbforum/templates/lbforum/topic.html:107
+msgid "Last post"
+msgstr "最新文章"
+
+#: lbforum/models.py:52
+#: lbforum/templates/lbforum/widgets/categories_and_forums.html:4
+msgid "Forums"
+msgstr "版块"
+
+#: lbforum/models.py:55
+msgid "Forum-Administrator"
+msgstr "论坛管理员"
+
+#: lbforum/models.py:97
+msgid "Default"
+msgstr "默认"
+
+#: lbforum/models.py:98 lbforum/templates/lbforum/inc_topic_detail.html:30
+msgid "Distillate"
+msgstr "精华"
+
+#: lbforum/models.py:110 lbforum/models.py:189
+msgid "Post"
+msgstr "文章"
+
+#: lbforum/models.py:136 lbforum/models.py:169
+msgid "Topic"
+msgstr "主题"
+
+#: lbforum/models.py:137 lbforum/templates/lbforum/forum.html:78
+#: lbforum/templates/lbforum/profile/inc_base_profile.html:25
+msgid "Topics"
+msgstr "主题"
+
+#: lbforum/models.py:165
+msgid "BBCode"
+msgstr "BBCode"
+
+#: lbforum/models.py:166
+msgid "Markdown"
+msgstr "Markdown"
+
+#: lbforum/models.py:167
+msgid "Html"
+msgstr "Html"
+
+#: lbforum/models.py:190
+#: lbforum/templates/lbforum/profile/inc_base_profile.html:28
+#: lbforum/templates/lbforum/topic.html:105
+msgid "Posts"
+msgstr "文章"
+
+#: lbforum/models.py:199
+#, python-format
+msgid "Topic: %s"
+msgstr "主题: %s"
+
+#: lbforum/models.py:200
+#, python-format
+msgid "Re: %s"
+msgstr "Re: %s"
+
+#: lbforum/models.py:236
+msgid "User"
+msgstr "用户"
+
+#: lbforum/models.py:238
+#: lbforum/templates/lbforum/profile/change_profile.html:57
+msgid "Nickname"
+msgstr "昵称"
+
+#: lbforum/models.py:239
+#: lbforum/templates/lbforum/profile/change_profile.html:49
+msgid "Avatar"
+msgstr "头像"
+
+#: lbforum/templates/lbforum/forum.html:19
+msgid "Forum Description"
+msgstr "版块说明"
+
+#: lbforum/templates/lbforum/forum.html:31
+msgid "Forum Admin"
+msgstr "版块管理员"
+
+#: lbforum/templates/lbforum/forum.html:55
+#: lbforum/templates/lbforum/forum.html:98
+msgid "All"
+msgstr "所有"
+
+#: lbforum/templates/lbforum/forum.html:85
+#: lbforum/templates/lbforum/recent.html:24
+#: lbforum/templates/lbforum/topic.html:28
+msgid "Home"
+msgstr "首页"
+
+#: lbforum/templates/lbforum/forum.html:92
+#: lbforum/templates/lbforum/index.html:32
+msgid "Post new topic"
+msgstr "发表新主题"
+
+#: lbforum/templates/lbforum/forum.html:101
+msgid "Distillate District"
+msgstr "精华区"
+
+#: lbforum/templates/lbforum/inc_header.html:11
+msgid "My profile"
+msgstr "个人信息"
+
+#: lbforum/templates/lbforum/inc_header.html:12
+msgid "Logout"
+msgstr "退出"
+
+#: lbforum/templates/lbforum/inc_header.html:14
+#: lbforum/templates/lbforum/widgets/cur_user_profile.html:42
+msgid "Sign Up"
+msgstr "注册"
+
+#: lbforum/templates/lbforum/inc_header.html:15
+#: lbforum/templates/lbforum/widgets/cur_user_profile.html:45
+msgid "Login"
+msgstr "登陆"
+
+#: lbforum/templates/lbforum/inc_header.html:22
+msgid "Search"
+msgstr "搜索"
+
+#: lbforum/templates/lbforum/inc_post_content.html:8
+msgid "Last edit by"
+msgstr "最新编辑"
+
+#: lbforum/templates/lbforum/inc_post_content.html:25
+msgid "Show Image Attachments"
+msgstr "显示图片附件"
+
+#: lbforum/templates/lbforum/inc_post_content.html:28
+msgid "Image Attachments"
+msgstr "图片附件"
+
+#: lbforum/templates/lbforum/inc_post_content.html:40
+#: lbforum/templatetags/bbcode.py:35
+msgid "to see the content, user must reply first."
+msgstr "该内容回复可见"
+
+#: lbforum/templates/lbforum/inc_post_detail.html:20
+#: lbforum/templates/lbforum/topic.html:80
+msgid "quote"
+msgstr "引用"
+
+#: lbforum/templates/lbforum/inc_post_detail.html:22
+#: lbforum/templates/lbforum/topic.html:75
+msgid "edit"
+msgstr "编辑"
+
+#: lbforum/templates/lbforum/inc_post_detail.html:25
+#: lbforum/templates/lbforum/topic.html:61
+msgid "Do you want to delete it?"
+msgstr "您确定要进行删除操作？"
+
+#: lbforum/templates/lbforum/inc_post_detail.html:25
+#: lbforum/templates/lbforum/topic.html:61
+msgid "delete"
+msgstr "删除"
+
+#: lbforum/templates/lbforum/inc_topic_detail.html:21
+msgid "Closed"
+msgstr "关闭"
+
+#: lbforum/templates/lbforum/inc_topic_detail.html:24
+msgid "Sticky"
+msgstr "置顶"
+
+#: lbforum/templates/lbforum/inc_topic_detail.html:27
+msgid "Hided"
+msgstr "隐藏"
+
+#: lbforum/templates/lbforum/inc_topic_detail.html:43
+msgid "views"
+msgstr "查看"
+
+#: lbforum/templates/lbforum/index.html:17
+msgid "Friend Links"
+msgstr "友情链接"
+
+#: lbforum/templates/lbforum/index.html:38
+msgid "More"
+msgstr "更多"
+
+#: lbforum/templates/lbforum/markitup_preview.html:11
+msgid "preview"
+msgstr "预览"
+
+#: lbforum/templates/lbforum/post.html:28
+#: lbforum/templates/lbforum/topic.html:142
+msgid "You may use"
+msgstr "您可使用"
+
+#: lbforum/templates/lbforum/post.html:49
+msgid "Post new"
+msgstr "发布"
+
+#: lbforum/templates/lbforum/post.html:49
+msgid "Edit"
+msgstr "编辑"
+
+#: lbforum/templates/lbforum/post.html:63
+#: lbforum/templates/lbforum/profile/change_profile.html:40
+msgid "Please correct the errors below."
+msgstr "请修正下列错误"
+
+#: lbforum/templates/lbforum/post.html:88
+#: lbforum/templates/lbforum/profile/change_profile.html:76
+#: lbforum/templates/lbforum/topic.html:135
+msgid "Submit"
+msgstr "提交"
+
+#: lbforum/templates/lbforum/post.html:89
+#: lbforum/templates/lbforum/topic.html:136
+msgid "Preview"
+msgstr "预览"
+
+#: lbforum/templates/lbforum/post.html:126
+msgid "submit"
+msgstr "提交"
+
+#: lbforum/templates/lbforum/post_paginate.html:5
+msgid "Pages"
+msgstr ""
+
+#: lbforum/templates/lbforum/profile/base.html:12
+#: lbforum/templates/lbforum/profile/change_profile.html:66
+msgid "Bio"
+msgstr "简介"
+
+#: lbforum/templates/lbforum/profile/base.html:25
+#: lbforum/templates/lbforum/profile/base.html:27
+msgid "Introduction"
+msgstr "简介"
+
+#: lbforum/templates/lbforum/profile/base.html:32
+#: lbforum/templates/lbforum/profile/change_profile.html:33
+msgid "Change profile"
+msgstr "更新个人信息"
+
+#: lbforum/templates/lbforum/profile/base.html:35
+msgid "Change password"
+msgstr "修改密码"
+
+#: lbforum/templates/lbforum/profile/change_profile.html:8
+#, python-format
+msgid "Change %(view_user.lbforum_profile)s's profile"
+msgstr "更新 %(view_user.lbforum_profile)s 的个人信息"
+
+#: lbforum/templates/lbforum/profile/inc_base_profile.html:18
+#: lbforum/templates/lbforum/widgets/cur_user_profile.html:29
+msgid "Joined on"
+msgstr "加入时间"
+
+#: lbforum/templates/lbforum/profile/inc_base_profile.html:33
+msgid "View all topics"
+msgstr "查看所有主题"
+
+#: lbforum/templates/lbforum/profile/inc_base_profile.html:36
+msgid "View all posts"
+msgstr "查看所有文章"
+
+#: lbforum/templates/lbforum/profile/profile.html:8
+#, python-format
+msgid "%(view_user.lbforum_profile)s's profile"
+msgstr "%(view_user.lbforum_profile)s 的个人信息"
+
+#: lbforum/templates/lbforum/profile/user_posts.html:9
+#, python-format
+msgid "%(view_user.lbforum_profile)s's posts"
+msgstr "%(view_user.lbforum_profile)s 的文章"
+
+#: lbforum/templates/lbforum/profile/user_posts.html:19
+msgid "Posts by"
+msgstr "作者"
+
+#: lbforum/templates/lbforum/profile/user_topics.html:9
+#, python-format
+msgid "%(view_user.lbforum_profile)s's topics"
+msgstr "%(view_user.lbforum_profile)s 的主题"
+
+#: lbforum/templates/lbforum/profile/user_topics.html:18
+msgid "Topics by"
+msgstr "作者"
+
+#: lbforum/templates/lbforum/profile/user_topics.html:23
+msgid "replies"
+msgstr "回复"
+
+#: lbforum/templates/lbforum/profile/user_topics.html:24
+msgid "topics"
+msgstr "主题"
+
+#: lbforum/templates/lbforum/profile/user_topics.html:25
+msgid "last post"
+msgstr "最新回复"
+
+#: lbforum/templates/lbforum/recent.html:11
+#: lbforum/templates/lbforum/recent.html:26
+msgid "Recent Topics"
+msgstr "最新主题"
+
+#: lbforum/templates/lbforum/redirect.html:18
+msgid "You should automatically be forwarded to a new page in 5 second."
+msgstr "将在5秒后自动跳转到新页面"
+
+#: lbforum/templates/lbforum/redirect.html:21
+msgid ""
+"Click here if you do not want to wait any longer (or if your browser does "
+"not automatically forward you)"
+msgstr ""
+
+#: lbforum/templates/lbforum/topic.html:42
+msgid "undistillate"
+msgstr "取消精华"
+
+#: lbforum/templates/lbforum/topic.html:42
+msgid "distillate"
+msgstr "加精"
+
+#: lbforum/templates/lbforum/topic.html:47
+msgid "unsticky"
+msgstr "取消置顶"
+
+#: lbforum/templates/lbforum/topic.html:47
+msgid "sticky"
+msgstr "置顶"
+
+#: lbforum/templates/lbforum/topic.html:52
+msgid "unclose"
+msgstr "解禁"
+
+#: lbforum/templates/lbforum/topic.html:52
+msgid "close"
+msgstr "关闭"
+
+#: lbforum/templates/lbforum/topic.html:57
+msgid "unhide"
+msgstr "取消隐藏"
+
+#: lbforum/templates/lbforum/topic.html:57
+msgid "hide"
+msgstr "隐藏"
+
+#: lbforum/templates/lbforum/topic.html:85
+msgid "Post reply"
+msgstr "发表回复"
+
+#: lbforum/templates/lbforum/topic.html:98
+msgid "No Reply"
+msgstr "无回复"
+
+#: lbforum/templates/lbforum/topic.html:127
+msgid "Quick reply to this topic"
+msgstr "快速回复"
+
+#: lbforum/templates/lbforum/widgets/lbf_status.html:4
+msgid "Forum Status"
+msgstr "论坛状态"
+
+#: lbforum/templates/lbforum/widgets/lbf_status.html:10
+msgid "Total number of registered users"
+msgstr "注册用户数"
+
+#: lbforum/templates/lbforum/widgets/lbf_status.html:14
+msgid "Total number of topics"
+msgstr "主题数"
+
+#: lbforum/templates/lbforum/widgets/lbf_status.html:18
+msgid "Total number of posts"
+msgstr "文章数"
+
+#: lbforum/templatetags/lbforum_filters.py:71
+msgid "Online"
+msgstr "在线"
+
+#: lbforum/templatetags/lbforum_filters.py:74
+msgid "Offline"
+msgstr "离线"
+
+#: lbforum/templatetags/lbforum_filters.py:104
+#, python-format
+msgid "%s ago"
+msgstr "%s ago"
+
+#: lbforum/templatetags/lbforum_tags.py:38
+msgid "reply to see the attachments"
+msgstr "附件回复可见"
+
+#: lbforum/views.py:103 lbforum/views.py:196 lbforum/views.py:226
+#: lbforum/views.py:237 lbforum/views.py:252
+msgid "no right"
+msgstr "无权限"
+
+#: lbforum/views.py:138 lbforum/views.py:198
+msgid "topic"
+msgstr "主题"
+
+#: lbforum/views.py:144 lbforum/views.py:193
+msgid "reply"
+msgstr "回复"
+
+#: lbforum/views.py:148
+msgid "you can't reply, this topic closed."
+msgstr "该主题已锁定，无法回复"
