@@ -1,9 +1,8 @@
-Django>=1.3
-django-helper>=0.8.1
-#django-lb-attachments>=0.8
-#django-onlineuser>=0.8
-git+https://github.com/nyafka/django-simple-avatar.git
-BeautifulSoup
-postmarkup
-django-pagination
-south>=0.7.2
+Django==1.10
+django-el-pagination==3.0
+easy_thumbnails==2.3
+postmarkup==1.2.2
+BeautifulSoup==3.2
+python-dateutil==2.5
+django-constance==1.2
+django_picklefield==0.3
