@@ -22,6 +22,8 @@ install_requires = [
     'python-dateutil==2.5',
     'django-constance==1.2',
     'django_picklefield==0.3',
+    'django-lbattachment==1',
+    'django-lbutils==1',
 ]
 
 setup(name='LBForum',
