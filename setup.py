@@ -15,15 +15,15 @@ except IOError:
 
 install_requires = [
     'Django==1.10',
-    'django-el-pagination==3.0',
+    'django-el-pagination==3.0.0',
     'easy_thumbnails==2.3',
-    'postmarkup==1.2',
-    'BeautifulSoup==3.2',
-    'python-dateutil==2.5',
+    'postmarkup==1.2.2',
+    'BeautifulSoup==3.2.1',
+    'python-dateutil==2.5.3',
     'django-constance==1.2',
-    'django_picklefield==0.3',
-    'django-lbattachment==1',
-    'django-lbutils==1',
+    'django_picklefield==0.3.2',
+    'django-lbattachment==1.0.2',
+    'django-lbutils==1.0.1',
 ]
 
 setup(name='LBForum',
