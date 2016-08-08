@@ -15,6 +15,11 @@
   {% include 'lbforum/widgets/cur_user_profile.html' %}
 {% endblock %}
 
+{% block extra_header %}
+  {{ block.super }}
+  <link rel="stylesheet" type="text/css" media="screen" href="{% static 'lbforum/styles/pygments.css' %}"/>
+{% endblock %}
+
 {% block content_content %}
   {% paginate posts %}
   {% get_pages %}

@@ -6,13 +6,12 @@ LBForum
 
 .. |rst| replace:: :emphasis:`re`\ :strong:`Structured`\ :sup:`Text`
 
-LBForum is a quick and simple forum which uses the Django Framework (written 
-in Python language). LBForum is a reusable Django application, can be added 
+LBForum is a quick and simple forum which uses the Django Framework (written
+in Python language). LBForum is a reusable Django application, can be added
 to any existing django project.
-LBForum is distributed under the BSD and GPL license. 
+LBForum is distributed under the BSD.
 
-Demo site(Skin FluxBB): http://vik.haoluobo.com/lbforum/
-Demo site(Skin V2EX): http://vik.haoluobo.com/lbforum2/
+Demo site: http://vik.haoluobo.com/lbforum/
 
 Demo site's source: https://github.com/vicalloy/lbforum-site
 
@@ -23,7 +22,7 @@ Features
 * the ease of integration into any Django project and the ease of installation
 * classic view of the forum like FluxBB
 * Allow users to upload attachments to their posts(by AJAX).
-* avatar support(Gravatar or user upload)
+* avatar support
 * BBCode support
 * friendly edtor(by markItUp!).
 * Sticky threads (These threads are always sorted first in the list of threads)
@@ -31,29 +30,11 @@ Features
 Requirements
 ============
 
-* `Python 2.5+`_
-* `Django 1.3+`_
-* PIL_
-* django-pagination_
-* `south 0.7.2+`_
-* postmarkup_
-* BeautifulSoup_
-* django-helper_
-* django-lb-attachments_
-* django-onlineuser_
-* django-simple-avatar_
+* `Python 2.7`_
+* `Django 1.10`_
 
-.. _`Python 2.5+`: http://python.org/
-.. _`Django 1.3+`: http://www.djangoproject.com/
-.. _PIL: http://www.pythonware.com/products/pil/
-.. _django-pagination: http://code.google.com/p/django-pagination/
-.. _`south 0.7.2+`: http://south.aeracode.org/
-.. _BeautifulSoup: http://www.crummy.com/software/BeautifulSoup/
-.. _postmarkup: http://code.google.com/p/postmarkup/
-.. _django-helper: https://github.com/vicalloy/django-helper
-.. _django-lb-attachments: https://github.com/vicalloy/django-lb-attachments
-.. _django-onlineuser: https://github.com/vicalloy/onlineuser
-.. _django-simple-avatar: https://github.com/vicalloy/django-simple-avatar
+.. _`Python 2.7`: http://python.org/
+.. _`Django 1.10`: http://www.djangoproject.com/
 
 Installation
 ============
@@ -76,68 +57,66 @@ Configuration
 
 Config urls.py::
 
-    (r'^attachments/', include('attachments.urls')),
-    (r'^', include('lbforum.urls')),
+    url(r'^', include('lbforum.urls')),
+    url(r'^attachments/', include('lbattachment.urls')),
 
 
 The LBForum has some settings should be set in `settings.py`:
 
 #. Add the following app to ``INSTALLED_APPS``::
 
-    'pagination', 
-    'south',
+    'el_pagination',
+    'easy_thumbnails',
+    'constance',
+    'constance.backends.database',
+    'djangobower',
+
     'lbforum',
-    'simpleavatar',
-    'djangohelper',
-    'onlineuser',
-    'attachments',
+    'lbattachment',
+    'lbutils',
 
-#. Add the following middleware to ``MIDDLEWARE_CLASSES``::
+#. Add the following middleware to ``TEMPLATES['OPTIONS']['context_processors']``::
 
-    'pagination.middleware.PaginationMiddleware',
-    'onlineuser.middleware.OnlineUserMiddleware',
+    'django.contrib.messages.context_processors.messages',
     
-#. add ``"djangohelper.context_processors.ctx_config",`` to ``TEMPLATE_CONTEXT_PROCESSORS``::
-
-    TEMPLATE_CONTEXT_PROCESSORS = (
-        "django.core.context_processors.auth",
-        "django.core.context_processors.debug",
-        "django.core.context_processors.i18n",
-        "django.core.context_processors.media",
-        "django.core.context_processors.static",
-        "django.core.context_processors.request",
-
-        "djangohelper.context_processors.ctx_config",
-    )
-
 #. setting urls for lbforum::
     
-    # URL prefix for lbforum media -- CSS, JavaScript and images. Make sure to use a
-    # trailing slash.
-    # Examples: "http://foo.com/media/", "/media/".    
-    
-    #The URL where requests are redirected after login
-    LOGIN_REDIRECT_URL = '/'
-    #The URL where requests are redirected for login
-    LOGIN_URL = "/accounts/login/"
-    #LOGIN_URL counterpart
-    LOGOUT_URL = "/accounts/logout/"
-    #register url 
-    REGISTER_URL = '%saccounts/register/' % ROOT_URL
-    
-#. vars for templates::
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(PRJ_ROOT, 'collectedstatic')
 
-    CTX_CONFIG = {
-            'LBFORUM_TITLE': 'LBForum',
-            'LBFORUM_SUB_TITLE': 'A forum engine written in Python using Django',
-            'FORUM_PAGE_SIZE': 50,
-            'TOPIC_PAGE_SIZE': 20,
+    HOST_URL = ''
+    MEDIA_URL_ = '/media/'
+    MEDIA_URL = HOST_URL + MEDIA_URL_
+    MEDIA_ROOT = os.path.join(PRJ_ROOT, 'media')
     
-            'LOGIN_URL': LOGIN_URL,
-            'LOGOUT_URL': LOGOUT_URL,
-            'REGISTER_URL': REGISTER_URL,
-            }
-            
+    SIGNUP_URL = '/accounts/signup/'
+    LOGIN_URL = '/accounts/login/'
+    LOGOUT_URL = '/accounts/logout/'
+    LOGIN_REDIRECT_URL = '/'
+    CHANGE_PASSWORD_URL = '/accounts/password/change/'
+
+#. settings for constance::
+
+    CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+
+    CONSTANCE_CONFIG = {
+        'forbidden_words': ('', 'Forbidden words', str),
+    }
+
+#. settings for bower::
+
+    from django.conf.global_settings import STATICFILES_FINDERS
+    STATICFILES_FINDERS += (('djangobower.finders.BowerFinder'),)
+
+    BOWER_COMPONENTS_ROOT = PRJ_ROOT
+
+    BOWER_INSTALLED_APPS = (
+        'jquery#1.12',
+        'markitup#1.1.14',
+        'mediaelement#2.22.0',
+        'blueimp-file-upload#9.12.5',
+    )
+    
 #. settings for BBCODE::
 
     BBCODE_AUTO_URLS = True
@@ -170,22 +149,9 @@ The LBForum has some settings should be set in `settings.py`:
         'usemap', 'valign', 'value', 'vspace', 'width', 'style']
     """
     
-#. if you want to use skin v2ex, you should add the follow config to settings.py::
-
-    #always show topic post in topic page.
-    LBF_STICKY_TOPIC_POST = True
-    #show last topic in index page
-    LBF_LAST_TOPIC_NO_INDEX = True
-    #add v2ex template dir to TEMPLATE_DIRS
-    import lbforum
-    V2EX_TEMPLATE_DIR = os.path.join(lbforum.__path__[0], 'templates_v2ex')
-    TEMPLATE_DIRS = (
-            os.path.join(HERE, 'templates_plus'),
-            os.path.join(HERE, 'templates_v2ex'),
-            V2EX_TEMPLATE_DIR,
-    )
-    
-Initialize The Database
+Initialize The Database & Static Files
 -----------------------
+
+#. Run command ``manage.py bower install``
 
 #. Run command ``manage.py migrate``
