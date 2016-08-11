@@ -43,8 +43,9 @@ class Forum(models.Model):
     num_topics = models.IntegerField(default=0)
     num_posts = models.IntegerField(default=0)
 
-    last_post = models.ForeignKey(  # TODO set none
-        'Post', verbose_name=_('Last post'),
+    last_post = models.ForeignKey(
+        'Post', models.SET_NULL,
+        verbose_name=_('Last post'),
         blank=True, null=True)
 
     class Meta:
@@ -116,8 +117,9 @@ class Topic(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(blank=True, null=True)
     last_reply_on = models.DateTimeField(auto_now_add=True)
-    last_post = models.ForeignKey(  # TODO set none
-        'Post', verbose_name=_('Last post'),
+    last_post = models.ForeignKey(
+        'Post', models.SET_NULL,
+        verbose_name=_('Last post'),
         related_name='last_post_topics', blank=True, null=True)
 
     has_imgs = models.BooleanField(default=False)
