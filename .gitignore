@@ -3,3 +3,4 @@
 *.sqlite
 *.egg-info/
 build/
+dist/
