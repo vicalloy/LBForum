@@ -42,9 +42,12 @@ def clean_html(fragment):
                 if tag.name not in acceptable_elements:
                     tag.extract()
                 else:
+                    keys_to_del = []
                     for attr in tag.attrs.keys():
                         if attr not in acceptable_attributes:
-                            del tag[attr]
+                            keys_to_del.append(attr)
+                    for key in keys_to_del:
+                        del tag[key]
                     cleanup(tag)
     cleanup(soup)
     return mark_safe(soup)
