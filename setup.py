@@ -17,7 +17,7 @@ install_requires = [
     'Django==1.10',
     'django-el-pagination==3.0.0',
     'easy_thumbnails==2.3',
-    'postmarkup==1.2.2',
+    'beautifulsoup4==4.5.1',
     'BeautifulSoup==3.2.1',
     'python-dateutil==2.5.3',
     'django-constance==1.2',

@@ -2,7 +2,8 @@
 from __future__ import unicode_literals
 
 from django.conf import settings
-from BeautifulSoup import BeautifulSoup, NavigableString
+from django.utils.safestring import mark_safe
+from bs4 import BeautifulSoup, NavigableString
 
 acceptable_elements = [
     'a', 'abbr', 'acronym', 'address', 'area', 'b', 'big',
@@ -41,9 +42,9 @@ def clean_html(fragment):
                 if tag.name not in acceptable_elements:
                     tag.extract()
                 else:
-                    for attr in tag._getAttrMap().keys():
+                    for attr in tag.attrs.keys():
                         if attr not in acceptable_attributes:
                             del tag[attr]
                     cleanup(tag)
     cleanup(soup)
-    return unicode(soup)
+    return mark_safe(soup)
