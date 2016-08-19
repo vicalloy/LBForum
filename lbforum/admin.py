@@ -83,7 +83,7 @@ admin.site.register(Topic, TopicAdmin)
 
 class PostAdmin(admin.ModelAdmin):
     list_display = (
-        '__unicode__', 'topic', 'posted_by', 'poster_ip',
+        'topic', 'posted_by', 'poster_ip',
         'created_on', 'updated_on', )
     search_fields = ('topic__subject', 'posted_by__username', 'message', )
     raw_id_fields = ('topic', 'posted_by', 'attachments', 'last_updated_by')
