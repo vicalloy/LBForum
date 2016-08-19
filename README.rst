@@ -30,10 +30,10 @@ Features
 Requirements
 ============
 
-* `Python 2.7`_
+* `Python 2.7 or 3.4+`_
 * `Django 1.10`_
 
-.. _`Python 2.7`: http://python.org/
+.. _`Python 2.7 or 3.4+`: http://python.org/
 .. _`Django 1.10`: http://www.djangoproject.com/
 
 Installation
