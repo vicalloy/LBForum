@@ -12,7 +12,7 @@ from postmarkup import create, QuoteTag, TagBase, PostMarkup, strip_bbcode
 
 from lbattachment.models import LBAttachment
 
-from helper import clean_html
+from .helper import clean_html
 
 register = template.Library()
 

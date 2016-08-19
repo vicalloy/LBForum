@@ -5,7 +5,7 @@ from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 from django.utils.safestring import mark_safe
 
-from bbcode import _postmarkup
+from .bbcode import _postmarkup
 
 register = template.Library()
 

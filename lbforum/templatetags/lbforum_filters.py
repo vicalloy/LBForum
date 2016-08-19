@@ -4,13 +4,14 @@ import datetime
 from django import template
 from django.template.defaultfilters import timesince as _timesince
 from django.utils.safestring import mark_safe
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_text
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from django.utils import six
 from django.conf import settings
 from dateutil import tz
 
-from bbcode import _postmarkup
+from .bbcode import _postmarkup
 
 register = template.Library()
 
@@ -34,7 +35,7 @@ def form_all_error(form):
     for name, field in form.fields.items():
         e = form.errors.get(name, '')
         if e:
-            errors.append((field.label, force_unicode(e), ))
+            errors.append((field.label, force_text(e), ))
     return mark_safe(
         u'<ul class="errorlist">%s %s</ul>' % (
             global_error, ''.join([u'<li>%s%s</li>' % (k, v) for k, v in errors])))
@@ -81,7 +82,7 @@ def lbtimesince(d, now=None):
     if not d:
         return ''
     # '2016-07-05T08:08:21.421Z'
-    if isinstance(d, (str, unicode)):
+    if isinstance(d, (str, six.text_type)):
         tmp_d = None
         try:
             tmp_d = datetime.datetime.strptime(d, '%Y-%m-%dT%H:%M:%S.%fZ')

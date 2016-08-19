@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from models import Category, Forum, TopicType, Topic
-from models import Post, LBForumUserProfile
+from .models import Category, Forum, TopicType, Topic
+from .models import Post, LBForumUserProfile
 
 admin.site.register(Category)
 
