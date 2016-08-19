@@ -2,17 +2,18 @@
 from __future__ import unicode_literals
 
 from django.db import models
-# from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from easy_thumbnails.fields import ThumbnailerImageField
 from easy_thumbnails.files import get_thumbnailer
 from el_pagination import settings as elp_setttings
+from django.utils.encoding import python_2_unicode_compatible
 
 from lbattachment.models import LBAttachment
 
 
+@python_2_unicode_compatible
 class Category(models.Model):
     name = models.CharField(max_length=100)
     descn = models.TextField(blank=True)
@@ -26,10 +27,11 @@ class Category(models.Model):
         verbose_name_plural = _("Categories")
         ordering = ('-oid', 'created_on')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
+@python_2_unicode_compatible
 class Forum(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=110)
@@ -56,7 +58,7 @@ class Forum(models.Model):
             ("sft_mgr_forum", _("Forum-Administrator")),
         )
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     def _count_nums_topic(self):
@@ -85,13 +87,14 @@ class Forum(models.Model):
         return self.admins.filter(pk=user.pk).exists()
 
 
+@python_2_unicode_compatible
 class TopicType(models.Model):
     forum = models.ForeignKey(Forum, verbose_name=_('Forum'))
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100)
     description = models.TextField(blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 LEVEL_CHOICES = (
@@ -100,6 +103,7 @@ LEVEL_CHOICES = (
 )
 
 
+@python_2_unicode_compatible
 class Topic(models.Model):
     forum = models.ForeignKey(Forum, verbose_name=_('Forum'))
     topic_type = models.ForeignKey(
@@ -138,7 +142,7 @@ class Topic(models.Model):
         verbose_name = _("Topic")
         verbose_name_plural = _("Topics")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.subject
 
     def _count_nums_replies(self):
@@ -162,6 +166,7 @@ class Topic(models.Model):
             self.save()
 
 
+@python_2_unicode_compatible
 class Post(models.Model):
     FORMAT_CHOICES = (
         ('bbcode', _('BBCode')),
@@ -193,7 +198,7 @@ class Post(models.Model):
         ordering = ('-created_on',)
         get_latest_by = ('created_on', )
 
-    def __unicode__(self):
+    def __str__(self):
         return self.message[:80]
 
     def subject(self):
@@ -232,6 +237,7 @@ class Post(models.Model):
         return '%s?page=%s#p%s' % (topic.get_absolute_url(), page, self.pk)
 
 
+@python_2_unicode_compatible
 class LBForumUserProfile(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, related_name='lbforum_profile',
@@ -241,7 +247,7 @@ class LBForumUserProfile(models.Model):
     avatar = ThumbnailerImageField(_("Avatar"), upload_to='imgs/avatars', blank=True, null=True)
     bio = models.TextField(blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.nickname or self.user.username
 
     def get_total_topics(self):
