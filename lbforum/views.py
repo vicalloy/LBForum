@@ -23,23 +23,33 @@ from .models import Topic, Forum, Post
 User = get_user_model()
 
 
-def get_all_topics(user):
+def get_all_topics(user, select_related=True):
     topics = Topic.objects.all()
     if not (user.has_perm('lbforum.sft_mgr_forum')):
         qparam = Q(hidden=False)
         if user.is_authenticated:
             qparam = qparam | Q(forum__admins=user) | Q(posted_by=user)
         topics = topics.filter(qparam)
+    if select_related:
+        topics = topics.select_related(
+            'posted_by__lbforum_profile',
+            'last_post__last_updated_by__lbforum_profile',
+            'forum'
+        )
     return topics.distinct()
 
 
-def get_all_posts(user):
+def get_all_posts(user, select_related=True):
     qs = Post.objects.all()
     if not (user.has_perm('lbforum.sft_mgr_forum')):
         qparam = Q(topic__hidden=False)
         if user.is_authenticated:
             qparam = qparam | Q(topic__forum__admins=user) | Q(posted_by=user)
         qs = qs.filter(qparam)
+    if select_related:
+        qs = qs.select_related(
+            'posted_by', 'posted_by__lbforum_profile',
+        )
     return qs.distinct()
 
 
@@ -61,7 +71,7 @@ def recent(request, template_name="lbforum/recent.html"):
     if q:
         topics = topics.filter(subject__icontains=q)
     ctx['q'] = q
-    ctx['topics'] = topics.order_by('-last_reply_on').select_related()
+    ctx['topics'] = topics.order_by('-last_reply_on')
     ctx['request'] = request
     return render(request, template_name, ctx)
 
@@ -84,9 +94,9 @@ def forum(
     order_by = request.GET.get('order_by', '-last_reply_on')
 
     try:
-        topics = topics.order_by('-sticky', order_by).select_related()
+        topics = topics.order_by('-sticky', order_by)
     except FieldError:
-        topics = topics.order_by('-sticky', '-last_reply_on').select_related()
+        topics = topics.order_by('-sticky', '-last_reply_on')
 
     form = ForumForm(request.GET)
     ext_ctx = {
@@ -106,7 +116,7 @@ def topic(request, topic_id, template_name="lbforum/topic.html"):
     posts = get_all_posts(user)
     posts = posts.filter(topic=topic)
     posts = posts.filter(topic_post=False)
-    posts = posts.order_by('created_on').select_related()
+    posts = posts.order_by('created_on')
     ext_ctx = {
         'request': request,
         'topic': topic,
@@ -147,7 +157,7 @@ def new_post(
         if not topic_can_post(topic, user):
             return HttpResponse(_("you can't reply, this topic closed."))
         forum = topic.forum
-        first_post = topic.posts.order_by('created_on').select_related().first()
+        first_post = topic.posts.order_by('created_on').first()
     initial['forum'] = forum
     if request.method == "POST":
         form = form_class(
