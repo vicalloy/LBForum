@@ -1,7 +1,12 @@
 from django.conf.urls import url, include
 from django.views.generic import TemplateView
+from rest_framework import routers
 
 from lbforum import views, profileviews
+from lbforum import api
+
+router = routers.DefaultRouter()
+router.register(r'topic', api.TopicViewSet)
 
 forum_patterns = [
     url(r'^(?P<forum_slug>[\w-]+)/$', views.forum, name='lbforum_forum'),
@@ -48,6 +53,7 @@ urlpatterns = [
     url(r'^forum/', include(forum_patterns)),
     url(r'^topic/', include(topic_patterns)),
     url(r'^profile/', include(profile_patterns)),
+    url(r'^api/', include(router.urls)),
 
     url('^reply/new/(?P<topic_id>\d+)/$', views.new_post,
         name='lbforum_new_replay'),
