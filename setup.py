@@ -24,6 +24,7 @@ install_requires = [
     'django_picklefield==0.3.2',
     'django-lbattachment==1.0.2',
     'django-lbutils==1.0.1',
+    'djangorestframework==3.4.6',
 ]
 
 setup(name='LBForum',
