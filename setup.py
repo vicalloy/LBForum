@@ -18,7 +18,6 @@ install_requires = [
     'django-el-pagination==3.0.1',
     'easy_thumbnails==2.3',
     'beautifulsoup4==4.5.1',
-    'BeautifulSoup==3.2.1',
     'python-dateutil==2.5.3',
     'django-constance==1.2',
     'django_picklefield==0.3.2',
