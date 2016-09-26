@@ -15,7 +15,7 @@ except IOError:
 
 install_requires = [
     'Django==1.10',
-    'django-el-pagination==3.0.0',
+    'django-el-pagination==3.0.1',
     'easy_thumbnails==2.3',
     'beautifulsoup4==4.5.1',
     'BeautifulSoup==3.2.1',
