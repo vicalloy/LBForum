@@ -11,7 +11,7 @@ in Python language). LBForum is a reusable Django application, can be added
 to any existing django project.
 LBForum is distributed under the BSD.
 
-Demo site: http://vik.haoluobo.com/lbforum/
+Demo site: http://lbf.haoluobo.com/
 
 Demo site's source: https://github.com/vicalloy/lbforum-site
 
