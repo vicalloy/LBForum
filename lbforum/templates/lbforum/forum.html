@@ -32,7 +32,7 @@
       </div>
       <div class="inner">
         {% for o in forum.admins.all %}
-          <a class="item_node" href="{% url 'lbforum_user_profile' o.pk %}">
+          <a class="item_node" href="{% url 'lbforum_profile' o.pk %}">
             <span> {{ o.lbforum_profile }} </span>
           </a>
         {% endfor %}
