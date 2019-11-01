@@ -14,7 +14,7 @@ except IOError:
     sys.exit(1)
 
 install_requires = [
-    'Django==1.10',
+    'Django==1.11.23',
     'django-el-pagination==3.0.1',
     'easy_thumbnails==2.3',
     'beautifulsoup4==4.5.1',
